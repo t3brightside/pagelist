@@ -42,7 +42,7 @@ Admin
 **Removing default templates from back end:**
 
 >>>
- TCEFORM.tt_content.tx_pagelist_template.removeItems = 1,2
+ TCEFORM.tt_content.tx_pagelist_template.removeItems = 0,1
 <<<
 
 **For customizing template take a look at:**
