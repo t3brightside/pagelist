@@ -15,6 +15,7 @@ Features
 - List of sub pages
 - List of selected pages
 - List of pages in category
+– Set stat from, limit and sort by
 - Easy to add custom templates
 
 Installation
