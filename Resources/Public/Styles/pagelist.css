@@ -16,7 +16,7 @@
 .pagelist-img-dummy {
   background-color: #eee;
   width: 100%;
-  max-height: 399.66px;
+  height: auto;
 }
 
 .pagelist a:hover {
