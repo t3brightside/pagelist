@@ -15,7 +15,7 @@ Features
 - List of sub pages
 - List of selected pages
 - List of pages in category
-- Easy to add new templates
+- Easy to add custom templates
 
 Installation
 ------------
