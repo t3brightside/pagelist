@@ -6,7 +6,7 @@ Page List
 System requirements
 -------------------
 
-- TYPO3 8.7 LTS
+- TYPO3 8.7 LTS or 9.*
 - fluid_styled_content
 
 Features
@@ -30,16 +30,15 @@ Add as any other content element. Select desired template in content element set
 Admin
 -----
 
-**Add new and/or overwrite templates in PageTS:**
+**Add new and/or overwrite templates to back end in PageTS:**
 
 >>>
   TCEFORM.tt_content.tx_pagelist_template.addItems {
-    4 = Rename the template nr 4
-    5 = My Custom Template
+    2 = My Template Name
   }
 <<<
 
-**Removing templates from backend drop down list:**
+**Removing default templates from back end:**
 
 >>>
  TCEFORM.tt_content.tx_pagelist_template.removeItems = 1,2
@@ -48,7 +47,7 @@ Admin
 **For customizing template take a look at:**
 
 - *pagelist/Configuration/TypoScript/setup.ts* – how to change the location of the Fluid template and CSS file
-- *pagelist/Resources/Private/Templates/Pagelist.html* – how to change the actual HTML template regarding the tx_pagelist_template number
+- *pagelist/Resources/Private/Templates/Pagelist.html* – how to change the HTML template regarding the tx_pagelist_template number
 
 Sources
 -------
