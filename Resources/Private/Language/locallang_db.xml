@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels and descriptions for database tables/fields belonging to extension 'youtubevideo'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+
+			<label index="pagelist.title">List of Pages</label>
+			<label index="pagelist.description">List of pages based on different selection methods</label>
+
+		</languageKey>
+	</data>
+</T3locallang>

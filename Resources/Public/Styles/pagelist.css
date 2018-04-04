@@ -1,0 +1,106 @@
+/* by t3brightside.com */
+
+.pagelist * {
+  box-sizing: border-box;
+}
+
+.pagelist {
+  width: 100%;
+  overflow: auto;
+}
+
+.pagelist img {
+  width: 100%;
+}
+
+.pagelist-img-dummy {
+  background-color: #eee;
+  width: 100%;
+  max-height: 399.66px;
+}
+
+.pagelist a:hover {
+  text-decoration: none;
+}
+
+.pagelist a:hover img {
+  opacity: 0.85;
+}
+
+/* card layout */
+
+.pagelist-card {
+  width: 30%;
+  float: left;
+  transition-property: width;
+  transition-duration: 0.2s;
+}
+
+.pagelist-card a {
+  float: left;
+  width: 100%;
+}
+
+.pagelist-card a:hover {
+  text-decoration: none;
+}
+
+.pagelist-card-title {
+  font-weight: bold;
+  padding: 0.2em 0;
+  margin: 0;
+  width: 100%;
+}
+
+.pagelist-card-space {
+  width: 5%;
+  float: left;
+  height: 1.5em;
+}
+
+.pagelist-card-space:nth-child(3n) {
+  width: 100%
+}
+
+/* article layout */
+
+.pagelist-article {
+  margin-bottom: 4em;
+}
+
+.pagelist-article a p {
+  color: #333;
+}
+
+.pagelist-article-title {
+  margin-top: 0.2em;
+}
+
+.pagelist-article-info {
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+/* less columns for smaller screens */
+
+@media screen and (max-width: 760px) {
+  .pagelist-card {
+    width: 47.5%
+  }
+  .pagelist-card-space:nth-child(2n) {
+    width: 5%
+  }
+  .pagelist-card-space:nth-child(4n) {
+    width: 100%
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .pagelist-card {
+    width: 100%
+  }
+  .pagelist-card-space {
+    display: block;
+    width: 100%;
+  }
+}
