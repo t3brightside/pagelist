@@ -4,20 +4,29 @@
 		<f:if condition="{menu}">
 			<f:if condition="{data.tx_pagelist_template} == 0">
 				<div class="pagelist pagelist-cards template-{data.tx_pagelist_template}">
-						<f:for each="{menu}" as="page" iteration="iterator">
-							<f:render partial="Subsections/ImgTitleCard" arguments="{_all}"/>
-						</f:for>
+					<f:for each="{menu}" as="page" iteration="iterator">
+						<f:render partial="Subsections/ImgTitleCard" arguments="{_all}" />
+					</f:for>
 				</div>
 			</f:if>
 			<f:if condition="{data.tx_pagelist_template} == 1">
 				<div class="pagelist pagelist-articles template-{data.tx_pagelist_template}">
-					<f:widget.paginate objects="{menu}" as="paginatedPages" configuration="{itemsPerPage: 2, insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: 10}">
-						<f:for each="{paginatedPages}" as="page" iteration="iterator">
-							<f:render partial="Subsections/Article" arguments="{_all}"/>
-						</f:for>
-					</f:widget.paginate>
+					<f:for each="{menu}" as="page" iteration="iterator">
+						<f:render partial="Subsections/Article" arguments="{_all}" />
+					</f:for>
 				</div>
 			</f:if>
 		</f:if>
 	</f:section>
 </html>
+
+
+<f:comment>
+	# Example with pagination
+	# Enable cHash in pagination to make it work with caching
+	<f:widget.paginate objects="{menu}" as="paginatedPages" configuration="{itemsPerPage: 5, insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: 10}">
+		<f:for each="{paginatedPages}" as="page" iteration="iterator">
+			<f:render partial="Subsections/Article" arguments="{_all}" />
+		</f:for>
+	</f:widget.paginate>
+</f:comment>
