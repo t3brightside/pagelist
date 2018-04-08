@@ -25,8 +25,8 @@ tt_content.pagelist_sub {
     }
   }
   extbase {
-    pluginName = Page
-    controllerName = Page
+    pluginName = Pagelist
+    controllerName = Pagelist
     controllerExtensionName = pagelist
     controllerActionName = show
   }
