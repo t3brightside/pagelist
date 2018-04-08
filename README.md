@@ -33,7 +33,7 @@ Add as any other content element. Select desired template in content element set
 Add new template number '2' and name it:
 ```typoscript
 TCEFORM.tt_content.tx_pagelist_template.addItems {
-  2 = My Template Name
+  2 = My New Template
 }
 ```
 
