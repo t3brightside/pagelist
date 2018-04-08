@@ -28,7 +28,9 @@ Add as any other content element. Select desired template in content element set
 
 ### Add custom template
 
-**PageTS:**
+**PageTS**
+
+Add new template number '2' and name it:
 ```typoscript
 TCEFORM.tt_content.tx_pagelist_template.addItems {
   2 = My Template Name
@@ -46,7 +48,7 @@ pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
 
 **Fluid**
 
-Add new section to: _Resources/Private/Templates/Pagelist.html_
+Add new section with IF condition selecting template nr '2' into: _Resources/Private/Templates/Pagelist.html_
 ```html
 <f:if condition="{data.tx_pagelist_template} == 2">
   <div class="pagelist pagelist-mytemplate template-{data.tx_pagelist_template}">
