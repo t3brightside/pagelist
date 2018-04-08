@@ -24,6 +24,12 @@ tt_content.pagelist_sub {
       }
     }
   }
+  extbase {
+    pluginName = Page
+    controllerName = Page
+    controllerExtensionName = pagelist
+    controllerActionName = show
+  }
   stdWrap {
     editIcons = tt_content: header [header_layout], pages
     editIcons {

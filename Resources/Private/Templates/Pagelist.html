@@ -4,32 +4,20 @@
 		<f:if condition="{menu}">
 			<f:if condition="{data.tx_pagelist_template} == 0">
 				<div class="pagelist pagelist-cards template-{data.tx_pagelist_template}">
-					<f:for each="{menu}" as="page" iteration="iterator">
-						<f:render partial="Subsections/img-title" arguments="{_all}"/>
-					</f:for>
+						<f:for each="{menu}" as="page" iteration="iterator">
+							<f:render partial="Subsections/ImgTitleCard" arguments="{_all}"/>
+						</f:for>
 				</div>
 			</f:if>
 			<f:if condition="{data.tx_pagelist_template} == 1">
 				<div class="pagelist pagelist-articles template-{data.tx_pagelist_template}">
-					<f:for each="{menu}" as="page" iteration="iterator">
-						<f:render partial="Subsections/article" arguments="{_all}"/>
-					</f:for>
+					<f:widget.paginate objects="{menu}" as="paginatedPages" configuration="{itemsPerPage: 2, insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: 10}">
+						<f:for each="{paginatedPages}" as="page" iteration="iterator">
+							<f:render partial="Subsections/Article" arguments="{_all}"/>
+						</f:for>
+					</f:widget.paginate>
 				</div>
 			</f:if>
 		</f:if>
 	</f:section>
 </html>
-
-<f:comment>
-	# Add new template names to PageTS:
-	TCEFORM.tt_content.tx_pagelist_template.addItems.2 = My Template Name
-
-	# Then add new partial and following section to your template file:
-	<f:if condition="{data.tx_pagelist_template} == 2">
-		<div class="pagelist pagelist-mytemplate template-{data.tx_pagelist_template}">
-			<f:for each="{menu}" as="page" iteration="iterator">
-				<f:render partial="Subsections/mytemplate" arguments="{_all}"/>
-			</f:for>
-		</div>
-	</f:if>
-</f:comment>
