@@ -48,7 +48,7 @@ pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
 
 **Fluid**
 
-Add new section with IF condition selecting template nr '2' into: _Resources/Private/Templates/Pagelist.html_
+Add new section with IF condition selecting template nr '2' in: _Resources/Private/Templates/Pagelist.html_
 ```html
 <f:if condition="{data.tx_pagelist_template} == 2">
   <div class="pagelist pagelist-mytemplate template-{data.tx_pagelist_template}">
