@@ -1,7 +1,7 @@
 TCEFORM.tt_content.tx_pagelist_template.addItems {
-	0 = Image and title as (cards)
-	1 = Image, title and abstract (list)
-	2 = Title, last update, author and abstract (list)
+	0 = Image and title as cards
+	1 = Articles with images
+	2 = Articles with no images
 }
 
 mod.wizards.newContentElement.wizardItems.common {

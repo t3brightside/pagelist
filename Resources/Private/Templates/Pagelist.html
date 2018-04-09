@@ -16,6 +16,13 @@
 					</f:for>
 				</div>
 			</f:if>
+			<f:if condition="{data.tx_pagelist_template} == 2">
+				<div class="pagelist pagelist-articles template-{data.tx_pagelist_template}">
+					<f:for each="{menu}" as="page" iteration="iterator">
+						<f:render partial="Subsections/ArticleNoImg" arguments="{_all}" />
+					</f:for>
+				</div>
+			</f:if>
 		</f:if>
 	</f:section>
 </html>

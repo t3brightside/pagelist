@@ -30,10 +30,10 @@ Add as any other content element. Select desired template in content element set
 
 **PageTS**
 
-Add new template number '2' and name it:
+Add new template number '3' and name it:
 ```typoscript
 TCEFORM.tt_content.tx_pagelist_template.addItems {
-  2 = My New Template
+  3 = My New Template
 }
 ```
 
@@ -48,9 +48,9 @@ pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
 
 **Fluid**
 
-Add new section with IF condition selecting template nr '2' in: _Resources/Private/Templates/Pagelist.html_
+Add new section with IF condition selecting template nr '3' in: _Resources/Private/Templates/Pagelist.html_
 ```html
-<f:if condition="{data.tx_pagelist_template} == 2">
+<f:if condition="{data.tx_pagelist_template} == 3">
   <div class="pagelist pagelist-mytemplate template-{data.tx_pagelist_template}">
     <f:for each="{menu}" as="page" iteration="iterator">
       <f:render partial="Subsections/MyNewTemplate" arguments="{_all}"/>
