@@ -5,21 +5,21 @@
 			<f:if condition="{data.tx_pagelist_template} == 0">
 				<div class="pagelist pagelist-cards template-{data.tx_pagelist_template}">
 					<f:for each="{menu}" as="page" iteration="iterator">
-						<f:render partial="Subsections/Card" arguments="{_all}" />
+						<f:render partial="Card" arguments="{_all}" />
 					</f:for>
 				</div>
 			</f:if>
 			<f:if condition="{data.tx_pagelist_template} == 1">
 				<div class="pagelist pagelist-articles template-{data.tx_pagelist_template}">
 					<f:for each="{menu}" as="page" iteration="iterator">
-						<f:render partial="Subsections/Article" arguments="{_all}" />
+						<f:render partial="Article" arguments="{_all}" />
 					</f:for>
 				</div>
 			</f:if>
 			<f:if condition="{data.tx_pagelist_template} == 2">
 				<div class="pagelist pagelist-articles template-{data.tx_pagelist_template}">
 					<f:for each="{menu}" as="page" iteration="iterator">
-						<f:render partial="Subsections/ArticleNoImg" arguments="{_all}" />
+						<f:render partial="ArticleNoImg" arguments="{_all}" />
 					</f:for>
 				</div>
 			</f:if>
