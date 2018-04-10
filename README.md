@@ -53,7 +53,7 @@ Add new section wheres IF condition determines template nr '3' to: _Resources/Pr
 <f:if condition="{data.tx_pagelist_template} == 3">
   <div class="pagelist pagelist-mytemplate template-{data.tx_pagelist_template}">
     <f:for each="{menu}" as="page" iteration="iterator">
-      <f:render partial="Subsections/MyNewTemplate" arguments="{_all}"/>
+      <f:render partial="MyNewTemplate" arguments="{_all}"/>
     </f:for>
   </div>
 </f:if>
