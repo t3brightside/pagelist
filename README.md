@@ -12,13 +12,13 @@
 - List of sub pages
 - List of selected pages
 - List of pages in category
-- Set stat from, limit and sort by
+- Set start from, limit and sort by
 - Easy to add custom templates
 
 ## Installation
 
- - Install from TER (**pagelist**) or Composer (**t3brightside/pagelist**)
- - Include static template
+ - From TER: **pagelist**, or composer: **t3brightside/pagelist**
+ - Include static template after fluid_styled_content
 
 ## Usage
 
@@ -48,7 +48,7 @@ pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
 
 **Fluid**
 
-Add new section with IF condition selecting template nr '3' in: _Resources/Private/Templates/Pagelist.html_
+Add new section wheres IF condition determines template nr '3' to: _Resources/Private/Templates/Pagelist.html_
 ```html
 <f:if condition="{data.tx_pagelist_template} == 3">
   <div class="pagelist pagelist-mytemplate template-{data.tx_pagelist_template}">
@@ -58,7 +58,7 @@ Add new section with IF condition selecting template nr '3' in: _Resources/Priva
   </div>
 </f:if>
 ```
-Create new partial: _Resources/Private/Partials/Subsections/MyNewTemplate.html_
+Create new partial: _Resources/Private/Partials/MyNewTemplate.html_
 
 ## Sources
 
