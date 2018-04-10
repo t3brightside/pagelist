@@ -3,7 +3,7 @@
   "description": "TYPO3 CMS extension to create page lists, teasers, galleries etc.",
   "type": "typo3-cms-extension",
   "version": "1.0.0",
-  "keywords": ["TYPO3", "list", "teaser", "page"],
+  "keywords": ["TYPO3", "extension", "list", "teaser", "pageteaser"],
   "homepage": "https://github.com/t3brightside/pagelist/",
   "license": "GPL-2.0+",
   "authors": [
