@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array (
 	'title' => 'Page List',
-	'description' => 'Content element for page lists. Easy to configure teasers, news lists, products lists etc...',
+	'description' => 'Content element for page lists. Easy to configure teasers, news lists, products lists, usecases etc.',
 	'category' => 'fe',
 	'version' => '1.0.0',
 	'state' => 'stable',
