@@ -3,8 +3,11 @@
 page.includeCSS.pagelist = {$pagelist.styles}
 
 tt_content.defaultpagelist =< lib.fluidContent
-tt_content.defaultpagelist.templateRootPaths.10 = {$pagelist.templateRootPaths}
-tt_content.defaultpagelist.partialRootPaths.10 = {$pagelist.partialRootPaths}
+tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
+tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
+tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/Partials/
+tt_content.defaultpagelist.partialRootPaths.20 = {$pagelist.partialRootPaths}
+
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
   templateName = Pagelist
