@@ -24,6 +24,11 @@ tt_content.pagelist_sub {
         10 {
           references.fieldName = media
         }
+        20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        20 {
+          references.fieldName = tx_pagelist_images
+          as = pagelistImages
+        }
       }
     }
   }
