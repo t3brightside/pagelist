@@ -3,7 +3,7 @@
   $tempColumns = array(
     'tx_pagelist_images' => array(
   		'exclude' => 1,
-  		'label' => 'Pagelist images',
+  		'label' => 'Images',
   		'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
   			'tx_pagelist_images',
   			array(
@@ -31,15 +31,19 @@
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumns, 1);
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
-    '--div--;Images;pagelistimages,'
+    '--palette--;Pagelist;pagelistimages,',
+    '',
+    'after:media'
   );
 
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumns, 1);
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
   	'pages_language_overlay',
-    '--div--;Images;pagelistimages,'
+    '--palette--;Pagelist;pagelistimages,',
+    '',
+    'after:media'
   );
 
   $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = '
-    tx_pagelist_images
+    tx_pagelist_images,
   ';
