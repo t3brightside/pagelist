@@ -35,6 +35,9 @@
     '',
     'after:media'
   );
+  $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = '
+    tx_pagelist_images,
+  ';
 
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumns, 1);
   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
@@ -44,6 +47,6 @@
     'after:media'
   );
 
-  $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = '
+  $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistimages']['showitem'] = '
     tx_pagelist_images,
   ';
