@@ -2,7 +2,7 @@
 <T3locallang>
 	<meta type="array">
 		<type>database</type>
-		<description>Language labels and descriptions for database tables/fields belonging to extension 'youtubevideo'</description>
+		<description>Language labels and descriptions for database tables/fields belonging to extension 'pagelist'</description>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
