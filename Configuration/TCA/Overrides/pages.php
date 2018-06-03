@@ -3,7 +3,7 @@
   $tempColumns = array(
     'tx_pagelist_images' => array(
   		'exclude' => 1,
-  		'label' => 'Images',
+  		'label' => 'Teasers, articles etc',
   		'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
   			'tx_pagelist_images',
   			array(

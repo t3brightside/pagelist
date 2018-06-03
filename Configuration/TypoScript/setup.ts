@@ -21,14 +21,10 @@ tt_content.pagelist_sub {
 			begin.field = tx_pagelist_startfrom
       dataProcessing {
         10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-        10 {
-          references.fieldName = media
-        }
+        10.references.fieldName = media
         20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-        20 {
-          references.fieldName = tx_pagelist_images
-          as = pagelistImages
-        }
+        20.references.fieldName = tx_pagelist_images
+        20.as = tx_pagelist_images
       }
     }
   }
