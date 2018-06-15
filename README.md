@@ -12,6 +12,7 @@
 - List of sub pages
 - List of selected pages
 - List of pages in category
+- Deticated image field in page resources
 - Set start from, limit and sort by
 - Easy to add custom templates
 
