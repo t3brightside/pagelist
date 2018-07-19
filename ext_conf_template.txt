@@ -1,0 +1,6 @@
+# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable Articles page type
+pagelistEnableArticles = 0
+# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable Events page type
+pagelistEnableEvents = 0
+# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable Products page type
+pagelistEnableProducts = 0

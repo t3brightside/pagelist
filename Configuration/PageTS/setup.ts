@@ -1,3 +1,5 @@
+#TCEFORM.pages.tx_pagelist_images.types.136.disabled = 0
+
 TCEFORM.tt_content.tx_pagelist_template.addItems {
 	0 = Image and title as cards
 	1 = Articles with images
