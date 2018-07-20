@@ -1,27 +1,28 @@
-<div class="pagelist-article">
+<div class="article card">
   <a href="{page.link}" target="{page.target}" title="{page.data.title}">
     <figure>
       <f:if condition="{page.tx_pagelist_images.0}">
         <f:then>
-          <img src="<f:uri.image image="{page.tx_pagelist_images.0}" treatIdAsReference="1" width="1200c" height="600c" />" />
+          <img src="<f:uri.image image="{page.tx_pagelist_images.0}" treatIdAsReference="1" width="900c" height="600c" />" />
         </f:then>
         <f:else>
-          <f:image class="pagelist-img-dummy" src="EXT:pagelist/Resources/Public/Images/clear.png" width="1200c" height="600c" />
+          <f:image class="img-dummy" src="EXT:pagelist/Resources/Public/Images/clear.png" width="900c" height="600c" />
         </f:else>
       </f:if>
     </figure>
-    <div class="pagelist-article-text">
-      <h3 class="pagelist-article-title">{page.data.title}</h3>
-      <f:if condition="{page.data.author} || {page.data.lastUpdated}">
-        <p class="pagelist-article-info">
+    <div class="text">
+      <h3 class="title">{page.data.title}</h3>
+      <f:if condition="{page.data.author} || {page.data.tx_pagelist_datetime}">
+        <p class="info">
           <f:if condition="{page.data.author}">{page.data.author}</f:if>
-          <f:if condition="{page.data.author} && {page.data.lastUpdated}"> • </f:if>
-          <f:if condition="{page.data.lastUpdated}"><f:format.date format="j. M Y">{page.data.lastUpdated}</f:format.date></f:if>
+          <f:if condition="{page.data.author} && {page.data.tx_pagelist_datetime}"> • </f:if>
+          <f:if condition="{page.data.tx_pagelist_datetime}"><f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date></f:if>
         </p>
       </f:if>
       <f:if condition="{page.data.abstract}">
-        <p class="pagelist-article-abstract">{page.data.abstract}</p>
+        <p class="abstract">{page.data.abstract}</p>
       </f:if>
     </div>
   </a>
 </div>
+<div class="space"></div>

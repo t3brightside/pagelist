@@ -1,5 +1,3 @@
-/* by t3brightside.com */
-
 .pagelist * {
   box-sizing: border-box;
 }
@@ -13,7 +11,7 @@
   width: 100%;
 }
 
-.pagelist-img-dummy {
+.pagelist.articles .card .img-dummy {
   background-color: #eee;
   width: 100%;
   height: auto;
@@ -27,80 +25,76 @@
   opacity: 0.85;
 }
 
+.pagelist .article a p {
+  color: #333;
+}
+
 /* card layout */
 
-.pagelist-card {
+.pagelist .card {
   width: 30%;
   float: left;
   transition-property: width;
   transition-duration: 0.2s;
 }
 
-.pagelist-card a {
+.pagelist .card a {
   float: left;
   width: 100%;
 }
 
-.pagelist-card a:hover {
+.pagelist .card a:hover {
   text-decoration: none;
 }
 
-.pagelist-card-title {
-  font-weight: bold;
+.pagelist .card .title {
   padding: 0.2em 0;
   margin: 0;
   width: 100%;
 }
 
-.pagelist-card-space {
+.pagelist.cards .space {
   width: 5%;
   float: left;
   height: 1.5em;
+  min-height: 1px;
 }
 
-.pagelist-card-space:nth-child(3n) {
+.pagelist.cards .space:nth-child(3n) {
   width: 100%
 }
 
 /* article layout */
 
-.pagelist-article {
-  margin-bottom: 4em;
-}
-
-.pagelist-article a p {
-  color: #333;
-}
-
 .pagelist-article-title {
   margin-top: 0.2em;
 }
 
-.pagelist-article-info {
-  font-style: italic;
-  margin-bottom: 0.5em;
+.pagelist .info {
+  font-size: 0.85em;
+  margin-bottom: 0.2em;
+  opacity: 0.6;
 }
 
-/* less columns for smaller screens */
+/* less columns for smaller screens breakpoints controlled in TS constants*/
 
-@media screen and (max-width: 760px) {
-  .pagelist-card {
-    width: 47.5%
-  }
-  .pagelist-card-space:nth-child(2n) {
-    width: 5%
-  }
-  .pagelist-card-space:nth-child(4n) {
-    width: 100%
-  }
+.pagelist.break-two .card {
+  width: 47.5%
 }
 
-@media screen and (max-width: 420px) {
-  .pagelist-card {
-    width: 100%
-  }
-  .pagelist-card-space {
-    display: block;
-    width: 100%;
-  }
+.pagelist.break-two.cards .space:nth-child(2n) {
+  width: 5%
+}
+
+.pagelist.break-two.cards .space:nth-child(4n) {
+  width: 100%
+}
+
+.pagelist.break-one .card {
+  width: 100%
+}
+
+.pagelist.break-one.cards .space {
+  display: block;
+  width: 100%;
 }

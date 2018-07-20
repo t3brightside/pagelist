@@ -2,6 +2,42 @@
 
 page.includeCSS.pagelist = {$pagelist.styles}
 
+page.jsFooterInline {
+  109823122 = TEXT
+  109823122.value (
+		jQuery( document ).ready(function() {
+			jQuery('.pagelist.cards').each(function() {
+			  if (jQuery(this).width() < {$pagelist.cardsBreakTwo}){
+			  	jQuery(this).addClass( 'break-two' );
+			  } else{
+					jQuery(this).removeClass('break-two')
+				}
+        if (jQuery(this).width() < {$pagelist.cardsBreakOne}){
+          jQuery(this).removeClass('break-two')
+			  	jQuery(this).addClass( 'break-one' );
+			  } else{
+					jQuery(this).removeClass('break-one')
+				}
+			});
+		});
+		jQuery(window).resize(function(){
+		  jQuery('.pagelist.cards').each(function() {
+        if (jQuery(this).width() < {$pagelist.cardsBreakTwo}){
+			  	jQuery(this).addClass( 'break-two' );
+			  } else{
+					jQuery(this).removeClass('break-two')
+				}
+        if (jQuery(this).width() < {$pagelist.cardsBreakOne}){
+          jQuery(this).removeClass('break-two')
+			  	jQuery(this).addClass( 'break-one' );
+			  } else{
+					jQuery(this).removeClass('break-one')
+				}
+			});
+		});
+	)
+}
+
 tt_content.defaultpagelist =< lib.fluidContent
 tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
 tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
