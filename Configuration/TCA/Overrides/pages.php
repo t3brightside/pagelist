@@ -39,7 +39,7 @@
         ),
         'tx_pagelist_eventlocation' => [
             'exclude' => 1,
-            'label' => 'Location text:',
+            'label' => 'Location Text:',
             'config' => [
                 'type' => 'input',
                 'size' => '200',
@@ -48,7 +48,7 @@
         ],
         'tx_pagelist_eventlocationlink' => [
             'exclude' => 1,
-            'label' => 'Location link:',
+            'label' => 'Location Link:',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputLink',
@@ -56,7 +56,7 @@
         ],
         'tx_pagelist_datetime' => [
             'exclude' => 1,
-            'label' => 'Date & time:',
+            'label' => 'Date & Time:',
             'config' => [
                 'type' => 'input',
                 'size' => '12',
@@ -67,7 +67,7 @@
         ],
         'tx_pagelist_eventstart' => [
             'exclude' => 1,
-            'label' => 'Event start:',
+            'label' => 'Event Start:',
             'config' => [
                 'type' => 'input',
                 'size' => '12',
@@ -78,7 +78,7 @@
         ],
         'tx_pagelist_eventfinish' => [
             'exclude' => 1,
-            'label' => 'Event finish:',
+            'label' => 'Event End:',
             'config' => [
                 'type' => 'input',
                 'size' => '12',
@@ -188,12 +188,14 @@
 // Define Article page type
       $GLOBALS['TCA']['pages']['types'][$pagelistArticle] = array(
         'showitem' => '
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    --palette--;;standard,
+                --div--;Article,
+                    --palette--;Page;standard,
                     --palette--;Article;pagelistarticlegeneral,
                     --palette--;LLL:EXT:realurl/Resources/Private/Language/locallang_db.xlf:pages.palette_title;tx_realurl,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-                    --palette--;;metatags,
+                    --palette--;Meta Tags;metatags,
+                    --palette--;;pagelistauthor,
+                    --palette--;Meta Plus;metaplus,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.appearance,
                     --palette--;;layout,
                     --palette--;;replace,
@@ -220,20 +222,21 @@
       $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
         tx_pagelist_datetime,lastUpdated,
         --linebreak--,title,
-        --linebreak--,subtitle,
         --linebreak--,abstract,
         --linebreak--,tx_pagelist_images,
-        --linebreak--,author,
       ';
+
 // Define Event page type
       $GLOBALS['TCA']['pages']['types'][$pagelistEvent] = array(
         'showitem' => '
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    --palette--;;standard,
+                --div--;Event,
+                    --palette--;Page;standard,
                     --palette--;Event;pagelisteventgeneral,
                     --palette--;LLL:EXT:realurl/Resources/Private/Language/locallang_db.xlf:pages.palette_title;tx_realurl,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-                    --palette--;;metatags,
+                    --palette--;Meta Tags;metatags,
+                    --palette--;;pagelistauthor,
+                    --palette--;Meta Plus;metaplus,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.appearance,
                     --palette--;;layout,
                     --palette--;;replace,
@@ -264,7 +267,10 @@
         --linebreak--,tx_pagelist_eventlocationlink,
         --linebreak--,abstract,
         --linebreak--,tx_pagelist_images,
-        --linebreak--,author,
+      ';
+      $GLOBALS['TCA']['pages']['palettes']['pagelistauthor']['showitem'] = '
+        author,
+        author_email,
       ';
 
       $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = '
