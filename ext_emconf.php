@@ -1,15 +1,4 @@
 <?php
-
-/***************************************************************
- * Extension Manager/Repository config file for ext "pagelist".
- *
- * Auto generated | Identifier: 8bb019d1b3ba02220fa69ebdf2c26a82
- *
- * Manual updates:
- * Only the data in the array - everything else is removed by next
- * writing. "version" and "dependencies" must not be touched!
- ***************************************************************/
-
 $EM_CONF[$_EXTKEY] = array (
 	'title' => 'Page List',
 	'description' => 'Content element for page lists. Easy to configure teasers, news lists, products lists, usecases etc.',
