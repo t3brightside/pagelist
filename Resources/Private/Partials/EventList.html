@@ -1,0 +1,21 @@
+<div class="item">
+  <a href="{page.link}" target="{page.target}" title="{page.data.title}">
+    <f:if condition="{page.data.tx_pagelist_eventstart}">
+      <p class="dates">
+        <span class="day"><f:format.date format="j.">{page.data.tx_pagelist_datetime}</f:format.date></span>
+        <span class="month"><f:format.date format="M">{page.data.tx_pagelist_datetime}</f:format.date>, <f:format.date format="Y">{page.data.tx_pagelist_datetime}</f:format.date></span>
+      </p>
+    </f:if>
+    <div class="text">
+      <h3 class="title">{page.data.title}</h3>
+      <f:if condition="{page.data.tx_pagelist_eventlocation}">
+        <p class="info location">
+          ☉ {page.data.tx_pagelist_eventlocation}
+        </p>
+      </f:if>
+      <f:if condition="{page.data.abstract}">
+        <p class="abstract">{page.data.abstract}</p>
+      </f:if>
+    </div>
+  </a>
+</div>

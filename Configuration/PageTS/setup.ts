@@ -21,9 +21,9 @@ TCEFORM.pages {
 TCEFORM.tt_content.tx_pagelist_template.addItems {
 	0 = Image and title as cards
 	1 = Articles list (title, date, teaser)
-	2 = Articles cards (image, title, date)
-	3 = Events list (title, dates, teaser, location)
-	4 = Events cards (image, title, dates, location)
+	2 = Article cards (image, title, date)
+	3 = Events list (title, date, location)
+	4 = Event cards (image, title, dates, location)
 }
 
 mod.wizards.newContentElement.wizardItems.common {

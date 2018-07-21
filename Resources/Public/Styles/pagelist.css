@@ -7,11 +7,20 @@
   overflow: auto;
 }
 
-.pagelist img {
-  width: 100%;
+.pagelist figure {
+  overflow: hidden;
+  display: block;
+  line-height: 0;
+  margin-bottom: 0.6em;
 }
 
-.pagelist.articles .card .img-dummy {
+.pagelist img {
+  width: 100%;
+  transition: all 1.3s ease-in-out;
+  overflow: hidden;
+}
+
+.pagelist .img-dummy {
   background-color: #eee;
   width: 100%;
   height: auto;
@@ -21,15 +30,29 @@
   text-decoration: none;
 }
 
-.pagelist a:hover img {
-  opacity: 0.85;
-}
-
-.pagelist .article a p {
+.pagelist a p {
   color: #333;
 }
 
+.pagelist .info {
+  font-size: 0.85em;
+  margin-bottom: 0.2em;
+  opacity: 0.7;
+}
+
+.pagelist .abstract {
+  margin-bottom: 0;
+}
+
 /* card layout */
+
+.pagelist.cards {
+  margin-top: 1.5em;
+}
+
+.pagelist.cards a:hover img {
+  transform: rotate(-2deg) scale(1.1);
+}
 
 .pagelist .card {
   width: 30%;
@@ -56,7 +79,7 @@
 .pagelist.cards .space {
   width: 5%;
   float: left;
-  height: 1.5em;
+  height: 2.5em;
   min-height: 1px;
 }
 
@@ -64,16 +87,46 @@
   width: 100%
 }
 
-/* article layout */
+.pagelist.list .item {
+  margin-bottom: 1.5em;
+}
 
-.pagelist-article-title {
+.pagelist.list .item:last-child {
+  margin-bottom: 0;
+}
+
+.pagelist.list .title {
   margin-top: 0.2em;
 }
 
-.pagelist .info {
+/* Event speciffic */
+
+.pagelist.events.list .text {
+  margin-left: 5em;
+  padding-left: 1em;
+}
+
+.pagelist.events.list .dates {
+  width: 5em;
+  text-align: center;
+  float: left;
+  background: #eee;
+  padding: 0.9em 0.5em 0.6em;
+  line-height: 1em;
+  margin-top: 0.54em;
+}
+
+.pagelist.events.list .dates span {
+  display: block;
+}
+
+.pagelist.events.list .dates .day {
+  font-size: 1.8em;
+  padding-bottom: 0.4em;
+}
+
+.pagelist.events.list .dates .month {
   font-size: 0.85em;
-  margin-bottom: 0.2em;
-  opacity: 0.6;
 }
 
 /* less columns for smaller screens breakpoints controlled in TS constants*/
@@ -97,4 +150,8 @@
 .pagelist.break-one.cards .space {
   display: block;
   width: 100%;
+}
+
+.pagelist.cards .space:last-child {
+  display: none;
 }

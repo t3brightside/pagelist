@@ -5,7 +5,9 @@
 	pagelist.templateRootPaths = EXT:pagelist/Resources/Private/Templates/
 # cat=Page List/pagelist; type=string; label= Partials root paht
 	pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
-# cat=Page List/pagelist; type=string; label= Breakpoint for two column card layout
+# cat=Page List/pagelist; type=boolean; label= Enable jQuery breakpoints for card layouts
+	pagelist.enablejQueryBreakpoints = 1
+# cat=Page List/pagelist; type=string; label= Outer container breakpoint for two column card layout (width in px)
 	pagelist.cardsBreakTwo = 920
-# cat=Page List/pagelist; type=string; label= Breakpoint for one column card layout
+# cat=Page List/pagelist; type=string; label= Outer container breakpoint for one column card layout (width in px)
 	pagelist.cardsBreakOne = 580
