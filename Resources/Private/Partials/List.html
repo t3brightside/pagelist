@@ -3,9 +3,9 @@
     <h3 class="title">{page.data.title}</h3>
     <f:if condition="{page.data.author} || {page.data.tx_pagelist_datetime}">
       <p class="info">
-        <f:if condition="{page.data.author}">{page.data.author}</f:if>
-        <f:if condition="{page.data.author} && {page.data.tx_pagelist_datetime}"> • </f:if>
         <f:if condition="{page.data.tx_pagelist_datetime}"><f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date></f:if>
+        <f:if condition="{page.data.author} && {page.data.tx_pagelist_datetime}"> • </f:if>
+        <f:if condition="{page.data.author}">{page.data.author}</f:if>
       </p>
     </f:if>
     <f:if condition="{page.data.abstract}">

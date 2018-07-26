@@ -5,26 +5,26 @@
 			<f:if condition="{data.tx_pagelist_template} == 0">
 				<div class="pagelist pagelist-pages cards template-{data.tx_pagelist_template}">
 					<f:for each="{menu}" as="page" iteration="iterator">
-						<f:render partial="PageCard" arguments="{_all}" />
+						<f:render partial="Card" arguments="{_all}" />
 					</f:for>
 				</div>
 			</f:if>
 			<f:if condition="{data.tx_pagelist_template} == 1">
-				<div class="pagelist articles list template-{data.tx_pagelist_template}">
+				<div class="pagelist article list template-{data.tx_pagelist_template}">
 					<f:for each="{menu}" as="page" iteration="iterator">
-						<f:render partial="ArticleList" arguments="{_all}" />
+						<f:render partial="List" arguments="{_all}" />
 					</f:for>
 				</div>
 			</f:if>
 			<f:if condition="{data.tx_pagelist_template} == 2">
-				<div class="pagelist articles cards template-{data.tx_pagelist_template}">
+				<div class="pagelist article cards template-{data.tx_pagelist_template}">
 					<f:for each="{menu}" as="page" iteration="iterator">
-						<f:render partial="ArticleCard" arguments="{_all}" />
+						<f:render partial="Card" arguments="{_all}" />
 					</f:for>
 				</div>
 			</f:if>
 			<f:if condition="{data.tx_pagelist_template} == 3">
-				<div class="pagelist events list template-{data.tx_pagelist_template}">
+				<div class="pagelist event list template-{data.tx_pagelist_template}">
 					<f:for each="{menu}" as="page" iteration="iterator">
 						<f:render partial="EventList" arguments="{_all}" />
 					</f:for>
