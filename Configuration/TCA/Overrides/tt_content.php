@@ -6,102 +6,40 @@
     $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_sub'] =  'mimetypes-x-content-pagelist';
     $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_selected'] =  'mimetypes-x-content-pagelist';
     $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_category'] =  'mimetypes-x-content-pagelist';
-    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_articles_sub'] =  'mimetypes-x-content-pagelist';
-    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_articles_selected'] =  'mimetypes-x-content-pagelist';
-    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_articles_category'] =  'mimetypes-x-content-pagelist';
-    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_events_sub'] =  'mimetypes-x-content-pagelist';
-    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_events_selected'] =  'mimetypes-x-content-pagelist';
-    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_events_category'] =  'mimetypes-x-content-pagelist';
 
 /* Define for content element type dropdown */
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-      'tt_content',
-      'CType',
-      [
-        'Page List',
-        '--div--'
-      ]
-    );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
       "tt_content",
       "CType",
       [
-        "Pages: selected",
-        "pagelist_selected",
-        "mimetypes-x-content-pagelist"
-      ]
-    );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-      "tt_content",
-      "CType",
-      [
-        "Pages: subpages",
-        "pagelist_sub",
-        "mimetypes-x-content-pagelist"
-      ]
-    );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-      "tt_content",
-      "CType",
-      [
-        "Pages: category",
+        "Page list: category",
         "pagelist_category",
         "mimetypes-x-content-pagelist"
-      ]
+      ],
+      'textmedia',
+      'after'
     );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
       "tt_content",
       "CType",
       [
-        "Articles: selected",
-        "pagelist_articles_selected",
+        "Page list: subpages",
+        "pagelist_sub",
         "mimetypes-x-content-pagelist"
-      ]
+      ],
+      'textmedia',
+      'after'
     );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
       "tt_content",
       "CType",
       [
-        "Articles: subpages",
-        "pagelist_articles_sub",
+        "Page list: selected",
+        "pagelist_selected",
         "mimetypes-x-content-pagelist"
-      ]
-    );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-      "tt_content",
-      "CType",
-      [
-        "Articles: category",
-        "pagelist_articles_category",
-        "mimetypes-x-content-pagelist"
-      ]
-    );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-      "tt_content",
-      "CType",
-      [
-        "Events: selected",
-        "pagelist_events_selected",
-        "mimetypes-x-content-pagelist"
-      ]
-    );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-      "tt_content",
-      "CType",
-      [
-        "Events: subpages",
-        "pagelist_events_sub",
-        "mimetypes-x-content-pagelist"
-      ]
-    );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-      "tt_content",
-      "CType",
-      [
-        "Events: category",
-        "pagelist_events_category",
-        "mimetypes-x-content-pagelist"
-      ]
+      ],
+      'textmedia',
+      'after'
     );
 
 /* Define columns added to tt_content */
@@ -125,12 +63,10 @@
           'default' => 0,
           'items' => array(
             array('Page tree (default)', '0'),
+            array('Date (now → past)', 'tx_pagelist_datetime DESC'),
+            array('Date (past → now)', 'tx_pagelist_datetime ASC'),
             array('Last updated (now → past)', 'lastUpdated DESC'),
             array('Last updated (past → now)', 'lastUpdated ASC'),
-            array('Article date (now → past)', 'tx_pagelist_datetime DESC'),
-            array('Article date (past → now)', 'tx_pagelist_datetime ASC'),
-            array('Event start (now → past)', 'tx_pagelist_eventstart DESC'),
-            array('Event start (past → now)', 'tx_pagelist_eventstart ASC'),
             array('Page title (a → z)', 'title ASC'),
             array('Page title (z → a)', 'title DESC'),
           ),

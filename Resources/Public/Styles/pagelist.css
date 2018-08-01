@@ -101,12 +101,12 @@
 
 /* Event speciffic */
 
-.pagelist.event.list .text {
+.pagelist.list .event .text {
   margin-left: 5em;
   padding-left: 1em;
 }
 
-.pagelist.event.list .dates {
+.pagelist.list .event .dates {
   width: 5em;
   text-align: center;
   float: left;
@@ -116,16 +116,16 @@
   margin-top: 0.54em;
 }
 
-.pagelist.event.list .dates span {
+.pagelist.list .event .dates span {
   display: block;
 }
 
-.pagelist.event.list .dates .day {
+.pagelist.list .event .dates .day {
   font-size: 1.8em;
   padding-bottom: 0.4em;
 }
 
-.pagelist.event.list .dates .month {
+.pagelist.list .event .dates .month {
   font-size: 0.85em;
 }
 

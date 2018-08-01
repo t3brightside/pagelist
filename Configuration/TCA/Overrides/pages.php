@@ -65,17 +65,6 @@
                 'checkbox' => '0',
             ]
         ],
-        'tx_pagelist_eventstart' => [
-            'exclude' => 1,
-            'label' => 'Event Start:',
-            'config' => [
-                'type' => 'input',
-                'size' => '12',
-                'max' => '20',
-                'eval' => 'datetime,int',
-                'checkbox' => '0',
-            ]
-        ],
         'tx_pagelist_eventfinish' => [
             'exclude' => 1,
             'label' => 'Event End:',
@@ -261,7 +250,7 @@
             '
     	);
       $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
-        tx_pagelist_eventstart,tx_pagelist_eventfinish,tx_pagelist_datetime,lastUpdated,
+        tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
         --linebreak--,title,
         --linebreak--,tx_pagelist_eventlocation,
         --linebreak--,tx_pagelist_eventlocationlink,
@@ -276,7 +265,7 @@
       $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = '
         tx_pagelist_images,
       ';
-      
+
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumns, 1);
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
       	'pages_language_overlay',

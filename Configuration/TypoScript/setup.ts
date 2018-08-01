@@ -86,11 +86,3 @@ tt_content.pagelist_category.dataProcessing.10.special = categories
 tt_content.pagelist_category.dataProcessing.10.special.value.field = selected_categories
 tt_content.pagelist_category.dataProcessing.10.special.relation.field = category_field
 tt_content.pagelist_category.dataProcessing.10.special.sorting = sorting
-
-tt_content.pagelist_articles_sub < tt_content.pagelist_sub
-tt_content.pagelist_articles_selected < tt_content.pagelist_selected
-tt_content.pagelist_articles_category < tt_content.pagelist_category
-
-tt_content.pagelist_events_sub < tt_content.pagelist_sub
-tt_content.pagelist_events_selected < tt_content.pagelist_selected
-tt_content.pagelist_events_category < tt_content.pagelist_category
