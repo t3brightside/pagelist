@@ -5,22 +5,28 @@ TCAdefaults.pages {
 TCEFORM.pages {
 	title.types.136.label = Title:
 	title.types.137.label = Title:
+	title.types.138.label = Name:
 	abstract.types.136.label = Teaser:
 	abstract.types.137.label = Teaser:
+	abstract.types.138.label = Summary:
 	tx_pagelist_images.types.136.label = List image:
 	tx_pagelist_images.types.137.label = List image:
+	tx_pagelist_images.types.138.label = List image:
 	nav_title.types.136.disabled = 1
 	nav_title.types.137.disabled = 1
+	nav_title.types.138.disabled = 1
 	tx_realurl_pathsegment.types.136.disabled = 1
 	tx_realurl_pathsegment.types.137.disabled = 1
+	tx_realurl_pathsegment.types.138.disabled = 1
 	tx_realurl_exclude.types.136.disabled = 1
 	tx_realurl_exclude.types.137.disabled = 1
+	tx_realurl_exclude.types.138.disabled = 1
 	tx_pagelist_date.types.137.label = Event start:
 }
 
 TCEFORM.tt_content.tx_pagelist_template.addItems {
-	0 = Cards (image, title, author, date, teaser)
-	1 = List (title, date, author, teaser)
+	0 = Cards
+	1 = List (dependent on page type)
 }
 
 mod.wizards.newContentElement.wizardItems.pagelist {

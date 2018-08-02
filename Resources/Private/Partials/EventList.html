@@ -1,6 +1,6 @@
 <div class="item event">
   <a href="{page.link}" target="{page.target}" title="{page.data.title}">
-    <f:if condition="{page.data.tx_pagelist_eventstart}">
+    <f:if condition="{page.data.tx_pagelist_datetime}">
       <p class="dates">
         <span class="day"><f:format.date format="j.">{page.data.tx_pagelist_datetime}</f:format.date></span>
         <span class="month"><f:format.date format="M">{page.data.tx_pagelist_datetime}</f:format.date>, <f:format.date format="Y">{page.data.tx_pagelist_eventstart}</f:format.date></span>
