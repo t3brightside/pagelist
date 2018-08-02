@@ -1,5 +1,5 @@
 <div class="item event">
-  <a href="{page.link}" target="{page.target}" title="{page.data.title}">
+  <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
     <f:if condition="{page.data.tx_pagelist_datetime}">
       <p class="dates">
         <span class="day"><f:format.date format="j.">{page.data.tx_pagelist_datetime}</f:format.date></span>
@@ -17,5 +17,5 @@
         <p class="abstract">{page.data.abstract}</p>
       </f:if>
     </div>
-  </a>
+  </f:link.page>
 </div>

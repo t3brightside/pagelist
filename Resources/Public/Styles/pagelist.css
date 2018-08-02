@@ -89,6 +89,7 @@
 
 .pagelist.list .item {
   margin-bottom: 1.5em;
+  clear: both;
 }
 
 .pagelist.list .item:last-child {

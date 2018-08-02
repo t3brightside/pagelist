@@ -1,5 +1,5 @@
 <div class="card">
-  <a href="{page.link}" target="{page.target}" title="{page.data.title}">
+  <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
     <figure>
       <f:if condition="{page.tx_pagelist_images.0}">
         <f:then>
@@ -23,6 +23,6 @@
         <p class="abstract"><f:format.crop maxCharacters="150">{page.data.abstract}</f:format.crop></p>
       </f:if>
     </div>
-  </a>
+  </f:link.page>
 </div>
 <div class="space"></div>

@@ -1,5 +1,5 @@
 <div class="item">
-  <a href="{page.link}" target="{page.target}" title="{page.data.title}">
+  <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
     <h3 class="title">{page.data.title}</h3>
     <f:if condition="{page.data.author} || {page.data.tx_pagelist_datetime}">
       <p class="info">
@@ -11,5 +11,5 @@
     <f:if condition="{page.data.abstract}">
       <p class="abstract">{page.data.abstract}</p>
     </f:if>
-  </a>
+  </f:link.page>
 </div>
