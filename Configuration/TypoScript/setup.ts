@@ -117,8 +117,8 @@ tt_content.pagelist_selected {
   }
 }
 
-# tt_content.pagelist_category < tt_content.pagelist_selected
-# tt_content.pagelist_category.dataProcessing.10.special = categories
-# tt_content.pagelist_category.dataProcessing.10.special.value.field = selected_categories
-# tt_content.pagelist_category.dataProcessing.10.special.relation.field = category_field
-# tt_content.pagelist_category.dataProcessing.10.special.sorting.field = sorting
+ tt_content.pagelist_category < tt_content.pagelist_selected
+ tt_content.pagelist_category.dataProcessing.10.special = categories
+ tt_content.pagelist_category.dataProcessing.10.special.value.field = selected_categories
+ tt_content.pagelist_category.dataProcessing.10.special.relation.field = category_field
+ tt_content.pagelist_category.dataProcessing.10.special.sorting.field = sorting
