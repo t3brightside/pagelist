@@ -18,6 +18,9 @@
           'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
             'tx_pagelist_images',
             array(
+              'behaviour' => [
+                  'allowLanguageSynchronization' => true,
+              ],
               'appearance' => array(
                 'headerThumbnail' => array(
                   'width' => '45',
@@ -44,6 +47,9 @@
                 'type' => 'input',
                 'size' => '200',
                 'eval' => 'text',
+                'behaviour' => [
+                  'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'tx_pagelist_eventlocationlink' => [
@@ -52,6 +58,9 @@
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputLink',
+                'behaviour' => [
+                  'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'tx_pagelist_datetime' => [
@@ -63,6 +72,9 @@
                 'max' => '20',
                 'eval' => 'datetime,int',
                 'checkbox' => '0',
+                'behaviour' => [
+                  'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'tx_pagelist_eventfinish' => [
@@ -74,7 +86,21 @@
                 'max' => '20',
                 'eval' => 'datetime,int',
                 'checkbox' => '0',
+                'behaviour' => [
+                  'allowLanguageSynchronization' => true,
+                ],
             ]
+        ],
+        'tx_pagelist_notinlist' => [
+           'exclude' => 1,
+           'label' => 'In Page Lists',
+           'config' => [
+              'type' => 'check',
+              'renderType' => 'check',
+              'items' => [
+                ['Hide', '1'],
+              ],
+           ]
         ],
       );
       if ($pagelistConiguration['pagelistEnableProducts']) {
@@ -199,7 +225,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
             --palette--;;language,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,
+            --palette--;;visibility,tx_pagelist_notinlist,
             --palette--;;access,
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
             categories,
@@ -239,7 +265,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
             --palette--;;language,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,
+            --palette--;;visibility,tx_pagelist_notinlist,
             --palette--;;access,
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
             categories,
@@ -280,7 +306,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
             --palette--;;language,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,
+            --palette--;;visibility,tx_pagelist_notinlist,
             --palette--;;access,
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
             categories,
@@ -342,7 +368,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
             --palette--;;language,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,
+            --palette--;;visibility,hidden,
             --palette--;;access,
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
             categories,
@@ -382,7 +408,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
             --palette--;;language,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,
+            --palette--;;visibility,hidden,
             --palette--;;access,
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
             categories,
@@ -423,7 +449,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
             --palette--;;language,
           --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,
+            --palette--;;visibility,hidden,
             --palette--;;access,
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
             categories,

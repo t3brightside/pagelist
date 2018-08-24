@@ -12,6 +12,7 @@ CREATE TABLE pages (
 	tx_pagelist_eventlocation tinytext,
 	tx_pagelist_eventlocationlink tinytext,
 	tx_pagelist_productprice int(11) unsigned DEFAULT '0',
+	tx_pagelist_notinlist int(11) DEFAULT '0' NOT NULL,
 );
 
 CREATE TABLE pages_language_overlay (

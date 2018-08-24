@@ -50,16 +50,13 @@ tt_content.pagelist_sub {
   templateName = Pagelist
   dataProcessing.10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   dataProcessing.10 {
-    #  if.isTrue.field = title
     table = pages
-
+    where = tx_pagelist_notinlist = 0
     pidInList.field = pages
     orderBy.field = tx_pagelist_orderby
 		max.field = tx_pagelist_limit
 		begin.field = tx_pagelist_startfrom
-    languageField = sys_language_uid
     as = pagelist
-
     dataProcessing {
       10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
       10.references.fieldName = media
@@ -82,6 +79,27 @@ tt_content.pagelist_sub {
   }
 }
 
+[globalVar = GP:L > 0]
+  tt_content.pagelist_sub {
+    dataProcessing.10 {
+      join = pages_language_overlay ON pages_language_overlay.pid = pages.uid
+      where (
+        pages.tx_pagelist_notinlist = 0
+        AND pages_language_overlay.hidden = 0
+        AND pages_language_overlay.deleted = 0
+        AND pages_language_overlay.sys_language_uid = ###language###
+        AND (pages_language_overlay.starttime < ###now### OR pages_language_overlay.starttime = 0)
+        AND (pages_language_overlay.endtime > ###now### OR pages_language_overlay.endtime = 0)
+      )
+      selectFields = pages_language_overlay.*
+      markers {
+        language.data = GP:L
+        now.data = date:U
+      }
+    }
+  }
+[end]
+
 tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
   templateName = Pagelist
@@ -90,9 +108,9 @@ tt_content.pagelist_selected {
     10 {
       special = list
 			special.value.field = pages
-			alternativeSortingField.field = tx_pagelist_orderby
-			maxItems.field = tx_pagelist_limit
-			begin.field = tx_pagelist_startfrom
+#			alternativeSortingField.field = tx_pagelist_orderby
+#			maxItems.field = tx_pagelist_limit
+#			begin.field = tx_pagelist_startfrom
       as = pagelist
       dataProcessing {
         10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
@@ -117,8 +135,8 @@ tt_content.pagelist_selected {
   }
 }
 
- tt_content.pagelist_category < tt_content.pagelist_selected
- tt_content.pagelist_category.dataProcessing.10.special = categories
- tt_content.pagelist_category.dataProcessing.10.special.value.field = selected_categories
- tt_content.pagelist_category.dataProcessing.10.special.relation.field = category_field
- tt_content.pagelist_category.dataProcessing.10.special.sorting.field = sorting
+tt_content.pagelist_category < tt_content.pagelist_selected
+tt_content.pagelist_category.dataProcessing.10.special = categories
+tt_content.pagelist_category.dataProcessing.10.special.value.field = selected_categories
+tt_content.pagelist_category.dataProcessing.10.special.relation.field = category_field
+tt_content.pagelist_category.dataProcessing.10.special.sorting.field = sorting

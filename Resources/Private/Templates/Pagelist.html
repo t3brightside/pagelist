@@ -12,14 +12,19 @@
 			<f:if condition="{data.tx_pagelist_template} == 1">
 				<div class="pagelist list template-{data.tx_pagelist_template}">
 					<f:for each="{pagelist}" as="page" iteration="iterator">
-						<f:if condition="{page.data.doktype} == 136">
+						<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 138">
 							<f:then>
 								<f:render partial="List" arguments="{_all}" />
 							</f:then>
 						</f:if>
+						<f:if condition="{page.data.doktype} == 136">
+							<f:then>
+								<f:render partial="ListArticle" arguments="{_all}" />
+							</f:then>
+						</f:if>
 						<f:if condition="{page.data.doktype} == 137">
 							<f:then>
-								<f:render partial="EventList" arguments="{_all}" />
+								<f:render partial="ListEvent" arguments="{_all}" />
 							</f:then>
 						</f:if>
 					</f:for>
