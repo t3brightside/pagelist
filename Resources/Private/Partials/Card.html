@@ -1,9 +1,9 @@
 <div class="card">
   <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
     <figure>
-      <f:if condition="{page.tx_pagelist_images.0}">
+      <f:if condition="{page.listimages.0}">
         <f:then>
-          <img src="<f:uri.image image="{page.tx_pagelist_images.0}" treatIdAsReference="1" width="900c" height="600c" />" alt="{f:if(condition:'{page.tx_pagelist_images.0.alternative}', then:'{page.tx_pagelist_images.0.alternative}', else:'{page.data.title}')}"/>
+          <img src="<f:uri.image image="{page.listimages.0}" treatIdAsReference="1" width="900c" height="600c" />" alt="{f:if(condition:'{page.listimages.0.alternative}', then:'{page.listimages.0.alternative}', else:'{page.data.title}')}"/>
         </f:then>
         <f:else>
           <f:image class="img-dummy" src="EXT:pagelist/Resources/Public/Images/clear.png" width="900c" height="600c" alt="{page.data.title}" />
@@ -15,6 +15,9 @@
       <f:if condition="{page.data.author} || {page.data.tx_pagelist_datetime}">
         <p class="info">
           <f:if condition="{page.data.author}">{page.data.author}</f:if>
+          <f:for each="{page.authors}" as="author">
+            <f:render partial="AuthorPersonnel" arguments="{_all}" />
+          </f:for>
           <f:if condition="{page.data.author} && {page.data.tx_pagelist_datetime}"> • </f:if>
           <f:if condition="{page.data.tx_pagelist_datetime}"><f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date></f:if>
         </p>

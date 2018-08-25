@@ -19,7 +19,7 @@
             'tx_pagelist_images',
             array(
               'behaviour' => [
-                  'allowLanguageSynchronization' => true,
+                'allowLanguageSynchronization' => true,
               ],
               'appearance' => array(
                 'headerThumbnail' => array(
@@ -101,6 +101,20 @@
                 ['Hide', '1'],
               ],
            ]
+        ],
+        'tx_pagelist_authors' => [
+            'exclude' => 1,
+            'label' => 'Author(s)',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'enableMultiSelectFilterTextfield' => true,
+                'foreign_table' => 'tx_personnel_domain_model_person',
+                'size' => '3',
+                'behaviour' => [
+                  'allowLanguageSynchronization' => true,
+                ],
+            ]
         ],
       );
       if ($pagelistConiguration['pagelistEnableProducts']) {
@@ -238,6 +252,7 @@
         tx_pagelist_datetime,lastUpdated,
         --linebreak--,title,
         --linebreak--,abstract,
+        --linebreak--,tx_pagelist_authors,
         --linebreak--,tx_pagelist_images,
       ';
 
@@ -278,6 +293,7 @@
         tx_pagelist_datetime,lastUpdated,
         --linebreak--,title,
         --linebreak--,abstract,
+        --linebreak--,tx_pagelist_authors,
         --linebreak--,tx_pagelist_images,
       ';
 
@@ -321,6 +337,7 @@
         --linebreak--,tx_pagelist_eventlocation,
         --linebreak--,tx_pagelist_eventlocationlink,
         --linebreak--,abstract,
+        --linebreak--,tx_pagelist_authors,
         --linebreak--,tx_pagelist_images,
       ';
       $GLOBALS['TCA']['pages']['palettes']['pagelistauthor']['showitem'] = '
@@ -381,6 +398,7 @@
         tx_pagelist_datetime,lastUpdated,
         --linebreak--,title,
         --linebreak--,abstract,
+        --linebreak--,tx_pagelist_authors,
         --linebreak--,tx_pagelist_images,
       ';
 
@@ -421,6 +439,7 @@
         tx_pagelist_datetime,lastUpdated,
         --linebreak--,title,
         --linebreak--,abstract,
+        --linebreak--,tx_pagelist_authors,
         --linebreak--,tx_pagelist_images,
       ';
 
@@ -464,6 +483,7 @@
         --linebreak--,tx_pagelist_eventlocation,
         --linebreak--,tx_pagelist_eventlocationlink,
         --linebreak--,abstract,
+        --linebreak--,tx_pagelist_authors,
         --linebreak--,tx_pagelist_images,
       ';
       $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistauthor']['showitem'] = '

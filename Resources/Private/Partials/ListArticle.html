@@ -8,6 +8,9 @@
         <f:if condition="{page.data.author}">{page.data.author}</f:if>
       </p>
     </f:if>
+    <f:for each="{page.authors}" as="author">
+      <f:render partial="AuthorPersonnel" arguments="{_all}" />
+    </f:for>
     <f:if condition="{page.data.abstract}">
       <p class="abstract">{page.data.abstract}</p>
     </f:if>

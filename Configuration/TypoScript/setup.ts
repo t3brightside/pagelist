@@ -62,7 +62,20 @@ tt_content.pagelist_sub {
       10.references.fieldName = media
       20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
       20.references.fieldName = tx_pagelist_images
-      20.as = tx_pagelist_images
+      20.as = listimages
+      30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+      30 {
+        table = tx_personnel_domain_model_person
+        uidInList.field = tx_pagelist_authors
+        pidInList = 0
+        as = authors
+        dataProcessing {
+          10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+          10.references.table = tx_personnel_domain_model_person
+          10.references.fieldName = images
+          10.as = authorimages
+        }
+      }
     }
   }
   extbase {
@@ -117,7 +130,7 @@ tt_content.pagelist_selected {
         10.references.fieldName = media
         20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
         20.references.fieldName = tx_pagelist_images
-        20.as = tx_pagelist_images
+        20.as = listimages
       }
     }
   }

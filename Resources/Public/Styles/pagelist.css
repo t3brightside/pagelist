@@ -40,6 +40,13 @@
   opacity: 0.7;
 }
 
+.pagelist .author img {
+  float: left;
+  width: 1.5em;
+  border-radius: .75em;
+  margin-right: 0.5em;
+}
+
 .pagelist .abstract {
   margin-bottom: 0;
 }
