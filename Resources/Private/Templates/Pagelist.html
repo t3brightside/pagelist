@@ -6,7 +6,7 @@
 				<div class="pagelist cards template-{data.tx_pagelist_template}">
 					<f:if condition="{data.tx_pagelist_paginate} == 1">
 						<f:then>
-							<f:widget.paginate objects="{pagelist}" as="paginatedPages" configuration="{settings.pagebrowser}">
+							<f:widget.paginate objects="{pagelist}" as="paginatedPages" configuration="{settings.pagination}">
 								<f:for each="{paginatedPages}" as="page" iteration="iterator">
 									<f:render partial="Card" arguments="{_all}" />
 								</f:for>
@@ -24,7 +24,7 @@
 				<div class="pagelist list template-{data.tx_pagelist_template}">
 					<f:if condition="{data.tx_pagelist_paginate} == 1">
 						<f:then>
-							<f:widget.paginate objects="{pagelist}" as="paginatedPages" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: 10}">
+							<f:widget.paginate objects="{pagelist}" as="paginatedPages" configuration="{settings.pagination}">
 								<f:for each="{paginatedPages}" as="page" iteration="iterator">
 									<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 138">
 										<f:then>

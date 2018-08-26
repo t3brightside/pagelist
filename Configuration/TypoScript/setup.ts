@@ -46,7 +46,7 @@ tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/
 tt_content.defaultpagelist.partialRootPaths.20 = {$pagelist.partialRootPaths}
 tt_content.defaultpagelist {
   settings {
-    pagebrowser {
+    pagination {
       itemsPerPage         = {$pagelist.paginationItems}
       insertAbove          = 0
       insertBelow          = 1
