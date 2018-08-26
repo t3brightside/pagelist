@@ -100,6 +100,8 @@
 .pagelist.list .item {
   margin-bottom: 1.5em;
   clear: both;
+  float: left;
+  width: 100%;
 }
 
 .pagelist.list .item:last-child {
@@ -124,7 +126,8 @@
   background: #eee;
   padding: 0.9em 0.5em 0.6em;
   line-height: 1em;
-  margin-top: 0.54em;
+  margin-top: 0.6em;
+  margin-bottom: 0;
 }
 
 .pagelist.list .event .dates span {

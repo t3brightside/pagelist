@@ -6,7 +6,6 @@
       if (!is_array($pagelistConiguration)) {
         $pagelistConiguration = unserialize($pagelistConiguration);
       }
-
       $pagelistArticle = 136;
       $pagelistEvent = 137;
       $pagelistProduct = 138;
@@ -110,6 +109,7 @@
                 'renderType' => 'selectMultipleSideBySide',
                 'enableMultiSelectFilterTextfield' => true,
                 'foreign_table' => 'tx_personnel_domain_model_person',
+                'foreign_table_where' => 'AND tx_personnel_domain_model_person.sys_language_uid IN (-1,0)',
                 'size' => '3',
                 'behaviour' => [
                   'allowLanguageSynchronization' => true,

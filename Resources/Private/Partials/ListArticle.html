@@ -1,11 +1,14 @@
 <div class="item">
   <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
     <h3 class="title">{page.data.title}</h3>
-    <f:if condition="{page.data.author} || {page.data.tx_pagelist_datetime}">
+    <f:if condition="{page.authors} || {page.data.tx_pagelist_datetime}">
       <p class="info">
-        <f:if condition="{page.data.tx_pagelist_datetime}"><f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date></f:if>
-        <f:if condition="{page.data.author} && {page.data.tx_pagelist_datetime}"> • </f:if>
         <f:if condition="{page.data.author}">{page.data.author}</f:if>
+        <f:for each="{page.authors}" as="author">
+          <f:render partial="AuthorPersonnel" arguments="{_all}" />
+        </f:for>
+        <f:if condition="{page.authors} && {page.data.tx_pagelist_datetime}"> • </f:if>
+        <f:if condition="{page.data.tx_pagelist_datetime}"><f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date></f:if>
       </p>
     </f:if>
     <f:if condition="{page.data.abstract}">
