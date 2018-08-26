@@ -4,30 +4,66 @@
 		<f:if condition="{pagelist}">
 			<f:if condition="{data.tx_pagelist_template} == 0">
 				<div class="pagelist cards template-{data.tx_pagelist_template}">
-					<f:for each="{pagelist}" as="page" iteration="iterator">
-						<f:render partial="Card" arguments="{_all}" />
-					</f:for>
+					<f:if condition="{data.tx_pagelist_paginate} == 1">
+						<f:then>
+							<f:widget.paginate objects="{pagelist}" as="paginatedPages" configuration="{itemsPerPage: 2, insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: 10}">
+								<f:for each="{paginatedPages}" as="page" iteration="iterator">
+									<f:render partial="Card" arguments="{_all}" />
+								</f:for>
+							</f:widget.paginate>
+						</f:then>
+						<f:else>
+							<f:for each="{pagelist}" as="page" iteration="iterator">
+								<f:render partial="Card" arguments="{_all}" />
+							</f:for>
+						</f:else>
+					</f:if>
 				</div>
 			</f:if>
 			<f:if condition="{data.tx_pagelist_template} == 1">
 				<div class="pagelist list template-{data.tx_pagelist_template}">
-					<f:for each="{pagelist}" as="page" iteration="iterator">
-						<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 138">
-							<f:then>
-								<f:render partial="List" arguments="{_all}" />
-							</f:then>
-						</f:if>
-						<f:if condition="{page.data.doktype} == 136">
-							<f:then>
-								<f:render partial="ListArticle" arguments="{_all}" />
-							</f:then>
-						</f:if>
-						<f:if condition="{page.data.doktype} == 137">
-							<f:then>
-								<f:render partial="ListEvent" arguments="{_all}" />
-							</f:then>
-						</f:if>
-					</f:for>
+					<f:if condition="{data.tx_pagelist_paginate} == 1">
+						<f:then>
+							<f:widget.paginate objects="{pagelist}" as="paginatedPages" configuration="{itemsPerPage: 5, insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: 10}">
+								<f:for each="{paginatedPages}" as="page" iteration="iterator">
+									<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 138">
+										<f:then>
+											<f:render partial="List" arguments="{_all}" />
+										</f:then>
+									</f:if>
+									<f:if condition="{page.data.doktype} == 136">
+										<f:then>
+											<f:render partial="ListArticle" arguments="{_all}" />
+										</f:then>
+									</f:if>
+									<f:if condition="{page.data.doktype} == 137">
+										<f:then>
+											<f:render partial="ListEvent" arguments="{_all}" />
+										</f:then>
+									</f:if>
+								</f:for>
+							</f:widget.paginate>
+						</f:then>
+						<f:else>
+							<f:for each="{pagelist}" as="page" iteration="iterator">
+								<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 138">
+									<f:then>
+										<f:render partial="List" arguments="{_all}" />
+									</f:then>
+								</f:if>
+								<f:if condition="{page.data.doktype} == 136">
+									<f:then>
+										<f:render partial="ListArticle" arguments="{_all}" />
+									</f:then>
+								</f:if>
+								<f:if condition="{page.data.doktype} == 137">
+									<f:then>
+										<f:render partial="ListEvent" arguments="{_all}" />
+									</f:then>
+								</f:if>
+							</f:for>
+						</f:else>
+					</f:if>
 				</div>
 			</f:if>
 		</f:if>
