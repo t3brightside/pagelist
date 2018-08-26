@@ -55,7 +55,7 @@ pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
 **Fluid**
 
 Add new section wheres IF condition determines template nr '2' to: _Resources/Private/Templates/Pagelist.html_
-```html
+```xml
 <f:if condition="{data.tx_pagelist_template} == 2">
   <div class="pagelist custom template-{data.tx_pagelist_template}">
     <f:for each="{pagelist}" as="page" iteration="iterator">
