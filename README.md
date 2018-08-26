@@ -4,7 +4,7 @@
 
 ## System requirements
 
-- TYPO3 8.7 LTS – 9.*
+- TYPO3 8.7 LTS
 - fluid_styled_content
 
 ## Features
@@ -12,18 +12,23 @@
 - List of sub pages
 - List of selected pages
 - List of pages in category
-- Deticated image field in page resources
 - Set start from, limit and sort by
+- Enable pagination
+- Custom page types for articles, events and products
+- Dedicated image field in page resources
+- Connection to ext:Personnel for authors and contact persons
+- ext:Personnel fields can be enabled/disabled in the extension configuration
 - Easy to add custom templates
 
 ## Installation
 
  - From TER: **pagelist**, or composer: **t3brightside/pagelist**
  - Include static template after fluid_styled_content
+ - Recommended for authors ext:Personnel / **t3brightside/personnel**
 
 ## Usage
 
-Add as any other content element. Select desired template in content element settings.
+Add as any other content element. Select desired pages, template and options in content element settings.
 
 ## Admin
 
@@ -31,10 +36,10 @@ Add as any other content element. Select desired template in content element set
 
 **PageTS**
 
-Add new template number '3' and name it:
+Add new template number '2' and name it:
 ```typoscript
 TCEFORM.tt_content.tx_pagelist_template.addItems {
-  3 = My New Template
+  2 = My New Template
 }
 ```
 
@@ -49,17 +54,17 @@ pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
 
 **Fluid**
 
-Add new section wheres IF condition determines template nr '3' to: _Resources/Private/Templates/Pagelist.html_
+Add new section wheres IF condition determines template nr '2' to: _Resources/Private/Templates/Pagelist.html_
 ```html
-<f:if condition="{data.tx_pagelist_template} == 3">
-  <div class="pagelist pagelist-mytemplate template-{data.tx_pagelist_template}">
-    <f:for each="{menu}" as="page" iteration="iterator">
-      <f:render partial="MyNewTemplate" arguments="{_all}"/>
+<f:if condition="{data.tx_pagelist_template} == 2">
+  <div class="pagelist custom template-{data.tx_pagelist_template}">
+    <f:for each="{pagelist}" as="page" iteration="iterator">
+      <f:render partial="MyCustomPartial" arguments="{_all}" />
     </f:for>
   </div>
 </f:if>
 ```
-Create new partial: _Resources/Private/Partials/MyNewTemplate.html_
+Create new partial: _Resources/Private/Partials/MyCustomPartial.html_
 
 ## Sources
 

@@ -88,6 +88,16 @@
           'size' => '1',
         ),
       ),
+      'tx_pagelist_paginate' => [
+       'exclude' => 0,
+       'label' => 'Pagination',
+       'config' => [
+          'type' => 'check',
+          'items' => [
+            ['Enabled', ''],
+          ],
+       ]
+    ],
     );
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
@@ -122,6 +132,7 @@
     $GLOBALS['TCA']['tt_content']['types']['pagelist_selected'] = $GLOBALS['TCA']['tt_content']['types']['pagelist_sub'];
     $GLOBALS['TCA']['tt_content']['palettes']['pagelistSettings']['showitem'] = '
   		tx_pagelist_template,
+      tx_pagelist_paginate,
   //		tx_pagelist_orderby,
   //		tx_pagelist_startfrom,
   //		tx_pagelist_limit,
@@ -167,5 +178,6 @@
   		tx_pagelist_template,
   		tx_pagelist_startfrom,
   		tx_pagelist_limit,
+      tx_pagelist_paginate,
   	';
   });

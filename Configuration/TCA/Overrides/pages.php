@@ -45,7 +45,7 @@
             'config' => [
                 'type' => 'input',
                 'size' => '200',
-                'eval' => 'text',
+                'eval' => 'text,trim',
                 'behaviour' => [
                   'allowLanguageSynchronization' => true,
                 ],
@@ -56,6 +56,7 @@
             'label' => 'Location Link:',
             'config' => [
                 'type' => 'input',
+                'eval' => 'trim',
                 'renderType' => 'inputLink',
                 'behaviour' => [
                   'allowLanguageSynchronization' => true,
@@ -85,6 +86,18 @@
                 'max' => '20',
                 'eval' => 'datetime,int',
                 'checkbox' => '0',
+                'behaviour' => [
+                  'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
+        'tx_pagelist_productprice' => [
+            'exclude' => 1,
+            'label' => 'Price:',
+            'config' => [
+                'type' => 'input',
+                'size' => '10',
+                'eval' => 'trim',
                 'behaviour' => [
                   'allowLanguageSynchronization' => true,
                 ],
@@ -308,18 +321,20 @@
     	);
       if ($pagelistConiguration['pagelistEnableProductPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
-          tx_pagelist_datetime,lastUpdated,
-          --linebreak--,title,
+          title,
           --linebreak--,abstract,
+          --linebreak--,tx_pagelist_productprice,
           --linebreak--,tx_pagelist_authors,
           --linebreak--,tx_pagelist_images,
+          --linebreak--,tx_pagelist_datetime,lastUpdated,
         ';
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
-          tx_pagelist_datetime,lastUpdated,
-          --linebreak--,title,
+          title,
           --linebreak--,abstract,
+          --linebreak--,tx_pagelist_productprice,
           --linebreak--,tx_pagelist_images,
+          --linebreak,tx_pagelist_datetime,lastUpdated,
         ';
       }
 
@@ -486,18 +501,20 @@
     	);
       if ($pagelistConiguration['pagelistEnableProductPersonnel']) {
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = '
-          tx_pagelist_datetime,lastUpdated,
-          --linebreak--,title,
+          title,
           --linebreak--,abstract,
+          --linebreak--,tx_pagelist_productprice,
           --linebreak--,tx_pagelist_authors,
           --linebreak--,tx_pagelist_images,
+          --linebreak--,tx_pagelist_datetime,lastUpdated,
         ';
       } else {
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = '
-          tx_pagelist_datetime,lastUpdated,
-          --linebreak--,title,
+          title,
           --linebreak--,abstract,
+          --linebreak--,tx_pagelist_productprice,
           --linebreak--,tx_pagelist_images,
+          --linebreak--,tx_pagelist_datetime,lastUpdated,
         ';
       }
 
