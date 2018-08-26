@@ -22,8 +22,8 @@ TCEFORM.pages {
 	tx_realurl_exclude.types.137.disabled = 1
 	tx_realurl_exclude.types.138.disabled = 1
 	tx_pagelist_date.types.137.label = Event start:
-	tx_pagelist_authors.types.137.label = Contact person(s)
-	tx_pagelist_authors.types.138.label = Contact person(s)
+	tx_pagelist_authors.types.137.label = Contact person(s):
+	tx_pagelist_authors.types.138.label = Contact person(s):
 }
 TCEFORM.pages_language_overlay {
 	title.types.136.label = Title:
