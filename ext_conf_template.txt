@@ -4,9 +4,9 @@ pagelistEnableArticles = 0
 pagelistEnableEvents = 0
 # cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable Products page type
 pagelistEnableProducts = 0
-# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable ext:Personnel author field for Articles
+# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable ext Personnel author field for Articles
 pagelistEnableArticlePersonnel = 1
-# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable ext:Personnel contact person field for Events
+# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable ext Personnel contact person field for Events
 pagelistEnableEventPersonnel = 0
-# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable ext:Personnel contact person field for Products
+# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable ext Personnel contact person field for Products
 pagelistEnableProductPersonnel = 0
