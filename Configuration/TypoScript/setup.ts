@@ -36,8 +36,7 @@ page.includeCSS.pagelist = {$pagelist.styles}
   		});
   	)
   }
-}
-[global]
+[END]
 tt_content.defaultpagelist =< lib.fluidContent
 tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
 tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
@@ -124,7 +123,7 @@ tt_content.pagelist_sub {
       }
     }
   }
-[end]
+[END]
 
 tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
