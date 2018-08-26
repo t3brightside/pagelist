@@ -159,6 +159,11 @@ ul.f3-widget-paginator>li {
   margin: 0;
 }
 
+/* hide if only one page is present in pagination */
+ul.f3-widget-paginator li:first-child:nth-last-child(1) {
+  display: none;
+}
+
 ul.f3-widget-paginator>li>a, ul.f3-widget-paginator>li.current {
   display: inline-block;
   line-height: 1em;

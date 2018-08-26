@@ -1,5 +1,17 @@
 page.includeCSS.pagelist = {$pagelist.styles}
-
+page = PAGE
+page {
+  10 = FLUIDTEMPLATE
+  10 {
+    variables {
+      pidList {
+        pagelist.paginationCards = {$pagelist.paginationCards}
+        pagelist.paginationList = {$pagelist.paginationList}
+        pagelist.paginationLinks = {$pagelist.paginationLinks}
+      }
+    }
+  }
+}
 [globalVar = LIT:0<{$pagelist.enablejQueryBreakpoints}]
   page.jsFooterInline {
     109823122 = TEXT
