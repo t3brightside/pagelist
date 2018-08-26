@@ -164,7 +164,6 @@
     );
     $GLOBALS['TCA']['tt_content']['palettes']['pagelistSettingsSelected']['showitem'] = '
   		tx_pagelist_template,
-  		--linebreak--,
     //  tx_pagelist_orderby,
   	//  tx_pagelist_startfrom,
   	//	tx_pagelist_limit,

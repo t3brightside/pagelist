@@ -39,6 +39,7 @@
   margin-bottom: 0.2em;
   opacity: 0.7;
 }
+
 .pagelist .author {
   display: inline-block;
 }
@@ -104,8 +105,8 @@
   width: 100%;
 }
 
-.pagelist.list .item:last-child {
-  margin-bottom: 0;
+.pagelist.list div:last-of-type {
+  margin-bottom: 0 !important;
 }
 
 .pagelist.list .title {
@@ -144,6 +145,7 @@
 }
 
 /* pagination */
+
 ul.f3-widget-paginator {
   float: left;
   width: 100%;
@@ -151,10 +153,12 @@ ul.f3-widget-paginator {
   margin: 0;
   margin-top: 2em;
 }
+
 ul.f3-widget-paginator>li {
   display: inline-block;
   margin: 0;
 }
+
 ul.f3-widget-paginator>li>a, ul.f3-widget-paginator>li.current {
   display: inline-block;
   line-height: 1em;
