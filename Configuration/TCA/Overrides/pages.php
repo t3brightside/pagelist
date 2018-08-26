@@ -256,13 +256,22 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
-        tx_pagelist_datetime,lastUpdated,
-        --linebreak--,title,
-        --linebreak--,abstract,
-        --linebreak--,tx_pagelist_authors,
-        --linebreak--,tx_pagelist_images,
-      ';
+      if ($pagelistConiguration['pagelistEnableArticlePersonnel']) {
+        $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
+          tx_pagelist_datetime,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_authors,
+          --linebreak--,tx_pagelist_images,
+        ';
+      } else {
+        $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
+          tx_pagelist_datetime,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_images,
+        ';
+      }
 
       $GLOBALS['TCA']['pages']['types'][$pagelistProduct] = array(
         'showitem' => '
@@ -297,13 +306,22 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
-        tx_pagelist_datetime,lastUpdated,
-        --linebreak--,title,
-        --linebreak--,abstract,
-        --linebreak--,tx_pagelist_authors,
-        --linebreak--,tx_pagelist_images,
-      ';
+      if ($pagelistConiguration['pagelistEnableProductPersonnel']) {
+        $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
+          tx_pagelist_datetime,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_authors,
+          --linebreak--,tx_pagelist_images,
+        ';
+      } else {
+        $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
+          tx_pagelist_datetime,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_images,
+        ';
+      }
 
 // Define Event page type
       $GLOBALS['TCA']['pages']['types'][$pagelistEvent] = array(
@@ -339,15 +357,26 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
-        tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
-        --linebreak--,title,
-        --linebreak--,tx_pagelist_eventlocation,
-        --linebreak--,tx_pagelist_eventlocationlink,
-        --linebreak--,abstract,
-        --linebreak--,tx_pagelist_authors,
-        --linebreak--,tx_pagelist_images,
-      ';
+      if ($pagelistConiguration['pagelistEnableEventPersonnel']) {
+        $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
+          tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,tx_pagelist_eventlocation,
+          --linebreak--,tx_pagelist_eventlocationlink,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_authors,
+          --linebreak--,tx_pagelist_images,
+        ';
+      } else {
+        $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
+          tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,tx_pagelist_eventlocation,
+          --linebreak--,tx_pagelist_eventlocationlink,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_images,
+        ';
+      }
       $GLOBALS['TCA']['pages']['palettes']['pagelistauthor']['showitem'] = '
         author,
         author_email,
@@ -405,13 +434,22 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = '
-        tx_pagelist_datetime,lastUpdated,
-        --linebreak--,title,
-        --linebreak--,abstract,
-        --linebreak--,tx_pagelist_authors,
-        --linebreak--,tx_pagelist_images,
-      ';
+      if ($pagelistConiguration['pagelistEnableArticlePersonnel']) {
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = '
+          tx_pagelist_datetime,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_authors,
+          --linebreak--,tx_pagelist_images,
+        ';
+      } else {
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = '
+          tx_pagelist_datetime,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_images,
+        ';
+      }
 
       $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct] = array(
         'showitem' => '
@@ -446,13 +484,22 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = '
-        tx_pagelist_datetime,lastUpdated,
-        --linebreak--,title,
-        --linebreak--,abstract,
-        --linebreak--,tx_pagelist_authors,
-        --linebreak--,tx_pagelist_images,
-      ';
+      if ($pagelistConiguration['pagelistEnableProductPersonnel']) {
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = '
+          tx_pagelist_datetime,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_authors,
+          --linebreak--,tx_pagelist_images,
+        ';
+      } else {
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = '
+          tx_pagelist_datetime,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_images,
+        ';
+      }
 
 // Define Event page type
       $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent] = array(
@@ -488,15 +535,26 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = '
-        tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
-        --linebreak--,title,
-        --linebreak--,tx_pagelist_eventlocation,
-        --linebreak--,tx_pagelist_eventlocationlink,
-        --linebreak--,abstract,
-        --linebreak--,tx_pagelist_authors,
-        --linebreak--,tx_pagelist_images,
-      ';
+      if ($pagelistConiguration['pagelistEnableEventPersonnel']) {
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = '
+          tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,tx_pagelist_eventlocation,
+          --linebreak--,tx_pagelist_eventlocationlink,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_authors,
+          --linebreak--,tx_pagelist_images,
+        ';
+      } else {
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = '
+          tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
+          --linebreak--,title,
+          --linebreak--,tx_pagelist_eventlocation,
+          --linebreak--,tx_pagelist_eventlocationlink,
+          --linebreak--,abstract,
+          --linebreak--,tx_pagelist_images,
+        ';
+      }
       $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistauthor']['showitem'] = '
         author,
         author_email,
