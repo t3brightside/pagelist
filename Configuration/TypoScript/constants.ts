@@ -6,9 +6,7 @@
 # cat=Page List/pagelist; type=string; label= Partials root paht
 	pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
 # cat=Page List/pagelist; type=string; label= Pagination items for Card layout
-	pagelist.paginationCards = 6
-# cat=Page List/pagelist; type=string; label= Pagination items for List layout
-	pagelist.paginationList = 10
+	pagelist.paginationItems = 6
 # cat=Page List/pagelist; type=string; label= Pagination links
 	pagelist.paginationLinks = 8
 # cat=Page List/pagelist; type=boolean; label= Enable jQuery breakpoints for card layouts

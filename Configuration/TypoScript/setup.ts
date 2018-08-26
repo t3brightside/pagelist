@@ -1,17 +1,5 @@
 page.includeCSS.pagelist = {$pagelist.styles}
-page = PAGE
-page {
-  10 = FLUIDTEMPLATE
-  10 {
-    variables {
-      pidList {
-        pagelist.paginationCards = {$pagelist.paginationCards}
-        pagelist.paginationList = {$pagelist.paginationList}
-        pagelist.paginationLinks = {$pagelist.paginationLinks}
-      }
-    }
-  }
-}
+
 [globalVar = LIT:0<{$pagelist.enablejQueryBreakpoints}]
   page.jsFooterInline {
     109823122 = TEXT
@@ -56,7 +44,16 @@ tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private
 tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
 tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/Partials/
 tt_content.defaultpagelist.partialRootPaths.20 = {$pagelist.partialRootPaths}
-
+tt_content.defaultpagelist {
+  settings {
+    pagebrowser {
+      itemsPerPage         = {$pagelist.paginationItems}
+      insertAbove          = 0
+      insertBelow          = 1
+      maximumNumberOfLinks = {$pagelist.paginationLinks}
+    }
+  }
+}
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
   templateName = Pagelist
@@ -90,6 +87,7 @@ tt_content.pagelist_sub {
       }
     }
   }
+
   extbase {
     pluginName = Pagelist
     controllerName = Pagelist
