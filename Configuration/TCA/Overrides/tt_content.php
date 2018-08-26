@@ -91,15 +91,14 @@
         ),
       ),
       'tx_pagelist_paginate' => [
-        'exclude' => 0,
+        'exclude' => 1,
         'label' => 'Pagination',
         'config' => [
-          'type' => 'select',
-          'renderType' => 'selectSingle',
-          'items' => [
-            ['Disabled', '0'],
-            ['Automatic', '1']
-          ],
+           'type' => 'check',
+           'renderType' => 'check',
+           'items' => [
+             ['Enabled', '1'],
+           ],
         ],
       ],
       'tx_pagelist_paginateitems' => [
