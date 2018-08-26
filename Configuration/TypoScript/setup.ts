@@ -38,20 +38,30 @@ page.includeCSS.pagelist = {$pagelist.styles}
   }
 }
 [global]
-
 tt_content.defaultpagelist =< lib.fluidContent
 tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
 tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
 tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/Partials/
 tt_content.defaultpagelist.partialRootPaths.20 = {$pagelist.partialRootPaths}
 tt_content.defaultpagelist {
-  settings {
-    pagination {
-      itemsPerPage         = {$pagelist.paginationItems}
-      insertAbove          = 0
-      insertBelow          = 1
-      maximumNumberOfLinks = {$pagelist.paginationLinks}
+  variables {
+    pagelistPaginationItems = COA
+    pagelistPaginationItems {
+      5 = TEXT
+      5.value = {$pagelist.paginationItems}
+      5.stdWrap.if.isFalse.field = tx_pagelist_paginateitems
+      10 = TEXT
+      10.value.field = tx_pagelist_paginateitems
+      10.stdWrap.if.isTrue.field = tx_pagelist_paginateitems
     }
+    pagelistPaginationLinks = TEXT
+    pagelistPaginationLinks.value = {$pagelist.paginationLinks}
+  }
+  extbase {
+    pluginName = Pagelist
+    controllerName = Pagelist
+    controllerExtensionName = pagelist
+    controllerActionName = show
   }
 }
 tt_content.pagelist_sub =< tt_content.defaultpagelist
@@ -86,13 +96,6 @@ tt_content.pagelist_sub {
         }
       }
     }
-  }
-
-  extbase {
-    pluginName = Pagelist
-    controllerName = Pagelist
-    controllerExtensionName = pagelist
-    controllerActionName = show
   }
   stdWrap {
     editIcons = tt_content: header [header_layout], pages
@@ -143,12 +146,6 @@ tt_content.pagelist_selected {
         20.as = listimages
       }
     }
-  }
-  extbase {
-    pluginName = Pagelist
-    controllerName = Pagelist
-    controllerExtensionName = pagelist
-    controllerActionName = show
   }
   stdWrap {
     editIcons = tt_content: header [header_layout], pages

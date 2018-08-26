@@ -77,6 +77,7 @@
         'label' => 'Start showing from number',
         'config' => array(
           'type' => 'input',
+          'eval' => 'num',
           'size' => '1',
         ),
       ),
@@ -85,19 +86,31 @@
         'label' => 'Number of pages shown',
         'config' => array(
           'type' => 'input',
+          'eval' => 'num',
           'size' => '1',
         ),
       ),
       'tx_pagelist_paginate' => [
-       'exclude' => 0,
-       'label' => 'Pagination',
-       'config' => [
-          'type' => 'check',
+        'exclude' => 0,
+        'label' => 'Pagination',
+        'config' => [
+          'type' => 'select',
+          'renderType' => 'selectSingle',
           'items' => [
-            ['Enabled', ''],
+            ['Disabled', '0'],
+            ['Automatic', '1']
           ],
-       ]
-    ],
+        ],
+      ],
+      'tx_pagelist_paginateitems' => [
+        'exclude' => 0,
+        'label' => 'Pagination items per page',
+        'config' => array(
+          'type' => 'input',
+          'eval' => 'num',
+          'size' => '1',
+        ),
+      ],
     );
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
@@ -131,10 +144,12 @@
     );
     $GLOBALS['TCA']['tt_content']['palettes']['pagelistSettingsSub']['showitem'] = '
   		tx_pagelist_template,
-  		--linebreak--,tx_pagelist_orderby,
+  		tx_pagelist_orderby,
   	  tx_pagelist_startfrom,
   		tx_pagelist_limit,
+      --linebreak--,
       tx_pagelist_paginate,
+      tx_pagelist_paginateitems,
   	';
 
     $GLOBALS['TCA']['tt_content']['types']['pagelist_selected'] = array(
@@ -167,7 +182,10 @@
     //  tx_pagelist_orderby,
   	//  tx_pagelist_startfrom,
   	//	tx_pagelist_limit,
+      --linebreak--,
       tx_pagelist_paginate,
+      tx_pagelist_paginateitems,
+
   	';
 
     $GLOBALS['TCA']['tt_content']['types']['pagelist_category'] = array(
