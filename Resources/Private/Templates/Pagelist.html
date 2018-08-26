@@ -41,6 +41,11 @@
 											<f:render partial="ListEvent" arguments="{_all}" />
 										</f:then>
 									</f:if>
+									<f:if condition="{page.data.doktype} == 138">
+										<f:then>
+											<f:render partial="ListProduct" arguments="{_all}" />
+										</f:then>
+									</f:if>
 								</f:for>
 							</f:widget.paginate>
 						</f:then>
@@ -59,6 +64,11 @@
 								<f:if condition="{page.data.doktype} == 137">
 									<f:then>
 										<f:render partial="ListEvent" arguments="{_all}" />
+									</f:then>
+								</f:if>
+								<f:if condition="{page.data.doktype} == 138">
+									<f:then>
+										<f:render partial="ListProduct" arguments="{_all}" />
 									</f:then>
 								</f:if>
 							</f:for>

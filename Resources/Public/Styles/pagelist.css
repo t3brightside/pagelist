@@ -55,6 +55,29 @@
   margin-bottom: 0;
 }
 
+.pagelist .price {
+  margin-bottom: 0;
+  font-weight: bold;
+  margin-top: 0.5em;
+}
+.pagelist .product {
+  width: 100%;
+}
+.pagelist .product figure {
+  float: left;
+  width: 25%;
+  margin-right: 5%;
+}
+.pagelist .product img {
+  width: 100%;
+  height: auto;
+  margin-top: 0.9em;
+}
+
+.pagelist .product .text {
+  float: left;
+  width: 70%;
+}
 /* card layout */
 
 .pagelist.cards {

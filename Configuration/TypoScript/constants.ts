@@ -5,7 +5,7 @@
 	pagelist.templateRootPaths = EXT:pagelist/Resources/Private/Templates/
 # cat=Page List/pagelist; type=string; label= Partials root paht
 	pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
-# cat=Page List/pagelist; type=string; label= Pagination items for Card layout
+# cat=Page List/pagelist; type=string; label= Pagination items per page
 	pagelist.paginationItems = 8
 # cat=Page List/pagelist; type=string; label= Pagination links
 	pagelist.paginationLinks = 10

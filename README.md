@@ -1,6 +1,6 @@
 # Page List
 
-**TYPO3 CMS extension for easy to configure teasers, news lists, product pages etc.**
+**TYPO3 CMS extension for list of pages, news, events, products etc.**
 
 ## System requirements
 
@@ -9,21 +9,23 @@
 
 ## Features
 
+- Custom page types for articles, events and products
 - List of sub pages
 - List of selected pages
 - List of pages in category
-- Set start from, limit and sort by
-- Enable pagination
-- Custom page types for articles, events and products
+- Set start from, limit and sort options
+- Enable pagination with items per page
 - Dedicated image field in page resources
 - Connection to ext:Personnel for authors and contact persons
-- ext:Personnel fields can be enabled/disabled in the extension configuration
+- ext:Personnel fields can be enabled/disabled per page type
 - Easy to add custom templates
+- Exclude pages from lists
 
 ## Installation
 
  - From TER: **pagelist**, or composer: **t3brightside/pagelist**
  - Include static template after fluid_styled_content
+ - Check the extension config for system wide options
  - Recommended for authors ext:Personnel / **t3brightside/personnel**
 
 ## Usage

@@ -234,6 +234,12 @@
         '1',
         'before:media'
       );
+      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+        'pages',
+        'tx_pagelist_notinlist',
+        '1',
+        'after:nav_hide'
+      );
 
 // Define Article page type
       $GLOBALS['TCA']['pages']['types'][$pagelistArticle] = array(

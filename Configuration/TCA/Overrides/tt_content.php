@@ -181,7 +181,6 @@
     //  tx_pagelist_orderby,
   	//  tx_pagelist_startfrom,
   	//	tx_pagelist_limit,
-      --linebreak--,
       tx_pagelist_paginate,
       tx_pagelist_paginateitems,
 
