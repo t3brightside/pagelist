@@ -62,6 +62,12 @@ tt_content.defaultpagelist {
     controllerExtensionName = pagelist
     controllerActionName = show
   }
+  stdWrap {
+    editIcons = tt_content: header [header_layout], pages
+    editIcons {
+      iconTitle.data = LLL:EXT:fluid_styled_content/Resources/Private/Language/FrontendEditing.xlf:editIcon.menu
+    }
+  }
 }
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
@@ -94,12 +100,6 @@ tt_content.pagelist_sub {
           10.as = authorimages
         }
       }
-    }
-  }
-  stdWrap {
-    editIcons = tt_content: header [header_layout], pages
-    editIcons {
-      iconTitle.data = LLL:EXT:fluid_styled_content/Resources/Private/Language/FrontendEditing.xlf:editIcon.menu
     }
   }
 }
@@ -157,12 +157,6 @@ tt_content.pagelist_selected {
           }
         }
       }
-    }
-  }
-  stdWrap {
-    editIcons = tt_content: header [header_layout], pages
-    editIcons {
-      iconTitle.data = LLL:EXT:fluid_styled_content/Resources/Private/Language/FrontendEditing.xlf:editIcon.menu
     }
   }
 }
