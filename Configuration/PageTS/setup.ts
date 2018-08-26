@@ -49,7 +49,7 @@ TCEFORM.pages_language_overlay {
 
 TCEFORM.tt_content.tx_pagelist_template.addItems {
 	0 = Cards
-	1 = List (dependent on page type)
+	1 = List
 }
 
 mod.wizards.newContentElement.wizardItems.pagelist {
