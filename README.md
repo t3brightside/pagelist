@@ -1,4 +1,6 @@
 # Pagelist
+[![Packagist](https://img.shields.io/packagist/v/t3brightside/pagelist.svg)](https://packagist.org/packages/pimcore/pimcore)
+[![Software License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](LICENSE.md)
 
 **TYPO3 CMS extension to list pages, news, events, products etc.**
 
