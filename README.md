@@ -1,6 +1,7 @@
 # Page List
 
-**TYPO3 CMS extension for list of pages, news, events, products etc.**
+**TYPO3 CMS extension to list pages, news, events, products etc.**
+Adds new page types and content elements to creat page lists.
 
 ## System requirements
 
