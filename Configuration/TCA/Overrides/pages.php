@@ -101,22 +101,28 @@
               ],
            ]
         ],
-        'tx_pagelist_authors' => [
-            'exclude' => 1,
-            'label' => 'Author(s)',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectMultipleSideBySide',
-                'enableMultiSelectFilterTextfield' => true,
-                'foreign_table' => 'tx_personnel_domain_model_person',
-                'foreign_table_where' => 'AND tx_personnel_domain_model_person.sys_language_uid IN (-1,0)',
-                'size' => '3',
-                'behaviour' => [
-                  'allowLanguageSynchronization' => true,
-                ],
-            ]
-        ],
+
       );
+      if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
+        $tempColumnsAuthors = array(
+          'tx_pagelist_authors' => [
+              'exclude' => 1,
+              'label' => 'Author(s)',
+              'config' => [
+                  'type' => 'select',
+                  'renderType' => 'selectMultipleSideBySide',
+                  'enableMultiSelectFilterTextfield' => true,
+                  'foreign_table' => 'tx_personnel_domain_model_person',
+                  'foreign_table_where' => 'AND tx_personnel_domain_model_person.sys_language_uid IN (-1,0)',
+                  'size' => '3',
+                  'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                  ],
+              ]
+          ],
+        );
+      }
+
       if ($pagelistConiguration['pagelistEnableProducts']) {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
           'pages',
@@ -205,7 +211,9 @@
 
 
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumns, 1);
-
+      if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumnsAuthors, 1);
+      }
 // Add to all page types
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
         'pages',
@@ -350,6 +358,9 @@
       ';
 
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumns, 1);
+      if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumnsAuthors, 1);
+      }
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
       	'pages_language_overlay',
         '--palette--;Pagelist;pagelistimages,',
