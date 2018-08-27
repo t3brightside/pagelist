@@ -36,7 +36,7 @@
                 ),
               ),
             ),
-            'jpg,jpeg,png,gif,tiff,bmp,svg'
+            'jpg,jpeg,png,gif,tiff,bmp,svg,pdf'
           )
         ),
         'tx_pagelist_eventlocation' => [
