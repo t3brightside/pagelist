@@ -340,7 +340,7 @@
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_productprice,
           --linebreak--,tx_pagelist_images,
-          --linebreak,tx_pagelist_datetime,lastUpdated,
+          --linebreak--,tx_pagelist_datetime,lastUpdated,
         ';
       }
 
