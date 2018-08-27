@@ -28,7 +28,7 @@
 								<f:for each="{paginatedPages}" as="page" iteration="iterator">
 									<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 138">
 										<f:then>
-											<f:render partial="List" arguments="{_all}" />
+											<f:render partial="ListPage" arguments="{_all}" />
 										</f:then>
 									</f:if>
 									<f:if condition="{page.data.doktype} == 136">
@@ -53,7 +53,7 @@
 							<f:for each="{pagelist}" as="page" iteration="iterator">
 								<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 138">
 									<f:then>
-										<f:render partial="List" arguments="{_all}" />
+										<f:render partial="ListPage" arguments="{_all}" />
 									</f:then>
 								</f:if>
 								<f:if condition="{page.data.doktype} == 136">
