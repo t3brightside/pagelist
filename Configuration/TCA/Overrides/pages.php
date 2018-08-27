@@ -294,7 +294,7 @@
 
       $GLOBALS['TCA']['pages']['types'][$pagelistProduct] = array(
         'showitem' => '
-          --div--;Article,
+          --div--;Product,
             --palette--;Page;standard,
             --palette--;Product;pagelistproductgeneral,
             --palette--;LLL:EXT:realurl/Resources/Private/Language/locallang_db.xlf:pages.palette_title;tx_realurl,
@@ -474,7 +474,7 @@
 
       $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct] = array(
         'showitem' => '
-          --div--;Article,
+          --div--;Product,
             --palette--;Page;standard,
             --palette--;Product;pagelistproductgeneral,
             --palette--;LLL:EXT:realurl/Resources/Private/Language/locallang_db.xlf:pages.palette_title;tx_realurl,
