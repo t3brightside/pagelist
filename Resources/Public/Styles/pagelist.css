@@ -171,6 +171,7 @@
 
 ul.f3-widget-paginator {
   float: left;
+  clear: both;
   width: 100%;
   list-style: none;
   margin: 0;
