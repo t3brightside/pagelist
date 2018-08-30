@@ -21,15 +21,17 @@ Adds new content elements and page types to create different lists.
 - Set start from, limit and sort options
 - Enable pagination with items per page
 - Dedicated image field for pages
-- Connection to ext:Personnel for authors and contact persons
+- Connection to ext:[Personnel][863416d1] for authors and contact persons
 - ext:Personnel fields can be enabled/disabled per page type
 - Easy to add custom templates
 - Exclude pages from lists
 
+  [863416d1]: https://extensions.typo3.org/extension/personnel/ "ext:Personnel"
+
 ## Installation
 
  - From TER: **pagelist**, or composer: **t3brightside/pagelist**
- - Include static template after fluid_styled_content
+ - Include static template
  - Check the extension config for system wide options
  - Recommended for authors ext:Personnel / **t3brightside/personnel**
 
