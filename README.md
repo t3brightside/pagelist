@@ -20,7 +20,7 @@ Adds new content elements and page types to create different lists.
 - List of pages in category
 - Set start from, limit and sort options
 - Enable pagination with items per page
-- Dedicated image field in page resources
+- Dedicated image field for pages
 - Connection to ext:Personnel for authors and contact persons
 - ext:Personnel fields can be enabled/disabled per page type
 - Easy to add custom templates
