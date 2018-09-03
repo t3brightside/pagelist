@@ -88,6 +88,6 @@ Create new partial: _Resources/Private/Partials/MyCustomPartial.html_
 Development and maintenance
 ---------------------------
 
-[Brightside OÜ][ab26eed2] – TYPO3 development and hosting specialised web agency
+[Brightside OÜ – TYPO3 development and hosting specialised web agency][ab26eed2]
 
   [ab26eed2]: https://t3brightside.com/ "TYPO3 specialized web agency"
