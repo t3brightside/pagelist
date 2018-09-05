@@ -6,7 +6,7 @@
 **TYPO3 CMS extension to list pages, news, events, products etc.**
 
 Adds new content elements and page types to create different lists.
-[FE Demo](https://corptemplate.t3brightside.com/content/page-lists/)
+[Front-end Demo](https://corptemplate.t3brightside.com/content/page-lists/)
 
 ## System requirements
 
