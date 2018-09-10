@@ -275,7 +275,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      if ($pagelistConiguration['pagelistEnableArticlePersonnel']) {
+      if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableArticlePersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
           tx_pagelist_datetime,lastUpdated,
           --linebreak--,title,
@@ -325,7 +325,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      if ($pagelistConiguration['pagelistEnableProductPersonnel']) {
+      if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableProductPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
           --linebreak--,abstract,
@@ -378,7 +378,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      if ($pagelistConiguration['pagelistEnableEventPersonnel']) {
+      if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableEventPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
           --linebreak--,title,
@@ -455,7 +455,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      if ($pagelistConiguration['pagelistEnableArticlePersonnel']) {
+      if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableArticlePersonnel']) {
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = '
           tx_pagelist_datetime,lastUpdated,
           --linebreak--,title,
@@ -505,7 +505,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      if ($pagelistConiguration['pagelistEnableProductPersonnel']) {
+      if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableProductPersonnel']) {
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
           --linebreak--,abstract,
@@ -558,7 +558,7 @@
           --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
         '
     	);
-      if ($pagelistConiguration['pagelistEnableEventPersonnel']) {
+      if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableEventPersonnel']) {
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
           --linebreak--,title,
