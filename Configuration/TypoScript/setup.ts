@@ -37,7 +37,7 @@ page.includeCSS.pagelist = {$pagelist.styles}
   	)
   }
 [END]
-tt_content.defaultpagelist =< lib.fluidContent
+tt_content.defaultpagelist =< lib.contentElement
 tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
 tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
 tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/Partials/
