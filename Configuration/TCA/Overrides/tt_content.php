@@ -74,7 +74,7 @@
       ),
       'tx_pagelist_startfrom' => array(
         'exclude' => 0,
-        'label' => 'Start showing from number',
+        'label' => 'Start from item',
         'config' => array(
           'type' => 'input',
           'eval' => 'num',
@@ -83,7 +83,7 @@
       ),
       'tx_pagelist_limit' => array(
         'exclude' => 0,
-        'label' => 'Number of pages shown',
+        'label' => 'Items shown',
         'config' => array(
           'type' => 'input',
           'eval' => 'num',
