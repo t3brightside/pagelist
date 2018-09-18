@@ -68,8 +68,8 @@
             'label' => 'Date & Time:',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'size' => '12',
-                'max' => '20',
                 'eval' => 'datetime,int',
                 'checkbox' => '0',
                 'behaviour' => [
@@ -82,8 +82,8 @@
             'label' => 'Event End:',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'size' => '12',
-                'max' => '20',
                 'eval' => 'datetime,int',
                 'checkbox' => '0',
                 'behaviour' => [
