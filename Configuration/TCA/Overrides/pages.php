@@ -11,34 +11,33 @@
       $pagelistProduct = 138;
 
       $tempColumns = array(
-
         'tx_pagelist_images' => [
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.images',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                'tx_pagelist_images',
-                [
-                    'appearance' => [
-                       'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
-                    ],
-                    // custom configuration for displaying fields in the overlay/reference table
-                    // to use the image overlay palette instead of the basic overlay palette
-                    'overrideChildTca' => [
-                        'types' => [
-                            '0' => [
-                                'showitem' => '
-                                    --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                              'showitem' => '
-                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                --palette--;;filePalette'
-                            ],
-                        ],
-                    ],
+          'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.images',
+          'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+            'tx_pagelist_images',
+            [
+              'appearance' => [
+                'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
+              ],
+              // custom configuration for displaying fields in the overlay/reference table
+              // to use the image overlay palette instead of the basic overlay palette
+              'overrideChildTca' => [
+                'types' => [
+                  '0' => [
+                    'showitem' => '
+                      --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                      --palette--;;filePalette'
+                  ],
+                  \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                    'showitem' => '
+                      --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                      --palette--;;filePalette'
+                  ],
                 ],
-                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-            ),
+              ],
+            ],
+            $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+          ),
         ],
         'tx_pagelist_eventlocation' => [
             'exclude' => 1,
