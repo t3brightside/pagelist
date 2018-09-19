@@ -42,7 +42,7 @@
         ],
         'tx_pagelist_eventlocation' => [
           'exclude' => 1,
-          'label' => 'Location Text:',
+          'label' => 'Location',
           'config' => [
             'type' => 'input',
             'size' => '200',
@@ -54,7 +54,7 @@
         ],
         'tx_pagelist_eventlocationlink' => [
             'exclude' => 1,
-            'label' => 'Location Link:',
+            'label' => 'Location Link',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -66,7 +66,7 @@
         ],
         'tx_pagelist_datetime' => [
           'exclude' => 1,
-          'label' => 'Date & Time:',
+          'label' => 'Date & Time',
           'config' => [
             'type' => 'input',
             'renderType' => 'inputDateTime',
@@ -80,7 +80,7 @@
         ],
         'tx_pagelist_eventfinish' => [
           'exclude' => 1,
-          'label' => 'Event End:',
+          'label' => 'Event End',
           'config' => [
             'type' => 'input',
             'renderType' => 'inputDateTime',
@@ -94,7 +94,7 @@
         ],
         'tx_pagelist_productprice' => [
           'exclude' => 1,
-          'label' => 'Price:',
+          'label' => 'Price',
           'config' => [
             'type' => 'input',
             'size' => '10',
@@ -120,7 +120,7 @@
         $tempColumnsAuthors = array(
           'tx_pagelist_authors' => [
               'exclude' => 1,
-              'label' => 'Author(s)',
+              'label' => 'Authors',
               'config' => [
                   'type' => 'select',
                   'renderType' => 'selectMultipleSideBySide',

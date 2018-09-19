@@ -3,15 +3,15 @@ TCAdefaults.pages {
 }
 
 TCEFORM.pages {
-	title.types.136.label = Title:
-	title.types.137.label = Title:
-	title.types.138.label = Name:
-	abstract.types.136.label = Teaser:
-	abstract.types.137.label = Teaser:
-	abstract.types.138.label = Summary:
-	tx_pagelist_images.types.136.label = List image:
-	tx_pagelist_images.types.137.label = List image:
-	tx_pagelist_images.types.138.label = List image:
+	title.types.136.label = Title
+	title.types.137.label = Title
+	title.types.138.label = Name
+	abstract.types.136.label = Teaser
+	abstract.types.137.label = Teaser
+	abstract.types.138.label = Summary
+	tx_pagelist_images.types.136.label = List Image
+	tx_pagelist_images.types.137.label = List Image
+	tx_pagelist_images.types.138.label = List Image
 	nav_title.types.136.disabled = 1
 	nav_title.types.137.disabled = 1
 	nav_title.types.138.disabled = 1
@@ -21,20 +21,20 @@ TCEFORM.pages {
 	tx_realurl_exclude.types.136.disabled = 1
 	tx_realurl_exclude.types.137.disabled = 1
 	tx_realurl_exclude.types.138.disabled = 1
-	tx_pagelist_date.types.137.label = Event start:
-	tx_pagelist_authors.types.137.label = Contact person(s):
-	tx_pagelist_authors.types.138.label = Contact person(s):
+	tx_pagelist_datetime.types.137.label = Event Start
+	tx_pagelist_authors.types.137.label = Contact Persons
+	tx_pagelist_authors.types.138.label = Contact Persons
 }
 TCEFORM.pages_language_overlay {
-	title.types.136.label = Title:
-	title.types.137.label = Title:
-	title.types.138.label = Name:
-	abstract.types.136.label = Teaser:
-	abstract.types.137.label = Teaser:
-	abstract.types.138.label = Summary:
-	tx_pagelist_images.types.136.label = List image:
-	tx_pagelist_images.types.137.label = List image:
-	tx_pagelist_images.types.138.label = List image:
+	title.types.136.label = Title
+	title.types.137.label = Title
+	title.types.138.label = Name
+	abstract.types.136.label = Teaser
+	abstract.types.137.label = Teaser
+	abstract.types.138.label = Summary
+	tx_pagelist_images.types.136.label = List Image
+	tx_pagelist_images.types.137.label = List Image
+	tx_pagelist_images.types.138.label = List Image
 	nav_title.types.136.disabled = 1
 	nav_title.types.137.disabled = 1
 	nav_title.types.138.disabled = 1
@@ -44,7 +44,7 @@ TCEFORM.pages_language_overlay {
 	tx_realurl_exclude.types.136.disabled = 1
 	tx_realurl_exclude.types.137.disabled = 1
 	tx_realurl_exclude.types.138.disabled = 1
-	tx_pagelist_date.types.137.label = Event start:
+	tx_pagelist_datetime.types.137.label = Event Start
 }
 
 TCEFORM.tt_content.tx_pagelist_template.addItems {
