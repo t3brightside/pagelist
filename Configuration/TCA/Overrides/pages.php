@@ -12,6 +12,7 @@
 
       $tempColumns = array(
         'tx_pagelist_images' => [
+          'exclude' => 1,
           'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.images',
           'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
             'tx_pagelist_images',
@@ -40,16 +41,16 @@
           ),
         ],
         'tx_pagelist_eventlocation' => [
-            'exclude' => 1,
-            'label' => 'Location Text:',
-            'config' => [
-                'type' => 'input',
-                'size' => '200',
-                'eval' => 'text,trim',
-                'behaviour' => [
-                  'allowLanguageSynchronization' => true,
-                ],
-            ]
+          'exclude' => 1,
+          'label' => 'Location Text:',
+          'config' => [
+            'type' => 'input',
+            'size' => '200',
+            'eval' => 'text,trim',
+            'behaviour' => [
+              'allowLanguageSynchronization' => true,
+            ],
+          ]
         ],
         'tx_pagelist_eventlocationlink' => [
             'exclude' => 1,
@@ -64,57 +65,56 @@
             ]
         ],
         'tx_pagelist_datetime' => [
-            'exclude' => 1,
-            'label' => 'Date & Time:',
-            'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => '12',
-                'eval' => 'datetime,int',
-                'checkbox' => '0',
-                'behaviour' => [
-                  'allowLanguageSynchronization' => true,
-                ],
-            ]
+          'exclude' => 1,
+          'label' => 'Date & Time:',
+          'config' => [
+            'type' => 'input',
+            'renderType' => 'inputDateTime',
+            'size' => '12',
+            'eval' => 'datetime,int',
+            'checkbox' => '0',
+            'behaviour' => [
+              'allowLanguageSynchronization' => true,
+            ],
+          ]
         ],
         'tx_pagelist_eventfinish' => [
-            'exclude' => 1,
-            'label' => 'Event End:',
-            'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => '12',
-                'eval' => 'datetime,int',
-                'checkbox' => '0',
-                'behaviour' => [
-                  'allowLanguageSynchronization' => true,
-                ],
-            ]
+          'exclude' => 1,
+          'label' => 'Event End:',
+          'config' => [
+            'type' => 'input',
+            'renderType' => 'inputDateTime',
+            'size' => '12',
+            'eval' => 'datetime,int',
+            'checkbox' => '0',
+            'behaviour' => [
+              'allowLanguageSynchronization' => true,
+            ],
+          ]
         ],
         'tx_pagelist_productprice' => [
-            'exclude' => 1,
-            'label' => 'Price:',
-            'config' => [
-                'type' => 'input',
-                'size' => '10',
-                'eval' => 'trim',
-                'behaviour' => [
-                  'allowLanguageSynchronization' => true,
-                ],
-            ]
+          'exclude' => 1,
+          'label' => 'Price:',
+          'config' => [
+            'type' => 'input',
+            'size' => '10',
+            'eval' => 'trim',
+            'behaviour' => [
+              'allowLanguageSynchronization' => true,
+            ],
+          ]
         ],
         'tx_pagelist_notinlist' => [
-           'exclude' => 1,
-           'label' => 'In Page Lists',
-           'config' => [
-              'type' => 'check',
-              'renderType' => 'check',
-              'items' => [
-                ['Hide', '1'],
-              ],
-           ]
+          'exclude' => 1,
+          'label' => 'In Page Lists',
+          'config' => [
+            'type' => 'check',
+            'renderType' => 'check',
+            'items' => [
+              ['Hide', '1'],
+            ],
+          ]
         ],
-
       );
       if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
         $tempColumnsAuthors = array(
