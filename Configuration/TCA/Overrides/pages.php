@@ -2,10 +2,20 @@
   defined('TYPO3_MODE') || die('Access denied.');
   call_user_func(
     function () {
-      $pagelistConiguration = $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['pagelist'];
-      if (!is_array($pagelistConiguration)) {
-        $pagelistConiguration = unserialize($pagelistConiguration);
+      if (class_exists(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)) {
+        $extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+          \TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
+        );
+        $pagelistConiguration = $extensionConfiguration->get('pagelist');
+      } else {
+        // Fallback for CMS8
+        // @extensionScannerIgnoreLine
+        $pagelistConiguration = $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['pagelist'];
+        if (!is_array($pagelistConiguration)) {
+          $pagelistConiguration = unserialize($pagelistConiguration);
+        }
       }
+      
       $pagelistArticle = 136;
       $pagelistEvent = 137;
       $pagelistProduct = 138;
