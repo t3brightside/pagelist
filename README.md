@@ -34,8 +34,8 @@ Adds new content elements and page types to create different lists.
 
  - From TER: **pagelist**, or composer: **t3brightside/pagelist**
  - Include static template
- - Check the extension config for system wide options
- - Recommended for authors ext:Personnel / **t3brightside/personnel**
+ - Enable page types for news, events, and articles from extension configuration
+ - Recommended for author records ext:Personnel / **t3brightside/personnel**
 
 ## Usage
 
