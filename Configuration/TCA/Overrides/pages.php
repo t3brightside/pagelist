@@ -1,5 +1,6 @@
 <?php
   defined('TYPO3_MODE') || die('Access denied.');
+
   call_user_func(
     function () {
       if (class_exists(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)) {
@@ -15,7 +16,7 @@
           $pagelistConiguration = unserialize($pagelistConiguration);
         }
       }
-      
+
       $pagelistArticle = 136;
       $pagelistEvent = 137;
       $pagelistProduct = 138;
@@ -289,6 +290,7 @@
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
           tx_pagelist_datetime,lastUpdated,
           --linebreak--,title,
+          --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_authors,
           --linebreak--,tx_pagelist_images,
@@ -297,6 +299,7 @@
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
           tx_pagelist_datetime,lastUpdated,
           --linebreak--,title,
+          --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_images,
         ';
@@ -338,6 +341,7 @@
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableProductPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
+          --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_productprice,
           --linebreak--,tx_pagelist_authors,
@@ -347,6 +351,7 @@
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
+          --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_productprice,
           --linebreak--,tx_pagelist_images,
@@ -392,6 +397,7 @@
         $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
           --linebreak--,title,
+          --linebreak--,slug,
           --linebreak--,tx_pagelist_eventlocation,
           --linebreak--,tx_pagelist_eventlocationlink,
           --linebreak--,abstract,
@@ -402,6 +408,7 @@
         $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
           --linebreak--,title,
+          --linebreak--,slug,
           --linebreak--,tx_pagelist_eventlocation,
           --linebreak--,tx_pagelist_eventlocationlink,
           --linebreak--,abstract,
@@ -469,6 +476,7 @@
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = '
           tx_pagelist_datetime,lastUpdated,
           --linebreak--,title,
+          --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_authors,
           --linebreak--,tx_pagelist_images,
@@ -477,6 +485,7 @@
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = '
           tx_pagelist_datetime,lastUpdated,
           --linebreak--,title,
+          --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_images,
         ';
@@ -518,6 +527,7 @@
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableProductPersonnel']) {
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
+          --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_productprice,
           --linebreak--,tx_pagelist_authors,
@@ -527,6 +537,7 @@
       } else {
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
+          --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_productprice,
           --linebreak--,tx_pagelist_images,
@@ -572,6 +583,7 @@
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
           --linebreak--,title,
+          --linebreak--,slug,
           --linebreak--,tx_pagelist_eventlocation,
           --linebreak--,tx_pagelist_eventlocationlink,
           --linebreak--,abstract,
@@ -582,6 +594,7 @@
         $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
           --linebreak--,title,
+          --linebreak--,slug,
           --linebreak--,tx_pagelist_eventlocation,
           --linebreak--,tx_pagelist_eventlocationlink,
           --linebreak--,abstract,
