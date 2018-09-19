@@ -3,7 +3,7 @@ $EM_CONF[$_EXTKEY] = array (
 	'title' => 'Page List',
 	'description' => 'Content element and page types to list pages, news, events, products etc.',
 	'category' => 'fe',
-	'version' => '2.0.1',
+	'version' => '2.0.2',
 	'state' => 'stable',
 	'uploadfolder' => false,
 	'createDirs' => '',
@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array (
 	array (
 		'depends' =>
 		array (
-			'typo3' => '8.7.0 - 9.5.99',
+			'typo3' => '8.7.0 - 9.4.99',
 			'fluid_styled_content' => '',
 		),
 		'conflicts' =>

@@ -11,7 +11,7 @@ Adds new content elements and page types to create different lists.
 
 ## System requirements
 
-- TYPO3 8.7 LTS
+- TYPO3 8.7 LTS & 9.4
 - fluid_styled_content
 
 ## Features
