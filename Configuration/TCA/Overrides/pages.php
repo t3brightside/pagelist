@@ -18,7 +18,7 @@
             'tx_pagelist_images',
             [
               'appearance' => [
-                'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
+                'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
               ],
               // custom configuration for displaying fields in the overlay/reference table
               // to use the image overlay palette instead of the basic overlay palette
