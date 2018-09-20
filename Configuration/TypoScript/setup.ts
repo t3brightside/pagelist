@@ -36,7 +36,7 @@ page.includeCSS.pagelist = {$pagelist.styles}
   		});
   	)
   }
-[END]
+[global]
 tt_content.defaultpagelist =< lib.contentElement
 tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
 tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
@@ -69,6 +69,27 @@ tt_content.defaultpagelist {
     }
   }
 }
+[userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')]
+  tt_content.defaultpagelist {
+    dataProcessing.10 {
+      dataProcessing {
+        30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+        30 {
+          table = tx_personnel_domain_model_person
+          uidInList.field = tx_pagelist_authors
+          pidInList = 0
+          as = authors
+          dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10.references.table = tx_personnel_domain_model_person
+            10.references.fieldName = images
+            10.as = authorimages
+          }
+        }
+      }
+    }
+  }
+[global]
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
   templateName = Pagelist
@@ -87,19 +108,6 @@ tt_content.pagelist_sub {
       20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
       20.references.fieldName = tx_pagelist_images
       20.as = listimages
-      30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-      30 {
-        table = tx_personnel_domain_model_person
-        uidInList.field = tx_pagelist_authors
-        pidInList = 0
-        as = authors
-        dataProcessing {
-          10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-          10.references.table = tx_personnel_domain_model_person
-          10.references.fieldName = images
-          10.as = authorimages
-        }
-      }
     }
   }
 }
@@ -123,7 +131,7 @@ tt_content.pagelist_sub {
       }
     }
   }
-[END]
+[global]
 
 tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
@@ -144,18 +152,6 @@ tt_content.pagelist_selected {
         20.references.fieldName = tx_pagelist_images
         20.as = listimages
         30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-        30 {
-          table = tx_personnel_domain_model_person
-          uidInList.field = tx_pagelist_authors
-          pidInList = 0
-          as = authors
-          dataProcessing {
-            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-            10.references.table = tx_personnel_domain_model_person
-            10.references.fieldName = images
-            10.as = authorimages
-          }
-        }
       }
     }
   }
