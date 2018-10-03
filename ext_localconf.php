@@ -7,3 +7,5 @@
 		\TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
 		['source' => 'EXT:pagelist/Resources/Public/Images/Icons/mimetypes-x-content-pagelist.svg']
 	);
+
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['pagelist'] = \Brightside\Pagelist\Hooks\PageLayoutView\PagelistContentElementPreviewRenderer::class;

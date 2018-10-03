@@ -72,6 +72,28 @@
           ),
         ),
       ),
+      'tx_pagelist_disableimages' => [
+        'exclude' => 1,
+        'label' => 'Images',
+        'config' => [
+           'type' => 'check',
+           'renderType' => 'check',
+           'items' => [
+             ['Disabled', '1'],
+           ],
+        ],
+      ],
+      'tx_pagelist_disableabstract' => [
+        'exclude' => 1,
+        'label' => 'Introduction',
+        'config' => [
+           'type' => 'check',
+           'renderType' => 'check',
+           'items' => [
+             ['Disabled', '1'],
+           ],
+        ],
+      ],
       'tx_pagelist_startfrom' => array(
         'exclude' => 0,
         'label' => 'Start from item',
@@ -147,6 +169,8 @@
   	  tx_pagelist_startfrom,
   		tx_pagelist_limit,
       --linebreak--,
+      tx_pagelist_disableimages,
+      tx_pagelist_disableabstract,
       tx_pagelist_paginate,
       tx_pagelist_paginateitems,
   	';
@@ -181,6 +205,8 @@
     //  tx_pagelist_orderby,
   	//  tx_pagelist_startfrom,
   	//	tx_pagelist_limit,
+      tx_pagelist_disableimages,
+      tx_pagelist_disableabstract,
       tx_pagelist_paginate,
       tx_pagelist_paginateitems,
 
@@ -226,6 +252,10 @@
   		tx_pagelist_template,
   		tx_pagelist_startfrom,
   		tx_pagelist_limit,
+      --linebreak--,
+      tx_pagelist_disableimages,
+      tx_pagelist_disableabstract,
       tx_pagelist_paginate,
+      tx_pagelist_paginateitems,
   	';
   });
