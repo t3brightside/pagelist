@@ -12,8 +12,10 @@
     </figure>
     <div class="text">
       <h3 class="title">{page.data.title}</h3>
-      <f:if condition="{page.data.abstract}">
-        <p class="abstract">{page.data.abstract}</p>
+      <f:if condition="{data.tx_pagelist_disableabstract} == 0">
+        <f:if condition="{page.data.abstract}">
+          <p class="abstract">{page.data.abstract}</p>
+        </f:if>
       </f:if>
       <f:if condition="{page.data.tx_pagelist_productprice}">
         <p class="price">{page.data.tx_pagelist_productprice} €</p>

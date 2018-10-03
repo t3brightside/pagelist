@@ -6,9 +6,9 @@ TCEFORM.pages {
 	title.types.136.label = Title
 	title.types.137.label = Title
 	title.types.138.label = Name
-	abstract.types.136.label = Teaser
-	abstract.types.137.label = Teaser
-	abstract.types.138.label = Summary
+	abstract.types.136.label = Introduction
+	abstract.types.137.label = Introduction
+	abstract.types.138.label = Introduction
 	tx_pagelist_images.types.136.label = List Image
 	tx_pagelist_images.types.137.label = List Image
 	tx_pagelist_images.types.138.label = List Image
