@@ -14,7 +14,7 @@
   margin-bottom: 0.6em;
 }
 
-.pagelist img {
+.pagelist img.image {
   width: 100%;
   transition: all 1.3s ease-in-out;
   overflow: hidden;
@@ -78,13 +78,16 @@
   float: left;
   width: 70%;
 }
+.pagelist .product.noimage .text {
+  width: 100%;
+}
 /* card layout */
 
 .pagelist.cards {
   margin-top: 1.5em;
 }
 
-.pagelist.cards a:hover img {
+.pagelist.cards a:hover img.image {
   transform: scale(1.1);
 }
 

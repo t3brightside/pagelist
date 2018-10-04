@@ -90,13 +90,24 @@ tt_content.defaultpagelist {
     }
   }
 [global]
+page {
+1 = LOAD_REGISTER
+1.param.cObject = TEXT
+1.param.cObject.stdWrap.field = tx_pagelist_authors
+}
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
+
   templateName = Pagelist
   dataProcessing.10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   dataProcessing.10 {
     table = pages
-    where = tx_pagelist_notinlist = 0
+    where.value = tx_pagelist_notinlist = 0
+    where.wrap = | AND tx_pagelist_authors LIKE '%,###authors###' OR tx_pagelist_authors LIKE '###authors###,%' OR tx_pagelist_authors='###authors###'
+    where.wrap.if.isTrue.field = tx_pagelist_authors
+    markers {
+      authors.data = field:tx_pagelist_authors
+    }
     pidInList.field = pages
     orderBy.field = tx_pagelist_orderby
 		max.field = tx_pagelist_limit

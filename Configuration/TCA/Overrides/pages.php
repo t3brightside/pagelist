@@ -241,7 +241,7 @@
 // Add to all page types
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
         'pages',
-        '--palette--;Page list image;pagelistimages',
+        '--palette--;Pagelist image;pagelistimages',
         '1',
         'before:media'
       );

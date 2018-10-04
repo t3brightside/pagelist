@@ -54,24 +54,24 @@ TCEFORM.tt_content.tx_pagelist_template.addItems {
 
 mod.wizards.newContentElement.wizardItems.pagelist {
 	after = common
-	header = Page lists
+	header = Pagelist
  	elements {
     pagelist_selected {
 			iconIdentifier = mimetypes-x-content-pagelist
-			title = Page list: selected
+			title = Pagelist: selected
 			description = Shows selected pages.
 			tt_content_defValues.CType = pagelist_selected
     }
     pagelist_sub {
 			iconIdentifier = mimetypes-x-content-pagelist
-			title = Page list: subpages
+			title = Pagelist: subpages
 			description = Shows subpages of selected pages.
 			tt_content_defValues.CType = pagelist_sub
     }
     pagelist_category {
 			iconIdentifier = mimetypes-x-content-pagelist
-			title = Page list: category
-			description = Shows pages that belong to selected category(s).
+			title = Pagelist: category
+			description = Shows pages that belong to selected category.
 			tt_content_defValues.CType = pagelist_category
     }
 	}

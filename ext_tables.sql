@@ -1,4 +1,5 @@
 CREATE TABLE tt_content (
+	tx_pagelist_authors tinytext,
 	tx_pagelist_template int(11) DEFAULT '0' NOT NULL,
 	tx_pagelist_orderby tinytext,
 	tx_pagelist_disableimages int(1) DEFAULT '0' NOT NULL,

@@ -12,7 +12,7 @@
       "tt_content",
       "CType",
       [
-        "Page list: category",
+        "Pagelist: category",
         "pagelist_category",
         "mimetypes-x-content-pagelist"
       ],
@@ -23,7 +23,7 @@
       "tt_content",
       "CType",
       [
-        "Page list: subpages",
+        "Pagelist: subpages",
         "pagelist_sub",
         "mimetypes-x-content-pagelist"
       ],
@@ -34,7 +34,7 @@
       "tt_content",
       "CType",
       [
-        "Page list: selected",
+        "Pagelist: selected",
         "pagelist_selected",
         "mimetypes-x-content-pagelist"
       ],
@@ -137,6 +137,28 @@
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
     unset($tempColumns);
 
+    if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
+      $tempColumnsAuthors = array(
+        'tx_pagelist_authors' => [
+            'exclude' => 1,
+            'label' => 'Author',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'enableMultiSelectFilterTextfield' => true,
+                'foreign_table' => 'tx_personnel_domain_model_person',
+                'foreign_table_where' => 'AND tx_personnel_domain_model_person.sys_language_uid IN (-1,0)',
+                'maxitems' => '1',
+                'behaviour' => [
+                  'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
+      );
+      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumnsAuthors);
+      unset($tempColumnsAuthors);
+    }
+
 /* Define back end forms for content types */
     $GLOBALS['TCA']['tt_content']['types']['pagelist_sub'] = array(
       'showitem' => '
@@ -145,6 +167,7 @@
           --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.headers;headers,
           pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
           --palette--;;pagelistSettingsSub,
+          tx_pagelist_authors;Selected Author Only,
         --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
           --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames,
           --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.appearanceLinks;appearanceLinks,
@@ -209,7 +232,6 @@
       tx_pagelist_disableabstract,
       tx_pagelist_paginate,
       tx_pagelist_paginateitems,
-
   	';
 
     $GLOBALS['TCA']['tt_content']['types']['pagelist_category'] = array(

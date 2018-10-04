@@ -1,4 +1,4 @@
-<div class="item event">
+<div class="item event{f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
   <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
     <f:if condition="{page.data.tx_pagelist_datetime}">
       <p class="dates">
