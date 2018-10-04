@@ -42,6 +42,12 @@
 
 .pagelist .author {
   display: inline-block;
+  margin-right: 0.5em;
+}
+
+.pagelist .date {
+  display: inline-block;
+  margin-right: 0.5em;
 }
 
 .pagelist .author img {

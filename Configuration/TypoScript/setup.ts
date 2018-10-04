@@ -69,45 +69,32 @@ tt_content.defaultpagelist {
     }
   }
 }
+
 [userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')]
-  tt_content.defaultpagelist {
-    dataProcessing.10 {
+  tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
+    30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+    30 {
+      table = tx_personnel_domain_model_person
+      uidInList.field = tx_pagelist_authors
+      pidInList = 0
+      as = authors
       dataProcessing {
-        30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-        30 {
-          table = tx_personnel_domain_model_person
-          uidInList.field = tx_pagelist_authors
-          pidInList = 0
-          as = authors
-          dataProcessing {
-            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-            10.references.table = tx_personnel_domain_model_person
-            10.references.fieldName = images
-            10.as = authorimages
-          }
-        }
+        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        10.references.table = tx_personnel_domain_model_person
+        10.references.fieldName = images
+        10.as = authorimages
       }
     }
   }
 [global]
-page {
-1 = LOAD_REGISTER
-1.param.cObject = TEXT
-1.param.cObject.stdWrap.field = tx_pagelist_authors
-}
+
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
-
   templateName = Pagelist
   dataProcessing.10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   dataProcessing.10 {
     table = pages
-    where.value = tx_pagelist_notinlist = 0
-    where.wrap = | AND tx_pagelist_authors LIKE '%,###authors###' OR tx_pagelist_authors LIKE '###authors###,%' OR tx_pagelist_authors='###authors###'
-    where.wrap.if.isTrue.field = tx_pagelist_authors
-    markers {
-      authors.data = field:tx_pagelist_authors
-    }
+    where = tx_pagelist_notinlist = 0
     pidInList.field = pages
     orderBy.field = tx_pagelist_orderby
 		max.field = tx_pagelist_limit
@@ -122,6 +109,16 @@ tt_content.pagelist_sub {
     }
   }
 }
+
+[userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')]
+  tt_content.pagelist_sub.dataProcessing.10 {
+    where >
+    where.value = tx_pagelist_notinlist = 0
+    where.wrap = | AND tx_pagelist_authors LIKE '%,###authors###' OR tx_pagelist_authors LIKE '###authors###,%' OR tx_pagelist_authors='###authors###'
+    where.wrap.if.isTrue.field = tx_pagelist_authors
+    markers.authors.data = field:tx_pagelist_authors
+  }
+[global]
 
 [globalVar = GP:L > 0]
   tt_content.pagelist_sub {
