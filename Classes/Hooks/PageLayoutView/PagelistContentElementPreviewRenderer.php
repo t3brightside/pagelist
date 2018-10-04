@@ -23,10 +23,10 @@ class PagelistContentElementPreviewRenderer implements PageLayoutViewDrawItemHoo
 				$itemContent = $parentObject->linkEditContent('<span style="display: block; margin-top: 0.3em;">Pagelist: selected '. $row['pages'] .'</span>', $row);
 			}
 			if ($row['CType'] === 'pagelist_sub') {
-        $itemContent = $parentObject->linkEditContent('<span style="display: block; margin-top: 0.3em;">Pagelist: subpages '. $row['pages'] .'</span>', $row);
+        $itemContent = $parentObject->linkEditContent('<span style="display: block; margin-top: 0.3em;">Pagelist: subpages from '. $row['pages'] .'</span>', $row);
 			}
 			if ($row['CType'] === 'pagelist_category') {
-				$itemContent = $parentObject->linkEditContent('<span style="display: block; margin-top: 0.3em;">Pagelist: category '. $row['selected_categories'] .'</span>', $row);
+				$itemContent = $parentObject->linkEditContent('<span style="display: block; margin-top: 0.3em;">Pagelist: from category '. $row['selected_categories'] .'</span>', $row);
 			}
 			$itemContent .= '<ul style="margin: 0; padding: 0.2em 1.4em;">';
 			if ($row['CType'] === 'pagelist_sub') {
@@ -58,6 +58,9 @@ class PagelistContentElementPreviewRenderer implements PageLayoutViewDrawItemHoo
 			}
 			if ($row['tx_pagelist_paginateitems'] == 0 && $row['tx_pagelist_paginate'] == 1) {
 				$itemContent .= '<li>' . $parentObject->linkEditContent('Items per page: TypoScript', $row) . '</li>';
+			}
+			if ($row['tx_pagelist_authors'] > 0) {
+				$itemContent .= '<li>' . $parentObject->linkEditContent('Author filter: active', $row) . '</li>';
 			}
 			$itemContent .= '</ul>';
 			$drawItem = FALSE;
