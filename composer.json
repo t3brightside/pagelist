@@ -15,11 +15,8 @@
       }
   ],
   "require": {
-    "typo3/minimal": ">=8.7.0,<9.5.99"
-  },
-  "replace": {
-    "pagelist": "self.version",
-    "typo3-ter/pagelist": "self.version"
+    "typo3/cms-core": "^9.5",
+    "typo3/cms-fluid-styled-content": "*"
   },
   "autoload": {
     "psr-4": {
