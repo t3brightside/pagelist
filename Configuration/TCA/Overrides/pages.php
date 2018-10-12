@@ -252,40 +252,26 @@
         'after:nav_hide'
       );
 
-// Define Article page type
-      $GLOBALS['TCA']['pages']['types'][$pagelistArticle] = array(
-        'showitem' => '
-          --div--;Article,
-            --palette--;Page;standard,
-            --palette--;Article;pagelistarticlegeneral,
-            --palette--;LLL:EXT:realurl/Resources/Private/Language/locallang_db.xlf:pages.palette_title;tx_realurl,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-            --palette--;Meta Tags;metatags,
-            --palette--;;pagelistauthor,
-            --palette--;Meta Plus;metaplus,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.appearance,
-            --palette--;;layout,
-            --palette--;;replace,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.behaviour,
-            --palette--;;links,
-            --palette--;;caching,
-            --palette--;;miscellaneous,
-            --palette--;;module,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.resources,
-            --palette--;;media,
-            --palette--;;config,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-            --palette--;;language,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,tx_pagelist_notinlist,
-            --palette--;;access,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
-            categories,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-            rowDescription,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-        '
-    	);
+      $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
+// Replace title area with new fields and palettes
+      $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
+        ';title,',
+        ';,--palette--;Article;pagelistarticlegeneral,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
+      );
+
+// Remove abstract from Meta tab not to duplicate
+      $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
+        ';abstract,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
+      );
+      $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
+        ';editorial,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
+      );
+
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableArticlePersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
           tx_pagelist_datetime,lastUpdated,
@@ -301,43 +287,28 @@
           --linebreak--,title,
           --linebreak--,slug,
           --linebreak--,abstract,
+          --linebreak--,author,author_email,
           --linebreak--,tx_pagelist_images,
         ';
       }
+      $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
+      // Replace title area and add categories
+      $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
+        ';title,',
+        ';,--palette--;Product;pagelistproductgeneral,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
+      );
+      $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
+        ';abstract,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
+      );
+      $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
+        ';editorial,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
+      );
 
-      $GLOBALS['TCA']['pages']['types'][$pagelistProduct] = array(
-        'showitem' => '
-          --div--;Product,
-            --palette--;Page;standard,
-            --palette--;Product;pagelistproductgeneral,
-            --palette--;LLL:EXT:realurl/Resources/Private/Language/locallang_db.xlf:pages.palette_title;tx_realurl,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-            --palette--;Meta Tags;metatags,
-            --palette--;;pagelistauthor,
-            --palette--;Meta Plus;metaplus,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.appearance,
-            --palette--;;layout,
-            --palette--;;replace,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.behaviour,
-            --palette--;;links,
-            --palette--;;caching,
-            --palette--;;miscellaneous,
-            --palette--;;module,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.resources,
-            --palette--;;media,
-            --palette--;;config,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-            --palette--;;language,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,tx_pagelist_notinlist,
-            --palette--;;access,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
-            categories,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-            rowDescription,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-        '
-    	);
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableProductPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
@@ -355,44 +326,28 @@
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_productprice,
           --linebreak--,tx_pagelist_images,
-          --linebreak--,tx_pagelist_datetime,lastUpdated,
+          --linebreak--,tx_pagelist_datetime,lastUpdated,author,author_email,
         ';
       }
 
-// Define Event page type
-      $GLOBALS['TCA']['pages']['types'][$pagelistEvent] = array(
-        'showitem' => '
-          --div--;Event,
-            --palette--;Page;standard,
-            --palette--;Event;pagelisteventgeneral,
-            --palette--;LLL:EXT:realurl/Resources/Private/Language/locallang_db.xlf:pages.palette_title;tx_realurl,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-            --palette--;Meta Tags;metatags,
-            --palette--;;pagelistauthor,
-            --palette--;Meta Plus;metaplus,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.appearance,
-            --palette--;;layout,
-            --palette--;;replace,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.behaviour,
-            --palette--;;links,
-            --palette--;;caching,
-            --palette--;;miscellaneous,
-            --palette--;;module,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.resources,
-            --palette--;;media,
-            --palette--;;config,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-            --palette--;;language,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,tx_pagelist_notinlist,
-            --palette--;;access,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
-            categories,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-            rowDescription,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-        '
-    	);
+// Event page type
+      $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
+      // Replace title area and add categories
+      $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
+        ';title,',
+        ';,--palette--;Event;pagelisteventgeneral,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
+      );
+      $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
+        ';abstract,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
+      );
+      $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
+        ';editorial,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
+      );
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableEventPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
@@ -412,201 +367,12 @@
           --linebreak--,tx_pagelist_eventlocation,
           --linebreak--,tx_pagelist_eventlocationlink,
           --linebreak--,abstract,
+          --linebreak--,author,author_email,
           --linebreak--,tx_pagelist_images,
         ';
       }
-      $GLOBALS['TCA']['pages']['palettes']['pagelistauthor']['showitem'] = '
-        author,
-        author_email,
-      ';
 
       $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = '
-        tx_pagelist_images,
-      ';
-
-      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumns, 1);
-      if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumnsAuthors, 1);
-      }
-      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-      	'pages_language_overlay',
-        '--palette--;Pagelist;pagelistimages,',
-        '',
-        'after:media'
-      );
-      $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistimages']['showitem'] = '
-        tx_pagelist_images,
-      ';
-
-// Define Article page type
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle] = array(
-        'showitem' => '
-          --div--;Article,
-            --palette--;Page;standard,
-            --palette--;Article;pagelistarticlegeneral,
-            --palette--;LLL:EXT:realurl/Resources/Private/Language/locallang_db.xlf:pages.palette_title;tx_realurl,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-            --palette--;Meta Tags;metatags,
-            --palette--;;pagelistauthor,
-            --palette--;Meta Plus;metaplus,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.appearance,
-            --palette--;;layout,
-            --palette--;;replace,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.behaviour,
-            --palette--;;links,
-            --palette--;;caching,
-            --palette--;;miscellaneous,
-            --palette--;;module,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.resources,
-            --palette--;;media,
-            --palette--;;config,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-            --palette--;;language,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,hidden,
-            --palette--;;access,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
-            categories,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-            rowDescription,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-        '
-    	);
-      if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableArticlePersonnel']) {
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = '
-          tx_pagelist_datetime,lastUpdated,
-          --linebreak--,title,
-          --linebreak--,slug,
-          --linebreak--,abstract,
-          --linebreak--,tx_pagelist_authors,
-          --linebreak--,tx_pagelist_images,
-        ';
-      } else {
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = '
-          tx_pagelist_datetime,lastUpdated,
-          --linebreak--,title,
-          --linebreak--,slug,
-          --linebreak--,abstract,
-          --linebreak--,tx_pagelist_images,
-        ';
-      }
-
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct] = array(
-        'showitem' => '
-          --div--;Product,
-            --palette--;Page;standard,
-            --palette--;Product;pagelistproductgeneral,
-            --palette--;LLL:EXT:realurl/Resources/Private/Language/locallang_db.xlf:pages.palette_title;tx_realurl,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-            --palette--;Meta Tags;metatags,
-            --palette--;;pagelistauthor,
-            --palette--;Meta Plus;metaplus,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.appearance,
-            --palette--;;layout,
-            --palette--;;replace,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.behaviour,
-            --palette--;;links,
-            --palette--;;caching,
-            --palette--;;miscellaneous,
-            --palette--;;module,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.resources,
-            --palette--;;media,
-            --palette--;;config,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-            --palette--;;language,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,hidden,
-            --palette--;;access,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
-            categories,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-            rowDescription,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-        '
-    	);
-      if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableProductPersonnel']) {
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = '
-          title,
-          --linebreak--,slug,
-          --linebreak--,abstract,
-          --linebreak--,tx_pagelist_productprice,
-          --linebreak--,tx_pagelist_authors,
-          --linebreak--,tx_pagelist_images,
-          --linebreak--,tx_pagelist_datetime,lastUpdated,
-        ';
-      } else {
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = '
-          title,
-          --linebreak--,slug,
-          --linebreak--,abstract,
-          --linebreak--,tx_pagelist_productprice,
-          --linebreak--,tx_pagelist_images,
-          --linebreak--,tx_pagelist_datetime,lastUpdated,
-        ';
-      }
-
-// Define Event page type
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent] = array(
-        'showitem' => '
-          --div--;Event,
-            --palette--;Page;standard,
-            --palette--;Event;pagelisteventgeneral,
-            --palette--;LLL:EXT:realurl/Resources/Private/Language/locallang_db.xlf:pages.palette_title;tx_realurl,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-            --palette--;Meta Tags;metatags,
-            --palette--;;pagelistauthor,
-            --palette--;Meta Plus;metaplus,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.appearance,
-            --palette--;;layout,
-            --palette--;;replace,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.behaviour,
-            --palette--;;links,
-            --palette--;;caching,
-            --palette--;;miscellaneous,
-            --palette--;;module,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.resources,
-            --palette--;;media,
-            --palette--;;config,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-            --palette--;;language,
-          --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
-            --palette--;;visibility,hidden,
-            --palette--;;access,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
-            categories,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-            rowDescription,
-          --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-        '
-    	);
-      if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableEventPersonnel']) {
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = '
-          tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
-          --linebreak--,title,
-          --linebreak--,slug,
-          --linebreak--,tx_pagelist_eventlocation,
-          --linebreak--,tx_pagelist_eventlocationlink,
-          --linebreak--,abstract,
-          --linebreak--,tx_pagelist_authors,
-          --linebreak--,tx_pagelist_images,
-        ';
-      } else {
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = '
-          tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
-          --linebreak--,title,
-          --linebreak--,slug,
-          --linebreak--,tx_pagelist_eventlocation,
-          --linebreak--,tx_pagelist_eventlocationlink,
-          --linebreak--,abstract,
-          --linebreak--,tx_pagelist_images,
-        ';
-      }
-      $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistauthor']['showitem'] = '
-        author,
-        author_email,
-      ';
-
-      $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistimages']['showitem'] = '
         tx_pagelist_images,
       ';
     }
