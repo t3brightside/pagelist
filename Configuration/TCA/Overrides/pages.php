@@ -29,8 +29,11 @@
             'tx_pagelist_images',
             [
               'appearance' => [
-                'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
-              ],
+    						'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+    						'showPossibleLocalizationRecords' => TRUE,
+    			      'showRemovedLocalizationRecords' => TRUE,
+    			      'showSynchronizationLink' => TRUE,
+    					],
               // custom configuration for displaying fields in the overlay/reference table
               // to use the image overlay palette instead of the basic overlay palette
               'overrideChildTca' => [
@@ -260,7 +263,7 @@
         $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
       );
 
-// Remove abstract from Meta tab not to duplicate
+// Remove fields from default palettes not to duplicate
       $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
         ';abstract,',
         '--palette--;;,',
@@ -269,6 +272,11 @@
       $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
         ';editorial,',
         '--palette--;;,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
+      );
+      $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
+        'pagelistimages,',
+        '',
         $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
       );
 
@@ -306,6 +314,11 @@
       $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
         ';editorial,',
         '--palette--;;,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
+      );
+      $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
+        'pagelistimages,',
+        '',
         $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
       );
 
@@ -346,6 +359,11 @@
       $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
         ';editorial,',
         '--palette--;;,',
+        $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
+      );
+      $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
+        'pagelistimages,',
+        '',
         $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
       );
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableEventPersonnel']) {
