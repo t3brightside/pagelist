@@ -265,7 +265,7 @@
         'pages_language_overlay',
         'tx_pagelist_notinlist',
         '1',
-        'after:nav_hide'
+        'after:hidden'
       );
 
       $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
