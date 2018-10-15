@@ -363,7 +363,7 @@
         '',
         $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
       );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = $GLOBALS['TCA']['pages_language_overlay']['types'][1]['showitem'];
       // Replace title area and add categories
       $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = str_replace(
         ';title,',
