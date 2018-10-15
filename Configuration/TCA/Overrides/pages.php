@@ -363,6 +363,28 @@
         '',
         $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
       );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
+      // Replace title area and add categories
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = str_replace(
+        ';title,',
+        ';,--palette--;Event;pagelisteventgeneral,',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem']
+      );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = str_replace(
+        ';abstract,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem']
+      );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = str_replace(
+        ';editorial,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem']
+      );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = str_replace(
+        'pagelistimages,',
+        '',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem']
+      );
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableEventPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
@@ -374,6 +396,7 @@
           --linebreak--,tx_pagelist_authors,
           --linebreak--,tx_pagelist_images,
         ';
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'];
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
@@ -385,9 +408,13 @@
           --linebreak--,author,author_email,
           --linebreak--,tx_pagelist_images,
         ';
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'];
       }
 
       $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = '
+        tx_pagelist_images,
+      ';
+      $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistimages']['showitem'] = '
         tx_pagelist_images,
       ';
     }
