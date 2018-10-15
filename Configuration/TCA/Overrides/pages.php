@@ -251,6 +251,18 @@
         '1',
         'after:nav_hide'
       );
+      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+        'pages_language_overlay',
+        '--palette--;Pagelist image;pagelistimages',
+        '1',
+        'before:media'
+      );
+      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+        'pages_language_overlay',
+        'tx_pagelist_notinlist',
+        '1',
+        'after:nav_hide'
+      );
 
       $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
 // Replace title area with new fields and palettes
