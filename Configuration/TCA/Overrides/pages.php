@@ -28,12 +28,9 @@
           'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
             'tx_pagelist_images',
             [
-              'appearance' => [
-    						'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
-    						'showPossibleLocalizationRecords' => TRUE,
-    			      'showRemovedLocalizationRecords' => TRUE,
-    			      'showSynchronizationLink' => TRUE,
-    					],
+              'behaviour' => [
+                'allowLanguageSynchronization' => true,
+              ],
               // custom configuration for displaying fields in the overlay/reference table
               // to use the image overlay palette instead of the basic overlay palette
               'overrideChildTca' => [
