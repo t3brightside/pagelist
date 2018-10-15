@@ -261,22 +261,13 @@
         '1',
         'before:media'
       );
-      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-        'pages_language_overlay',
-        'tx_pagelist_notinlist',
-        '1',
-        'after:hidden'
-      );
 
       $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
-// Replace title area with new fields and palettes
       $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
         ';title,',
         ';,--palette--;Article;pagelistarticlegeneral,',
         $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
       );
-
-// Remove fields from default palettes not to duplicate
       $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
         ';abstract,',
         '--palette--;;,',
@@ -292,6 +283,27 @@
         '',
         $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
       );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem'] = $GLOBALS['TCA']['pages_language_overlay']['types'][1]['showitem'];
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem'] = str_replace(
+        ';title,',
+        ';,--palette--;Article;pagelistarticlegeneral,',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem']
+      );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem'] = str_replace(
+        ';abstract,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem']
+      );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem'] = str_replace(
+        ';editorial,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem']
+      );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem'] = str_replace(
+        'pagelistimages,',
+        '',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem']
+      );
 
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableArticlePersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
@@ -302,6 +314,7 @@
           --linebreak--,tx_pagelist_authors,
           --linebreak--,tx_pagelist_images,
         ';
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'];
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
           tx_pagelist_datetime,lastUpdated,
@@ -311,6 +324,7 @@
           --linebreak--,author,author_email,
           --linebreak--,tx_pagelist_images,
         ';
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'];
       }
       $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
       // Replace title area and add categories
@@ -335,6 +349,29 @@
         $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
       );
 
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem'] = $GLOBALS['TCA']['pages_language_overlay']['types'][1]['showitem'];
+      // Replace title area and add categories
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem'] = str_replace(
+        ';title,',
+        ';,--palette--;Product;pagelistproductgeneral,',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem']
+      );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem'] = str_replace(
+        ';abstract,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem']
+      );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem'] = str_replace(
+        ';editorial,',
+        '--palette--;;,',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem']
+      );
+      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem'] = str_replace(
+        'pagelistimages,',
+        '',
+        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem']
+      );
+
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableProductPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
@@ -345,6 +382,7 @@
           --linebreak--,tx_pagelist_images,
           --linebreak--,tx_pagelist_datetime,lastUpdated,
         ';
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'];
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
@@ -354,6 +392,7 @@
           --linebreak--,tx_pagelist_images,
           --linebreak--,tx_pagelist_datetime,lastUpdated,author,author_email,
         ';
+        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'];
       }
 
 // Event page type
@@ -379,8 +418,8 @@
         '',
         $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
       );
+
       $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = $GLOBALS['TCA']['pages_language_overlay']['types'][1]['showitem'];
-      // Replace title area and add categories
       $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = str_replace(
         ';title,',
         ';,--palette--;Event;pagelisteventgeneral,',
