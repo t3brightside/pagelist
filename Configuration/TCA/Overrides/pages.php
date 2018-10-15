@@ -238,6 +238,10 @@
       if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumnsAuthors, 1);
       }
+      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumns, 1);
+      if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumnsAuthors, 1);
+      }
 // Add to all page types
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
         'pages',
