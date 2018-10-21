@@ -113,9 +113,10 @@ tt_content.pagelist_sub {
 [userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')]
   tt_content.pagelist_sub.dataProcessing.10 {
     where >
-    where.value = tx_pagelist_notinlist = 0
-    where.wrap = | AND tx_pagelist_authors LIKE '%,###authors###' OR tx_pagelist_authors LIKE '###authors###,%' OR tx_pagelist_authors='###authors###'
-    where.wrap.if.isTrue.field = tx_pagelist_authors
+    where.wrap = |tx_pagelist_notinlist = 0
+    where.wrap.if.isFalse.field = tx_pagelist_authors
+    where.wrap2 = |(tx_pagelist_notinlist = 0 AND tx_pagelist_authors LIKE '%,###authors###') OR (tx_pagelist_notinlist = 0 AND tx_pagelist_authors LIKE '###authors###,%') OR (tx_pagelist_notinlist = 0 AND tx_pagelist_authors='###authors###')
+    where.wrap2.if.isTrue.field = tx_pagelist_authors
     markers.authors.data = field:tx_pagelist_authors
   }
 [global]

@@ -119,11 +119,15 @@
           'exclude' => 1,
           'label' => 'In Page Lists',
           'config' => [
-            'type' => 'check',
-            'renderType' => 'check',
-            'items' => [
-              ['Hide', '1'],
-            ],
+              'type' => 'check',
+              'renderType' => 'checkboxToggle',
+              'items' => [
+                  [
+                      0 => '',
+                      1 => '',
+                      'invertStateDisplay' => true
+                  ]
+              ],
           ]
         ],
       );
