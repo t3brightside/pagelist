@@ -1,5 +1,6 @@
 <?php
   defined('TYPO3_MODE') || die('Access denied.');
+  use \TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
   call_user_func(function () {
 /* Add type icons */
@@ -72,70 +73,122 @@
           ),
         ),
       ),
-      'tx_pagelist_disableimages' => [
-        'exclude' => 1,
-        'label' => 'Images',
-        'config' => [
-           'type' => 'check',
-           'renderType' => 'check',
-           'items' => [
-             ['Disabled', '1'],
-           ],
-        ],
-      ],
-      'tx_pagelist_disableabstract' => [
-        'exclude' => 1,
-        'label' => 'Introduction',
-        'config' => [
-           'type' => 'check',
-           'renderType' => 'check',
-           'items' => [
-             ['Disabled', '1'],
-           ],
-        ],
-      ],
-      'tx_pagelist_startfrom' => array(
+      'tx_pagelist_startfrom' => [
         'exclude' => 0,
         'label' => 'Start from item',
-        'config' => array(
+        'config' => [
           'type' => 'input',
           'eval' => 'num',
           'size' => '1',
-        ),
-      ),
-      'tx_pagelist_limit' => array(
+        ],
+      ],
+      'tx_pagelist_limit' => [
         'exclude' => 0,
         'label' => 'Items shown',
-        'config' => array(
+        'config' => [
           'type' => 'input',
           'eval' => 'num',
           'size' => '1',
-        ),
-      ),
-      'tx_pagelist_paginate' => [
-        'exclude' => 1,
-        'label' => 'Pagination',
-        'config' => [
-           'type' => 'check',
-           'renderType' => 'check',
-           'items' => [
-             ['Enabled', '1'],
-           ],
         ],
       ],
       'tx_pagelist_paginateitems' => [
         'exclude' => 0,
         'label' => 'Pagination items per page',
-        'config' => array(
+        'config' => [
           'type' => 'input',
           'eval' => 'num',
           'size' => '1',
-        ),
+        ],
       ],
     );
 
+    if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) <= 8007999) {
+      $tempColumnsChecks = array(
+        'tx_pagelist_disableimages' => [
+          'exclude' => 1,
+          'label' => 'Images',
+          'config' => [
+             'type' => 'check',
+             'renderType' => 'check',
+             'items' => [
+               ['Disabled', '1'],
+             ],
+          ],
+        ],
+        'tx_pagelist_disableabstract' => [
+          'exclude' => 1,
+          'label' => 'Introduction',
+          'config' => [
+             'type' => 'check',
+             'renderType' => 'check',
+             'items' => [
+               ['Disabled', '1'],
+             ],
+          ],
+        ],
+        'tx_pagelist_paginate' => [
+          'exclude' => 1,
+          'label' => 'Pagination',
+          'config' => [
+             'type' => 'check',
+             'renderType' => 'check',
+             'items' => [
+               ['Enabled', '1'],
+             ],
+          ],
+        ],
+      );
+    } else {
+      $tempColumnsChecks = array(
+        'tx_pagelist_disableimages' => [
+          'exclude' => 1,
+          'label' => 'Images',
+          'config' => [
+              'type' => 'check',
+              'renderType' => 'checkboxToggle',
+              'items' => [
+                  [
+                      0 => '',
+                      1 => '',
+                      'invertStateDisplay' => true
+                  ]
+              ],
+          ]
+        ],
+        'tx_pagelist_disableabstract' => [
+          'exclude' => 1,
+          'label' => 'Introduction',
+          'config' => [
+              'type' => 'check',
+              'renderType' => 'checkboxToggle',
+              'items' => [
+                  [
+                      0 => '',
+                      1 => '',
+                      'invertStateDisplay' => true
+                  ]
+              ],
+          ]
+        ],
+        'tx_pagelist_paginate' => [
+          'exclude' => 1,
+          'label' => 'Pagination',
+          'config' => [
+              'type' => 'check',
+              'renderType' => 'checkboxToggle',
+              'items' => [
+                  [
+                      0 => '',
+                      1 => '',
+                  ]
+              ],
+          ]
+        ],
+      );
+    }
+
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
-    unset($tempColumns);
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumnsChecks);
 
     if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
       $tempColumnsAuthors = array(
@@ -156,7 +209,6 @@
         ],
       );
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumnsAuthors);
-      unset($tempColumnsAuthors);
     }
 
 /* Define back end forms for content types */
