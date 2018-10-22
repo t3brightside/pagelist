@@ -1,7 +1,7 @@
 <?php
 $EM_CONF[$_EXTKEY] = array (
-	'title' => 'Page List',
-	'description' => 'Content element and page types to list pages, news, events, products etc.',
+	'title' => 'Pagelist',
+	'description' => 'Create page lists, teasers and add page types for news, events and products.',
 	'category' => 'fe',
 	'version' => '2.1.2',
 	'state' => 'stable',
