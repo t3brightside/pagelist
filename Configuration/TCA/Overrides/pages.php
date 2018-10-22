@@ -1,5 +1,7 @@
 <?php
   defined('TYPO3_MODE') || die('Access denied.');
+  use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+  use \TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
   call_user_func(
     function () {
@@ -115,22 +117,40 @@
             ],
           ]
         ],
-        'tx_pagelist_notinlist' => [
-          'exclude' => 1,
-          'label' => 'In Page Lists',
-          'config' => [
-              'type' => 'check',
-              'renderType' => 'checkboxToggle',
-              'items' => [
-                  [
-                      0 => '',
-                      1 => '',
-                      'invertStateDisplay' => true
-                  ]
-              ],
-          ]
-        ],
       );
+      if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) <= 8007999) {
+        $tempHidePageColumn = array(
+          'tx_pagelist_notinlist' => [
+            'exclude' => 1,
+            'label' => 'In lists',
+            'config' => [
+               'type' => 'check',
+               'renderType' => 'check',
+               'items' => [
+                 ['Hide', '1'],
+               ],
+            ],
+          ],
+        );
+      } else {
+        $tempHidePageColumn = array(
+          'tx_pagelist_notinlist' => [
+            'exclude' => 1,
+            'label' => 'Page enabled in lists',
+            'config' => [
+                'type' => 'check',
+                'renderType' => 'checkboxToggle',
+                'items' => [
+                    [
+                        0 => '',
+                        1 => '',
+                        'invertStateDisplay' => true
+                    ]
+                ],
+            ]
+          ],
+        );
+      }
       if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
         $tempColumnsAuthors = array(
           'tx_pagelist_authors' => [
@@ -239,10 +259,13 @@
 
 
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumns, 1);
+      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempHidePageColumn, 1);
+
       if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumnsAuthors, 1);
       }
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumns, 1);
+      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempHidePageColumn, 1);
       if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumnsAuthors, 1);
       }
