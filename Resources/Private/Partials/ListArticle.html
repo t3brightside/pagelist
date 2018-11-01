@@ -1,4 +1,4 @@
-<div class="item{f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
+<div class="item article{f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
   <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
     <h3 class="title">{page.data.title}</h3>
     <f:if condition="{page.authors} || {page.data.tx_pagelist_datetime}">
