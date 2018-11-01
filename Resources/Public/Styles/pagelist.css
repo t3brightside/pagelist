@@ -44,7 +44,9 @@
   display: inline-block;
   margin-right: 0.5em;
 }
-
+.pagelist .author:last-child {
+  margin-right: 0;
+}
 .pagelist .date {
   display: inline-block;
   margin-right: 0.5em;

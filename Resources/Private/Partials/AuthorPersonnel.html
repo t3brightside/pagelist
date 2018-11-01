@@ -1,3 +1,8 @@
 <f:if condition="{author.data.firstname} || {author.data.lastname}">
-  <span class="author"><f:if condition="{author.authorimages.0}"><img src="<f:uri.image image="{author.authorimages.0}" treatIdAsReference="1" width="120c" height="120c" />" alt="{f:if(condition:'{author.authorimages.0.alternative}', then:'{author.authorimages.0.alternative}', else:'{author.data.firstname} {author.data.lastname}')}"/></f:if>
-    {author.data.firstname} {author.data.lastname}</span></f:if>
+  <span class="author">
+    <f:if condition="{author.authorimages.0}">
+      <img src="<f:uri.image image="{author.authorimages.0}" treatIdAsReference="1" width="120c" height="120c" />" alt="{f:if(condition:'{author.authorimages.0.alternative}', then:'{author.authorimages.0.alternative}', else:'{author.data.firstname} {author.data.lastname}')}"/>
+    </f:if>
+    {author.data.firstname} {author.data.lastname}
+  </span>
+</f:if>
