@@ -84,7 +84,7 @@
 .pagelist .product img {
   width: 100%;
   height: auto;
-  margin-top: 0.9em;
+  margin-top: 0.3em;
 }
 
 .pagelist .product .text {
@@ -139,7 +139,8 @@
 }
 
 .pagelist.list .item {
-  margin-bottom: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
   clear: both;
   float: left;
   width: 100%;
@@ -150,7 +151,7 @@
 }
 
 .pagelist.list .title {
-  margin-top: 0.2em;
+  margin-top: 0em;
 }
 
 /* Event speciffic */
@@ -166,7 +167,7 @@
   background: #eee;
   padding: 0.9em 0.5em 0.6em;
   line-height: 1em;
-  margin-top: 0.6em;
+  margin-top: 0.3em;
   margin-bottom: 0;
 }
 
