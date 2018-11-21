@@ -4,19 +4,10 @@
 
   call_user_func(
     function () {
-      if (class_exists(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)) {
-        $extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-          \TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
-        );
-        $pagelistConiguration = $extensionConfiguration->get('pagelist');
-      } else {
-        // Fallback for CMS8
-        // @extensionScannerIgnoreLine
-        $pagelistConiguration = $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['pagelist'];
-        if (!is_array($pagelistConiguration)) {
-          $pagelistConiguration = unserialize($pagelistConiguration);
-        }
-      }
+      $extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+        \TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
+      );
+      $pagelistConiguration = $extensionConfiguration->get('pagelist');
 
       $pagelistArticle = 136;
       $pagelistEvent = 137;
@@ -117,39 +108,25 @@
           ]
         ],
       );
-      if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) <= 8007999) {
-        $tempHidePageColumn = array(
-          'tx_pagelist_notinlist' => [
-            'exclude' => 1,
-            'label' => 'In lists',
-            'config' => [
-               'type' => 'check',
-               'renderType' => 'check',
-               'items' => [
-                 ['Hide', '1'],
-               ],
-            ],
-          ],
-        );
-      } else {
-        $tempHidePageColumn = array(
-          'tx_pagelist_notinlist' => [
-            'exclude' => 1,
-            'label' => 'Page enabled in lists',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => true
-                    ]
-                ],
-            ]
-          ],
-        );
-      }
+
+      $tempHidePageColumn = array(
+        'tx_pagelist_notinlist' => [
+          'exclude' => 1,
+          'label' => 'Page enabled in lists',
+          'config' => [
+              'type' => 'check',
+              'renderType' => 'checkboxToggle',
+              'items' => [
+                  [
+                      0 => '',
+                      1 => '',
+                      'invertStateDisplay' => true
+                  ]
+              ],
+          ]
+        ],
+      );
+
       if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
         $tempColumnsAuthors = array(
           'tx_pagelist_authors' => [
@@ -206,32 +183,10 @@
           '1',
           'after'
         );
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-          'pages_language_overlay',
-          'doktype',
-          [
-            'Event',
-            $pagelistEvent,
-            'apps-pagetree-event'
-          ],
-          '1',
-          'after'
-        );
       }
       if ($pagelistConiguration['pagelistEnableArticles']) {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
           'pages',
-          'doktype',
-          [
-            'Article',
-            $pagelistArticle,
-            'apps-pagetree-article'
-          ],
-          '1',
-          'after'
-        );
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-          'pages_language_overlay',
           'doktype',
           [
             'Article',
@@ -263,11 +218,7 @@
       if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumnsAuthors, 1);
       }
-      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumns, 1);
-      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempHidePageColumn, 1);
-      if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages_language_overlay', $tempColumnsAuthors, 1);
-      }
+
 // Add to all page types
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
         'pages',
@@ -280,12 +231,6 @@
         'tx_pagelist_notinlist',
         '1',
         'after:nav_hide'
-      );
-      \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-        'pages_language_overlay',
-        '--palette--;Pagelist image;pagelistimages',
-        '1',
-        'before:media'
       );
 
       $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
@@ -309,27 +254,6 @@
         '',
         $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
       );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem'] = $GLOBALS['TCA']['pages_language_overlay']['types'][1]['showitem'];
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem'] = str_replace(
-        ';title,',
-        ';,--palette--;Article;pagelistarticlegeneral,',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem']
-      );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem'] = str_replace(
-        ';abstract,',
-        '--palette--;;,',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem']
-      );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem'] = str_replace(
-        ';editorial,',
-        '--palette--;;,',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem']
-      );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem'] = str_replace(
-        'pagelistimages,',
-        '',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistArticle]['showitem']
-      );
 
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableArticlePersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
@@ -340,7 +264,6 @@
           --linebreak--,tx_pagelist_authors,
           --linebreak--,tx_pagelist_images,
         ';
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'];
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
           tx_pagelist_datetime,lastUpdated,
@@ -350,7 +273,6 @@
           --linebreak--,author,author_email,
           --linebreak--,tx_pagelist_images,
         ';
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistarticlegeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'];
       }
       $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
       // Replace title area and add categories
@@ -375,29 +297,6 @@
         $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
       );
 
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem'] = $GLOBALS['TCA']['pages_language_overlay']['types'][1]['showitem'];
-      // Replace title area and add categories
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem'] = str_replace(
-        ';title,',
-        ';,--palette--;Product;pagelistproductgeneral,',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem']
-      );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem'] = str_replace(
-        ';abstract,',
-        '--palette--;;,',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem']
-      );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem'] = str_replace(
-        ';editorial,',
-        '--palette--;;,',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem']
-      );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem'] = str_replace(
-        'pagelistimages,',
-        '',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistProduct]['showitem']
-      );
-
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableProductPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
@@ -408,7 +307,6 @@
           --linebreak--,tx_pagelist_images,
           --linebreak--,tx_pagelist_datetime,lastUpdated,
         ';
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'];
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
           title,
@@ -418,7 +316,6 @@
           --linebreak--,tx_pagelist_images,
           --linebreak--,tx_pagelist_datetime,lastUpdated,author,author_email,
         ';
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistproductgeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'];
       }
 
 // Event page type
@@ -445,27 +342,6 @@
         $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
       );
 
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = $GLOBALS['TCA']['pages_language_overlay']['types'][1]['showitem'];
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = str_replace(
-        ';title,',
-        ';,--palette--;Event;pagelisteventgeneral,',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem']
-      );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = str_replace(
-        ';abstract,',
-        '--palette--;;,',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem']
-      );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = str_replace(
-        ';editorial,',
-        '--palette--;;,',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem']
-      );
-      $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem'] = str_replace(
-        'pagelistimages,',
-        '',
-        $GLOBALS['TCA']['pages_language_overlay']['types'][$pagelistEvent]['showitem']
-      );
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableEventPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
@@ -477,7 +353,6 @@
           --linebreak--,tx_pagelist_authors,
           --linebreak--,tx_pagelist_images,
         ';
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'];
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
           tx_pagelist_datetime,tx_pagelist_eventfinish,lastUpdated,
@@ -489,13 +364,9 @@
           --linebreak--,author,author_email,
           --linebreak--,tx_pagelist_images,
         ';
-        $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelisteventgeneral']['showitem'] = $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'];
       }
 
       $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = '
-        tx_pagelist_images,
-      ';
-      $GLOBALS['TCA']['pages_language_overlay']['palettes']['pagelistimages']['showitem'] = '
         tx_pagelist_images,
       ';
     }

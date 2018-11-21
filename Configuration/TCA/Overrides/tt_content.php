@@ -101,91 +101,54 @@
         ],
       ],
     );
+    
+    $tempColumnsChecks = array(
+      'tx_pagelist_disableimages' => [
+        'exclude' => 1,
+        'label' => 'Images',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    1 => '',
+                    'invertStateDisplay' => true
+                ]
+            ],
+        ]
+      ],
+      'tx_pagelist_disableabstract' => [
+        'exclude' => 1,
+        'label' => 'Introduction',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    1 => '',
+                    'invertStateDisplay' => true
+                ]
+            ],
+        ]
+      ],
+      'tx_pagelist_paginate' => [
+        'exclude' => 1,
+        'label' => 'Pagination',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    1 => '',
+                ]
+            ],
+        ]
+      ],
+    );
 
-    if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) <= 8007999) {
-      $tempColumnsChecks = array(
-        'tx_pagelist_disableimages' => [
-          'exclude' => 1,
-          'label' => 'Images',
-          'config' => [
-             'type' => 'check',
-             'renderType' => 'check',
-             'items' => [
-               ['Disabled', '1'],
-             ],
-          ],
-        ],
-        'tx_pagelist_disableabstract' => [
-          'exclude' => 1,
-          'label' => 'Introduction',
-          'config' => [
-             'type' => 'check',
-             'renderType' => 'check',
-             'items' => [
-               ['Disabled', '1'],
-             ],
-          ],
-        ],
-        'tx_pagelist_paginate' => [
-          'exclude' => 1,
-          'label' => 'Pagination',
-          'config' => [
-             'type' => 'check',
-             'renderType' => 'check',
-             'items' => [
-               ['Enabled', '1'],
-             ],
-          ],
-        ],
-      );
-    } else {
-      $tempColumnsChecks = array(
-        'tx_pagelist_disableimages' => [
-          'exclude' => 1,
-          'label' => 'Images',
-          'config' => [
-              'type' => 'check',
-              'renderType' => 'checkboxToggle',
-              'items' => [
-                  [
-                      0 => '',
-                      1 => '',
-                      'invertStateDisplay' => true
-                  ]
-              ],
-          ]
-        ],
-        'tx_pagelist_disableabstract' => [
-          'exclude' => 1,
-          'label' => 'Introduction',
-          'config' => [
-              'type' => 'check',
-              'renderType' => 'checkboxToggle',
-              'items' => [
-                  [
-                      0 => '',
-                      1 => '',
-                      'invertStateDisplay' => true
-                  ]
-              ],
-          ]
-        ],
-        'tx_pagelist_paginate' => [
-          'exclude' => 1,
-          'label' => 'Pagination',
-          'config' => [
-              'type' => 'check',
-              'renderType' => 'checkboxToggle',
-              'items' => [
-                  [
-                      0 => '',
-                      1 => '',
-                  ]
-              ],
-          ]
-        ],
-      );
-    }
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumnsChecks);

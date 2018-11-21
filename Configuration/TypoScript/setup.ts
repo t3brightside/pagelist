@@ -121,27 +121,6 @@ tt_content.pagelist_sub {
   }
 [global]
 
-[globalVar = GP:L > 0]
-  tt_content.pagelist_sub {
-    dataProcessing.10 {
-      join = pages_language_overlay ON pages_language_overlay.pid = pages.uid
-      where (
-        pages.tx_pagelist_notinlist = 0
-        AND pages_language_overlay.hidden = 0
-        AND pages_language_overlay.deleted = 0
-        AND pages_language_overlay.sys_language_uid = ###language###
-        AND (pages_language_overlay.starttime < ###now### OR pages_language_overlay.starttime = 0)
-        AND (pages_language_overlay.endtime > ###now### OR pages_language_overlay.endtime = 0)
-      )
-      selectFields = pages_language_overlay.*
-      markers {
-        language.data = GP:L
-        now.data = date:U
-      }
-    }
-  }
-[global]
-
 tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
   templateName = Pagelist
