@@ -107,9 +107,6 @@
             ],
           ]
         ],
-      );
-
-      $tempHidePageColumn = array(
         'tx_pagelist_notinlist' => [
           'exclude' => 1,
           'label' => 'Page enabled in lists',
