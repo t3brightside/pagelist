@@ -63,7 +63,7 @@
           'renderType' => 'selectSingle',
           'default' => 0,
           'items' => array(
-            array('Page tree (default)', '0'),
+            array('Page tree (default)', 'sorting ASC'),
             array('Date (now → past)', 'tx_pagelist_datetime DESC'),
             array('Date (past → now)', 'tx_pagelist_datetime ASC'),
             array('Last updated (now → past)', 'lastUpdated DESC'),
@@ -101,7 +101,7 @@
         ],
       ],
     );
-    
+
     $tempColumnsChecks = array(
       'tx_pagelist_disableimages' => [
         'exclude' => 1,
