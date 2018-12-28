@@ -43,6 +43,12 @@ tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
 tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/Partials/
 tt_content.defaultpagelist.partialRootPaths.20 = {$pagelist.partialRootPaths}
 tt_content.defaultpagelist {
+  settings {
+    cardImageWidth = {$pagelist.cardImageWidth}
+    cardImageHeight = {$pagelist.cardImageHeight}
+    listImageWidth = {$pagelist.listImageWidth}
+    listImageHeight = {$pagelist.listImageHeight}    
+  }
   variables {
     pagelistPaginationItems = COA
     pagelistPaginationItems {
