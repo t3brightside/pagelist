@@ -284,7 +284,7 @@
         ]
       ]
     );
-    $GLOBALS['TCA']['tt_content']['types']['pagelist_articles_category'] = $GLOBALS['TCA']['tt_content']['types']['pagelist_category'];
+  //  $GLOBALS['TCA']['tt_content']['types']['pagelist_articles_category'] = $GLOBALS['TCA']['tt_content']['types']['pagelist_category'];
     $GLOBALS['TCA']['tt_content']['palettes']['pagelistSettingsCat']['showitem'] = '
   		tx_pagelist_template,
   		tx_pagelist_startfrom,

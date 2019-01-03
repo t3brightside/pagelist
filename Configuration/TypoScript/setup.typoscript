@@ -1,6 +1,6 @@
 page.includeCSS.pagelist = {$pagelist.styles}
 
-[globalVar = LIT:0<{$pagelist.enablejQueryBreakpoints}]
+[{$pagelist.enablejQueryBreakpoints} == 1]
   page.jsFooterInline {
     109823122 = TEXT
     109823122.value (
@@ -36,7 +36,7 @@ page.includeCSS.pagelist = {$pagelist.styles}
   		});
   	)
   }
-[global]
+[END]
 tt_content.defaultpagelist =< lib.contentElement
 tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
 tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
@@ -47,7 +47,7 @@ tt_content.defaultpagelist {
     cardImageWidth = {$pagelist.cardImageWidth}
     cardImageHeight = {$pagelist.cardImageHeight}
     listImageWidth = {$pagelist.listImageWidth}
-    listImageHeight = {$pagelist.listImageHeight}    
+    listImageHeight = {$pagelist.listImageHeight}
   }
   variables {
     pagelistPaginationItems = COA
@@ -75,7 +75,6 @@ tt_content.defaultpagelist {
     }
   }
 }
-
 [userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')]
   tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
     30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
@@ -92,7 +91,7 @@ tt_content.defaultpagelist {
       }
     }
   }
-[global]
+[END]
 
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
@@ -151,8 +150,29 @@ tt_content.pagelist_selected {
   }
 }
 
-tt_content.pagelist_category < tt_content.pagelist_selected
-tt_content.pagelist_category.dataProcessing.10.special = categories
-tt_content.pagelist_category.dataProcessing.10.special.value.field = selected_categories
-tt_content.pagelist_category.dataProcessing.10.special.relation.field = category_field
-tt_content.pagelist_category.dataProcessing.10.special.sorting.field = sorting
+
+tt_content.pagelist_category =< tt_content.defaultpagelist
+tt_content.pagelist_category {
+  templateName = Pagelist
+  dataProcessing {
+    10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+    10 {
+      special = categories
+			special.value.field = selected_categories
+      special.relation.field = category_field
+    #  special.sorting.field = tx_pagelist_orderby
+		#	alternativeSortingField.field = tx_pagelist_orderby
+			maxItems.field = tx_pagelist_limit
+			begin.field = tx_pagelist_startfrom
+      as = pagelist
+      dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        10.references.fieldName = media
+        20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        20.references.fieldName = tx_pagelist_images
+        20.as = listimages
+        30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+      }
+    }
+  }
+}
