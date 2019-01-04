@@ -9,3 +9,13 @@
 	);
 
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['pagelist'] = \Brightside\Pagelist\Hooks\PageLayoutView\PagelistContentElementPreviewRenderer::class;
+
+	if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptConstants('
+			pagelist.personnelIsLoaded = 1
+		');
+	} else {
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptConstants('
+			pagelist.personnelIsLoaded = 0
+		');
+	}
