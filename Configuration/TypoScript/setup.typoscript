@@ -77,7 +77,7 @@ tt_content.defaultpagelist {
   }
 }
 # check if personnel extension is loaded and adds authors
-[{$pagelist.personnelIsLoaded} == 1]
+["{$pagelist.personnelIsLoaded}" == "1"]
   tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
     30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
     30 {
@@ -117,7 +117,7 @@ tt_content.pagelist_sub {
   }
 }
 
-[{$pagelist.personnelIsLoaded} == 1]
+["{$pagelist.personnelIsLoaded}" == "1"]
   tt_content.pagelist_sub.dataProcessing.10 {
     where >
     where.wrap = |tx_pagelist_notinlist = 0
