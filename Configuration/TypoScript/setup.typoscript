@@ -37,6 +37,7 @@ page.includeCSS.pagelist = {$pagelist.styles}
   	)
   }
 [END]
+
 tt_content.defaultpagelist =< lib.contentElement
 tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
 tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
@@ -75,7 +76,7 @@ tt_content.defaultpagelist {
     }
   }
 }
-[userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')]
+[{$personnel.isLoaded} == 1]
   tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
     30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
     30 {
@@ -115,7 +116,7 @@ tt_content.pagelist_sub {
   }
 }
 
-[userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')]
+[{$personnel.isLoaded} == 1]
   tt_content.pagelist_sub.dataProcessing.10 {
     where >
     where.wrap = |tx_pagelist_notinlist = 0
@@ -124,7 +125,7 @@ tt_content.pagelist_sub {
     where.wrap2.if.isTrue.field = tx_pagelist_authors
     markers.authors.data = field:tx_pagelist_authors
   }
-[global]
+[END]
 
 tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
