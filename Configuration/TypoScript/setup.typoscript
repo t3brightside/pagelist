@@ -1,6 +1,6 @@
 page.includeCSS.pagelist = {$pagelist.styles}
 
-[{$pagelist.enablejQueryBreakpoints} == 1]
+[{$pagelist.enablejQueryBreakpoints}]
   page.jsFooterInline {
     109823122 = TEXT
     109823122.value (
@@ -76,7 +76,7 @@ tt_content.defaultpagelist {
     }
   }
 }
-[{$personnel.isLoaded} == 1]
+[{$personnel.isLoaded}]
   tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
     30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
     30 {
@@ -116,7 +116,7 @@ tt_content.pagelist_sub {
   }
 }
 
-[{$personnel.isLoaded} == 1]
+[{$personnel.isLoaded}]
   tt_content.pagelist_sub.dataProcessing.10 {
     where >
     where.wrap = |tx_pagelist_notinlist = 0
