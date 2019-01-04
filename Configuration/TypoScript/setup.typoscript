@@ -76,6 +76,7 @@ tt_content.defaultpagelist {
     }
   }
 }
+# check if personnel extension is loaded and adds authors
 [{$personnel.isLoaded}]
   tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
     30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
