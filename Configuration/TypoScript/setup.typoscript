@@ -1,6 +1,38 @@
 page.includeCSS.pagelist = {$pagelist.styles}
 
-[{$pagelist.enablejQueryBreakpoints}]
+# Add breakpoint classes by the width of pagelist cards container
+# vanilla (no IE9 support), jQuery or none dependent on constant
+
+["{$pagelist.enablejQueryBreakpoints}" == "vanilla"]
+  page.jsFooterInline {
+    109823122 = TEXT
+    109823122.value (
+      function pagelistDetectWidth(a){
+      	var container = document.getElementsByClassName(a);
+        for (var i = 0; i < container.length; ++i) {
+          var item = container[i];
+          var width = container[i].clientWidth;
+          if (width < {$pagelist.cardsBreakTwo}){
+            item.classList.add('break-two');
+          } else {
+            item.classList.remove('break-two');
+          }
+          if (width < {$pagelist.cardsBreakOne}) {
+            item.classList.add('break-one');
+          } else {
+            item.classList.remove('break-one');
+          }
+        }
+      }
+      pagelistDetectWidth('pagelist cards');
+      window.addEventListener("resize", function(){
+        pagelistDetectWidth('pagelist cards');
+      });
+    )
+  }
+[END]
+
+["{$pagelist.enablejQueryBreakpoints}" == "jQuery"]
   page.jsFooterInline {
     109823122 = TEXT
     109823122.value (
@@ -76,6 +108,7 @@ tt_content.defaultpagelist {
     }
   }
 }
+
 # check if personnel extension is loaded and adds authors
 ["{$pagelist.personnelIsLoaded}" == "1"]
   tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
@@ -162,7 +195,7 @@ tt_content.pagelist_category {
       special = categories
 			special.value.field = selected_categories
       special.relation.field = category_field
-    #  special.sorting.field = tx_pagelist_orderby
+    # special.sorting.field = tx_pagelist_orderby
 		#	alternativeSortingField.field = tx_pagelist_orderby
 			maxItems.field = tx_pagelist_limit
 			begin.field = tx_pagelist_startfrom
