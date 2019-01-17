@@ -18,6 +18,9 @@
     "typo3/cms-core": "^9.5",
     "typo3/cms-fluid-styled-content": "*"
   },
+  "suggest": {
+    "t3brightside/personnel": "Contact lists with vCard support, and author records for Pagelist"
+  },
   "autoload": {
     "psr-4": {
       "Brightside\\Pagelist\\": "Classes"
