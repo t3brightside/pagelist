@@ -20,5 +20,4 @@ CREATE TABLE pages (
 	tx_pagelist_eventlocationlink tinytext,
 	tx_pagelist_productprice varchar(255),
 	tx_pagelist_notinlist int(1) DEFAULT '0' NOT NULL,
-	tx_pagelist_authors tinytext,
 );

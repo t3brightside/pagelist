@@ -173,40 +173,9 @@
         ],
       );
 
-      if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
-        $tempColumnsAuthors = array(
-          'tx_pagelist_authors' => [
-            'exclude' => 1,
-            'label' => 'Authors',
-            'config' => [
-              'type' => 'select',
-              'renderType' => 'selectMultipleSideBySide',
-              'enableMultiSelectFilterTextfield' => true,
-              'foreign_table' => 'tx_personnel_domain_model_person',
-              'foreign_table_where' => 'AND tx_personnel_domain_model_person.sys_language_uid IN (-1,0)',
-              'size' => '3',
-              'behaviour' => [
-                'allowLanguageSynchronization' => true,
-              ],
-            ]
-          ],
-        );
-      }
-
       if ($pagelistConiguration['pagelistEnableProducts']) {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
           'pages',
-          'doktype',
-          [
-            'Product',
-            $pagelistProduct,
-            'apps-pagetree-product'
-          ],
-          '1',
-          'after'
-        );
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-          'pages_language_overlay',
           'doktype',
           [
             'Product',
@@ -300,6 +269,11 @@
         '',
         $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
       );
+      $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
+        'personnelcontact,',
+        '',
+        $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
+      );
 
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableArticlePersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
@@ -307,7 +281,7 @@
           --linebreak--,slug,
           --linebreak--,tx_pagelist_datetime,lastUpdated,
           --linebreak--,abstract,
-          --linebreak--,tx_pagelist_authors,
+          --linebreak--,tx_personnel_authors,
           --linebreak--,tx_pagelist_images,
         ';
       } else {
@@ -349,7 +323,7 @@
           --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_productprice,
-          --linebreak--,tx_pagelist_authors,
+          --linebreak--,tx_personnel_authors,
           --linebreak--,tx_pagelist_images,
           --linebreak--,tx_pagelist_datetime,lastUpdated,
         ';
@@ -387,6 +361,11 @@
         '',
         $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
       );
+      $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
+        'personnelcontact,',
+        '',
+        $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
+      );
 
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableEventPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
@@ -396,7 +375,7 @@
           --linebreak--,tx_pagelist_eventlocation,
           --linebreak--,tx_pagelist_eventlocationlink,
           --linebreak--,abstract,
-          --linebreak--,tx_pagelist_authors,
+          --linebreak--,tx_personnel_authors,
           --linebreak--,tx_pagelist_images,
         ';
       } else {

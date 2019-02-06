@@ -76,138 +76,135 @@ tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
 tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/Partials/
 tt_content.defaultpagelist.partialRootPaths.20 = {$pagelist.partialRootPaths}
 tt_content.defaultpagelist {
-  settings {
-    cardImageWidth = {$pagelist.cardImageWidth}
-    cardImageHeight = {$pagelist.cardImageHeight}
-    listImageWidth = {$pagelist.listImageWidth}
-    listImageHeight = {$pagelist.listImageHeight}
-  }
-  variables {
-    pagelistPaginationItems = COA
-    pagelistPaginationItems {
-      5 = TEXT
-      5.value = {$pagelist.paginationItems}
-      5.stdWrap.if.isFalse.field = tx_pagelist_paginateitems
-      10 = TEXT
-      10.value.field = tx_pagelist_paginateitems
-      10.stdWrap.if.isTrue.field = tx_pagelist_paginateitems
+    settings {
+        cardImageWidth = {$pagelist.cardImageWidth}
+        cardImageHeight = {$pagelist.cardImageHeight}
+        listImageWidth = {$pagelist.listImageWidth}
+        listImageHeight = {$pagelist.listImageHeight}
     }
-    pagelistPaginationLinks = TEXT
-    pagelistPaginationLinks.value = {$pagelist.paginationLinks}
-  }
-  extbase {
-    pluginName = Pagelist
-    controllerName = Pagelist
-    controllerExtensionName = pagelist
-    controllerActionName = show
-  }
-  stdWrap {
-    editIcons = tt_content: header [header_layout], pages
-    editIcons {
-      iconTitle.data = LLL:EXT:fluid_styled_content/Resources/Private/Language/FrontendEditing.xlf:editIcon.menu
+    variables {
+        pagelistPaginationItems = COA
+        pagelistPaginationItems {
+            5 = TEXT
+            5.value = {$pagelist.paginationItems}
+            5.stdWrap.if.isFalse.field = tx_pagelist_paginateitems
+            10 = TEXT
+            10.value.field = tx_pagelist_paginateitems
+            10.stdWrap.if.isTrue.field = tx_pagelist_paginateitems
+        }
+        pagelistPaginationLinks = TEXT
+        pagelistPaginationLinks.value = {$pagelist.paginationLinks}
     }
-  }
+    extbase {
+        pluginName = Pagelist
+        controllerName = Pagelist
+        controllerExtensionName = pagelist
+        controllerActionName = show
+    }
+    stdWrap {
+        editIcons = tt_content: header [header_layout], pages
+        editIcons.iconTitle.data = LLL:EXT:fluid_styled_content/Resources/Private/Language/FrontendEditing.xlf:editIcon.menu
+    }
 }
 
 # check if personnel extension is loaded and adds authors
 ["{$pagelist.personnelIsLoaded}" == "1"]
-  tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
-    30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-    30 {
-      table = tx_personnel_domain_model_person
-      uidInList.field = tx_pagelist_authors
-      pidInList = 0
-      as = authors
-      dataProcessing {
-        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-        10.references.table = tx_personnel_domain_model_person
-        10.references.fieldName = images
-        10.as = authorimages
-      }
+    tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
+        30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+        30 {
+            table = tx_personnel_domain_model_person
+            uidInList.field = tx_personnel_authors
+            pidInList = 0
+            as = authors
+            dataProcessing {
+                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                10.references.table = tx_personnel_domain_model_person
+                10.references.fieldName = images
+                10.as = authorimages
+            }
+        }
     }
-  }
 [END]
 
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
-  templateName = Pagelist
-  dataProcessing.10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-  dataProcessing.10 {
-    table = pages
-    where = tx_pagelist_notinlist = 0
-    pidInList.field = pages
-    orderBy.field = tx_pagelist_orderby
-		max.field = tx_pagelist_limit
-		begin.field = tx_pagelist_startfrom
-    as = pagelist
-    dataProcessing {
-      10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-      10.references.fieldName = media
-      20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-      20.references.fieldName = tx_pagelist_images
-      20.as = listimages
+    templateName = Pagelist
+    dataProcessing.10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+    dataProcessing.10 {
+        table = pages
+        where = tx_pagelist_notinlist = 0
+        pidInList.field = pages
+        orderBy.field = tx_pagelist_orderby
+    	max.field = tx_pagelist_limit
+    	begin.field = tx_pagelist_startfrom
+        as = pagelist
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10.references.fieldName = media
+            20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            20.references.fieldName = tx_pagelist_images
+            20.as = listimages
+        }
     }
-  }
 }
 
 ["{$pagelist.personnelIsLoaded}" == "1"]
-  tt_content.pagelist_sub.dataProcessing.10 {
-    where >
-    where.wrap = |tx_pagelist_notinlist = 0
-    where.wrap.if.isFalse.field = tx_pagelist_authors
-    where.wrap2 = |(tx_pagelist_notinlist = 0 AND tx_pagelist_authors LIKE '%,###authors###') OR (tx_pagelist_notinlist = 0 AND tx_pagelist_authors LIKE '###authors###,%') OR (tx_pagelist_notinlist = 0 AND tx_pagelist_authors='###authors###')
-    where.wrap2.if.isTrue.field = tx_pagelist_authors
-    markers.authors.data = field:tx_pagelist_authors
-  }
+    tt_content.pagelist_sub.dataProcessing.10 {
+        where >
+        where.wrap = |tx_pagelist_notinlist = 0
+        where.wrap.if.isFalse.field = tx_pagelist_authors
+        where.wrap2 = |(tx_pagelist_notinlist = 0 AND tx_personnel_authors LIKE '%,###authors###') OR (tx_pagelist_notinlist = 0 AND tx_personnel_authors LIKE '###authors###,%') OR (tx_pagelist_notinlist = 0 AND tx_personnel_authors='###authors###')
+        where.wrap2.if.isTrue.field = tx_pagelist_authors
+        markers.authors.data = field:tx_pagelist_authors
+    }
 [END]
 
 tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
-  templateName = Pagelist
-  dataProcessing {
-    10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
-    10 {
-      special = list
-			special.value.field = pages
-#			alternativeSortingField.field = tx_pagelist_orderby
-#			maxItems.field = tx_pagelist_limit
-#			begin.field = tx_pagelist_startfrom
-      as = pagelist
-      dataProcessing {
-        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-        10.references.fieldName = media
-        20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-        20.references.fieldName = tx_pagelist_images
-        20.as = listimages
-        30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-      }
+    templateName = Pagelist
+    dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+        10 {
+            special = list
+            special.value.field = pages
+            # alternativeSortingField.field = tx_pagelist_orderby
+            # maxItems.field = tx_pagelist_limit
+            # begin.field = tx_pagelist_startfrom
+            as = pagelist
+            dataProcessing {
+                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                10.references.fieldName = media
+                20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                20.references.fieldName = tx_pagelist_images
+                20.as = listimages
+                30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+            }
+        }
     }
-  }
 }
-
 
 tt_content.pagelist_category =< tt_content.defaultpagelist
 tt_content.pagelist_category {
-  templateName = Pagelist
-  dataProcessing {
-    10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
-    10 {
-      special = categories
-			special.value.field = selected_categories
-      special.relation.field = category_field
-    # special.sorting.field = tx_pagelist_orderby
-		#	alternativeSortingField.field = tx_pagelist_orderby
-			maxItems.field = tx_pagelist_limit
-			begin.field = tx_pagelist_startfrom
-      as = pagelist
-      dataProcessing {
-        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-        10.references.fieldName = media
-        20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-        20.references.fieldName = tx_pagelist_images
-        20.as = listimages
-        30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-      }
+    templateName = Pagelist
+    dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+        10 {
+            special = categories
+            special.value.field = selected_categories
+            special.relation.field = category_field
+            # special.sorting.field = tx_pagelist_orderby
+            # alternativeSortingField.field = tx_pagelist_orderby
+            maxItems.field = tx_pagelist_limit
+            begin.field = tx_pagelist_startfrom
+            as = pagelist
+            dataProcessing {
+                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                10.references.fieldName = media
+                20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                20.references.fieldName = tx_pagelist_images
+                20.as = listimages
+                30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+            }
+        }
     }
-  }
 }

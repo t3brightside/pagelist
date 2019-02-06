@@ -201,15 +201,15 @@
       '
     );
     $GLOBALS['TCA']['tt_content']['palettes']['pagelistSettingsSub']['showitem'] = '
-  		tx_pagelist_template,
-  		tx_pagelist_orderby,
-  	  tx_pagelist_startfrom,
-  		tx_pagelist_limit,
-      --linebreak--,
-      tx_pagelist_disableimages,
-      tx_pagelist_disableabstract,
-      tx_pagelist_paginate,
-      tx_pagelist_paginateitems,
+        tx_pagelist_template,
+        tx_pagelist_orderby,
+        tx_pagelist_startfrom,
+        tx_pagelist_limit,
+        --linebreak--,
+        tx_pagelist_disableimages,
+        tx_pagelist_disableabstract,
+        tx_pagelist_paginate,
+        tx_pagelist_paginateitems,
   	';
 
     $GLOBALS['TCA']['tt_content']['types']['pagelist_selected'] = array(
