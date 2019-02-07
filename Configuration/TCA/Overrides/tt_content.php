@@ -288,10 +288,10 @@
   		tx_pagelist_template,
   		tx_pagelist_startfrom,
   		tx_pagelist_limit,
-      --linebreak--,
-      tx_pagelist_disableimages,
-      tx_pagelist_disableabstract,
-      tx_pagelist_paginate,
-      tx_pagelist_paginateitems,
+        --linebreak--,
+        tx_pagelist_disableimages,
+        tx_pagelist_disableabstract,
+        tx_pagelist_paginate,
+        tx_pagelist_paginateitems,
   	';
-  });
+});
