@@ -10,7 +10,7 @@
 # cat=Page List/pagelist; type=string; label= Pagination links
 	pagelist.paginationLinks = 10
 # cat=Page List/pagelist; type=options[vanilla,jQuery,none]; label=Breakpoints for card layouts based on Pure JS, jQuery or not active
-	pagelist.enablejQueryBreakpoints = vanilla
+	pagelist.enablejQueryBreakpoints = jQuery
 # cat=Page List/pagelist; type=string; label= Outer container breakpoint for two column card layout (width in px)
 	pagelist.cardsBreakTwo = 920
 # cat=Page List/pagelist; type=string; label= Outer container breakpoint for one column card layout (width in px)
