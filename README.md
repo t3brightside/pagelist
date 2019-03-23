@@ -77,6 +77,20 @@ Add new section wheres IF condition determines template nr '2' to: _Resources/Pr
 ```
 Create new partial: _Resources/Private/Partials/MyCustomPartial.html_
 
+**Route enhancers for pagination**
+```json
+routeEnhancers:
+  Pagelist:
+    type: Plugin
+    routePath: '/page/{@widget_0/currentPage}'
+    namespace: 'tx_pagelist_pagelist'
+    aspects:
+      '@widget_0/currentPage':
+        type: StaticRangeMapper
+        start: '1'
+        end: '999'
+```
+
 ## Sources
 
 -  [GitHub][a47ab545]
