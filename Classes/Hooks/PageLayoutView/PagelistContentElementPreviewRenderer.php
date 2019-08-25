@@ -23,7 +23,7 @@ class PagelistContentElementPreviewRenderer implements PageLayoutViewDrawItemHoo
 				$itemContent = $parentObject->linkEditContent('<span style="display: block; margin-top: 0.3em;">Pagelist: selected '. $row['pages'] .'</span>', $row);
 			}
 			if ($row['CType'] === 'pagelist_sub') {
-        $itemContent = $parentObject->linkEditContent('<span style="display: block; margin-top: 0.3em;">Pagelist: subpages from '. $row['pages'] .'</span>', $row);
+        		$itemContent = $parentObject->linkEditContent('<span style="display: block; margin-top: 0.3em;">Pagelist: subpages from '. $row['pages'] .'</span>', $row);
 			}
 			if ($row['CType'] === 'pagelist_category') {
 				$itemContent = $parentObject->linkEditContent('<span style="display: block; margin-top: 0.3em;">Pagelist: from category '. $row['selected_categories'] .'</span>', $row);
@@ -31,27 +31,27 @@ class PagelistContentElementPreviewRenderer implements PageLayoutViewDrawItemHoo
 			$itemContent .= '<ul style="margin: 0; padding: 0.2em 1.4em;">';
 			if ($row['CType'] === 'pagelist_sub') {
 				if ($row['tx_pagelist_orderby']) {
-	        $itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Order by: ' . $row['tx_pagelist_orderby']), $row) . '</li>';
+	        		$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Order by: ' . $row['tx_pagelist_orderby']), $row) . '</li>';
 				}
 			}
 			if ($row['CType'] === 'pagelist_sub' || $row['CType'] === 'pagelist_category') {
 				if ($row['tx_pagelist_startfrom']) {
-	        $itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Start from: ' . $row['tx_pagelist_startfrom']), $row) . '</li>';
+	        		$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Start from: ' . $row['tx_pagelist_startfrom']), $row) . '</li>';
 				}
 			}
 			if ($row['CType'] === 'pagelist_sub' || $row['CType'] === 'pagelist_category') {
 				if ($row['tx_pagelist_limit']) {
-	        $itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Items shown: ' . $row['tx_pagelist_limit']), $row) . '</li>';
+	        		$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Items shown: ' . $row['tx_pagelist_limit']), $row) . '</li>';
 				}
 			}
 			if ($row['tx_pagelist_disableimages'] == 1) {
-        $itemContent .= '<li>' . $parentObject->linkEditContent('Images: disabled', $row) . '</li>';
+        		$itemContent .= '<li>' . $parentObject->linkEditContent('Images: disabled', $row) . '</li>';
 			}
 			if ($row['tx_pagelist_disableabstract'] == 1) {
-        $itemContent .= '<li>' . $parentObject->linkEditContent('Introduction: disabled', $row) . '</li>';
+        		$itemContent .= '<li>' . $parentObject->linkEditContent('Introduction: disabled', $row) . '</li>';
 			}
 			if ($row['tx_pagelist_paginate'] == 1) {
-        $itemContent .= '<li>' . $parentObject->linkEditContent('Pagination: enabled', $row) . '</li>';
+        		$itemContent .= '<li>' . $parentObject->linkEditContent('Pagination: enabled', $row) . '</li>';
 			}
 			if ($row['tx_pagelist_paginateitems'] > 1 && $row['tx_pagelist_paginate'] == 1) {
 				$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Items per page: ' . $row['tx_pagelist_paginateitems']), $row) . '</li>';
