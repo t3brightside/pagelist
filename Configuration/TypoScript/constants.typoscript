@@ -16,10 +16,10 @@
 # cat=Page List/pagelist; type=string; label= Outer container breakpoint for one column card layout (width in px)
 	pagelist.cardsBreakOne = 580
 # cat=Page List/pagelist; type=string; label= Card image width (px)
-	pagelist.cardImageWidth = 900
+	pagelist.cardImageWidth = 360
 # cat=Page List/pagelist; type=string; label= Card image height (px)
-	pagelist.cardImageHeight = 600
+	pagelist.cardImageHeight = 260
 # cat=Page List/pagelist; type=string; label= List image width (px)
-	pagelist.listImageWidth = 400
+	pagelist.listImageWidth = 280
 # cat=Page List/pagelist; type=string; label= List image height (px)
-	pagelist.listImageHeight = 400
+	pagelist.listImageHeight = 200

@@ -16,6 +16,7 @@
 
 .pagelist img.image {
   width: 100%;
+  height: auto;
   transition: all 1.3s ease-in-out;
   overflow: hidden;
 }

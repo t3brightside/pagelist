@@ -4,7 +4,7 @@
       <figure>
         <f:if condition="{page.listimages.0}">
           <f:then>
-            <img src="<f:uri.image image="{page.listimages.0}" treatIdAsReference="1" width="{settings.cardImageWidth}c" height="{settings.cardImageHeight}c" />" alt="{f:if(condition:'{page.listimages.0.alternative}', then:'{page.listimages.0.alternative}', else:'{page.data.title}')}" class="image" />
+            <f:image image="{page.listimages.0}" class="image" treatIdAsReference="1" width="{settings.cardImageWidth}c" height="{settings.cardImageHeight}c" alt="{f:if(condition:'{page.listimages.0.alternative}', then:'{page.listimages.0.alternative}', else:'{page.data.title}')}" additionalAttributes="{srcset: '{f:uri.image(image:\'{page.listimages.0}\', width:\'{cardImageWidth_x2}.c\', height:\'{cardImageHeight_x2}.c\')} 2x'}" />
           </f:then>
           <f:else>
             <f:image class="img-dummy" src="EXT:pagelist/Resources/Public/Images/clear.png" width="{settings.cardImageWidth}c" height="{settings.cardImageHeight}c" alt="{page.data.title}" />
