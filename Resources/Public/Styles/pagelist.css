@@ -58,6 +58,7 @@
 .pagelist .author img {
   float: left;
   width: 1.5em;
+  height: auto;
   border-radius: .75em;
   margin-right: 0.5em;
 }
