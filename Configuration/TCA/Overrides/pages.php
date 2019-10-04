@@ -257,7 +257,8 @@
 
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableArticlePersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
-          title,subtitle,
+          title,
+          --linebreak--,subtitle,
           --linebreak--,slug,
           --linebreak--,tx_pagelist_datetime,lastUpdated,
           --linebreak--,abstract,
@@ -266,7 +267,8 @@
         ';
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
-          title,subtitle,
+          title,
+          --linebreak--,subtitle,
           --linebreak--,slug,
           --linebreak--,tx_pagelist_datetime,lastUpdated,
           --linebreak--,abstract,
@@ -304,7 +306,8 @@
 
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableProductPersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
-          title,subtitle,
+          title,
+          --linebreak--,subtitle,
           --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_productprice,
@@ -314,7 +317,8 @@
         ';
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
-          title,subtitle,
+          title,
+          --linebreak--,subtitle,
           --linebreak--,slug,
           --linebreak--,abstract,
           --linebreak--,tx_pagelist_productprice,
@@ -353,7 +357,8 @@
 
             if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableEventPersonnel']) {
                 $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
-                    title,subtitle,
+                    title,
+                    --linebreak--,subtitle,
                     --linebreak--,slug,
                     --linebreak--,tx_pagelist_datetime,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,lastUpdated,
                     --linebreak--,tx_pagelist_eventlocation,
@@ -364,7 +369,8 @@
                 ';
             } else {
                 $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
-                    title,subtitle,
+                    title,
+                    --linebreak--,subtitle,
                     --linebreak--,slug,
                     --linebreak--,tx_pagelist_datetime,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,lastUpdated,
                     --linebreak--,tx_pagelist_eventlocation,
