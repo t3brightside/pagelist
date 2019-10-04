@@ -257,7 +257,7 @@
 
       if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableArticlePersonnel']) {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
-          title,
+          title,subtitle,
           --linebreak--,slug,
           --linebreak--,tx_pagelist_datetime,lastUpdated,
           --linebreak--,abstract,
@@ -266,7 +266,7 @@
         ';
       } else {
         $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
-          title,
+          title,subtitle,
           --linebreak--,slug,
           --linebreak--,tx_pagelist_datetime,lastUpdated,
           --linebreak--,abstract,
