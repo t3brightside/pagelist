@@ -2,3 +2,7 @@
 	– Add img srcset x2
 * 2.2.3
 	– Add page subtitles for articles, events and products
+* 2.3.0
+	– Add category filter if list made of sub pages
+	– Remove dedicated wizard tab
+	– Remove dedicated from category content element
