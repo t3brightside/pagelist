@@ -132,11 +132,24 @@ tt_content.pagelist_sub {
     dataProcessing.10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
     dataProcessing.10 {
         table = pages
-        where = tx_pagelist_notinlist = 0
         pidInList.field = pages
+        max.field = tx_pagelist_limit
+        begin.field = tx_pagelist_startfrom
+        groupBy = uid
+        join.data = field:selected_categories
+        join.wrap = sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(|)
+        join.wrap.if.isTrue.field = selected_categories
+        where.stdWrap.orderedStdWrap {
+           10.wrap = | AND tx_pagelist_notinlist = 0
+           20.data = field:category_field
+           20.wrap = AND tablenames='pages' and fieldname='|'
+           20.if.isTrue.field = selected_categories
+           30.wrap = AND (tx_personnel_authors LIKE '%,###authors###' OR tx_personnel_authors LIKE '###authors###,%' OR tx_personnel_authors='###authors###')
+           30.if.isTrue.field = tx_pagelist_authors
+        }
+        markers.authors.data = field:tx_pagelist_authors
+
         orderBy.field = tx_pagelist_orderby
-    	max.field = tx_pagelist_limit
-    	begin.field = tx_pagelist_startfrom
         as = pagelist
         dataProcessing {
             10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
@@ -147,17 +160,6 @@ tt_content.pagelist_sub {
         }
     }
 }
-
-["{$pagelist.personnelIsLoaded}" == "1"]
-    tt_content.pagelist_sub.dataProcessing.10 {
-        where >
-        where.wrap = |tx_pagelist_notinlist = 0
-        where.wrap.if.isFalse.field = tx_pagelist_authors
-        where.wrap2 = |(tx_pagelist_notinlist = 0 AND tx_personnel_authors LIKE '%,###authors###') OR (tx_pagelist_notinlist = 0 AND tx_personnel_authors LIKE '###authors###,%') OR (tx_pagelist_notinlist = 0 AND tx_personnel_authors='###authors###')
-        where.wrap2.if.isTrue.field = tx_pagelist_authors
-        markers.authors.data = field:tx_pagelist_authors
-    }
-[END]
 
 tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
@@ -170,32 +172,6 @@ tt_content.pagelist_selected {
             # alternativeSortingField.field = tx_pagelist_orderby
             # maxItems.field = tx_pagelist_limit
             # begin.field = tx_pagelist_startfrom
-            as = pagelist
-            dataProcessing {
-                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-                10.references.fieldName = media
-                20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-                20.references.fieldName = tx_pagelist_images
-                20.as = listimages
-                30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-            }
-        }
-    }
-}
-
-tt_content.pagelist_category =< tt_content.defaultpagelist
-tt_content.pagelist_category {
-    templateName = Pagelist
-    dataProcessing {
-        10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
-        10 {
-            special = categories
-            special.value.field = selected_categories
-            special.relation.field = category_field
-            # special.sorting.field = tx_pagelist_orderby
-            # alternativeSortingField.field = tx_pagelist_orderby
-            maxItems.field = tx_pagelist_limit
-            begin.field = tx_pagelist_startfrom
             as = pagelist
             dataProcessing {
                 10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
