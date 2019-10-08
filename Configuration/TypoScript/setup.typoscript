@@ -148,7 +148,6 @@ tt_content.pagelist_sub {
            30.if.isTrue.field = tx_pagelist_authors
         }
         markers.authors.data = field:tx_pagelist_authors
-
         orderBy.field = tx_pagelist_orderby
         as = pagelist
         dataProcessing {
