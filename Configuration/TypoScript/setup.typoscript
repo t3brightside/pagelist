@@ -149,7 +149,10 @@ tt_content.pagelist_sub {
             40.wrap = AND l18n_cfg != '1' AND l18n_cfg != '3'
             40.wrap.if.isFalse.data = sitelanguage:languageId
         }
-        markers.authors.data = field:tx_pagelist_authors
+        markers {
+            authors.data = field:tx_pagelist_authors
+            language.data = sitelanguage:languageId
+        }
         orderBy.field = tx_pagelist_orderby
         as = pagelist
         dataProcessing {
