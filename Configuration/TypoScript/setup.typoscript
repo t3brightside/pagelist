@@ -135,7 +135,6 @@ tt_content.pagelist_sub {
         pidInList.field = pages
         max.field = tx_pagelist_limit
         begin.field = tx_pagelist_startfrom
-        groupBy = uid
         languageField = 0
         join.data = field:selected_categories
         join.wrap = sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(|)
