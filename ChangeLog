@@ -6,3 +6,6 @@
 	– Add category filter if list made of sub pages
 	– Remove dedicated wizard tab
 	– Remove dedicated from category content element
+* 2.3.1
+	– Improved language handling, works in 'strict' language mode now
+	– Respects 'Hide page in default translation'
