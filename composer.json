@@ -18,6 +18,9 @@
     "typo3/cms-core": "^9.5",
     "typo3/cms-fluid-styled-content": "*"
   },
+  "conflict": {
+    "t3g/blog": ">=0.0.1"
+  },
   "suggest": {
     "t3brightside/personnel": "Contact lists with vCard support, and author records for Pagelist"
   },
