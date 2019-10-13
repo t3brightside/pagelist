@@ -163,6 +163,21 @@ tt_content.pagelist_sub {
         }
     }
 }
+# Following works correctly only with
+# [FE][hidePagesIfNotTranslatedByDefault] = true
+# "Hide page if no translation for current language exists" works
+[siteLanguage("fallbackType") == "fallback"]
+    tt_content.pagelist_sub {
+        dataProcessing.10 {
+            languageField = sys_language_uid
+            where.stdWrap.orderedStdWrap {
+                10.wrap = AND tx_pagelist_notinlist = '0'
+                50.wrap = AND l18n_cfg != '2' AND l18n_cfg != '3'
+                50.wrap.if.isTrue.data = sitelanguage:languageId
+            }
+        }
+    }
+[global]
 
 tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
