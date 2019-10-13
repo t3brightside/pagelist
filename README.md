@@ -91,6 +91,9 @@ routeEnhancers:
         end: '999'
 ```
 
+## Known issues
+Doesn't fully comply with the language modes. Does not respect '[FE][hidePagesIfNotTranslatedByDefault] = false' as 'TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor' does not fully respect language modes while selecting pages yet.
+
 ## Sources
 
 -  [GitHub][a47ab545]
