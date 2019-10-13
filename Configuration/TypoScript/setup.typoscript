@@ -163,9 +163,9 @@ tt_content.pagelist_sub {
         }
     }
 }
-# Following works correctly only with
+# Partial support for 'fallback' mode, works with
 # [FE][hidePagesIfNotTranslatedByDefault] = true
-# "Hide page if no translation for current language exists" set manually
+# "Hide page if no translation for current language exists" if set manually
 [siteLanguage("fallbackType") == "fallback"]
     tt_content.pagelist_sub {
         dataProcessing.10 {
