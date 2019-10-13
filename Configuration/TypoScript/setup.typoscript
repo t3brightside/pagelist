@@ -165,7 +165,7 @@ tt_content.pagelist_sub {
 }
 # Following works correctly only with
 # [FE][hidePagesIfNotTranslatedByDefault] = true
-# "Hide page if no translation for current language exists" works
+# "Hide page if no translation for current language exists" set manually
 [siteLanguage("fallbackType") == "fallback"]
     tt_content.pagelist_sub {
         dataProcessing.10 {
