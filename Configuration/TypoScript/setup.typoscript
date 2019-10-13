@@ -126,6 +126,7 @@ tt_content.defaultpagelist {
     }
 [END]
 
+# For 'strict' and 'free' language modes
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
     templateName = Pagelist
@@ -179,6 +180,7 @@ tt_content.pagelist_sub {
     }
 [global]
 
+# Selected pages only
 tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
     templateName = Pagelist
