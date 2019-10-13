@@ -7,6 +7,6 @@
 	– Remove dedicated wizard tab
 	– Remove dedicated from category content element
 * 2.3.1
-	– Improved language handling, works in different language modes now
-	– Respects 'Hide page in default translation' in 'strict' mode
+	– Improved language handling, kind of works in different language modes now
+	– Respects 'Hide page in default translation' in 'strict' and 'free' mode
 	– Respects 'Hide page if no translation for current language exists' in 'fallback' mode
