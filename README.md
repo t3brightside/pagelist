@@ -14,6 +14,11 @@ Adds new content elements and page types to create different lists.
 - TYPO3 8.7 LTS, since 2.2.0 9.5 LTS only
 - fluid_styled_content
 
+## Conflicts with
+
+- t3g/blog
+
+
 ## Features
 
 - Custom page types for articles, events and products
