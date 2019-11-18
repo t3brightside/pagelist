@@ -10,3 +10,5 @@
 	– Improved language handling, kind of works in different language modes now
 	– Respects 'Hide page in default translation' in 'strict' and 'free' mode
 	– Respects 'Hide page if no translation for current language exists' in 'fallback' mode
+* 2.3.2
+	– Category filter fix, not to show same article multiple times with more than one cat selected
