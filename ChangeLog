@@ -12,3 +12,5 @@
 	– Respects 'Hide page if no translation for current language exists' in 'fallback' mode
 * 2.3.2
 	– Category filter fix, not to show same article multiple times with more than one cat selected
+* 2.3.3
+	– Default sort order fix if category filter in use (resave the content element to put it in action)

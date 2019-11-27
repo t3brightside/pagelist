@@ -50,7 +50,7 @@
           'renderType' => 'selectSingle',
           'default' => 'sorting ASC',
           'items' => array(
-            array('Page tree (default)', 'sorting ASC'),
+            array('Page tree (default)', 'pages.sorting'),
             array('Date (now → past)', 'tx_pagelist_datetime DESC'),
             array('Date (past → now)', 'tx_pagelist_datetime ASC'),
             array('Last updated (now → past)', 'lastUpdated DESC'),
