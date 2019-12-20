@@ -48,7 +48,7 @@
         'config'  => array(
           'type'     => 'select',
           'renderType' => 'selectSingle',
-          'default' => 'sorting ASC',
+          'default' => 'pages.sorting',
           'items' => array(
             array('Page tree (default)', 'pages.sorting'),
             array('Date (now → past)', 'tx_pagelist_datetime DESC'),
