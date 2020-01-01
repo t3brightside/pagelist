@@ -14,3 +14,5 @@
 	– Category filter fix, not to show same article multiple times with more than one cat selected
 * 2.3.3
 	– Default sort order fix if category filter in use (resave the content element to put it in action)
+* 2.3.4
+	– Default sort order fix on initial content element save
