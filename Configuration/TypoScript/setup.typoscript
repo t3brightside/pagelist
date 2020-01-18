@@ -162,6 +162,18 @@ tt_content.pagelist_sub {
             20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
             20.references.fieldName = tx_pagelist_images
             20.as = listimages
+            80 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+            80 {
+                if.isTrue.field = categories
+                table = sys_category
+                join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
+                where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
+                markers.pageuid.field = uid
+                pidInList = -1
+                selectFields = sys_category.*
+                recursive = 99
+                as = categories
+            }
         }
     }
 }
@@ -201,6 +213,18 @@ tt_content.pagelist_selected {
                 20.references.fieldName = tx_pagelist_images
                 20.as = listimages
                 30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+                80 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+                80 {
+                    if.isTrue.field = categories
+                    table = sys_category
+                    join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
+                    where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
+                    markers.pageuid.field = uid
+                    pidInList = -1
+                    selectFields = sys_category.*
+                    recursive = 99
+                    as = categories
+                }
             }
         }
     }
