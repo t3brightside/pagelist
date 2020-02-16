@@ -205,6 +205,7 @@ tt_content.pagelist_selected {
             # alternativeSortingField.field = tx_pagelist_orderby
             # maxItems.field = tx_pagelist_limit
             # begin.field = tx_pagelist_startfrom
+            includeNotInMenu = 1
             as = pagelist
             dataProcessing {
                 10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor

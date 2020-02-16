@@ -18,3 +18,4 @@
 	– Default sort order fix on initial content element save
 * 2.3.5
 	– Add data processing for categories. Example in Partials/ListArticle.html
+	– Fix: show pages that's hidden in menus in selected pages list
