@@ -7,7 +7,7 @@
 
 Adds new content elements and page types to create different lists.
 
-**[Front-end Demo](https://corptemplate.t3brightside.com/extensions/pagelist/)**
+**[Front-end Demo](https://macrotemplate.t3brightside.com/extensions/pagelist)**
 
 ## System requirements
 
