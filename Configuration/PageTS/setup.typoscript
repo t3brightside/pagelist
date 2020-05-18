@@ -1,7 +1,3 @@
-TCAdefaults.pages {
-	tx_pagelist_datetime = now
-}
-
 TCEFORM.pages {
 	title.types.136.label = Title
 	title.types.137.label = Title

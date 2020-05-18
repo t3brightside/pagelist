@@ -19,3 +19,7 @@
 * 2.3.5
 	– Add data processing for categories. Example in Partials/ListArticle.html
 	– Fix: show pages that's hidden in menus in selected pages list
+* 2.4.0
+	– TYPO3 10.4 LTS support
+	- Fix articles default date issue on creating new pages
+	- Adding fake plugin configuration to make pagination work in 10.4

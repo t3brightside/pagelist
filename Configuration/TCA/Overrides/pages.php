@@ -72,6 +72,7 @@
                         'renderType' => 'inputDateTime',
                         'size' => '12',
                         'eval' => 'datetime,int',
+                        'default' => time(),
                         'behaviour' => [
                             'allowLanguageSynchronization' => true,
                         ],

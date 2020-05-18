@@ -19,3 +19,11 @@
 			pagelist.personnelIsLoaded = 0
 		');
 	}
+
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+	    'pagelist',
+	    'Pagelist',
+	    [
+	        'Pagelist' => 'pagelist'
+	    ]
+	);

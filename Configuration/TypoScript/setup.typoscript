@@ -96,10 +96,10 @@ tt_content.defaultpagelist {
         pagelistPaginationLinks.value = {$pagelist.paginationLinks}
     }
     extbase {
-        pluginName = Pagelist
         controllerName = Pagelist
-        controllerExtensionName = pagelist
-        controllerActionName = show
+        controllerActionName = pagelist
+        controllerExtensionName = Pagelist
+        pluginName = Pagelist
     }
     stdWrap {
         editIcons = tt_content: header [header_layout], pages
