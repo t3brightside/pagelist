@@ -112,6 +112,7 @@ tt_content.defaultpagelist {
     tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
         30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
         30 {
+            if.isTrue.field = tx_personnel_authors
             table = tx_personnel_domain_model_person
             uidInList.field = tx_personnel_authors
             pidInList = 0
@@ -157,14 +158,16 @@ tt_content.pagelist_sub {
         orderBy.field = tx_pagelist_orderby
         as = pagelist
         dataProcessing {
+            10.if.isTrue.field = media
             10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
             10.references.fieldName = media
+            20.if.isTrue.field = tx_pagelist_images
             20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
             20.references.fieldName = tx_pagelist_images
             20.as = listimages
+            80.if.isTrue.field = categories
             80 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
             80 {
-                if.isTrue.field = categories
                 table = sys_category
                 join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
                 where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
@@ -208,12 +211,13 @@ tt_content.pagelist_selected {
             includeNotInMenu = 1
             as = pagelist
             dataProcessing {
+                10.if.isTrue.field = media
                 10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
                 10.references.fieldName = media
+                20.if.isTrue.field = tx_pagelist_images
                 20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
                 20.references.fieldName = tx_pagelist_images
                 20.as = listimages
-                30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
                 80 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
                 80 {
                     if.isTrue.field = categories
