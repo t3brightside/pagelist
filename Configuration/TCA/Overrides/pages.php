@@ -11,6 +11,7 @@
             $pagelistArticle = 136;
             $pagelistEvent = 137;
             $pagelistProduct = 138;
+            $pagelistVacancy = 139;
 
             $tempColumns = array(
                 'tx_pagelist_images' => [
@@ -153,7 +154,19 @@
                     ]
                 ],
             );
-
+            if ($pagelistConiguration['pagelistEnableVacancies']) {
+                \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+                    'pages',
+                    'doktype',
+                    [
+                        'Vacancy',
+                        $pagelistVacancy,
+                        'apps-pagetree-vacancy'
+                    ],
+                    '1',
+                    'after'
+                );
+            }
             if ($pagelistConiguration['pagelistEnableProducts']) {
                 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
                     'pages',
@@ -202,6 +215,8 @@
                             $pagelistArticle => 'apps-pagetree-article',
                             $pagelistEvent => 'apps-pagetree-event',
                             $pagelistProduct => 'apps-pagetree-product',
+                            $pagelistVacancy => 'apps-pagetree-vacancy',
+
                         ],
                     ],
                 ]
@@ -376,6 +391,58 @@
                     --linebreak--,tx_pagelist_datetime,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,lastUpdated,
                     --linebreak--,tx_pagelist_eventlocation,
                     --linebreak--,tx_pagelist_eventlocationlink,
+                    --linebreak--,abstract,
+                    --linebreak--,author,author_email,
+                    --linebreak--,tx_pagelist_images,
+                ';
+            }
+
+            $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = 'tx_pagelist_images,';
+
+// Vacancy page type
+            $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
+            $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = str_replace(
+                ';title,',
+                ';,--palette--;Vacancy;pagelistvacancygeneral,',
+                $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem']
+            );
+            $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = str_replace(
+                ';abstract,',
+                '--palette--;;,',
+                $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem']
+            );
+            $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = str_replace(
+                ';editorial,',
+                '--palette--;;,',
+                $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem']
+            );
+            $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = str_replace(
+                'pagelistimages,',
+                '',
+                $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem']
+            );
+            $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = str_replace(
+                'personnelcontact,',
+                ',',
+                $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem']
+            );
+
+            if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableVacancyPersonnel']) {
+                $GLOBALS['TCA']['pages']['palettes']['pagelistvacancygeneral']['showitem'] = '
+                    title,
+                    --linebreak--,subtitle,
+                    --linebreak--,slug,
+                    --linebreak--,tx_pagelist_datetime,tx_pagelist_eventfinish,
+                    --linebreak--,abstract,
+                    --linebreak--,tx_personnel_authors,
+                    --linebreak--,tx_pagelist_images,
+                ';
+            } else {
+                $GLOBALS['TCA']['pages']['palettes']['pagelistvacancygeneral']['showitem'] = '
+                    title,
+                    --linebreak--,subtitle,
+                    --linebreak--,slug,
+                    --linebreak--,tx_pagelist_datetime,tx_pagelist_eventfinish,
                     --linebreak--,abstract,
                     --linebreak--,author,author_email,
                     --linebreak--,tx_pagelist_images,

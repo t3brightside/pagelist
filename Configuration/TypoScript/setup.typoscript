@@ -169,7 +169,7 @@ tt_content.pagelist_sub {
                 join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
                 where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
                 markers.pageuid.field = uid
-                pidInList = -1
+                pidInList = root,-1
                 selectFields = sys_category.*
                 recursive = 99
                 as = categories

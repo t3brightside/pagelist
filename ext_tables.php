@@ -6,10 +6,11 @@
         \TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
       );
       $pagelistConiguration = $extensionConfiguration->get('pagelist');
-      
+
       $pagelistArticle = 136;
       $pagelistEvent = 137;
       $pagelistProduct = 138;
+      $pagelistVacancy = 139;
 
       if ($pagelistConiguration['pagelistEnableArticles']) {
         $GLOBALS['PAGES_TYPES'][$pagelistArticle] = [
@@ -60,6 +61,23 @@
         );
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig(
           'options.pageTree.doktypesToShowInNewPageDragArea := addToList(' . $pagelistProduct . ')'
+        );
+      }
+      if ($pagelistConiguration['pagelistEnableVacancies']) {
+        $GLOBALS['PAGES_TYPES'][$pagelistVacancy] = [
+          'type' => 'web',
+          'allowedTables' => '*',
+        ];
+        \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class)
+        ->registerIcon(
+          'apps-pagetree-vacancy',
+          TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+          [
+            'source' => 'EXT:pagelist/Resources/Public/Images/Icons/ico_vacancy.svg',
+          ]
+        );
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig(
+          'options.pageTree.doktypesToShowInNewPageDragArea := addToList(' . $pagelistVacancy . ')'
         );
       }
     }

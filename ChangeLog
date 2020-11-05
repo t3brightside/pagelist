@@ -23,3 +23,6 @@
 	– TYPO3 10.4 LTS support
 	- Fix articles default date issue on creating new pages
 	- Adding fake plugin configuration to make pagination work in 10.4
+* 2.4.1
+	– Vacancy page type added
+	- Disable showing sysfolders and other technical pages by default and add constant for disabled page types

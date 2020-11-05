@@ -30,7 +30,7 @@
 						<f:then>
 							<f:widget.paginate objects="{pagelist}" as="paginatedPages" configuration="{itemsPerPage: '{pagelistPaginationItems}', insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: '{pagelistPaginationLinks}'}">
 								<f:for each="{paginatedPages}" as="page" iteration="iterator">
-									<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 138">
+									<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 139">
 										<f:then>
 											<f:render partial="ListPage" arguments="{_all}" />
 										</f:then>
@@ -50,12 +50,17 @@
 											<f:render partial="ListProduct" arguments="{_all}" />
 										</f:then>
 									</f:if>
+									<f:if condition="{page.data.doktype} == 139">
+										<f:then>
+											<f:render partial="ListVacancy" arguments="{_all}" />
+										</f:then>
+									</f:if>
 								</f:for>
 							</f:widget.paginate>
 						</f:then>
 						<f:else>
 							<f:for each="{pagelist}" as="page" iteration="iterator">
-								<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 138">
+								<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 139">
 									<f:then>
 										<f:render partial="ListPage" arguments="{_all}" />
 									</f:then>
@@ -73,6 +78,11 @@
 								<f:if condition="{page.data.doktype} == 138">
 									<f:then>
 										<f:render partial="ListProduct" arguments="{_all}" />
+									</f:then>
+								</f:if>
+								<f:if condition="{page.data.doktype} == 139">
+									<f:then>
+										<f:render partial="ListVacancy" arguments="{_all}" />
 									</f:then>
 								</f:if>
 							</f:for>
