@@ -23,3 +23,5 @@
 	pagelist.listImageWidth = 280
 # cat=Page List/pagelist; type=string; label= List image height (px)
 	pagelist.listImageHeight = 200
+# cat=Page List/pagelist; type=string; label= Disable these doctypes showing up in list
+	pagelist.disablePageTypes = 254,255,199
