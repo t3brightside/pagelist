@@ -16,7 +16,7 @@ TCEFORM.pages {
 	tx_personnel_authors.types.137.label = Contact Persons
 	tx_personnel_authors.types.138.label = Contact Persons
 	tx_personnel_authors.types.139.label = Contact Persons
-	tx_pagelist_eventfinish.types.139.label = Deadline
+	tx_pagelist_eventfinish.types.139.label = Application Deadline
 }
 
 TCEFORM.tt_content.tx_pagelist_template.addItems {
