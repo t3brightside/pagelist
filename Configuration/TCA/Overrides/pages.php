@@ -79,9 +79,22 @@
                         ],
                     ]
                 ],
+                'tx_pagelist_eventstart' => [
+                    'exclude' => 1,
+                    'label' => 'Event Start',
+                    'config' => [
+                        'type' => 'input',
+                        'renderType' => 'inputDateTime',
+                        'size' => '12',
+                        'eval' => 'datetime,int',
+                        'behaviour' => [
+                            'allowLanguageSynchronization' => true,
+                        ],
+                    ]
+                ],
                 'tx_pagelist_starttime' => [
                     'exclude' => 1,
-                    'label' => 'Enable Start Time',
+                    'label' => 'Show Start Time',
                     'config' => [
                         'type' => 'check',
                         'renderType' => 'checkboxToggle',
@@ -111,7 +124,7 @@
                 ],
                 'tx_pagelist_endtime' => [
                     'exclude' => 1,
-                    'label' => 'Enable End Time',
+                    'label' => 'Show End Time',
                     'config' => [
                         'type' => 'check',
                         'renderType' => 'checkboxToggle',
@@ -376,7 +389,8 @@
                     title,
                     --linebreak--,subtitle,
                     --linebreak--,slug,
-                    --linebreak--,tx_pagelist_datetime,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,lastUpdated,
+                    --linebreak--,tx_pagelist_datetime,
+                    --linebreak--,tx_pagelist_eventstart,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,lastUpdated,
                     --linebreak--,tx_pagelist_eventlocation,
                     --linebreak--,tx_pagelist_eventlocationlink,
                     --linebreak--,abstract,
@@ -388,7 +402,8 @@
                     title,
                     --linebreak--,subtitle,
                     --linebreak--,slug,
-                    --linebreak--,tx_pagelist_datetime,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,lastUpdated,
+                    --linebreak--,tx_pagelist_datetime,
+                    --linebreak--,tx_pagelist_eventstart,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,lastUpdated,
                     --linebreak--,tx_pagelist_eventlocation,
                     --linebreak--,tx_pagelist_eventlocationlink,
                     --linebreak--,abstract,

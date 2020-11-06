@@ -12,7 +12,6 @@ TCEFORM.pages {
 	nav_title.types.137.disabled = 1
 	nav_title.types.138.disabled = 1
 	nav_title.types.139.disabled = 1
-	tx_pagelist_datetime.types.137.label = Event Start
 	tx_personnel_authors.types.136.label = Authors
 	tx_personnel_authors.types.137.label = Contact Persons
 	tx_personnel_authors.types.138.label = Contact Persons

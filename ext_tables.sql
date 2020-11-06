@@ -13,6 +13,7 @@ CREATE TABLE tt_content (
 CREATE TABLE pages (
 	tx_pagelist_images int(11) unsigned DEFAULT '0',
 	tx_pagelist_datetime int(11) unsigned NOT NULL DEFAULT '0',
+	tx_pagelist_eventstart int(11) unsigned NOT NULL DEFAULT '0',
 	tx_pagelist_starttime int(1) DEFAULT '0' NOT NULL,
 	tx_pagelist_eventfinish int(11) unsigned NOT NULL DEFAULT '0',
 	tx_pagelist_endtime int(1) DEFAULT '0' NOT NULL,
