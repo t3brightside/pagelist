@@ -253,7 +253,7 @@
             \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
                 'pages',
                 'tx_pagelist_notinlist',
-                '1',
+                '1,3,4,6,7',
                 'after:nav_hide'
             );
 
