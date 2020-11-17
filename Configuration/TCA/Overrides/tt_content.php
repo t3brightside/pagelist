@@ -40,6 +40,9 @@
           'renderType' => 'selectSingle',
           'default' => 0,
           'items'    => array(), /* items set in page TsConfig */
+          'behaviour' => [
+            'allowLanguageSynchronization' => true,
+          ],
         ),
       ),
       'tx_pagelist_orderby' => array(
@@ -58,6 +61,9 @@
             array('Page title (a → z)', 'title ASC'),
             array('Page title (z → a)', 'title DESC'),
           ),
+          'behaviour' => [
+            'allowLanguageSynchronization' => true,
+          ],
         ),
       ),
       'tx_pagelist_startfrom' => [
@@ -67,6 +73,9 @@
           'type' => 'input',
           'eval' => 'num',
           'size' => '1',
+          'behaviour' => [
+            'allowLanguageSynchronization' => true,
+          ],
         ],
       ],
       'tx_pagelist_limit' => [
@@ -76,6 +85,9 @@
           'type' => 'input',
           'eval' => 'num',
           'size' => '1',
+          'behaviour' => [
+            'allowLanguageSynchronization' => true,
+          ],
         ],
       ],
       'tx_pagelist_paginateitems' => [
@@ -85,6 +97,9 @@
           'type' => 'input',
           'eval' => 'num',
           'size' => '1',
+          'behaviour' => [
+            'allowLanguageSynchronization' => true,
+          ],
         ],
       ],
     );
@@ -103,6 +118,9 @@
                     'invertStateDisplay' => true
                 ]
             ],
+            'behaviour' => [
+              'allowLanguageSynchronization' => true,
+            ],
         ]
       ],
       'tx_pagelist_disableabstract' => [
@@ -118,6 +136,9 @@
                     'invertStateDisplay' => true
                 ]
             ],
+            'behaviour' => [
+              'allowLanguageSynchronization' => true,
+            ],
         ]
       ],
       'tx_pagelist_paginate' => [
@@ -131,6 +152,9 @@
                     0 => '',
                     1 => '',
                 ]
+            ],
+            'behaviour' => [
+              'allowLanguageSynchronization' => true,
             ],
         ]
       ],
