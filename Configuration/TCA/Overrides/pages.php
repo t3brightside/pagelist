@@ -164,6 +164,9 @@
                                 'invertStateDisplay' => true
                             ]
                         ],
+                        'behaviour' => [
+                            'allowLanguageSynchronization' => true,
+                        ],
                     ]
                 ],
             );
