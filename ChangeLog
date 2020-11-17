@@ -28,3 +28,5 @@
 	- Disable showing sysfolders and other technical pages by default and add constant for disabled page types
 	- Change category query had to limit it to current page tree only, pidInList = 0 is not working in this context any more
 	- Add dedicated event start date-time field
+	- Not in list option for different default page types
+	- Translation sync for not in list option
