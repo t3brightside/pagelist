@@ -1,6 +1,6 @@
 CREATE TABLE tt_content (
 	tx_pagelist_authors tinytext,
-	tx_pagelist_template varchar(255),
+	tx_pagelist_template varchar(25),
 	tx_pagelist_orderby tinytext,
 	tx_pagelist_disableimages int(1) DEFAULT '0' NOT NULL,
 	tx_pagelist_disableabstract int(1) DEFAULT '0' NOT NULL,
