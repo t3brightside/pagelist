@@ -31,3 +31,5 @@
 	- Not in list option for different default page types
 	- Translation sync for not in list option
 	- Translation sync for content element options
+	- Change field type and template names for meaningful BE feedback
+ 	- Show selected template in back end

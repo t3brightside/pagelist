@@ -18,13 +18,13 @@ TCEFORM.pages {
 	tx_personnel_authors.types.139.label = Contact Persons
 	tx_pagelist_eventfinish.types.139.label = Application Deadline
 	tx_pagelist_eventstart.types.139.label = Start Date
-
 }
 
 TCEFORM.tt_content.tx_pagelist_template.addItems {
-	0 = Cards
-	1 = List
+	cards = Cards
+	list = List
 }
+TCAdefaults.tt_content.tx_pagelist_template = cards
 
 mod.wizards.newContentElement.wizardItems.common {
  	elements {

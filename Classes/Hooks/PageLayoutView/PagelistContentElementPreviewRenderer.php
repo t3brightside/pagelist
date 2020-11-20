@@ -29,6 +29,9 @@ class PagelistContentElementPreviewRenderer implements PageLayoutViewDrawItemHoo
 				$itemContent = $parentObject->linkEditContent('<span style="display: block; margin-top: 0.3em;">Pagelist: from category '. $row['selected_categories'] .'</span>', $row);
 			}
 			$itemContent .= '<ul style="margin: 0; padding: 0.2em 1.4em;">';
+			if ($row['tx_pagelist_template']) {
+				$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Template: ' . $row['tx_pagelist_template']), $row) . '</li>';
+			}
 			if ($row['CType'] === 'pagelist_sub') {
 				if ($row['tx_pagelist_orderby']) {
 	        		$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Order by: ' . $row['tx_pagelist_orderby']), $row) . '</li>';

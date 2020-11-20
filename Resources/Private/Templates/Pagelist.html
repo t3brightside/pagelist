@@ -6,7 +6,7 @@
 		<f:variable name="listImageWidth_x2">{settings.listImageWidth * 2}</f:variable>
 		<f:variable name="listImageHeight_x2">{settings.listImageHeight * 2}</f:variable>
 		<f:if condition="{pagelist}">
-			<f:if condition="{data.tx_pagelist_template} == 0">
+			<f:if condition="{data.tx_pagelist_template} == cards">
 				<div class="pagelist cards template-{data.tx_pagelist_template}">
 					<f:if condition="{data.tx_pagelist_paginate} == 1">
 						<f:then>
@@ -24,7 +24,7 @@
 					</f:if>
 				</div>
 			</f:if>
-			<f:if condition="{data.tx_pagelist_template} == 1">
+			<f:if condition="{data.tx_pagelist_template} == list">
 				<div class="pagelist list template-{data.tx_pagelist_template}">
 					<f:if condition="{data.tx_pagelist_paginate} == 1">
 						<f:then>
