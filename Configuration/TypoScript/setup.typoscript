@@ -3,7 +3,7 @@ page.includeCSS.pagelist = {$pagelist.styles}
 # Add breakpoint classes by the width of pagelist cards container
 # vanilla (no IE9 support), jQuery or none dependent on constant
 
-["{$pagelist.enablejQueryBreakpoints}" == "vanilla"]
+["{$pagelist.enableBreakpoints}" == "1"]
   page.jsFooterInline {
     109823122 = TEXT
     109823122.value (
@@ -29,44 +29,6 @@ page.includeCSS.pagelist = {$pagelist.styles}
         pagelistDetectWidth('pagelist cards');
       });
     )
-  }
-[END]
-
-["{$pagelist.enablejQueryBreakpoints}" == "jQuery"]
-  page.jsFooterInline {
-    109823122 = TEXT
-    109823122.value (
-  		jQuery( document ).ready(function() {
-  			jQuery('.pagelist.cards').each(function() {
-  			  if (jQuery(this).width() < {$pagelist.cardsBreakTwo}){
-  			  	jQuery(this).addClass( 'break-two' );
-  			  } else{
-  					jQuery(this).removeClass('break-two')
-  				}
-          if (jQuery(this).width() < {$pagelist.cardsBreakOne}){
-            jQuery(this).removeClass('break-two')
-  			  	jQuery(this).addClass( 'break-one' );
-  			  } else{
-  					jQuery(this).removeClass('break-one')
-  				}
-  			});
-  		});
-  		jQuery(window).resize(function(){
-  		  jQuery('.pagelist.cards').each(function() {
-          if (jQuery(this).width() < {$pagelist.cardsBreakTwo}){
-  			  	jQuery(this).addClass( 'break-two' );
-  			  } else{
-  					jQuery(this).removeClass('break-two')
-  				}
-          if (jQuery(this).width() < {$pagelist.cardsBreakOne}){
-            jQuery(this).removeClass('break-two')
-  			  	jQuery(this).addClass( 'break-one' );
-  			  } else{
-  					jQuery(this).removeClass('break-one')
-  				}
-  			});
-  		});
-  	)
   }
 [END]
 
@@ -139,6 +101,7 @@ tt_content.pagelist_sub {
         begin.field = tx_pagelist_startfrom
         languageField = 0
         groupBy = uid
+        recursive.field = tx_pagelist_recursive
         join.data = field:selected_categories
         join.wrap = sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(|)
         join.wrap.if.isTrue.field = selected_categories

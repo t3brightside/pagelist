@@ -33,3 +33,4 @@
 	- Translation sync for content element options
 	- Change field type and template names for meaningful BE feedback
  	- Show selected template in back end
+	- Add recursive select for pagelist from sub pages
