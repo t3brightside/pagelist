@@ -32,6 +32,31 @@
 
 /* Define columns added to tt_content */
     $tempColumns = array(
+      'tx_pagelist_recursive' => array(
+        'exclude' => 1,
+        'label'   => 'Recursive level',
+        'config'  => array(
+          'type'     => 'select',
+          'renderType' => 'selectSingle',
+          'default' => '0',
+          'items' => array(
+            array('1', '0'),
+            array('2', '1'),
+            array('3', '2'),
+            array('4', '3'),
+            array('5', '4'),
+            array('6', '5'),
+            array('7', '6'),
+            array('8', '7'),
+            array('9', '8'),
+            array('10', '9'),
+            array('All sub levels', '999'),
+          ),
+          'behaviour' => [
+            'allowLanguageSynchronization' => true,
+          ],
+        ),
+      ),
       'tx_pagelist_template' => array(
         'exclude' => 1,
         'label'   => 'Template',
@@ -192,6 +217,7 @@
           --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.general;general,
           --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.headers;headers,
           pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
+          tx_pagelist_recursive,
           --palette--;;pagelistSettingsSub,
           selected_categories;Category Filter,
           tx_pagelist_authors;Author Filter,
