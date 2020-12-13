@@ -6,7 +6,7 @@ CREATE TABLE tt_content (
 	tx_pagelist_disableabstract int(1) DEFAULT '0' NOT NULL,
 	tx_pagelist_startfrom varchar(25),
 	tx_pagelist_limit varchar(25),
-	tx_pagelist_recursive int(2) DEFAULT '0' NOT NULL,
+	tx_pagelist_recursive int(11) DEFAULT '0' NOT NULL,
 	tx_pagelist_paginate int(1) DEFAULT '0' NOT NULL,
 	tx_pagelist_paginateitems varchar(25),
 );
