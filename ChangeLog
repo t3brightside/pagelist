@@ -23,7 +23,7 @@
 	– TYPO3 10.4 LTS support
 	- Fix articles default date issue on creating new pages
 	- Adding fake plugin configuration to make pagination work in 10.4
-* 2.4.1
+* 2.5.0 (NOTE! POSSIBLE BREAKING CHANGES)
 	– Vacancy page type added
 	- Disable showing sysfolders and other technical pages by default and add constant for disabled page types
 	- Change category query had to limit it to current page tree only, pidInList = 0 is not working in this context any more
@@ -35,3 +35,4 @@
  	- Show selected template in back end
 	- Add recursive select for pagelist from sub pages
 	- Remove jQuery breakpoint option, vanilla only now
+	– Category filter to work in SQL strict mode
