@@ -35,4 +35,4 @@
  	- Show selected template in back end
 	- Add recursive select for pagelist from sub pages
 	- Remove jQuery breakpoint option, vanilla only now
-	– Category filter to work in SQL strict mode
+	– Category filter to work with only_full_group_by turned on
