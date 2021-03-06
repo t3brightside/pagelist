@@ -105,6 +105,7 @@ tt_content.pagelist_sub {
         recursive.field = tx_pagelist_recursive
         join.data = field:selected_categories
         join.wrap = sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(|)
+        join.if.isTrue.field = selected_categories
         where.stdWrap.orderedStdWrap {
             10.wrap = AND tx_pagelist_notinlist = '0' AND sys_language_uid='###language###' AND doktype NOT IN ({$pagelist.disablePageTypes})
             20.wrap = AND tablenames='pages' AND fieldname='categories'
