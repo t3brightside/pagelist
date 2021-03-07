@@ -1,7 +1,6 @@
 page.includeCSS.pagelist = {$pagelist.styles}
 
 # Add breakpoint classes by the width of pagelist cards container
-# vanilla (no IE9 support), jQuery or none dependent on constant
 
 ["{$pagelist.enableBreakpoints}" == "1"]
   page.jsFooterInline {
