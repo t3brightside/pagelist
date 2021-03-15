@@ -28,5 +28,10 @@
     "psr-4": {
       "Brightside\\Pagelist\\": "Classes"
     }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "pagelist"
+    }
   }
 }
