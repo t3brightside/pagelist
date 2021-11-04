@@ -11,7 +11,7 @@ Adds new content elements and page types to create different lists.
 
 ## System requirements
 
-- TYPO3 8.7 LTS, since 2.2.0 9.5 & 10.4 LTS
+- TYPO3 8.7 LTS, from 2.2.0 9.5 & 10.4 LTS, from 2.5.1 11.5LTS
 - fluid_styled_content
 
 ## Conflicts with
@@ -24,9 +24,9 @@ Adds new content elements and page types to create different lists.
 - Custom page types for articles, events and products
 - List of sub pages
 - List of selected pages
-- List of pages in category
+- Category filtering
 - Set start from, limit and sort options
-- Enable pagination with items per page
+- Pagination with items per page
 - Dedicated page types for news, events and products
 - Connection to ext:[Personnel][863416d1] for authors and contact persons
 - ext:Personnel fields can be enabled/disabled per page type
@@ -37,10 +37,10 @@ Adds new content elements and page types to create different lists.
 
 ## Installation
 
- - From TER: **pagelist**, or composer: **t3brightside/pagelist**
+ - TER: **pagelist**, or **composer req t3brightside/pagelist**
  - Include static template
  - Enable page types for news, events, and products from extension configuration
- - Recommended for author records ext:Personnel / **t3brightside/personnel**
+ - Recommended for author records **t3brightside/personnel**
 
 ## Usage
 
@@ -84,19 +84,6 @@ Create new partial: _Resources/Private/Partials/MyCustomPartial.html_
 
 **Route enhancers for pagination**
 ```json    
-  routeEnhancers:
-    Pagelist:
-      type: Plugin
-      routePath: '/page/{page}'
-      namespace: 'pages'
-      defaults:
-        page: "0"
-      aspects:
-        page:
-          type: StaticRangeMapper
-          start: '1'
-          end: '999'
-
   /* v10.4 and below */
   routeEnhancers:
     Pagelist:
