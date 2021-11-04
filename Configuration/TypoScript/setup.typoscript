@@ -31,6 +31,7 @@ page.includeCSS.pagelist = {$pagelist.styles}
   }
 [END]
 
+
 tt_content.defaultpagelist =< lib.contentElement
 tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
 tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
@@ -42,6 +43,9 @@ tt_content.defaultpagelist {
         cardImageHeight = {$pagelist.cardImageHeight}
         listImageWidth = {$pagelist.listImageWidth}
         listImageHeight = {$pagelist.listImageHeight}
+        link {
+            skipControllerAndAction = 1
+        }
     }
     variables {
         pagelistPaginationItems = COA
@@ -62,6 +66,7 @@ tt_content.defaultpagelist {
         controllerExtensionName = Pagelist
         pluginName = Pagelist
     }
+
     stdWrap {
         editIcons = tt_content: header [header_layout], pages
         editIcons.iconTitle.data = LLL:EXT:fluid_styled_content/Resources/Private/Language/FrontendEditing.xlf:editIcon.menu
@@ -92,7 +97,7 @@ tt_content.defaultpagelist {
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
     templateName = Pagelist
-    dataProcessing.10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+    dataProcessing.10 = Brightside\Pagelist\DataProcessing\PagelistDatabaseQueryProcessor
     dataProcessing.10 {
         table = pages
         selectFields = pages.*
@@ -140,6 +145,11 @@ tt_content.pagelist_sub {
                 markers.pageuid.field = uid
                 as = categories
             }
+        }
+        paginate {
+          isActive.field = tx_pagelist_paginate
+          itemsPerPage.field = tx_pagelist_paginateitems
+          parameterIndex = tx_pagelist_pagelist
         }
     }
 }

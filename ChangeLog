@@ -36,3 +36,6 @@
 	- Add recursive select for pagelist from sub pages
 	- Remove jQuery breakpoint option, vanilla only now
 	– Category filter to work with only_full_group_by turned on
+* 2.5.1 (NOTE! POSSIBLE BREAKING CHANGES)
+  – TYPO3 11.4 LTS support only
+	– Custom DataProcessors to implement pagination API

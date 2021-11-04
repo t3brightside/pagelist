@@ -21,9 +21,14 @@
 	}
 
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	    'pagelist',
+	    'Pagelist',
 	    'Pagelist',
 	    [
-	        'Pagelist' => 'pagelist'
-	    ]
+	        \Brightside\Pagelist\DataProcessing\PagelistDatabaseQueryProcessor::class => 'pagelist',
+					'Pagelist' => 'pagelist',
+	    ],
+			[
+
+			],
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 	);

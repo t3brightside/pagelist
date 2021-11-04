@@ -1,95 +1,56 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-	<f:layout name="Default" />
-	<f:section name="Main">
-		<f:variable name="cardImageWidth_x2">{settings.cardImageWidth * 2}</f:variable>
-		<f:variable name="cardImageHeight_x2">{settings.cardImageHeight * 2}</f:variable>
-		<f:variable name="listImageWidth_x2">{settings.listImageWidth * 2}</f:variable>
-		<f:variable name="listImageHeight_x2">{settings.listImageHeight * 2}</f:variable>
-		<f:if condition="{pagelist}">
-			<f:if condition="{data.tx_pagelist_template} == cards">
-				<div class="pagelist cards template-{data.tx_pagelist_template}">
-					<f:if condition="{data.tx_pagelist_paginate} == 1">
-						<f:then>
-							<f:widget.paginate objects="{pagelist}" as="paginatedPages" configuration="{itemsPerPage: '{pagelistPaginationItems}', insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: '{pagelistPaginationLinks}'}">
-								<f:for each="{paginatedPages}" as="page" iteration="iterator">
-									<f:render partial="Card" arguments="{_all}" />
-								</f:for>
-							</f:widget.paginate>
-						</f:then>
-						<f:else>
-							<f:for each="{pagelist}" as="page" iteration="iterator">
-								<f:render partial="Card" arguments="{_all}" />
-							</f:for>
-						</f:else>
-					</f:if>
-				</div>
-			</f:if>
-			<f:if condition="{data.tx_pagelist_template} == list">
-				<div class="pagelist list template-{data.tx_pagelist_template}">
-					<f:if condition="{data.tx_pagelist_paginate} == 1">
-						<f:then>
-							<f:widget.paginate objects="{pagelist}" as="paginatedPages" configuration="{itemsPerPage: '{pagelistPaginationItems}', insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: '{pagelistPaginationLinks}'}">
-								<f:for each="{paginatedPages}" as="page" iteration="iterator">
-									<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 139">
-										<f:then>
-											<f:render partial="ListPage" arguments="{_all}" />
-										</f:then>
-									</f:if>
-									<f:if condition="{page.data.doktype} == 136">
-										<f:then>
-											<f:render partial="ListArticle" arguments="{_all}" />
-										</f:then>
-									</f:if>
-									<f:if condition="{page.data.doktype} == 137">
-										<f:then>
-											<f:render partial="ListEvent" arguments="{_all}" />
-										</f:then>
-									</f:if>
-									<f:if condition="{page.data.doktype} == 138">
-										<f:then>
-											<f:render partial="ListProduct" arguments="{_all}" />
-										</f:then>
-									</f:if>
-									<f:if condition="{page.data.doktype} == 139">
-										<f:then>
-											<f:render partial="ListVacancy" arguments="{_all}" />
-										</f:then>
-									</f:if>
-								</f:for>
-							</f:widget.paginate>
-						</f:then>
-						<f:else>
-							<f:for each="{pagelist}" as="page" iteration="iterator">
-								<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 139">
-									<f:then>
-										<f:render partial="ListPage" arguments="{_all}" />
-									</f:then>
-								</f:if>
-								<f:if condition="{page.data.doktype} == 136">
-									<f:then>
-										<f:render partial="ListArticle" arguments="{_all}" />
-									</f:then>
-								</f:if>
-								<f:if condition="{page.data.doktype} == 137">
-									<f:then>
-										<f:render partial="ListEvent" arguments="{_all}" />
-									</f:then>
-								</f:if>
-								<f:if condition="{page.data.doktype} == 138">
-									<f:then>
-										<f:render partial="ListProduct" arguments="{_all}" />
-									</f:then>
-								</f:if>
-								<f:if condition="{page.data.doktype} == 139">
-									<f:then>
-										<f:render partial="ListVacancy" arguments="{_all}" />
-									</f:then>
-								</f:if>
-							</f:for>
-						</f:else>
-					</f:if>
-				</div>
-			</f:if>
+<f:layout name="Default" />
+<f:section name="Main">
+	<f:variable name="cardImageWidth_x2">{settings.cardImageWidth * 2}</f:variable>
+	<f:variable name="cardImageHeight_x2">{settings.cardImageHeight * 2}</f:variable>
+	<f:variable name="listImageWidth_x2">{settings.listImageWidth * 2}</f:variable>
+	<f:variable name="listImageHeight_x2">{settings.listImageHeight * 2}</f:variable>
+	<f:if condition="{pagelist}">
+		<f:if condition="{data.tx_pagelist_template} == cards">
+			<div class="pagelist cards template-{data.tx_pagelist_template}">
+				<f:for each="{pagelist}" as="page" iteration="iterator">
+					<f:render partial="Card" arguments="{_all}" />
+				</f:for>
+				<f:if condition="{data.tx_pagelist_paginate} == 1">
+					<f:render partial="Pagination" arguments="{pagination:pagination}" />
+				</f:if>
+			</div>
 		</f:if>
-	</f:section>
+		<f:if condition="{data.tx_pagelist_template} == list">
+			<div class="pagelist list template-{data.tx_pagelist_template}">
+				<f:for each="{pagelist}" as="page" iteration="iterator">
+					<f:if condition="{page.data.doktype} < 136 || {page.data.doktype} > 139">
+						<f:then>
+							<f:render partial="ListPage" arguments="{_all}" />
+						</f:then>
+					</f:if>
+					<f:if condition="{page.data.doktype} == 136">
+						<f:then>
+							<f:render partial="ListArticle" arguments="{_all}" />
+						</f:then>
+					</f:if>
+					<f:if condition="{page.data.doktype} == 137">
+						<f:then>
+							<f:render partial="ListEvent" arguments="{_all}" />
+						</f:then>
+					</f:if>
+					<f:if condition="{page.data.doktype} == 138">
+						<f:then>
+							<f:render partial="ListProduct" arguments="{_all}" />
+						</f:then>
+					</f:if>
+					<f:if condition="{page.data.doktype} == 139">
+						<f:then>
+							<f:render partial="ListVacancy" arguments="{_all}" />
+						</f:then>
+					</f:if>
+				</f:for>
+				<f:if condition="{data.tx_pagelist_paginate} == 1">
+					<f:render partial="Pagination" arguments="{pagination:pagination}" />
+				</f:if>
+			</div>
+		</f:if>
+	</f:if>
+</f:section>
+
 </html>

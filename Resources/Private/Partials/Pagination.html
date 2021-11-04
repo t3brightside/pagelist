@@ -1,0 +1,33 @@
+<ul class="pagination">
+	<f:if condition="{pagination.previousPage}">
+		<li class="previous">
+			<f:link.action controller="" arguments="{currentPage: pagination.previousPage}" title="{f:translate(key:'pagination.previous')}"></f:link.action>
+		</li>
+	</f:if>
+	<f:for each="{pagination.paginationPages}" as="number" iteration="iterator">
+		<f:if condition="{number} == {pagination.current}">
+			<f:then>
+				<li class="current">
+					{number}
+				</li>
+			</f:then>
+			<f:else>
+				<li>
+					<f:if condition="{iterator.isFirst}">
+						<f:then>
+							<f:link.page>{number}</f:link.page>
+						</f:then>
+						<f:else>
+							<f:link.action controller="" arguments="{currentPage: number}">{number}</f:link.action>
+						</f:else>
+					</f:if>
+				</li>
+			</f:else>
+		</f:if>
+	</f:for>
+	<f:if condition="{pagination.nextPage}">
+		<li class="next">
+			<f:link.action controller="" arguments="{currentPage: pagination.nextPage}" title="{f:translate(key:'pagination.next')}"></f:link.action>
+		</li>
+	</f:if>
+</ul>

@@ -6,6 +6,9 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="pagelist.readmore">Next</label>
+		</languageKey>
+		<languageKey index="pagination.next" type="array">
 			<label index="pagelist.readmore">Read more</label>
 		</languageKey>
 		<languageKey index="de" type="array">

@@ -187,26 +187,30 @@
 }
 
 /* pagination */
-ul.f3-widget-paginator {
+ul.pagination {
   float: left;
   clear: both;
   width: 100%;
   list-style: none;
-  margin: 0;
-  margin-top: 2em;
+  margin: 2em 0;
 }
 
-ul.f3-widget-paginator>li {
+ul.pagination>li {
   display: inline-block;
   margin: 0;
 }
-
+ul.pagination>li.previous>a::after{
+  content: '←';
+}
+ul.pagination>li.next>a::after{
+  content: '→';
+}
 /* hide if only one page is present in pagination */
-ul.f3-widget-paginator li:first-child:nth-last-child(1) {
+ul.pagination li:first-child:nth-last-child(1) {
   display: none;
 }
 
-ul.f3-widget-paginator>li>a, ul.f3-widget-paginator>li.current {
+ul.pagination>li>a, ul.pagination>li.current {
   display: inline-block;
   line-height: 1em;
   padding: 0.5em;
