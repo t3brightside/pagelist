@@ -39,3 +39,6 @@
 * 2.5.1 (NOTE! POSSIBLE BREAKING CHANGES)
   – TYPO3 11.4 LTS support only
 	– Custom DataProcessors to implement pagination API
+	– Add unique pagination per content element
+	– Changed pagination CSS classes and HTML
+	– Locallang to XLF

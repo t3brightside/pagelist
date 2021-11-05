@@ -1,4 +1,6 @@
 <?php
+declare(strict_types = 1);
+
 namespace Brightside\Pagelist\DataProcessing;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -8,6 +10,10 @@ use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 
+/**
+ * Adds pagination API to the DatabaseQueryProcessor
+ */
+
 class PagelistDatabaseQueryProcessor extends DatabaseQueryProcessor
 {
     public function process(
@@ -16,15 +22,20 @@ class PagelistDatabaseQueryProcessor extends DatabaseQueryProcessor
         array $processorConfiguration,
         array $processedData
     ) {
+
         $allProcessedData = parent::process($cObj, $contentObjectConfiguration, $processorConfiguration, $processedData);
-        $paginationSettings = $processorConfiguration['paginate.'];
+        $paginationSettings = $contentObjectConfiguration['paginator.'];
         $paginationIsActive = (int)($cObj->stdWrapValue('isActive', $paginationSettings ?? []));
+        $currentElement = (int)$cObj->getRequest()->getQueryParams()[$paginationSettings['elementUrlKey']] ? : 1;
+        $elementUid = $processedData['data']['uid'];
 
         if ($paginationIsActive) {
-          $parameter = $cObj->getRequest()->getQueryParams()[$paginationSettings['parameterIndex']];
-
+          if($currentElement == $elementUid) {
+            $currentPage = (int)$cObj->getRequest()->getQueryParams()[$paginationSettings['pageUrlKey']] ? : 1;
+          } else {
+            $currentPage = 1;
+          }
           $itemsToPaginate = $allProcessedData[$processorConfiguration['as']];
-          $currentPage = (int)$parameter['currentPage'] ? : 1;
           $itemsPerPage = (int)($cObj->stdWrapValue('itemsPerPage', $paginationSettings ?? []));
           $paginator = new ArrayPaginator($itemsToPaginate, $currentPage, $itemsPerPage);
           $pagination = new SimplePagination($paginator);

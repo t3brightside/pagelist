@@ -60,6 +60,14 @@ tt_content.defaultpagelist {
         pagelistPaginationLinks = TEXT
         pagelistPaginationLinks.value = {$pagelist.paginationLinks}
     }
+    paginator {
+      isActive.field = tx_pagelist_paginate
+      isActiveDefault = 0
+      itemsPerPage.field = tx_pagelist_paginateitems
+      itemsPerPageDefault = 6
+      pageUrlKey = pagelistPage
+      elementUrlKey = pagelistElement
+    }
     extbase {
         controllerName = Pagelist
         controllerActionName = pagelist
@@ -145,11 +153,6 @@ tt_content.pagelist_sub {
                 markers.pageuid.field = uid
                 as = categories
             }
-        }
-        paginate {
-          isActive.field = tx_pagelist_paginate
-          itemsPerPage.field = tx_pagelist_paginateitems
-          parameterIndex = tx_pagelist_pagelist
         }
     }
 }
