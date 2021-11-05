@@ -11,7 +11,7 @@ Adds new content elements and page types to create different lists.
 
 ## System requirements
 
-- TYPO3 8.7 LTS, from 2.2.0 9.5 & 10.4 LTS, from 2.5.1 11.5LTS
+- TYPO3 8.7 LTS, from 2.2.0 9.5 & 10.4 LTS, from 2.5.1 11.5 LTS
 - fluid_styled_content
 
 ## Conflicts with
@@ -26,7 +26,7 @@ Adds new content elements and page types to create different lists.
 - List of selected pages
 - Category filtering
 - Set start from, limit and sort options
-- Pagination with items per page
+- Pagination with items per page and unique to content element
 - Dedicated page types for news, events and products
 - Connection to ext:[Personnel][863416d1] for authors and contact persons
 - ext:Personnel fields can be enabled/disabled per page type
@@ -51,11 +51,9 @@ Add as any other content element. Select desired pages, template and options in 
 ### Add custom template
 
 **PageTS**
-
-Add new template number '2' and name it:
 ```typoscript
 TCEFORM.tt_content.tx_pagelist_template.addItems {
-  2 = My New Template
+  minilist = Mini list
 }
 ```
 
@@ -72,10 +70,10 @@ pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
 
 Add new section wheres IF condition determines template nr '2' to: _Resources/Private/Templates/Pagelist.html_
 ```xml
-<f:if condition="{data.tx_pagelist_template} == 2">
+<f:if condition="{data.tx_pagelist_template} == minilist">
   <div class="pagelist custom template-{data.tx_pagelist_template}">
     <f:for each="{pagelist}" as="page" iteration="iterator">
-      <f:render partial="MyCustomPartial" arguments="{_all}" />
+      <f:render partial="Minilist" arguments="{_all}" />
     </f:for>
   </div>
 </f:if>
