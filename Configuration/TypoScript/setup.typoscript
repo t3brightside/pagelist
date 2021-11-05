@@ -103,8 +103,6 @@ tt_content.pagelist_sub {
         pagination {
           isActive.field = tx_pagelist_paginate
           itemsPerPage.field = tx_pagelist_paginateitems
-          paginationPageUrlKey = paginationPage
-          paginationElementIdUrlKey = paginationElementId
         }
         table = pages
         selectFields = pages.*
@@ -181,8 +179,6 @@ tt_content.pagelist_selected {
             pagination {
               isActive.field = tx_pagelist_paginate
               itemsPerPage.field = tx_pagelist_paginateitems
-              paginationPageUrlKey = paginationPage
-              paginationElementIdUrlKey = paginationElementId
             }
             special = list
             special.value.field = pages
