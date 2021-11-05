@@ -16,7 +16,8 @@
   ],
   "require": {
     "typo3/cms-core": "^11.5",
-    "typo3/cms-fluid-styled-content": "*"
+    "typo3/cms-fluid-styled-content": "*",
+    "t3btrightside/paginatedprocessors": "*",
   },
   "conflict": {
     "t3g/blog": ">=0.0.1"

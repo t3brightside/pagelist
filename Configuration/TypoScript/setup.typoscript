@@ -60,14 +60,7 @@ tt_content.defaultpagelist {
         pagelistPaginationLinks = TEXT
         pagelistPaginationLinks.value = {$pagelist.paginationLinks}
     }
-    paginator {
-      isActive.field = tx_pagelist_paginate
-      isActiveDefault = 0
-      itemsPerPage.field = tx_pagelist_paginateitems
-      itemsPerPageDefault = 6
-      pageUrlKey = pagelistPage
-      elementUrlKey = pagelistElement
-    }
+
     extbase {
         controllerName = Pagelist
         controllerActionName = pagelist
@@ -105,8 +98,14 @@ tt_content.defaultpagelist {
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
     templateName = Pagelist
-    dataProcessing.10 = Brightside\Pagelist\DataProcessing\PagelistDatabaseQueryProcessor
+    dataProcessing.10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedDatabaseQueryProcessor
     dataProcessing.10 {
+        pagination {
+          isActive.field = tx_pagelist_paginate
+          itemsPerPage.field = tx_pagelist_paginateitems
+          paginationPageUrlKey = paginationPage
+          paginationElementIdUrlKey = paginationElementId
+        }
         table = pages
         selectFields = pages.*
         pidInList.field = pages
@@ -177,8 +176,14 @@ tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
     templateName = Pagelist
     dataProcessing {
-        10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+        10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedMenuProcessor
         10 {
+            pagination {
+              isActive.field = tx_pagelist_paginate
+              itemsPerPage.field = tx_pagelist_paginateitems
+              paginationPageUrlKey = paginationPage
+              paginationElementIdUrlKey = paginationElementId
+            }
             special = list
             special.value.field = pages
             # alternativeSortingField.field = tx_pagelist_orderby

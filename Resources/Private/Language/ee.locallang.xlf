@@ -3,14 +3,8 @@
 	<file source-language="en" target-language="ee" datatype="plaintext" original="messages" date="2021-11-04T17:54:12Z" product-name="femanager">
 		<header/>
 		<body>
-			<trans-unit id="pagination.previous">
-				<target state="translated">Eelmine</target>
-			</trans-unit>
-			<trans-unit id="pagination.next">
-				<target state="translated">Järgmine</target>
-			</trans-unit>
 			<trans-unit id="page.readmore">
-				<target state="translated">Weiterlesen</target>
+				<target state="translated">Loe edasi</target>
 			</trans-unit>
 		</body>
 	</file>

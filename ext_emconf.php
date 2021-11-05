@@ -5,9 +5,7 @@ $EM_CONF[$_EXTKEY] = [
 	'category' => 'fe',
 	'version' => '2.5.1',
 	'state' => 'stable',
-	'uploadfolder' => false,
-	'createDirs' => '',
-	'clearcacheonload' => true,
+	'clearCacheOnLoad' => true,
 	'author' => 'Tanel Põld',
 	'author_email' => 'tanel@brightside.ee',
 	'author_company' => 'Brightside OÜ / t3brightside.com',
@@ -15,6 +13,7 @@ $EM_CONF[$_EXTKEY] = [
 		'depends' => [
 			'typo3' => '11.5.0 - 11.5.99',
 			'fluid_styled_content' => '',
+			'paginatedprocessors' => '',
 		],
 		'conflicts' => [
 			'blog' => '',
@@ -22,5 +21,8 @@ $EM_CONF[$_EXTKEY] = [
     'suggests' => [
 			'personnel' => '',
 		],
+		'autoload' => [
+        'classmap' => ['Classes'],
+    ],
 	],
 ];
