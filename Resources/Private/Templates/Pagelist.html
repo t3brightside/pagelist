@@ -11,7 +11,7 @@
 				<f:for each="{pagelist}" as="page" iteration="iterator">
 					<f:render partial="Card" arguments="{_all}" />
 				</f:for>
-				<f:if condition="{data.tx_pagelist_paginate} == 1">
+				<f:if condition="{pagination.numberOfPages} > 1">
 					<f:render partial="Pagination" arguments="{_all}" />
 				</f:if>
 			</div>
@@ -45,7 +45,7 @@
 						</f:then>
 					</f:if>
 				</f:for>
-				<f:if condition="{data.tx_pagelist_paginate} == 1">
+				<f:if condition="{pagination.numberOfPages} > 1">
 					<f:render partial="Pagination" arguments="{_all}" />
 				</f:if>
 			</div>
