@@ -4,9 +4,9 @@ CREATE TABLE tt_content (
 	tx_pagelist_orderby tinytext,
 	tx_pagelist_disableimages int(1) DEFAULT '0' NOT NULL,
 	tx_pagelist_disableabstract int(1) DEFAULT '0' NOT NULL,
-	tx_pagelist_startfrom int(4),
-	tx_pagelist_limit int(4),
-	tx_pagelist_recursive int(4) DEFAULT '0' NOT NULL,
+	tx_pagelist_startfrom varchar(6),
+	tx_pagelist_limit varchar(6),
+	tx_pagelist_recursive int(1) DEFAULT '0' NOT NULL,
 );
 
 CREATE TABLE pages (
