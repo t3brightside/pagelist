@@ -1,9 +1,9 @@
 <?php
 $EM_CONF[$_EXTKEY] = [
 	'title' => 'Pagelist',
-	'description' => 'Create page lists, teasers and add page types for news, events and products.',
+	'description' => 'Create page lists/teasers and add page types for news, events, products and vacancies.',
 	'category' => 'fe',
-	'version' => '2.5.1',
+	'version' => '2.6.0',
 	'state' => 'stable',
 	'clearCacheOnLoad' => true,
 	'author' => 'Tanel Põld',

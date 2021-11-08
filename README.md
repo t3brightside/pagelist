@@ -4,22 +4,22 @@
 [![Downloads](https://poser.pugx.org/t3brightside/pagelist/downloads)](https://packagist.org/packages/t3brightside/pagelist)
 [![Brightside](https://img.shields.io/badge/by-t3brightside.com-orange.svg?style=flat)](https://t3brightside.com)
 
-**TYPO3 CMS extension to list pages, news, events, products etc.**<br />
-Adds new content elements and page types to create different lists.
-
-**[Front-end Demo](https://microtemplate.t3brightside.com/)**
+**TYPO3 CMS extension to create page lists and add custom page types.**
+Page lists from selected page records or subpages.
+**[Demo](https://microtemplate.t3brightside.com/)**
 
 ### Features
-- Custom page types for articles, events and products
+- Custom page types for articles, events, products and vacancies
 - List of sub pages
 - List of selected pages
 - Exclude pages from lists
 - Category filtering
 - Set start from, limit and sort options
-- Pagination with items per page and unique to content element with ext:[paginatedprocessors](https://github.com/t3brightside/paginatedprocessors)
-- Connection to ext:[personnel](https://github.com/t3brightside/personnel) for authors and contact persons
-- ext:personnel fields can be enabled/disabled per page type
+- Pagination with items per page and unique to the content element with [paginatedprocessors](https://github.com/t3brightside/paginatedprocessors)
+- Connection to [personnel](https://github.com/t3brightside/personnel) for authors and contact persons
+- Personnel fields can be enabled/disabled per page type
 - Easy to add custom templates
+- Base templates and CSS for cards and lists
 
 ### System requirements
 - TYPO3 8.7 LTS – 11.5 LTS
@@ -31,32 +31,26 @@ Adds new content elements and page types to create different lists.
 
 ### Installation
 
- - TER: **pagelist**, or **composer req t3brightside/pagelist**
+ - **composer req t3brightside/pagelist** or from TYPO3 extension repository **[pagelist](https://extensions.typo3.org/extension/pagelist/)**
  - Include static template
- - Enable page types for news, events, and products from extension configuration
- - Recommended for author records **t3brightside/personnel**
+ - Enable page types for news, events, and products in extension configuration
+ - Recommended for author records **[t3brightside/personnel](https://extensions.typo3.org/extension/personnel/)**
 
 ### Usage
 Add as any other content element. Select desired pages, template and options in content element settings.
 
-### Admin
-
 #### Add custom template
 **TypoScript**
-<br />Change constants:
-```typoscript
-pagelist.styles = EXT:pagelist/Resources/Public/Styles/pagelist.css
-pagelist.templateRootPaths = EXT:pagelist/Resources/Private/Templates/
-pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
-```
+Check the constant editor.
+
 **PageTS**
 ```typoscript
 TCEFORM.tt_content.tx_pagelist_template.addItems {
   minilist = Mini list
 }
 ```
-**Fluid**<br />
-Add new section with IF condition to determine template name 'minilist' intoto: _Resources/Private/Templates/Pagelist.html_
+**Fluid**
+Add new section with IF condition to determine template name 'minilist' to: _Resources/Private/Templates/Pagelist.html_
 ```xml
 <f:if condition="{data.tx_pagelist_template} == minilist">
   <div class="pagelist custom template-{data.tx_pagelist_template}">
@@ -68,11 +62,11 @@ Add new section with IF condition to determine template name 'minilist' intoto: 
 ```
 Create new partial: _Resources/Private/Partials/Minilist.html_
 
-**Route enhancers for pagination**<br />
-for TYPO3 11.5 and above check [t3brightside/paginatedprocessors](https://github.com/t3brightside/paginatedprocessors#readme)
+#### routeEnhancers
+For the pagination routing check [t3brightside/paginatedprocessors](https://github.com/t3brightside/paginatedprocessors#readme)
 
 ```json
-  /* v10.4 and below */
+  /* only TYPO3 10.4 and below */
   routeEnhancers:
     Pagelist:
       type: Plugin
@@ -93,5 +87,5 @@ Doesn't fully comply with the language modes. Does not respect '[FE][hidePagesIf
 -  [Packagist](https://packagist.org/packages/t3brightside/pagelist)
 -  [TER](https://extensions.typo3.org/extension/pagelist/)
 
-### Development and maintenance
+### Development & maintenance
 [Brightside OÜ – TYPO3 development and hosting specialised web agency](https://t3brightside.com/)
