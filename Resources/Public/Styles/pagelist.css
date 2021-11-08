@@ -186,38 +186,6 @@
   font-size: 0.85em;
 }
 
-/* pagination */
-ul.pagination {
-  float: left;
-  clear: both;
-  width: 100%;
-  list-style: none;
-  margin: 2em 0;
-}
-
-ul.pagination>li {
-  display: inline-block;
-  margin: 0;
-}
-ul.pagination>li.previous>a::after{
-  content: '←';
-}
-ul.pagination>li.next>a::after{
-  content: '→';
-}
-/* hide if only one page is present in pagination */
-ul.pagination li:first-child:nth-last-child(1) {
-  display: none;
-}
-
-ul.pagination>li>a, ul.pagination>li.current {
-  display: inline-block;
-  line-height: 1em;
-  padding: 0.5em;
-  background: #eee;
-  margin-right: 0.2em;
-}
-
 /* Less columns for smaller width, breakpoints controlled in TS constants*/
 .pagelist.break-two .card {
   width: 47.5%

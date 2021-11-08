@@ -43,24 +43,7 @@ tt_content.defaultpagelist {
         cardImageHeight = {$pagelist.cardImageHeight}
         listImageWidth = {$pagelist.listImageWidth}
         listImageHeight = {$pagelist.listImageHeight}
-        link {
-            skipControllerAndAction = 1
-        }
     }
-    variables {
-        pagelistPaginationItems = COA
-        pagelistPaginationItems {
-            5 = TEXT
-            5.value = {$pagelist.paginationItems}
-            5.stdWrap.if.isFalse.field = tx_pagelist_paginateitems
-            10 = TEXT
-            10.value.field = tx_pagelist_paginateitems
-            10.stdWrap.if.isTrue.field = tx_pagelist_paginateitems
-        }
-        pagelistPaginationLinks = TEXT
-        pagelistPaginationLinks.value = {$pagelist.paginationLinks}
-    }
-
     extbase {
         controllerName = Pagelist
         controllerActionName = pagelist
@@ -103,6 +86,7 @@ tt_content.pagelist_sub {
         pagination {
           isActive.field = tx_pagelist_paginate
           itemsPerPage.field = tx_pagelist_paginateitems
+          uniqueId.field = uid
         }
         table = pages
         selectFields = pages.*
@@ -179,6 +163,7 @@ tt_content.pagelist_selected {
             pagination {
               isActive.field = tx_pagelist_paginate
               itemsPerPage.field = tx_pagelist_paginateitems
+              uniqueId.field = uid
             }
             special = list
             special.value.field = pages
