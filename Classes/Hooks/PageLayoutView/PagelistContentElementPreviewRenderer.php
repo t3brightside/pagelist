@@ -53,14 +53,11 @@ class PagelistContentElementPreviewRenderer implements PageLayoutViewDrawItemHoo
 			if ($row['tx_pagelist_disableabstract'] == 1) {
         		$itemContent .= '<li>' . $parentObject->linkEditContent('Introduction: disabled', $row) . '</li>';
 			}
-			if ($row['tx_pagelist_paginate'] == 1) {
+			if ($row['tx_paginatedprocessors_paginationenabled'] == 1) {
         		$itemContent .= '<li>' . $parentObject->linkEditContent('Pagination: enabled', $row) . '</li>';
 			}
-			if ($row['tx_pagelist_paginateitems'] > 1 && $row['tx_pagelist_paginate'] == 1) {
-				$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Items per page: ' . $row['tx_pagelist_paginateitems']), $row) . '</li>';
-			}
-			if ($row['tx_pagelist_paginateitems'] == 0 && $row['tx_pagelist_paginate'] == 1) {
-				$itemContent .= '<li>' . $parentObject->linkEditContent('Items per page: TypoScript', $row) . '</li>';
+			if ($row['tx_paginatedprocessors_itemsperpage'] && $row['tx_paginatedprocessors_paginationenabled'] == 1) {
+				$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Items per page: ' . $row['tx_paginatedprocessors_itemsperpage']), $row) . '</li>';
 			}
 			if ($row['tx_pagelist_authors'] > 0) {
 				$itemContent .= '<li>' . $parentObject->linkEditContent('Author filter: active', $row) . '</li>';

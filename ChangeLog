@@ -41,4 +41,5 @@
 	– Requires t3brightside/paginatedprocessors
 	– Removed pagination CSS and HTML, comes from paginatedprocessors
 	- routeEnhancers to be overlooked on updating see README.txt
-	– Locallang to XLF
+	– Uses tx_paginatedprocessors * fields for items per page and activation
+	- RouteEnhancers to be overlooked see README.txt
