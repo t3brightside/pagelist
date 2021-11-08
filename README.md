@@ -9,32 +9,25 @@ Adds new content elements and page types to create different lists.
 
 **[Front-end Demo](https://microtemplate.t3brightside.com/)**
 
-### System requirements
+### Features
+- Custom page types for articles, events and products
+- List of sub pages
+- List of selected pages
+- Exclude pages from lists
+- Category filtering
+- Set start from, limit and sort options
+- Pagination with items per page and unique to content element with ext:[paginatedprocessors](https://github.com/t3brightside/paginatedprocessors)
+- Connection to ext:[personnel](https://github.com/t3brightside/personnel) for authors and contact persons
+- ext:personnel fields can be enabled/disabled per page type
+- Easy to add custom templates
 
-- TYPO3 8.7 LTS, from 2.2.0 9.5 & 10.4 LTS, from 2.5.1 11.5 LTS
+### System requirements
+- TYPO3 8.7 LTS – 11.5 LTS
 - fluid_styled_content
 - paginatedprocessors
 
 ### Conflicts with
-
 - t3g/blog
-
-
-### Features
-
-- Custom page types for articles, events and products
-- List of sub pages
-- List of selected pages
-- Category filtering
-- Set start from, limit and sort options
-- Pagination with items per page and unique to content element
-- Dedicated page types for news, events and products
-- Connection to ext:[Personnel][863416d1] for authors and contact persons
-- ext:Personnel fields can be enabled/disabled per page type
-- Easy to add custom templates
-- Exclude pages from lists
-
-  [863416d1]: https://extensions.typo3.org/extension/personnel/ "ext:Personnel"
 
 ### Installation
 
@@ -44,13 +37,11 @@ Adds new content elements and page types to create different lists.
  - Recommended for author records **t3brightside/personnel**
 
 ### Usage
-
 Add as any other content element. Select desired pages, template and options in content element settings.
 
 ### Admin
 
 #### Add custom template
-
 **TypoScript**
 <br />Change constants:
 ```typoscript
@@ -98,18 +89,9 @@ for TYPO3 11.5 and above check [t3brightside/paginatedprocessors](https://github
 Doesn't fully comply with the language modes. Does not respect '[FE][hidePagesIfNotTranslatedByDefault] = true' as 'TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor' does not fully respect language modes while selecting pages yet.
 
 ### Sources
+-  [GitHub](https://github.com/t3brightside/pagelist)
+-  [Packagist](https://packagist.org/packages/t3brightside/pagelist)
+-  [TER](https://extensions.typo3.org/extension/pagelist/)
 
--  [GitHub][a47ab545]
--  [Packagist][40819ab1]
--  [TER][15e0f507]
-
-  [a47ab545]: https://github.com/t3brightside/pagelist "GitHub"
-  [40819ab1]: https://packagist.org/packages/t3brightside/pagelist "Packagist"
-  [15e0f507]: https://extensions.typo3.org/extension/pagelist/ "Typo3 Extension Repository"
-
-Development and maintenance
----------------------------
-
-[Brightside OÜ – TYPO3 development and hosting specialised web agency][ab26eed2]
-
-  [ab26eed2]: https://t3brightside.com/ "TYPO3 development and hosting specialised web agency"
+### Development and maintenance
+[Brightside OÜ – TYPO3 development and hosting specialised web agency](https://t3brightside.com/)
