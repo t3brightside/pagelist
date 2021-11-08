@@ -36,6 +36,7 @@ Page lists from selected page records or subpages.
 
  - **composer req t3brightside/pagelist** or from TYPO3 extension repository **[pagelist](https://extensions.typo3.org/extension/pagelist/)**
  - Include static template
+ - Include static template for Paginatedprocessors
  - Enable page types for news, events, and products in extension configuration
  - Recommended for author records **[t3brightside/personnel](https://extensions.typo3.org/extension/personnel/)**
 
