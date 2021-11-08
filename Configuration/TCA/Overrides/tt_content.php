@@ -197,7 +197,6 @@
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',
-                'enableMultiSelectFilterTextfield' => true,
                 'foreign_table' => 'tx_personnel_domain_model_person',
                 'foreign_table_where' => 'AND tx_personnel_domain_model_person.sys_language_uid IN (-1,0)',
                 'maxitems' => '1',
