@@ -8,6 +8,9 @@
 Page lists from selected page records or subpages.
 **[Demo](https://microtemplate.t3brightside.com/)**
 
+### Breaking Changes
+- **v2.6** see the [ChangeLog](ChangeLog)
+
 ### Features
 - Custom page types for articles, events, products and vacancies
 - List of sub pages
