@@ -86,7 +86,7 @@ tt_content.pagelist_sub {
         pagination {
           isActive.field = tx_paginatedprocessors_paginationenabled
           itemsPerPage.field = tx_paginatedprocessors_itemsperpage
-          uniqueId = pagelist
+          uniqueId.field = uid
         }
         table = pages
         selectFields = pages.*
