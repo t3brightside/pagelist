@@ -84,8 +84,8 @@ tt_content.pagelist_sub {
     dataProcessing.10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedDatabaseQueryProcessor
     dataProcessing.10 {
         pagination {
-          isActive.field = tx_pagelist_paginate
-          itemsPerPage.field = tx_pagelist_paginateitems
+          isActive.field = tx_paginatedprocessors_paginationenabled
+          itemsPerPage.field = tx_paginatedprocessors_itemsperpage
           uniqueId.field = uid
         }
         table = pages
@@ -161,8 +161,8 @@ tt_content.pagelist_selected {
         10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedMenuProcessor
         10 {
             pagination {
-              isActive.field = tx_pagelist_paginate
-              itemsPerPage.field = tx_pagelist_paginateitems
+              isActive.field = tx_paginatedprocessors_paginationenabled
+              itemsPerPage.field = tx_paginatedprocessors_itemsperpage
               uniqueId.field = uid
             }
             special = list
