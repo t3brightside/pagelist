@@ -12,8 +12,8 @@ $EM_CONF[$_EXTKEY] = [
 	'constraints' => [
 		'depends' => [
 			'typo3' => '11.5.0 - 11.5.99',
-			'fluid_styled_content' => '',
-			'paginatedprocessors' => '',
+			'fluid_styled_content' => '11.5.0 - 11.5.99',
+			'paginatedprocessors' => '1.0.0 - 1.0.99',
 		],
 		'conflicts' => [
 			'blog' => '',
