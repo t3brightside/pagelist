@@ -36,10 +36,13 @@
 	- Add recursive select for pagelist from sub pages
 	- Remove jQuery breakpoint option, vanilla only now
 	– Category filter to work with only_full_group_by turned on
-* 3.0.0 (NOTE! POSSIBLE BREAKING CHANGES)
-  – TYPO3 11.5 LTS support only
-	– Requires t3brightside/paginatedprocessors
-	– Removed pagination CSS and HTML, comes from paginatedprocessors
-	- routeEnhancers to be overlooked on updating see README.txt
-	– Uses tx_paginatedprocessors * fields for items per page and activation
-	- RouteEnhancers to be overlooked see README.txt
+* 3.0.0
+  – TYPO3 11.5 support only
+	– BREAKING CHANGES
+		– No more pagination widget but requires t3brightside/paginatedprocessors
+		– Removed paginator CSS, default can be activated from paginatedprocessors
+		– Changes in pagination XML in Templates/Pagelist.html
+		- RouteEnhancers for pagination to be overlooked see README.txt
+		– SQL to migrate yourself:
+			– tx_pagelist_pagination to tx_paginatedprocessors_paginationenabled
+			– tx_pagelist_paginateitems to tx_paginatedprocessors_itemsperpage

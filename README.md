@@ -1,5 +1,5 @@
 # Pagelist
-[![Software License](https://img.shields.io/badge/license-GPLv2-brightgreen.svg?style=flat)](LICENSE.txt)
+[![License](https://poser.pugx.org/t3brightside/pagelist/license)](LICENSE.txt)
 [![Packagist](https://img.shields.io/packagist/v/t3brightside/pagelist.svg?style=flat)](https://packagist.org/packages/t3brightside/pagelist)
 [![Downloads](https://poser.pugx.org/t3brightside/pagelist/downloads)](https://packagist.org/packages/t3brightside/pagelist)
 [![Brightside](https://img.shields.io/badge/by-t3brightside.com-orange.svg?style=flat)](https://t3brightside.com)
@@ -8,10 +8,10 @@
 Page lists from selected page records or subpages.
 **[Demo](https://microtemplate.t3brightside.com/)**
 
-### Breaking Changes
+## Breaking Changes
 - **v3.0.0** see the [ChangeLog](ChangeLog)
 
-### Features
+## Features
 - Custom page types for articles, events, products and vacancies
 - List of sub pages
 - List of selected pages
@@ -24,26 +24,25 @@ Page lists from selected page records or subpages.
 - Easy to add custom templates
 - Base templates and CSS for cards and lists
 
-### System requirements
+## System requirements
 - TYPO3 8.7 LTS – 11.5 LTS
 - fluid_styled_content
 - paginatedprocessors
 
-### Conflicts with
+## Conflicts with
 - t3g/blog
 
-### Installation
-
+## Installation
  - **composer req t3brightside/pagelist** or from TYPO3 extension repository **[pagelist](https://extensions.typo3.org/extension/pagelist/)**
  - Include static template
  - Include static template for Paginatedprocessors
  - Enable page types for news, events, and products in extension configuration
  - Recommended for author records **[t3brightside/personnel](https://extensions.typo3.org/extension/personnel/)**
 
-### Usage
+## Usage
 Add as any other content element. Select desired pages, template and options in content element settings.
 
-#### Add custom template
+### Add custom template
 **TypoScript**
 Check the constant editor.
 
@@ -66,7 +65,7 @@ Add new section with IF condition to determine template name 'minilist' to: _Res
 ```
 Create new partial: _Resources/Private/Partials/Minilist.html_
 
-#### routeEnhancers
+### routeEnhancers
 For the pagination routing check [t3brightside/paginatedprocessors](https://github.com/t3brightside/paginatedprocessors#readme)
 
 ```json
@@ -83,13 +82,13 @@ For the pagination routing check [t3brightside/paginatedprocessors](https://gith
           end: '999'
 ```
 
-### Known issues
+## Known issues
 Doesn't fully comply with the language modes. Does not respect '[FE][hidePagesIfNotTranslatedByDefault] = true' as 'TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor' does not fully respect language modes while selecting pages yet.
 
-### Sources
+## Sources
 -  [GitHub](https://github.com/t3brightside/pagelist)
 -  [Packagist](https://packagist.org/packages/t3brightside/pagelist)
 -  [TER](https://extensions.typo3.org/extension/pagelist/)
 
-### Development & maintenance
+## Development & maintenance
 [Brightside OÜ – TYPO3 development and hosting specialised web agency](https://t3brightside.com/)
