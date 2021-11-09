@@ -2,15 +2,13 @@
   "name": "t3brightside/pagelist",
   "description": "TYPO3 CMS extension to create page lists. comes with special page types for articles, events and products.",
   "type": "typo3-cms-extension",
-  "version": "3.0.0",
-  "keywords": ["TYPO3", "extension", "list", "teaser", "pageteaser"],
-  "homepage": "https://github.com/t3brightside/pagelist/",
+  "keywords": ["TYPO3", "extension", "teaser", "pageteaser", "news", "events", "vacancies", "products"],
   "license": "GPL-2.0-or-later",
+  "homepage": "https://t3brightside.com",
   "authors": [
       {
           "name": "Tanel Põld",
           "role": "Developer",
-          "email": "info@t3brightside.com",
           "homepage": "https://t3brightside.com"
       }
   ],
