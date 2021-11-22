@@ -34,7 +34,7 @@
     $tempColumns = array(
       'tx_pagelist_recursive' => array(
         'exclude' => 1,
-        'label'   => 'Recursive level',
+        'label'   => 'Recursive Level',
         'config'  => array(
           'type'     => 'select',
           'renderType' => 'selectSingle',
@@ -93,7 +93,7 @@
       ),
       'tx_pagelist_startfrom' => [
         'exclude' => 1,
-        'label' => 'Start from item',
+        'label' => 'Start from Page',
         'config' => [
           'type' => 'input',
           'eval' => 'num',
@@ -105,7 +105,7 @@
       ],
       'tx_pagelist_limit' => [
         'exclude' => 1,
-        'label' => 'Items shown',
+        'label' => 'Pages Shown',
         'config' => [
           'type' => 'input',
           'eval' => 'num',
@@ -115,21 +115,6 @@
           ],
         ],
       ],
-      'tx_paginatedprocessors_itemsperpage' => [
-        'exclude' => 1,
-        'label' => 'Pagination items per page',
-        'config' => [
-          'type' => 'input',
-          'eval' => 'num',
-          'size' => '1',
-          'behaviour' => [
-            'allowLanguageSynchronization' => true,
-          ],
-        ],
-      ],
-    );
-
-    $tempColumnsChecks = array(
       'tx_pagelist_disableimages' => [
         'exclude' => 1,
         'label' => 'Images',
@@ -166,28 +151,10 @@
             ],
         ]
       ],
-      'tx_paginatedprocessors_paginationenabled' => [
-        'exclude' => 1,
-        'label' => 'Pagination',
-        'config' => [
-            'type' => 'check',
-            'renderType' => 'checkboxToggle',
-            'items' => [
-                [
-                    0 => '',
-                    1 => '',
-                ]
-            ],
-            'behaviour' => [
-              'allowLanguageSynchronization' => true,
-            ],
-        ]
-      ],
     );
 
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumnsChecks);
 
     if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
       $tempColumnsAuthors = array(
@@ -209,80 +176,53 @@
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumnsAuthors);
     }
 
-/* Define back end forms for content types */
-    $GLOBALS['TCA']['tt_content']['types']['pagelist_sub'] = array(
-      'showitem' => '
-	      --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.general;general,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.headers;headers,
-          pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
-          tx_pagelist_recursive,
-          --palette--;;pagelistSettingsSub,
-          selected_categories;Category Filter,
-          tx_pagelist_authors;Author Filter,
-        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.appearanceLinks;appearanceLinks,
-        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.accessibility,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.menu_accessibility;menu_accessibility,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-          --palette--;;language,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-          --palette--;;hidden,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
-          categories,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-          rowDescription,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-        --div--;LLL:EXT:gridelements/Resources/Private/Language/locallang_db.xlf:gridElements, tx_gridelements_container, tx_gridelements_columns
-      '
+/* Define content type for Pagelist: subpages */
+    $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = $GLOBALS['TCA']['tt_content']['types']['header']['showitem'];
+    $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = str_replace(
+        ';headers,',
+        ';headers,
+        --palette--;Pages;pagelist_sub_data,
+        --palette--;Layout;pagelist_layout,
+        --palette--;Filter;pagelist_filtering,
+        --palette--;Pagination;paginatedprocessors,',
+        $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem']
     );
-    $GLOBALS['TCA']['tt_content']['palettes']['pagelistSettingsSub']['showitem'] = '
-        tx_pagelist_template,
+
+/* Define content type for Pagelist: selected */
+    $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = $GLOBALS['TCA']['tt_content']['types']['header']['showitem'];
+    $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = str_replace(
+        ';headers,',
+        ';headers,
+        pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
+        --palette--;Layout;pagelist_selected_layout,
+        --palette--;Pagination;paginatedprocessors,',
+        $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem']
+    );
+
+/* Define palettes for content types */
+    $GLOBALS['TCA']['tt_content']['palettes']['pagelist_sub_data']['showitem'] = '
+        pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
+        --linebreak--,
+        tx_pagelist_recursive,
         tx_pagelist_orderby,
         tx_pagelist_startfrom,
         tx_pagelist_limit,
-        --linebreak--,
-        tx_pagelist_disableimages,
-        tx_pagelist_disableabstract,
-        tx_paginatedprocessors_paginationenabled,
-        tx_paginatedprocessors_itemsperpage,
   	';
 
-    $GLOBALS['TCA']['tt_content']['types']['pagelist_selected'] = array(
-      'showitem' => '
-	      --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.general;general,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.headers;headers,
-          pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
-          --palette--;;pagelistSettingsSelected,
-        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.appearanceLinks;appearanceLinks,
-        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.accessibility,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.menu_accessibility;menu_accessibility,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-          --palette--;;language,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-          --palette--;;hidden,
-          --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
-          categories,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-          rowDescription,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-        --div--;LLL:EXT:gridelements/Resources/Private/Language/locallang_db.xlf:gridElements, tx_gridelements_container, tx_gridelements_columns
-      '
-    );
-    $GLOBALS['TCA']['tt_content']['palettes']['pagelistSettingsSelected']['showitem'] = '
+    $GLOBALS['TCA']['tt_content']['palettes']['pagelist_layout']['showitem'] = '
+        tx_pagelist_template,
+        tx_pagelist_disableimages,
+        tx_pagelist_disableabstract,
+  	';
+
+    $GLOBALS['TCA']['tt_content']['palettes']['pagelist_filtering']['showitem'] = '
+      selected_categories;by Category,
+      tx_pagelist_authors;by Author,
+  	';
+
+    $GLOBALS['TCA']['tt_content']['palettes']['pagelist_selected_layout']['showitem'] = '
   		tx_pagelist_template,
-    //  tx_pagelist_orderby,
-  	//  tx_pagelist_startfrom,
-  	//	tx_pagelist_limit,
       tx_pagelist_disableimages,
       tx_pagelist_disableabstract,
-      tx_paginatedprocessors_paginationenabled,
-      tx_paginatedprocessors_itemsperpage,
   	';
 });
