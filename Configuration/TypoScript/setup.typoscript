@@ -3,32 +3,32 @@ page.includeCSS.pagelist = {$pagelist.styles}
 # Add breakpoint classes by the width of pagelist cards container
 
 ["{$pagelist.enableBreakpoints}" == "1"]
-  page.jsFooterInline {
-    109823122 = TEXT
-    109823122.value (
-      function pagelistDetectWidth(a){
-      	var container = document.getElementsByClassName(a);
-        for (var i = 0; i < container.length; ++i) {
-          var item = container[i];
-          var width = container[i].clientWidth;
-          if (width < {$pagelist.cardsBreakTwo}){
-            item.classList.add('break-two');
-          } else {
-            item.classList.remove('break-two');
-          }
-          if (width < {$pagelist.cardsBreakOne}) {
-            item.classList.add('break-one');
-          } else {
-            item.classList.remove('break-one');
-          }
-        }
-      }
-      pagelistDetectWidth('pagelist cards');
-      window.addEventListener("resize", function(){
-        pagelistDetectWidth('pagelist cards');
-      });
-    )
-  }
+    page.jsFooterInline {
+        109823122 = TEXT
+        109823122.value (
+            function pagelistDetectWidth(a){
+                var container = document.getElementsByClassName(a);
+                for (var i = 0; i < container.length; ++i) {
+                    var item = container[i];
+                    var width = container[i].clientWidth;
+                    if (width < {$pagelist.cardsBreakTwo}){
+                        item.classList.add('break-two');
+                    } else {
+                        item.classList.remove('break-two');
+                    }
+                    if (width < {$pagelist.cardsBreakOne}) {
+                        item.classList.add('break-one');
+                    } else {
+                        item.classList.remove('break-one');
+                    }
+                }
+            }
+            pagelistDetectWidth('pagelist cards');
+            window.addEventListener("resize", function(){
+                pagelistDetectWidth('pagelist cards');
+            });
+        )
+    }
 [END]
 
 
@@ -84,9 +84,13 @@ tt_content.pagelist_sub {
     dataProcessing.10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedDatabaseQueryProcessor
     dataProcessing.10 {
         pagination {
-          isActive.field = tx_paginatedprocessors_paginationenabled
-          itemsPerPage.field = tx_paginatedprocessors_itemsperpage
-          uniqueId.field = uid
+            isActive.field = tx_paginatedprocessors_paginationenabled
+            uniqueId.field = uid
+            uniqueId.override.field = tx_paginatedprocessors_urlsegment
+            itemsPerPage = 10
+            itemsPerPage.override.field = tx_paginatedprocessors_itemsperpage
+            pageLinksShown = 5
+            pageLinksShown.override.field = tx_paginatedprocessors_pagelinksshown
         }
         table = pages
         selectFields = pages.*
@@ -161,9 +165,13 @@ tt_content.pagelist_selected {
         10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedMenuProcessor
         10 {
             pagination {
-              isActive.field = tx_paginatedprocessors_paginationenabled
-              itemsPerPage.field = tx_paginatedprocessors_itemsperpage
-              uniqueId.field = uid
+                isActive.field = tx_paginatedprocessors_paginationenabled
+                uniqueId.field = uid
+                uniqueId.override.field = tx_paginatedprocessors_urlsegment
+                itemsPerPage = 10
+                itemsPerPage.override.field = tx_paginatedprocessors_itemsperpage
+                pageLinksShown = 5
+                pageLinksShown.override.field = tx_paginatedprocessors_pagelinksshown
             }
             special = list
             special.value.field = pages
