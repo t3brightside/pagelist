@@ -37,7 +37,7 @@
 	- Remove jQuery breakpoint option, vanilla only now
 	– Category filter to work with only_full_group_by turned on
 * 3.0.0
-  – TYPO3 11.5 support only
+	– TYPO3 11.5 support only
 	– BREAKING CHANGES
 		– No more pagination widget but requires t3brightside/paginatedprocessors
 		– Removed paginator CSS, default can be activated from paginatedprocessors
@@ -46,3 +46,7 @@
 		– SQL to migrate yourself:
 			– tx_pagelist_pagination to tx_paginatedprocessors_paginationenabled
 			– tx_pagelist_paginateitems to tx_paginatedprocessors_itemsperpage
+* 3.1.0
+	- Add URL segment field to pagination settings (check your TS template if customised)
+	- Code clean up
+	- Option to disable pagination form extension configuration
