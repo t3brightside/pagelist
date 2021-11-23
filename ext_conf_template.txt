@@ -14,3 +14,5 @@ pagelistEnableEventPersonnel = 0
 pagelistEnableProductPersonnel = 0
 # cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable ext Personnel contact person field for Vacancies
 pagelistEnableVacancyPersonnel = 0
+# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Pagination
+pagelistEnablePagination = 1
