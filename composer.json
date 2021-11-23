@@ -1,36 +1,34 @@
 {
-  "name": "t3brightside/pagelist",
-  "description": "TYPO3 CMS extension to create page lists. comes with special page types for articles, events and products.",
-  "type": "typo3-cms-extension",
-  "keywords": ["TYPO3", "extension", "teaser", "pageteaser", "news", "events", "vacancies", "products"],
-  "license": "GPL-2.0-or-later",
-  "homepage": "https://t3brightside.com",
-  "authors": [
-      {
-          "name": "Tanel Põld",
-          "role": "Developer",
-          "homepage": "https://t3brightside.com"
-      }
-  ],
-  "require": {
-    "typo3/cms-core": "^11.5",
-    "typo3/cms-fluid-styled-content": "^11.5",
-    "t3brightside/paginatedprocessors": "^1.2"
-  },
-  "conflict": {
-    "t3g/blog": ">=0.0.1"
-  },
-  "suggest": {
-    "t3brightside/personnel": "Contact lists with vCard support, and author records for Pagelist"
-  },
-  "autoload": {
-    "psr-4": {
-      "Brightside\\Pagelist\\": "Classes"
-    }
-  },
-  "extra": {
-    "typo3/cms": {
-      "extension-key": "pagelist"
-    }
-  }
+	"name": "t3brightside/pagelist",
+	"description": "TYPO3 CMS extension to create page lists. comes with special page types for articles, events and products.",
+	"type": "typo3-cms-extension",
+	"keywords": ["TYPO3", "extension", "teaser", "pageteaser", "news", "events", "vacancies", "products"],
+	"license": "GPL-2.0-or-later",
+	"homepage": "https://t3brightside.com",
+	"authors": [{
+		"name": "Tanel Põld",
+		"role": "Developer",
+		"homepage": "https://t3brightside.com"
+	}],
+	"require": {
+		"typo3/cms-core": "^11.5",
+		"typo3/cms-fluid-styled-content": "^11.5",
+		"t3brightside/paginatedprocessors": "^1.2"
+	},
+	"conflict": {
+		"t3g/blog": ">=0.0.1"
+	},
+	"suggest": {
+		"t3brightside/personnel": "Contact lists with vCard support, and author records for Pagelist"
+	},
+	"autoload": {
+		"psr-4": {
+			"Brightside\\Pagelist\\": "Classes"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "pagelist"
+		}
+	}
 }

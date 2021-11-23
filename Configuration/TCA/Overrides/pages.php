@@ -201,29 +201,29 @@ if ($pagelistConiguration['pagelistEnableProducts']) {
 }
 
 if ($pagelistConiguration['pagelistEnableEvents']) {
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-    'pages',
-    'doktype',
-    [
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+        'pages',
+        'doktype',
+        [
         'Event',
         $pagelistEvent,
         'apps-pagetree-event'
     ],
-    '1',
-    'after'
+        '1',
+        'after'
     );
 }
 if ($pagelistConiguration['pagelistEnableArticles']) {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-    'pages',
-    'doktype',
-    [
+        'pages',
+        'doktype',
+        [
         'Article',
         $pagelistArticle,
         'apps-pagetree-article'
     ],
-    '1',
-    'after'
+        '1',
+        'after'
     );
 }
 
@@ -245,13 +245,11 @@ if ($pagelistConiguration['pagelistEnableArticles']) {
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumns, 1);
 // \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempHidePageColumn, 1);
 
-if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
+if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')) {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumnsAuthors, 1);
 }
 
-/*
-    Add Pagelist image to all page types
-*/
+// Add Pagelist image to all page types
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
     '--palette--;Pagelist image;pagelistimages,',
@@ -259,9 +257,7 @@ if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
     'before:media'
 );
 
-/*
-    Add 'not in list' field to certian page types
-*/
+// Add 'not in list' field to certian page types
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
     'tx_pagelist_notinlist',
@@ -286,17 +282,17 @@ $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
     $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
 );
     $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
-    'pagelistimages,',
-    '',
-    $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
-);
+        'pagelistimages,',
+        '',
+        $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
+    );
 $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
     'personnelcontact,',
     ',',
     $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
 );
 
-if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableArticlePersonnel']) {
+if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration['pagelistEnableArticlePersonnel']) {
     $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
         title,
         --linebreak--,subtitle,
@@ -306,8 +302,7 @@ if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND
         --linebreak--,tx_personnel_authors,
         --linebreak--,tx_pagelist_images,
     ';
-}
-else {
+} else {
     $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
         title,
         --linebreak--,subtitle,
@@ -345,7 +340,7 @@ $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
     $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
 );
 
-if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableProductPersonnel']) {
+if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration['pagelistEnableProductPersonnel']) {
     $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
         title,
         --linebreak--,subtitle,
@@ -396,7 +391,7 @@ $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
     $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
 );
 
-if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableEventPersonnel']) {
+if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration['pagelistEnableEventPersonnel']) {
     $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
         title,
         --linebreak--,subtitle,
@@ -454,7 +449,7 @@ $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = str_replace(
     $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem']
 );
 
-if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND $pagelistConiguration['pagelistEnableVacancyPersonnel']) {
+if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration['pagelistEnableVacancyPersonnel']) {
     $GLOBALS['TCA']['pages']['palettes']['pagelistvacancygeneral']['showitem'] = '
         title,
         --linebreak--,subtitle,
@@ -465,7 +460,7 @@ if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel') AND
         --linebreak--,tx_personnel_authors,
         --linebreak--,tx_pagelist_images,
     ';
-    } else {
+} else {
     $GLOBALS['TCA']['pages']['palettes']['pagelistvacancygeneral']['showitem'] = '
         title,
         --linebreak--,subtitle,
