@@ -53,14 +53,20 @@ class PagelistContentElementPreviewRenderer implements PageLayoutViewDrawItemHoo
 			if ($row['tx_pagelist_disableabstract'] == 1) {
         		$itemContent .= '<li>' . $parentObject->linkEditContent('Introduction: disabled', $row) . '</li>';
 			}
-			if ($row['tx_paginatedprocessors_paginationenabled'] == 1) {
+			if ($row['tx_pagelist_authors'] > 0) {
+				$itemContent .= '<li>' . $parentObject->linkEditContent('Author filter: active', $row) . '</li>';
+			}
+            if ($row['tx_paginatedprocessors_paginationenabled'] == 1) {
         		$itemContent .= '<li>' . $parentObject->linkEditContent('Pagination: enabled', $row) . '</li>';
 			}
 			if ($row['tx_paginatedprocessors_itemsperpage'] && $row['tx_paginatedprocessors_paginationenabled'] == 1) {
 				$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Items per page: ' . $row['tx_paginatedprocessors_itemsperpage']), $row) . '</li>';
 			}
-			if ($row['tx_pagelist_authors'] > 0) {
-				$itemContent .= '<li>' . $parentObject->linkEditContent('Author filter: active', $row) . '</li>';
+            if ($row['tx_paginatedprocessors_pagelinksshown'] && $row['tx_paginatedprocessors_paginationenabled'] == 1) {
+				$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('Links shown: ' . $row['tx_paginatedprocessors_pagelinksshown']), $row) . '</li>';
+			}
+            if ($row['tx_paginatedprocessors_urlsegment'] && $row['tx_paginatedprocessors_paginationenabled'] == 1) {
+				$itemContent .= '<li>' . $parentObject->linkEditContent($parentObject->renderText('URL segment: ' . $row['tx_paginatedprocessors_urlsegment']), $row) . '</li>';
 			}
 			$itemContent .= '</ul>';
 			$drawItem = FALSE;
