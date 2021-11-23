@@ -1,13 +1,17 @@
 <?php
 defined('TYPO3_MODE') || die('Access denied.');
 
-/* add mime type icons */
+// Content type icons
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_sub'] = 'mimetypes-x-content-pagelist';
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_selected'] = 'mimetypes-x-content-pagelist';
 
-/*
-    Content element type dropdown
-*/
+// Get extension configuration
+$extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+    \TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
+);
+$extensionConfiguration = $extensionConfiguration->get('pagelist');
+
+// Content element type dropdown
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
     "tt_content",
     "CType",
@@ -32,9 +36,6 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_selected'] =
     'after'
 );
 
-/*
-    Content element fields
-*/
 $tempColumns = array(
     'tx_pagelist_recursive' => [
         'exclude' => 1,
@@ -160,9 +161,7 @@ $tempColumns = array(
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
 
-/*
-    Author field if Personell is installed
-*/
+// Author field if Personell is installed
 if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
     $tempColumnsAuthors = array(
         'tx_pagelist_authors' => [
@@ -183,40 +182,44 @@ if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumnsAuthors);
 }
 
-/*
-    Define content type for Pagelist: subpages
-*/
+// Define content type for Pagelist: subpages
 $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = $GLOBALS['TCA']['tt_content']['types']['header']['showitem'];
 $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = str_replace(
     ';headers,',
-    '
-        ;headers,
-        --palette--;Pages;pagelist_sub_data,
-        --palette--;Layout;pagelist_layout,
-        --palette--;Filter;pagelist_filtering,
-        --palette--;Pagination;paginatedprocessors,
-    ',
+    ';headers,
+    --palette--;Pages;pagelist_sub_data,
+    --palette--;Layout;pagelist_layout,
+    --palette--;Filter;pagelist_filtering,',
     $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem']
 );
+if ($extensionConfiguration['pagelistEnablePagination']) {
+    $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = str_replace(
+        ';pagelist_filtering,',
+        ';pagelist_filtering,
+        --palette--;Pagination;paginatedprocessors,',
+        $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem']
+    );
+}
 
-/*
-    Define content type for Pagelist: selected
-*/
+// Define content type for Pagelist: selected
 $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = $GLOBALS['TCA']['tt_content']['types']['header']['showitem'];
 $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = str_replace(
     ';headers,',
-    '
-        ;headers,
-        pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
-        --palette--;Layout;pagelist_selected_layout,
-        --palette--;Pagination;paginatedprocessors,
-    ',
+    ';headers,
+    pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
+    --palette--;Layout;pagelist_selected_layout,',
     $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem']
 );
+if ($extensionConfiguration['pagelistEnablePagination']) {
+    $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = str_replace(
+        ';pagelist_selected_layout,',
+        ';pagelist_selected_layout,
+        --palette--;Pagination;paginatedprocessors,',
+        $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem']
+    );
+}
 
-/*
-    Define palettes for content types
-*/
+// Define palettes for content types
 $GLOBALS['TCA']['tt_content']['palettes']['pagelist_sub_data']['showitem'] = '
     pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
     --linebreak--,
