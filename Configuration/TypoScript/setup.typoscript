@@ -1,34 +1,33 @@
 page.includeCSS.pagelist = {$pagelist.styles}
 
 # Add breakpoint classes by the width of pagelist cards container
-
 ["{$pagelist.enableBreakpoints}" == "1"]
-    page.jsFooterInline {
-        109823122 = TEXT
-        109823122.value (
-            function pagelistDetectWidth(a){
-                var container = document.getElementsByClassName(a);
-                for (var i = 0; i < container.length; ++i) {
-                    var item = container[i];
-                    var width = container[i].clientWidth;
-                    if (width < {$pagelist.cardsBreakTwo}){
-                        item.classList.add('break-two');
-                    } else {
-                        item.classList.remove('break-two');
-                    }
-                    if (width < {$pagelist.cardsBreakOne}) {
-                        item.classList.add('break-one');
-                    } else {
-                        item.classList.remove('break-one');
-                    }
-                }
-            }
-            pagelistDetectWidth('pagelist cards');
-            window.addEventListener("resize", function(){
-                pagelistDetectWidth('pagelist cards');
-            });
-        )
-    }
+  page.jsFooterInline {
+    109823122 = TEXT
+    109823122.value (
+      function pagelistDetectWidth(a){
+        var container = document.getElementsByClassName(a);
+        for (var i = 0; i < container.length; ++i) {
+          var item = container[i];
+          var width = container[i].clientWidth;
+          if (width < {$pagelist.cardsBreakTwo}){
+            item.classList.add('break-two');
+          } else {
+            item.classList.remove('break-two');
+          }
+          if (width < {$pagelist.cardsBreakOne}) {
+            item.classList.add('break-one');
+          } else {
+            item.classList.remove('break-one');
+          }
+        }
+      }
+      pagelistDetectWidth('pagelist cards');
+      window.addEventListener("resize", function(){
+        pagelistDetectWidth('pagelist cards');
+      });
+    )
+  }
 [END]
 
 
@@ -38,169 +37,168 @@ tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
 tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/Partials/
 tt_content.defaultpagelist.partialRootPaths.20 = {$pagelist.partialRootPaths}
 tt_content.defaultpagelist {
-    settings {
-        cardImageWidth = {$pagelist.cardImageWidth}
-        cardImageHeight = {$pagelist.cardImageHeight}
-        listImageWidth = {$pagelist.listImageWidth}
-        listImageHeight = {$pagelist.listImageHeight}
-    }
-    extbase {
-        controllerName = Pagelist
-        controllerActionName = pagelist
-        controllerExtensionName = Pagelist
-        pluginName = Pagelist
-    }
-
-    stdWrap {
-        editIcons = tt_content: header [header_layout], pages
-        editIcons.iconTitle.data = LLL:EXT:fluid_styled_content/Resources/Private/Language/FrontendEditing.xlf:editIcon.menu
-    }
+  settings {
+    cardImageWidth = {$pagelist.cardImageWidth}
+    cardImageHeight = {$pagelist.cardImageHeight}
+    listImageWidth = {$pagelist.listImageWidth}
+    listImageHeight = {$pagelist.listImageHeight}
+  }
+  extbase {
+    controllerName = Pagelist
+    controllerActionName = pagelist
+    controllerExtensionName = Pagelist
+    pluginName = Pagelist
+  }
+  stdWrap {
+    editIcons = tt_content: header [header_layout], pages
+    editIcons.iconTitle.data = LLL:EXT:fluid_styled_content/Resources/Private/Language/FrontendEditing.xlf:editIcon.menu
+  }
 }
 
 # check if personnel extension is loaded and adds authors
 ["{$pagelist.personnelIsLoaded}" == "1"]
-    tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
-        30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-        30 {
-            if.isTrue.field = tx_personnel_authors
-            table = tx_personnel_domain_model_person
-            uidInList.field = tx_personnel_authors
-            pidInList = 0
-            as = authors
-            dataProcessing {
-                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-                10.references.table = tx_personnel_domain_model_person
-                10.references.fieldName = images
-                10.as = authorimages
-            }
-        }
+  tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
+    30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+    30 {
+      if.isTrue.field = tx_personnel_authors
+      table = tx_personnel_domain_model_person
+      uidInList.field = tx_personnel_authors
+      pidInList = 0
+      as = authors
+      dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        10.references.table = tx_personnel_domain_model_person
+        10.references.fieldName = images
+        10.as = authorimages
+      }
     }
+  }
 [END]
 
 # For 'strict' and 'free' language modes
 tt_content.pagelist_sub =< tt_content.defaultpagelist
 tt_content.pagelist_sub {
-    templateName = Pagelist
-    dataProcessing.10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedDatabaseQueryProcessor
-    dataProcessing.10 {
-        pagination {
-            isActive.field = tx_paginatedprocessors_paginationenabled
-            uniqueId.field = uid
-            uniqueId.override.field = tx_paginatedprocessors_urlsegment
-            itemsPerPage = 10
-            itemsPerPage.override.field = tx_paginatedprocessors_itemsperpage
-            pageLinksShown = 5
-            pageLinksShown.override.field = tx_paginatedprocessors_pagelinksshown
-        }
-        table = pages
-        selectFields = pages.*
-        pidInList.field = pages
-        max.field = tx_pagelist_limit
-        begin.field = tx_pagelist_startfrom
-        languageField = 0
-        groupBy = uid
-        recursive.field = tx_pagelist_recursive
-        join.data = field:selected_categories
-        join.wrap = sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(|)
-        join.if.isTrue.field = selected_categories
-        where.stdWrap.orderedStdWrap {
-            10.wrap = AND tx_pagelist_notinlist = '0' AND sys_language_uid='###language###' AND doktype NOT IN ({$pagelist.disablePageTypes})
-            20.wrap = AND tablenames='pages' AND fieldname='categories'
-            20.wrap.if.isTrue.field = selected_categories
-            30.wrap = AND (tx_personnel_authors LIKE '%,###authors###' OR tx_personnel_authors LIKE '###authors###,%' OR tx_personnel_authors='###authors###')
-            30.wrap.if.isTrue.field = tx_pagelist_authors
-            40.wrap = AND l18n_cfg != '1' AND l18n_cfg != '3'
-            40.wrap.if.isFalse.data = sitelanguage:languageId
-        }
-        markers {
-            authors.data = field:tx_pagelist_authors
-            language.data = sitelanguage:languageId
-        }
-        orderBy.field = tx_pagelist_orderby
-        as = pagelist
-        dataProcessing {
-            10.if.isTrue.field = media
-            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-            10.references.fieldName = media
-            20.if.isTrue.field = tx_pagelist_images
-            20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-            20.references.fieldName = tx_pagelist_images
-            20.as = listimages
-            80.if.isTrue.field = categories
-            80 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-            80 {
-                table = sys_category
-                selectFields = sys_category.*
-                pidInList.data = leveluid:0,-1
-                recursive = 99
-                join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
-                where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
-                markers.pageuid.field = uid
-                as = categories
-            }
-        }
+  templateName = Pagelist
+  dataProcessing.10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedDatabaseQueryProcessor
+  dataProcessing.10 {
+    pagination {
+      isActive.field = tx_paginatedprocessors_paginationenabled
+      uniqueId.field = uid
+      uniqueId.override.field = tx_paginatedprocessors_urlsegment
+      itemsPerPage = 10
+      itemsPerPage.override.field = tx_paginatedprocessors_itemsperpage
+      pageLinksShown = 5
+      pageLinksShown.override.field = tx_paginatedprocessors_pagelinksshown
     }
+    table = pages
+    selectFields = pages.*
+    pidInList.field = pages
+    max.field = tx_pagelist_limit
+    begin.field = tx_pagelist_startfrom
+    languageField = 0
+    groupBy = uid
+    recursive.field = tx_pagelist_recursive
+    join.data = field:selected_categories
+    join.wrap = sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(|)
+    join.if.isTrue.field = selected_categories
+    where.stdWrap.orderedStdWrap {
+      10.wrap = AND tx_pagelist_notinlist = '0' AND sys_language_uid='###language###' AND doktype NOT IN ({$pagelist.disablePageTypes})
+      20.wrap = AND tablenames='pages' AND fieldname='categories'
+      20.wrap.if.isTrue.field = selected_categories
+      30.wrap = AND (tx_personnel_authors LIKE '%,###authors###' OR tx_personnel_authors LIKE '###authors###,%' OR tx_personnel_authors='###authors###')
+      30.wrap.if.isTrue.field = tx_pagelist_authors
+      40.wrap = AND l18n_cfg != '1' AND l18n_cfg != '3'
+      40.wrap.if.isFalse.data = sitelanguage:languageId
+    }
+    markers {
+      authors.data = field:tx_pagelist_authors
+      language.data = sitelanguage:languageId
+    }
+    orderBy.field = tx_pagelist_orderby
+    as = pagelist
+    dataProcessing {
+      10.if.isTrue.field = media
+      10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+      10.references.fieldName = media
+      20.if.isTrue.field = tx_pagelist_images
+      20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+      20.references.fieldName = tx_pagelist_images
+      20.as = listimages
+      80.if.isTrue.field = categories
+      80 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+      80 {
+        table = sys_category
+        selectFields = sys_category.*
+        pidInList.data = leveluid:0,-1
+        recursive = 99
+        join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
+        where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
+        markers.pageuid.field = uid
+        as = categories
+      }
+    }
+  }
 }
 # Partial support for 'fallback' mode, works with
 # [FE][hidePagesIfNotTranslatedByDefault] = true
 # "Hide page if no translation for current language exists" if set manually
 [siteLanguage("fallbackType") == "fallback"]
-    tt_content.pagelist_sub {
-        dataProcessing.10 {
-            languageField = sys_language_uid
-            where.stdWrap.orderedStdWrap {
-                10.wrap = AND tx_pagelist_notinlist = '0'
-                50.wrap = AND l18n_cfg != '2' AND l18n_cfg != '3'
-                50.wrap.if.isTrue.data = sitelanguage:languageId
-            }
-        }
+  tt_content.pagelist_sub {
+    dataProcessing.10 {
+      languageField = sys_language_uid
+      where.stdWrap.orderedStdWrap {
+        10.wrap = AND tx_pagelist_notinlist = '0'
+        50.wrap = AND l18n_cfg != '2' AND l18n_cfg != '3'
+        50.wrap.if.isTrue.data = sitelanguage:languageId
+      }
     }
+  }
 [global]
 
 # Selected pages only
 tt_content.pagelist_selected =< tt_content.defaultpagelist
 tt_content.pagelist_selected {
-    templateName = Pagelist
-    dataProcessing {
-        10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedMenuProcessor
-        10 {
-            pagination {
-                isActive.field = tx_paginatedprocessors_paginationenabled
-                uniqueId.field = uid
-                uniqueId.override.field = tx_paginatedprocessors_urlsegment
-                itemsPerPage = 10
-                itemsPerPage.override.field = tx_paginatedprocessors_itemsperpage
-                pageLinksShown = 5
-                pageLinksShown.override.field = tx_paginatedprocessors_pagelinksshown
-            }
-            special = list
-            special.value.field = pages
-            # alternativeSortingField.field = tx_pagelist_orderby
-            # maxItems.field = tx_pagelist_limit
-            # begin.field = tx_pagelist_startfrom
-            includeNotInMenu = 1
-            as = pagelist
-            dataProcessing {
-                10.if.isTrue.field = media
-                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-                10.references.fieldName = media
-                20.if.isTrue.field = tx_pagelist_images
-                20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-                20.references.fieldName = tx_pagelist_images
-                20.as = listimages
-                80.if.isTrue.field = categories
-                80 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-                80 {
-                    table = sys_category
-                    selectFields = sys_category.*
-                    pidInList.data = leveluid:0,-1
-                    recursive = 99
-                    join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
-                    where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
-                    markers.pageuid.field = uid
-                    as = categories
-                }
-            }
+  templateName = Pagelist
+  dataProcessing {
+    10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedMenuProcessor
+    10 {
+      pagination {
+        isActive.field = tx_paginatedprocessors_paginationenabled
+        uniqueId.field = uid
+        uniqueId.override.field = tx_paginatedprocessors_urlsegment
+        itemsPerPage = 10
+        itemsPerPage.override.field = tx_paginatedprocessors_itemsperpage
+        pageLinksShown = 5
+        pageLinksShown.override.field = tx_paginatedprocessors_pagelinksshown
+      }
+      special = list
+      special.value.field = pages
+      # alternativeSortingField.field = tx_pagelist_orderby
+      # maxItems.field = tx_pagelist_limit
+      # begin.field = tx_pagelist_startfrom
+      includeNotInMenu = 1
+      as = pagelist
+      dataProcessing {
+        10.if.isTrue.field = media
+        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        10.references.fieldName = media
+        20.if.isTrue.field = tx_pagelist_images
+        20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        20.references.fieldName = tx_pagelist_images
+        20.as = listimages
+        80.if.isTrue.field = categories
+        80 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+        80 {
+            table = sys_category
+            selectFields = sys_category.*
+            pidInList.data = leveluid:0,-1
+            recursive = 99
+            join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
+            where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
+            markers.pageuid.field = uid
+            as = categories
         }
+      }
     }
+  }
 }
