@@ -183,15 +183,27 @@ if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
 }
 
 // Define content type for Pagelist: subpages
-$GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = $GLOBALS['TCA']['tt_content']['types']['header']['showitem'];
-$GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = str_replace(
-    ';headers,',
-    ';headers,
-    --palette--;Pages;pagelist_sub_data,
-    --palette--;Layout;pagelist_layout,
-    --palette--;Filter;pagelist_filtering,',
-    $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem']
-);
+$GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = '
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+        --palette--;;general,
+        --palette--;;headers,
+        --palette--;Pages;pagelist_sub_data,
+        --palette--;Layout;pagelist_layout,
+        --palette--;Filter;pagelist_filtering,
+    --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+        --palette--;;frames,
+        --palette--;;appearanceLinks,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+        --palette--;;language,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+        --palette--;;hidden,
+        --palette--;;access,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+        categories,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+        rowDescription,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
+';
 if ($extensionConfiguration['pagelistEnablePagination']) {
     $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = str_replace(
         ';pagelist_filtering,',
@@ -202,14 +214,26 @@ if ($extensionConfiguration['pagelistEnablePagination']) {
 }
 
 // Define content type for Pagelist: selected
-$GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = $GLOBALS['TCA']['tt_content']['types']['header']['showitem'];
-$GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = str_replace(
-    ';headers,',
-    ';headers,
-    pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
-    --palette--;Layout;pagelist_selected_layout,',
-    $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem']
-);
+$GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = '
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+        --palette--;;general,
+        --palette--;;headers,
+        pages;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:pages.ALT.menu_formlabel,
+        --palette--;Layout;pagelist_selected_layout,
+    --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+        --palette--;;frames,
+        --palette--;;appearanceLinks,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+        --palette--;;language,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+        --palette--;;hidden,
+        --palette--;;access,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+        categories,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+        rowDescription,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
+';
 if ($extensionConfiguration['pagelistEnablePagination']) {
     $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = str_replace(
         ';pagelist_selected_layout,',
