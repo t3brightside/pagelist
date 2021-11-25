@@ -25,7 +25,7 @@ Page lists from selected page records or subpages.
 - Base templates and CSS for cards and lists
 
 ## System requirements
-- TYPO3 8.7 LTS – 11.5 LTS
+- TYPO3
 - fluid_styled_content
 - paginatedprocessors
 
@@ -33,7 +33,7 @@ Page lists from selected page records or subpages.
 - t3g/blog
 
 ## Installation
- - **composer req t3brightside/pagelist** or from TYPO3 extension repository **[pagelist](https://extensions.typo3.org/extension/pagelist/)**
+ - `composer req t3brightside/pagelist` or from TYPO3 extension repository **[pagelist](https://extensions.typo3.org/extension/pagelist/)**
  - Include static template
  - Include static template for Paginatedprocessors
  - Enable page types for news, events, and products in extension configuration
@@ -68,7 +68,7 @@ Create new partial: _Resources/Private/Partials/Minilist.html_
 ### routeEnhancers
 For the pagination routing check [t3brightside/paginatedprocessors](https://github.com/t3brightside/paginatedprocessors#readme)
 
-```json
+```yaml
   /* only TYPO3 10.4 and below */
   routeEnhancers:
     Pagelist:
