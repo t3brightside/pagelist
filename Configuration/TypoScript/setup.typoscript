@@ -89,6 +89,9 @@ tt_content.pagelist_sub {
       itemsPerPage.override.field = tx_paginatedprocessors_itemsperpage
       pageLinksShown = 5
       pageLinksShown.override.field = tx_paginatedprocessors_pagelinksshown
+      anchorActive.field = tx_paginatedprocessors_anchor
+      anchorId.field = uid
+      anchorId.override.field = tx_paginatedprocessors_anchorid
     }
     table = pages
     selectFields = pages.*
@@ -170,6 +173,9 @@ tt_content.pagelist_selected {
         itemsPerPage.override.field = tx_paginatedprocessors_itemsperpage
         pageLinksShown = 5
         pageLinksShown.override.field = tx_paginatedprocessors_pagelinksshown
+        anchorActive.field = tx_paginatedprocessors_anchor
+        anchorId.field = uid
+        anchorId.override.field = tx_paginatedprocessors_anchorid
       }
       special = list
       special.value.field = pages
