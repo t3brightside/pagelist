@@ -1,28 +1,13 @@
-<div class="item product{f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
-  <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
-    <f:if condition="{data.tx_pagelist_disableimages} == 0">
-      <figure>
-        <f:if condition="{page.listimages.0}">
-          <f:then>
-            <f:image image="{page.listimages.0}" class="image" treatIdAsReference="1" width="{settings.listImageWidth}c" height="{settings.listImageHeight}c" alt="{f:if(condition:'{page.listimages.0.alternative}', then:'{page.listimages.0.alternative}', else:'{page.data.title}')}" additionalAttributes="{srcset: '{f:uri.image(image:\'{page.listimages.0}\', width:\'{listImageWidth_x2}.c\', height:\'{listImageHeight_x2}.c\')} 2x'}" />
-          </f:then>
-          <f:else>
-            <f:image class="img-dummy" src="EXT:pagelist/Resources/Public/Images/clear.png" width="{settings.listImageWidth}c" height="{settings.listImageHeight}c" alt="{page.data.title}" />
-          </f:else>
+<div class="item product {f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
+    <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
+        <h3 class="title">{page.data.title}</h3>
+        <f:if condition="{data.tx_pagelist_disableabstract} == 0">
+            <f:if condition="{page.data.abstract}">
+                <p class="abstract">{page.data.abstract}</p>
+            </f:if>
         </f:if>
-      </figure>
-    </f:if>
-    <div class="text">
-      <h3 class="title">{page.data.title}</h3>
-      <f:if condition="{data.tx_pagelist_disableabstract} == 0">
-        <f:if condition="{page.data.abstract}">
-          <p class="abstract">{page.data.abstract}</p>
+        <f:if condition="{page.data.tx_pagelist_productprice}">
+            <p class="info">Price: {page.data.tx_pagelist_productprice} €</p>
         </f:if>
-      </f:if>
-      <f:if condition="{page.data.tx_pagelist_productprice}">
-        <p class="price">{page.data.tx_pagelist_productprice} €</p>
-      </f:if>
-    </div>
-    <div class="clear"></div>
-  </f:link.page>
+    </f:link.page>
 </div>

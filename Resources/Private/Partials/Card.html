@@ -1,34 +1,40 @@
 <div class="card{f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
-  <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
-    <f:if condition="{data.tx_pagelist_disableimages} == 0">
-      <figure>
-        <f:if condition="{page.listimages.0}">
-          <f:then>
-            <f:image image="{page.listimages.0}" class="image" treatIdAsReference="1" width="{settings.cardImageWidth}c" height="{settings.cardImageHeight}c" alt="{f:if(condition:'{page.listimages.0.alternative}', then:'{page.listimages.0.alternative}', else:'{page.data.title}')}" additionalAttributes="{srcset: '{f:uri.image(image:\'{page.listimages.0}\', width:\'{cardImageWidth_x2}.c\', height:\'{cardImageHeight_x2}.c\')} 2x'}" />
-          </f:then>
-          <f:else>
-            <f:image class="img-dummy" src="EXT:pagelist/Resources/Public/Images/clear.png" width="{settings.cardImageWidth}" height="{settings.cardImageHeight}" alt="{page.data.title}" />
-          </f:else>
+    <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
+        <f:if condition="{data.tx_pagelist_disableimages} == 0">
+            <figure>
+                <f:if condition="{page.listimages.0}">
+                    <f:then>
+                        <f:image image="{page.listimages.0}" class="image" treatIdAsReference="1" width="{settings.cardImageWidth}c" height="{settings.cardImageHeight}c"
+                            alt="{f:if(condition:'{page.listimages.0.alternative}', then:'{page.listimages.0.alternative}', else:'{page.data.title}')}"
+                            additionalAttributes="{srcset: '{f:uri.image(image:\'{page.listimages.0}\', width:\'{cardImageWidth_x2}.c\', height:\'{cardImageHeight_x2}.c\')} 2x'}" />
+                    </f:then>
+                    <f:else>
+                        <f:image class="img-dummy" src="EXT:pagelist/Resources/Public/Images/clear.png" width="{settings.cardImageWidth}" height="{settings.cardImageHeight}" alt="{page.data.title}" />
+                    </f:else>
+                </f:if>
+            </figure>
         </f:if>
-      </figure>
-    </f:if>
-    <div class="text">
-      <h3 class="title">{page.data.title}</h3>
-      <f:if condition="{page.authors} || {page.data.tx_pagelist_datetime}">
-        <p class="info">
-          <f:if condition="{page.data.tx_pagelist_datetime}"><span class="date"><f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date></span></f:if>
-          <f:if condition="{page.data.author}">{page.data.author}</f:if>
-          <f:for each="{page.authors}" as="author"><f:render partial="AuthorPersonnel" arguments="{_all}" /></f:for>
-        </p>
-      </f:if>
-      <f:if condition="{data.tx_pagelist_disableabstract} == 0">
-        <f:if condition="{page.data.abstract}">
-          <p class="abstract">{page.data.abstract}</p>
-        </f:if>
-      </f:if>
-    </div>
-  </f:link.page>
+        <div class="text">
+            <h3 class="title">{page.data.title}</h3>
+            <f:if condition="{page.authors} || {page.data.tx_pagelist_datetime}">
+                <p class="info">
+                    <f:if condition="{page.data.tx_pagelist_datetime}"><span class="date">
+                            <f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date>
+                        </span></f:if>
+                    <f:if condition="{page.data.author}">{page.data.author}</f:if>
+                    <f:for each="{page.authors}" as="author">
+                        <f:render partial="AuthorPersonnel" arguments="{_all}" />
+                    </f:for>
+                </p>
+            </f:if>
+            <f:if condition="{data.tx_pagelist_disableabstract} == 0">
+                <f:if condition="{page.data.abstract}">
+                    <p class="abstract">{page.data.abstract}</p>
+                </f:if>
+            </f:if>
+        </div>
+    </f:link.page>
 </div>
 <f:if condition="{iterator.isLast} == 0">
-  <div class="space"></div>
+    <div class="space"></div>
 </f:if>
