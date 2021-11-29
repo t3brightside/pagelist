@@ -50,3 +50,7 @@
 	- Add URL segment field to pagination settings (check your TS template if customised)
 	- Code clean up
 	- Option to disable pagination form extension configuration
+* 3.2.0
+    - TCA clean up and improvement
+    - Dependent to paginatedprocessors 1.3
+    - Add pagination link anchor feature
