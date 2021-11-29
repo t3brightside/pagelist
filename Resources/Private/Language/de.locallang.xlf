@@ -3,7 +3,7 @@
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2021-11-04T17:54:12Z" product-name="femanager">
 		<header/>
 		<body>
-			<trans-unit id="page.readmore">
+			<trans-unit id="pagelist.readmore">
 				<target state="translated">Weiterlesen</target>
 			</trans-unit>
 		</body>

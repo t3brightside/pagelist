@@ -7,8 +7,8 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 
-			<label index="pagelist.title">List of Pages</label>
-			<label index="pagelist.description">List of pages based on different selection methods</label>
+			<label index="pagelist.title">Pagelist</label>
+			<label index="pagelist.description">Page lists and teasers with pages for articles, events, vacancies and products</label>
 
 		</languageKey>
 	</data>

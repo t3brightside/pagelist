@@ -3,7 +3,7 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2021-11-04T17:54:12Z" product-name="pagelist">
 		<header/>
 		<body>
-			<trans-unit id="page.readmore" xml:space="preserve">
+			<trans-unit id="pagelist.readmore" xml:space="preserve">
 				<source>Read more</source>
 			</trans-unit>
 		</body>
