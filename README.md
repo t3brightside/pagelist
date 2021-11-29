@@ -13,16 +13,15 @@ Page lists from selected page records or subpages.
 
 ## Features
 - Custom page types for articles, events, products and vacancies
-- List of sub pages
+- List of sub pages with recursive option
 - List of selected pages
 - Exclude pages from lists
-- Category filtering
+- Category and author filtering
 - Set start from, limit and sort options
-- Pagination with items per page and unique to the content element with [paginatedprocessors](https://github.com/t3brightside/paginatedprocessors)
+- Pagination with [paginatedprocessors](https://github.com/t3brightside/paginatedprocessors)
 - Connection to [personnel](https://github.com/t3brightside/personnel) for authors and contact persons
-- Personnel fields can be enabled/disabled per page type
-- Easy to add custom templates
 - Base templates and CSS for cards and lists
+- Easy to add custom templates
 
 ## System requirements
 - TYPO3
@@ -47,7 +46,7 @@ Add as any other content element. Select desired pages, template and options in 
 Check the constant editor.
 
 **PageTS**
-```typoscript
+```
 TCEFORM.tt_content.tx_pagelist_template.addItems {
   minilist = Mini list
 }
