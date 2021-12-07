@@ -1,9 +1,9 @@
 # customsubcategory=pagelist=Page List
 # cat=Page List/pagelist; type=string; label= Styles file
 	pagelist.styles = EXT:pagelist/Resources/Public/Styles/pagelist.css
-# cat=Page List/pagelist; type=string; label= Templates root paht
+# cat=Page List/pagelist; type=string; label= Templates root path
 	pagelist.templateRootPaths = EXT:pagelist/Resources/Private/Templates/
-# cat=Page List/pagelist; type=string; label= Partials root paht
+# cat=Page List/pagelist; type=string; label= Partials root path
 	pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
 # cat=Page List/pagelist; type=string; label= Pagination items per page
 	pagelist.paginationItems = 8
