@@ -21,7 +21,7 @@ if ($pagelistConiguration['pagelistEnableArticles']) {
         'apps-pagetree-article',
         TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         [
-            'source' => 'EXT:pagelist/Resources/Public/Images/Icons/ico_article.svg',
+            'source' => 'EXT:pagelist/Resources/Public/Icons/ico_article.svg',
         ]
     );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig(
@@ -37,7 +37,7 @@ if ($pagelistConiguration['pagelistEnableEvents']) {
         'apps-pagetree-event',
         TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         [
-            'source' => 'EXT:pagelist/Resources/Public/Images/Icons/ico_event.svg',
+            'source' => 'EXT:pagelist/Resources/Public/Icons/ico_event.svg',
         ]
     );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig(
@@ -53,7 +53,7 @@ if ($pagelistConiguration['pagelistEnableProducts']) {
         'apps-pagetree-product',
         TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         [
-            'source' => 'EXT:pagelist/Resources/Public/Images/Icons/ico_product.svg',
+            'source' => 'EXT:pagelist/Resources/Public/Icons/ico_product.svg',
         ]
     );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig(
@@ -69,7 +69,7 @@ if ($pagelistConiguration['pagelistEnableVacancies']) {
         'apps-pagetree-vacancy',
         TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         [
-            'source' => 'EXT:pagelist/Resources/Public/Images/Icons/ico_vacancy.svg',
+            'source' => 'EXT:pagelist/Resources/Public/Icons/ico_vacancy.svg',
         ]
     );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig(
