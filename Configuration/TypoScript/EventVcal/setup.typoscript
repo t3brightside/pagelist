@@ -1,0 +1,22 @@
+
+# Add link to your event page template
+# <f:link.page pageUid="{data.uid}" pageType="889944" additionalAttributes="{download: '{data.title}.ics'}">[ + ]</f:link.page>
+
+pagelist_vCal = PAGE
+pagelist_vCal  {
+  # enable only if page doktype is event
+  stdWrap.if.equals = 137
+  stdWrap.if.value.field = doktype
+  typeNum = 889966123
+  config {
+    disableAllHeaderCode = 1
+    xhtml_cleaning = 0
+    debug = 0
+    disableCharsetHeader = 1
+  }
+  10 = FLUIDTEMPLATE
+  10 {
+    templateName = EventVcal
+    templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
+  }
+}
