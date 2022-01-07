@@ -22,6 +22,7 @@ Page lists from selected page records or subpages.
 - Connection to [personnel](https://github.com/t3brightside/personnel) for authors and contact persons
 - Base templates and CSS for cards and lists
 - Easy to add custom templates
+- vCal support for event pages
 
 ## System requirements
 - TYPO3

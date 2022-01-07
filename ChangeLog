@@ -54,3 +54,5 @@
     - TCA clean up and improvement
     - Dependent to paginatedprocessors 1.3
     - Add pagination link anchor feature
+* 3.3.0
+    - Basic vCal support for event pages
