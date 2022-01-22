@@ -56,3 +56,5 @@
     - Add pagination link anchor feature
 * 3.3.0
     - Basic vCal support for event pages
+* 3.3.1
+    - [TASK] Remove extbase TS settings that are not needed any more
