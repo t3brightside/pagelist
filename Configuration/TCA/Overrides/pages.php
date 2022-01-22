@@ -243,11 +243,6 @@ if ($pagelistConiguration['pagelistEnableArticles']) {
 
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumns, 1);
-// \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempHidePageColumn, 1);
-
-if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')) {
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $tempColumnsAuthors, 1);
-}
 
 // Add Pagelist image to all page types
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
