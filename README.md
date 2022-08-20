@@ -85,6 +85,8 @@ For the pagination routing check [t3brightside/paginatedprocessors](https://gith
 ## Known issues
 Doesn't fully comply with the language modes. Does not respect '[FE][hidePagesIfNotTranslatedByDefault] = true' as 'TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor' does not fully respect language modes while selecting pages yet.
 
+Sys categories have to be saved somewhere in the same page root to show categories in page templates with the {page.categories}
+
 ## Sources
 -  [GitHub](https://github.com/t3brightside/pagelist)
 -  [Packagist](https://packagist.org/packages/t3brightside/pagelist)
