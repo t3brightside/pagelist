@@ -58,3 +58,5 @@
     - Basic vCal support for event pages
 * 3.3.1
     - [TASK] Remove extbase TS settings that are not needed any more
+* 3.3.2
+    - [BUGFIX] Add page media field 'as' in TypoScript

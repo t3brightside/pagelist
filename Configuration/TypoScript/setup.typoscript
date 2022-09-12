@@ -117,6 +117,7 @@ tt_content.pagelist_sub {
       10.if.isTrue.field = media
       10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
       10.references.fieldName = media
+      10.as = media
       20.if.isTrue.field = tx_pagelist_images
       20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
       20.references.fieldName = tx_pagelist_images
@@ -126,7 +127,7 @@ tt_content.pagelist_sub {
       80 {
         table = sys_category
         selectFields = sys_category.*
-        pidInList.data = leveluid:0,-1
+        pidInList = root,-1
         recursive = 99
         join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
         where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
@@ -182,6 +183,7 @@ tt_content.pagelist_selected {
         10.if.isTrue.field = media
         10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
         10.references.fieldName = media
+        10.as = media
         20.if.isTrue.field = tx_pagelist_images
         20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
         20.references.fieldName = tx_pagelist_images
