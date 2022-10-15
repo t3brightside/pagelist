@@ -60,3 +60,6 @@
     - [TASK] Remove extbase TS settings that are not needed any more
 * 3.3.2
     - [BUGFIX] Add page media field 'as' in TypoScript
+* 3.4.0
+    - [TASK] Rewrite back end previews using PreviewRenderer
+    - [TASK] TYPO3 12 compatibility
