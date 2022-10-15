@@ -1,5 +1,5 @@
 <?php
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3_MODE') || defined('TYPO3') || die('Access denied.');
 
 // Content type icons
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_sub'] = 'mimetypes-x-content-pagelist';
@@ -183,6 +183,7 @@ if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
 }
 
 // Define content type for Pagelist: subpages
+$GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['previewRenderer'] = \Brightside\Pagelist\Preview\PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = '
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
         --palette--;;general,
@@ -214,6 +215,7 @@ if ($extensionConfiguration['pagelistEnablePagination']) {
 }
 
 // Define content type for Pagelist: selected
+$GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['previewRenderer'] = \Brightside\Pagelist\Preview\PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = '
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
         --palette--;;general,

@@ -1,12 +1,18 @@
 <?php
+defined('TYPO3_MODE') || defined('TYPO3') || die('Access denied.');
 
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
-defined('TYPO3') or die();
-
-ExtensionManagementUtility::addPageTSConfig('@import "EXT:pagelist/Configuration/PageTS/setup.typoscript"');
+$versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+// Only include page.tsconfig if TYPO3 version is below 12 so that it is not imported twice.
+if ($versionInformation->getMajorVersion() < 12) {
+   ExtensionManagementUtility::addPageTSConfig('
+      @import "EXT:pagelist/Configuration/page.tsconfig"
+   ');
+}
 
 $iconRegistry = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
 $iconRegistry->registerIcon(
@@ -14,8 +20,6 @@ $iconRegistry->registerIcon(
     \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
     ['source' => 'EXT:pagelist/Resources/Public/Icons/mimetypes-x-content-pagelist.svg']
 );
-
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['pagelist'] = \Brightside\Pagelist\Hooks\PageLayoutView\PagelistContentElementPreviewRenderer::class;
 
 if (ExtensionManagementUtility::isLoaded('personnel')) {
     ExtensionManagementUtility::addTypoScriptConstants('

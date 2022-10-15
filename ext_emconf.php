@@ -12,9 +12,9 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'Brightside OÜ / t3brightside.com',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.5.0 - 11.5.99',
-            'fluid_styled_content' => '11.5.0 - 11.5.99',
-            'paginatedprocessors' => '1.3.0 - 1.99.99',
+            'typo3' => '11.5.0 - 12.99.99',
+            'fluid_styled_content' => '11.5.0 - 12.99.99',
+            'paginatedprocessors' => '1.4.0 - 1.99.99',
         ],
         'conflicts' => [
             'blog' => '',

@@ -1,6 +1,5 @@
 <?php
-
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3_MODE') || defined('TYPO3') || die('Access denied.');
 
 $extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
     \TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
