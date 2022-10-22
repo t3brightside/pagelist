@@ -282,6 +282,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['pagelist_filtering']['showitem'] = '
 
 $GLOBALS['TCA']['tt_content']['palettes']['pagelist_selected_layout']['showitem'] = '
     tx_pagelist_template,
+    tx_pagelist_titlewrap,
     tx_pagelist_disableimages,
     tx_pagelist_disableabstract,
 ';

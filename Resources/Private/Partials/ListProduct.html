@@ -1,6 +1,6 @@
 <div class="item product {f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
     <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
-        <{data.tx_pagelist_titlewrap} class="title">{page.data.title}</{data.tx_pagelist_titlewrap}>
+        <{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: 'h3')} class="title">{page.data.title}</{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: 'h3')}>
         <f:if condition="{data.tx_pagelist_disableabstract} == 0">
             <f:if condition="{page.data.abstract}">
                 <p class="abstract">{page.data.abstract}</p>

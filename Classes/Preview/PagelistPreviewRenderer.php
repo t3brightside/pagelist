@@ -48,6 +48,9 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer
             if ($row['tx_pagelist_template']) {
                 $content .= '<li>' . $this->linkEditContent($this->renderText('Template: ' . $row['tx_pagelist_template']), $row) . '</li>';
             }
+            if ($row['tx_pagelist_titlewrap']) {
+                $content .= '<li>' . $this->linkEditContent($this->renderText('Title tag: ' . $row['tx_pagelist_titlewrap']), $row) . '</li>';
+            }
             if ($row['CType'] === 'pagelist_sub') {
                 if ($row['tx_pagelist_orderby']) {
                     $content .= '<li>' . $this->linkEditContent($this->renderText('Order by: ' . $row['tx_pagelist_orderby']), $row) . '</li>';
