@@ -67,3 +67,5 @@
     - [FEATURE] Add title tag option to content element for improved semantics control
 * 3.5.1
     - [TASK] Add title tag fallback and back end preview
+* 3.5.2
+    - [TASK] Add 0 = Default to title tag tsconfig

@@ -27,12 +27,12 @@ TCEFORM.tt_content.tx_pagelist_template.addItems {
 TCAdefaults.tt_content.tx_pagelist_template = cards
 
 TCEFORM.tt_content.tx_pagelist_titlewrap.addItems {
+  0 = Default
   h2 = H2
   h3 = H3
   h4 = H4
   p = p
 }
-TCAdefaults.tt_content.tx_pagelist_titlewrap = h3
 
 mod.wizards.newContentElement.wizardItems.common {
   elements {
