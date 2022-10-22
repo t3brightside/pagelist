@@ -15,7 +15,7 @@
             </figure>
         </f:if>
         <div class="text">
-            <h3 class="title">{page.data.title}</h3>
+            <{data.tx_pagelist_titlewrap} class="title">{page.data.title}</{data.tx_pagelist_titlewrap}>
             <f:if condition="{page.authors} || {page.data.tx_pagelist_datetime}">
                 <p class="info">
                     <f:if condition="{page.data.tx_pagelist_datetime}"><span class="date">

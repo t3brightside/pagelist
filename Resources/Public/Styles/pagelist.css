@@ -31,8 +31,13 @@
     text-decoration: none;
 }
 
-.pagelist a p {
+.pagelist a .info p {
     color: #333;
+}
+
+.pagelist p.title {
+    font-weight: bold;
+    font-size:  1em;
 }
 
 .pagelist .info {
@@ -153,15 +158,11 @@
 }
 
 .pagelist.list .title {
+    font-size: 1.25em;
     margin-top: 0em;
 }
 
 /* Event speciffic */
-.pagelist.list .event .text {
-    margin-left: 5em;
-    padding-left: 1em;
-}
-
 .pagelist.list .event .dates {
     width: 5em;
     text-align: center;

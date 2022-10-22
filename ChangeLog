@@ -63,3 +63,5 @@
 * 3.4.0
     - [TASK] Rewrite back end previews using PreviewRenderer
     - [TASK] TYPO3 12 compatibility
+* 3.5.0
+    - [FEATURE] Add title tag option to content element for improved semantics control
