@@ -31,7 +31,7 @@ page.includeCSS.pagelist = {$pagelist.styles}
 [END]
 
 
-tt_content.defaultpagelist =< lib.contentElement
+tt_content.defaultpagelist < lib.contentElement
 tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
 tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
 tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/Partials/
@@ -70,7 +70,7 @@ tt_content.defaultpagelist {
 [END]
 
 # For 'strict' and 'free' language modes
-tt_content.pagelist_sub =< tt_content.defaultpagelist
+tt_content.pagelist_sub < tt_content.defaultpagelist
 tt_content.pagelist_sub {
   templateName = Pagelist
   dataProcessing.10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedDatabaseQueryProcessor
@@ -154,7 +154,7 @@ tt_content.pagelist_sub {
 [global]
 
 # Selected pages only
-tt_content.pagelist_selected =< tt_content.defaultpagelist
+tt_content.pagelist_selected < tt_content.defaultpagelist
 tt_content.pagelist_selected {
   templateName = Pagelist
   dataProcessing {
