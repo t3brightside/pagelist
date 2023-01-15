@@ -69,3 +69,8 @@
     - [TASK] Add title tag fallback and back end preview
 * 3.5.2
     - [TASK] Add 0 = Default to title tag tsconfig
+* 3.5.3
+    - [TASK] TYPO3 12.1 compatibility
+    - [TASK] Insert lib.contentElement by < not =< in TS setup
+	- [FEATURE] Add support for ext:imagelazyload
+

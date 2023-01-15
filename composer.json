@@ -13,13 +13,14 @@
 	"require": {
 		"typo3/cms-core": "^11.5 || ^12.0",
 	    "typo3/cms-fluid-styled-content": "^11.5 || ^12.0",
-		"t3brightside/paginatedprocessors": "^1.4 || @dev"
+		"t3brightside/paginatedprocessors": "^1.4.2 || @dev"
 	},
 	"conflict": {
 		"t3g/blog": ">=0.0.1"
 	},
 	"suggest": {
-		"t3brightside/personnel": "Contact lists with vCard support, and author records for Pagelist"
+		"t3brightside/personnel": "Contact lists with vCard support, and author records for Pagelist",
+		"t3brightside/imagelazyload": "Add an option to disable laziload in BE"
 	},
 	"autoload": {
 		"psr-4": {
