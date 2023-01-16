@@ -272,6 +272,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['pagelist_layout']['showitem'] = '
     tx_pagelist_template,
     tx_pagelist_titlewrap,
     tx_pagelist_disableimages,
+    tx_imagelazyload,
     tx_pagelist_disableabstract,
 ';
 
@@ -284,5 +285,6 @@ $GLOBALS['TCA']['tt_content']['palettes']['pagelist_selected_layout']['showitem'
     tx_pagelist_template,
     tx_pagelist_titlewrap,
     tx_pagelist_disableimages,
+    tx_imagelazyload,
     tx_pagelist_disableabstract,
 ';
