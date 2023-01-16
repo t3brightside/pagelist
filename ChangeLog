@@ -71,6 +71,10 @@
     - [TASK] Add 0 = Default to title tag tsconfig
 * 3.5.3
     - [TASK] TYPO3 12.1 compatibility
-    - [TASK] Insert lib.contentElement by < not =< in TS setup
+    - [TASK] Insert lib.contentElement and tt_content.defaultpagelist by < not =< in TS setup
 	- [FEATURE] Add support for ext:imagelazyload
+* 3.5.4
+    - [BUGFIX] Insert lib.contentElement by =< again
+	- [TASK] Add tx_imagelazyload to TCA
+
 
