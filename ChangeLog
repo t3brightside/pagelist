@@ -76,5 +76,9 @@
 * 3.5.4
     - [BUGFIX] Insert lib.contentElement by =< again
 	- [TASK] Add tx_imagelazyload to TCA
-
-
+* 3.6.0
+    - [TASK] Follow coding guidelines for ext_localconf and ext_tables
+    - [TASK] Remove JS for template breakpoints, use CSS grid instead
+    - [FEATURE] Embed and minified CSS on demand with ext:embedassets
+    - [!!BREAKING!!] Use 'pagelist.cssForceTs = 1' constant to use CSS the old way
+    - [!!BREAKING!!] Change 'pagelist.styles' constant to 'pagelist.cssFile'

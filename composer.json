@@ -1,6 +1,6 @@
 {
 	"name": "t3brightside/pagelist",
-	"description": "TYPO3 CMS extension to create page lists. comes with special page types for articles, events and products.",
+	"description": "TYPO3 CMS extension to create news, events, vacancies and products or just page lists.",
 	"type": "typo3-cms-extension",
 	"keywords": ["TYPO3", "extension", "teaser", "pageteaser", "news", "events", "vacancies", "products"],
 	"license": "GPL-2.0-or-later",
@@ -11,9 +11,10 @@
 		"homepage": "https://t3brightside.com"
 	}],
 	"require": {
-		"typo3/cms-core": "^11.5 || ^12.0",
-	    "typo3/cms-fluid-styled-content": "^11.5 || ^12.0",
-		"t3brightside/paginatedprocessors": "^1.4.2 || @dev"
+		"typo3/cms-core": "^11.5 || ^12.2",
+	    "typo3/cms-fluid-styled-content": "^11.5 || ^12.2",
+		"t3brightside/paginatedprocessors": "^1.5",
+		"t3brightside/embedassets": "^1.2"
 	},
 	"conflict": {
 		"t3g/blog": ">=0.0.1"
