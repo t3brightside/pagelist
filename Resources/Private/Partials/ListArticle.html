@@ -3,17 +3,17 @@
         <{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: 'h3')} class="title">{page.data.title}</{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: 'h3')}>
         <f:if condition="{page.authors} || {page.data.tx_pagelist_datetime}">
             <p class="info">
+                <f:if condition="{page.data.tx_pagelist_datetime}">
+                    <f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date>
+                </f:if>
+                <f:if condition="{page.authors} && {page.data.tx_pagelist_datetime}">&nbsp;–&nbsp;</f:if>
                 <f:if condition="{page.data.author}">{page.data.author}</f:if>
                 <f:for each="{page.authors}" as="author">
                     <f:render partial="AuthorPersonnel" arguments="{_all}" />
                 </f:for>
-                <f:if condition="{page.authors} && {page.data.tx_pagelist_datetime}"> • </f:if>
-                <f:if condition="{page.data.tx_pagelist_datetime}">
-                    <f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date>
-                </f:if>
                 <f:if condition="{page.categories}">
                     <f:for each="{page.categories}" as="category" iteration="iterator">
-                        <f:if condition="{iterator.isFirst} == 1">•</f:if> {category.data.title}
+                        <f:if condition="{iterator.isFirst} == 1"></f:if> {category.data.title}
                         <f:if condition="{iterator.isLast} == 0">/</f:if>
                     </f:for>
                 </f:if>

@@ -1,0 +1,69 @@
+.pagelist * {
+    box-sizing: border-box;
+}
+
+.pagelist img.image,
+.pagelist .img-dummy {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.pagelist .img-dummy {
+    background-color: #eee;
+}
+
+.pagelist a:hover {
+    text-decoration: none;
+}
+
+.pagelist .info {
+    font-size: 0.85em;
+    margin-bottom: 0.2em;
+}
+
+.pagelist .author {
+    display: inline-block;
+}
+
+.pagelist .author:last-child {
+    margin-right: 0;
+}
+
+.pagelist .date {
+    display: inline-block;
+}
+
+.pagelist .abstract {
+    margin-bottom: 0;
+}
+
+/* cards */
+.pagelist.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+    grid-gap: 3rem;
+}
+.pagelist .card {
+}
+.pagelist .card .title {
+    padding: 0.2em 0;
+    margin: 0;
+}
+
+/* list */
+.pagelist.list .item {
+    margin-bottom: .5em;
+    clear: both;
+    float: left;
+    width: 100%;
+}
+
+.pagelist.list .item .title {
+    margin-top: .5em;
+}
+
+.pagelist.list .item:last-child {
+    margin-bottom: 0 !important;
+}

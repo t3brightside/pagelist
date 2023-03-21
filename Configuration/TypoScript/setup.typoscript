@@ -1,35 +1,6 @@
-page.includeCSS.pagelist = {$pagelist.styles}
-
-# Add breakpoint classes by the width of pagelist cards container
-["{$pagelist.enableBreakpoints}" == "1"]
-  page.jsFooterInline {
-    109823122 = TEXT
-    109823122.value (
-      function pagelistDetectWidth(a){
-        var container = document.getElementsByClassName(a);
-        for (var i = 0; i < container.length; ++i) {
-          var item = container[i];
-          var width = container[i].clientWidth;
-          if (width < {$pagelist.cardsBreakTwo}){
-            item.classList.add('break-two');
-          } else {
-            item.classList.remove('break-two');
-          }
-          if (width < {$pagelist.cardsBreakOne}) {
-            item.classList.add('break-one');
-          } else {
-            item.classList.remove('break-one');
-          }
-        }
-      }
-      pagelistDetectWidth('pagelist cards');
-      window.addEventListener("resize", function(){
-        pagelistDetectWidth('pagelist cards');
-      });
-    )
-  }
+["{$pagelist.cssForceTs}" == "1"]
+  page.includeCSS.pagelist = {$pagelist.cssFile}
 [END]
-
 
 tt_content.defaultpagelist =< lib.contentElement
 tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
@@ -38,6 +9,9 @@ tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/
 tt_content.defaultpagelist.partialRootPaths.20 = {$pagelist.partialRootPaths}
 tt_content.defaultpagelist {
   settings {
+    cssFile = {$pagelist.cssFile}
+    cssPriority = {$pagelist.cssPriority}
+    cssForceTs = {$pagelist.cssForceTs}
     cardImageWidth = {$pagelist.cardImageWidth}
     cardImageHeight = {$pagelist.cardImageHeight}
     listImageWidth = {$pagelist.listImageWidth}
