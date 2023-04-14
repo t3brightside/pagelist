@@ -1,18 +1,23 @@
 <?php
-defined('TYPO3_MODE') || defined('TYPO3') || die('Access denied.');
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use Brightside\Pagelist\Preview\PagelistPreviewRenderer;
+
+defined('TYPO3') || die('Access denied.');
 
 // Content type icons
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_sub'] = 'mimetypes-x-content-pagelist';
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_selected'] = 'mimetypes-x-content-pagelist';
 
 // Get extension configuration
-$extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-    \TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
+$extensionConfiguration = GeneralUtility::makeInstance(
+    ExtensionConfiguration::class
 );
 $extensionConfiguration = $extensionConfiguration->get('pagelist');
 
 // Content element type dropdown
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+ExtensionManagementUtility::addTcaSelectItem(
     "tt_content",
     "CType",
     [
@@ -24,7 +29,7 @@ $extensionConfiguration = $extensionConfiguration->get('pagelist');
     'after'
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+ExtensionManagementUtility::addTcaSelectItem(
     "tt_content",
     "CType",
     [
@@ -172,7 +177,7 @@ $tempColumns = array(
 );
 
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
+ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
 
 // Author field if Personell is installed
 if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
@@ -192,11 +197,11 @@ if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
             ]
         ],
     );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumnsAuthors);
+    ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumnsAuthors);
 }
 
 // Define content type for Pagelist: subpages
-$GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['previewRenderer'] = \Brightside\Pagelist\Preview\PagelistPreviewRenderer::class;
+$GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['previewRenderer'] = PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = '
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
         --palette--;;general,
@@ -228,7 +233,7 @@ if ($extensionConfiguration['pagelistEnablePagination']) {
 }
 
 // Define content type for Pagelist: selected
-$GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['previewRenderer'] = \Brightside\Pagelist\Preview\PagelistPreviewRenderer::class;
+$GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['previewRenderer'] = PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = '
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
         --palette--;;general,

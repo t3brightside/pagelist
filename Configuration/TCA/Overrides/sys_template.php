@@ -1,13 +1,15 @@
 <?php
-defined('TYPO3_MODE') || defined('TYPO3') || die('Access denied.');
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+defined('TYPO3') || die('Access denied.');
+
+ExtensionManagementUtility::addStaticFile(
 	'pagelist',
 	'Configuration/TypoScript/',
 	'Pagelist'
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+ExtensionManagementUtility::addStaticFile(
 	'pagelist',
 	'Configuration/TypoScript/EventVcal/',
 	'Pagelist - Events vCal'
