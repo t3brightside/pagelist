@@ -23,3 +23,5 @@
 	pagelist.listImageHeight = 200
 # cat=Page List/pagelist; type=string; label= Disable these doctypes showing up in list
 	pagelist.disablePageTypes = 254,255,199
+# cat=Page List/pagelist; type=string; label= Default title wrap
+	pagelist.defaultTitleWrap = h3

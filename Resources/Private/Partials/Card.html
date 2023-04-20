@@ -15,7 +15,7 @@
             </figure>
         </f:if>
         <div class="text">
-            <{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: 'h3')} class="title">{page.data.title}</{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: 'h3')}>
+            <{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')} class="title">{page.data.title}</{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')}>
             <f:if condition="{page.data.doktype} == 136">
                 <p class="info">
                     <f:if condition="{page.data.tx_pagelist_datetime}"><span class="date"><f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date></span></f:if>
