@@ -32,6 +32,7 @@ TCEFORM.tt_content.tx_pagelist_titlewrap.addItems {
   h3 = H3
   h4 = H4
   p = p
+  strong = strong
 }
 
 mod.wizards.newContentElement.wizardItems.common {
