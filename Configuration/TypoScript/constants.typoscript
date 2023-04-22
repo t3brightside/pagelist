@@ -25,3 +25,5 @@
 	pagelist.disablePageTypes = 254,255,199
 # cat=Page List/pagelist; type=string; label= Default title wrap
 	pagelist.defaultTitleWrap = h3
+# cat=Page List/pagelist; type=sting; label= Force image file format (make sure it's enabled in [GFX][imagefile_ext])
+  pagelist.forceImageFileFormat =

@@ -2,10 +2,10 @@
     <span class="author">
         <f:comment>
             <f:if condition="{author.authorimages.0}">
-            <f:image image="{author.authorimages.0}" class="image" treatIdAsReference="1" width="30c" height="30c"
+            <f:image image="{author.authorimages.0}" class="image" treatIdAsReference="1" width="30c" height="30c" fileExtension="{settings.forceImageFileFormat}"
                 loading="{f:if(condition: '!{data.tx_imagelazyload}', then: 'lazy')}"
                 alt="{f:if(condition:'{author.authorimages.0.alternative}', then:'{author.authorimages.0.alternative}', else:'{author.data.firstname} {author.data.lastname}')}"
-                additionalAttributes="{srcset: '{f:uri.image(image:\'{author.authorimages.0}\', width:\'60.c\', height:\'60.c\')} 2x'}" />
+                additionalAttributes="{srcset: '{f:uri.image(image:\'{author.authorimages.0}\', width:\'60.c\', height:\'60.c\', fileExtension:\'{settings.forceImageFileFormat}\')} 2x'}" />
             </f:if>
         </f:comment>
         {author.data.firstname} {author.data.lastname}<f:if condition="!{iterator.isLast}">,</f:if>

@@ -4,9 +4,9 @@
             <figure>
                 <f:if condition="{page.listimages.0}">
                     <f:then>
-                        <f:image image="{page.listimages.0}" class="image" treatIdAsReference="1" loading="{f:if(condition: '!{data.tx_imagelazyload}', then: 'lazy')}" width="{settings.cardImageWidth}c" height="{settings.cardImageHeight}c"
+                        <f:image image="{page.listimages.0}" class="image" treatIdAsReference="1" loading="{f:if(condition: '!{data.tx_imagelazyload}', then: 'lazy')}" width="{settings.cardImageWidth}c" height="{settings.cardImageHeight}c" fileExtension="{settings.forceImageFileFormat}"
                             alt="{f:if(condition:'{page.listimages.0.alternative}', then:'{page.listimages.0.alternative}', else:'{page.data.title}')}"
-                            additionalAttributes="{srcset: '{f:uri.image(image:\'{page.listimages.0}\', width:\'{cardImageWidth_x2}.c\', height:\'{cardImageHeight_x2}.c\')} 2x'}" />
+                            additionalAttributes="{srcset: '{f:uri.image(image:\'{page.listimages.0}\', width:\'{cardImageWidth_x2}.c\', height:\'{cardImageHeight_x2}.c\', fileExtension:\'{settings.forceImageFileFormat}\')} 2x'}" />
                     </f:then>
                     <f:else>
                         <f:image class="img-dummy" src="EXT:pagelist/Resources/Public/Images/clear.png" loading="{f:if(condition: '!{data.tx_imagelazyload}', then: 'lazy')}" width="{settings.cardImageWidth}" height="{settings.cardImageHeight}" alt="{page.data.title}" />

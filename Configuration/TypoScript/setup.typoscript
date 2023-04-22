@@ -17,6 +17,7 @@ tt_content.defaultpagelist {
     listImageWidth = {$pagelist.listImageWidth}
     listImageHeight = {$pagelist.listImageHeight}
     defaultTitleWrap = {$pagelist.defaultTitleWrap}
+    forceImageFileFormat = {$pagelist.forceImageFileFormat}
   }
   stdWrap {
     editIcons = tt_content: header [header_layout], pages
