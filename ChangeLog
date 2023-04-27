@@ -82,3 +82,11 @@
     - [FEATURE] Embed and minified CSS on demand with ext:embedassets
     - [!!BREAKING!!] Use 'pagelist.cssForceTs = 1' constant to use CSS the old way
     - [!!BREAKING!!] Change 'pagelist.styles' constant to 'pagelist.cssFile'
+* 3.7.0
+    - [TASK] Update constraints to v12.4 and paginatedprocessors to 1.5.1
+    - (origin/master, origin/HEAD) [FEATURE] Enable forcing image file format with TS
+    - [TASK] Change field size for title wrapping
+    - [TASK] Add 'strong' to title wrapping options
+    - [FEATURE] Add default title wrap constant
+    - [TASK] TCA code clean up
+
