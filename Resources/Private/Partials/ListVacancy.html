@@ -1,23 +1,25 @@
 <div class="item vacancy{f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
-    <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
-        <{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')} class="title">{page.data.title}</{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')}>
-        <f:if condition="{page.data.tx_pagelist_datetime}">
-            <p class="info">
-                <f:if condition="{page.data.tx_pagelist_datetime}">
-                    <f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date>
-                </f:if>
-                <f:if condition="{page.categories}">
-                    <f:for each="{page.categories}" as="category" iteration="iterator">
-                        <f:if condition="{iterator.isFirst} == 1">•</f:if> {category.data.title}
-                        <f:if condition="{iterator.isLast} == 0">/</f:if>
-                    </f:for>
-                </f:if>
-            </p>
-        </f:if>
-        <f:if condition="{data.tx_pagelist_disableabstract} == 0">
-            <f:if condition="{page.data.abstract}">
-                <p class="abstract">{page.data.abstract}</p>
+    <f:format.html parseFuncTSPath="lib.parseFunc">
+        <a href="{f:if(condition: '{page.data.tx_pagelist_shortcut}', then: '{page.data.tx_pagelist_shortcut}', else: 't3://page?uid={page.data.uid}')}" title="{page.data.title}">
+            <{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')} class="title">{page.data.title}</{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')}>
+            <f:if condition="{page.data.tx_pagelist_datetime}">
+                <p class="info">
+                    <f:if condition="{page.data.tx_pagelist_datetime}">
+                        <f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date>
+                    </f:if>
+                    <f:if condition="{page.categories}">
+                        <f:for each="{page.categories}" as="category" iteration="iterator">
+                            <f:if condition="{iterator.isFirst} == 1">•</f:if> {category.data.title}
+                            <f:if condition="{iterator.isLast} == 0">/</f:if>
+                        </f:for>
+                    </f:if>
+                </p>
             </f:if>
-        </f:if>
-    </f:link.page>
+            <f:if condition="{data.tx_pagelist_disableabstract} == 0">
+                <f:if condition="{page.data.abstract}">
+                    <p class="abstract">{page.data.abstract}</p>
+                </f:if>
+            </f:if>
+        </a>
+    </f:format.html>
 </div>

@@ -1,10 +1,12 @@
 <div class="item{f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
-    <f:link.page pageUid="{page.data.uid}" target="{page.data.target}" title="{page.data.title}">
-        <{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')} class="title">{page.data.title}</{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')}>
-        <f:if condition="{data.tx_pagelist_disableabstract} == 0">
-            <f:if condition="{page.data.abstract}">
-                <p class="abstract">{page.data.abstract}</p>
+    <f:format.html parseFuncTSPath="lib.parseFunc">
+        <a href="{f:if(condition: '{page.data.tx_pagelist_shortcut}', then: '{page.data.tx_pagelist_shortcut}', else: 't3://page?uid={page.data.uid}')}" title="{page.data.title}">
+            <{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')} class="title">{page.data.title}</{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')}>
+            <f:if condition="{data.tx_pagelist_disableabstract} == 0">
+                <f:if condition="{page.data.abstract}">
+                    <p class="abstract">{page.data.abstract}</p>
+                </f:if>
             </f:if>
-        </f:if>
-    </f:link.page>
+        </a>
+    </f:format.html>
 </div>
