@@ -173,6 +173,18 @@ $tempColumns = array(
             ],
         ]
     ],
+    'tx_pagelist_shortcut' => [
+        'exclude' => 1,
+        'label' => 'Shortcut to',
+        'config' => [
+            'type' => 'input',
+            'eval' => 'trim',
+            'renderType' => 'inputLink',
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
+        ]
+    ],
 );
 
 if ($pagelistConiguration['pagelistEnableVacancies']) {
@@ -299,6 +311,7 @@ if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration[
         --linebreak--,abstract,
         --linebreak--,tx_personnel_authors,
         --linebreak--,tx_pagelist_images,
+        --linebreak--,tx_pagelist_shortcut,
     ';
 } else {
     $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
@@ -309,6 +322,7 @@ if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration[
         --linebreak--,abstract,
         --linebreak--,author,author_email,
         --linebreak--,tx_pagelist_images,
+        --linebreak--,tx_pagelist_shortcut,
     ';
 }
 $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
@@ -401,6 +415,7 @@ if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration[
         --linebreak--,abstract,
         --linebreak--,tx_personnel_authors,
         --linebreak--,tx_pagelist_images,
+        --linebreak--,tx_pagelist_shortcut,
     ';
 } else {
     $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
@@ -414,6 +429,7 @@ if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration[
         --linebreak--,abstract,
         --linebreak--,author,author_email,
         --linebreak--,tx_pagelist_images,
+        --linebreak--,tx_pagelist_shortcut,
     ';
 }
 
@@ -457,6 +473,7 @@ if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration[
         --linebreak--,abstract,
         --linebreak--,tx_personnel_authors,
         --linebreak--,tx_pagelist_images,
+        --linebreak--,tx_pagelist_shortcut,
     ';
 } else {
     $GLOBALS['TCA']['pages']['palettes']['pagelistvacancygeneral']['showitem'] = '
@@ -468,6 +485,7 @@ if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration[
         --linebreak--,abstract,
         --linebreak--,author,author_email,
         --linebreak--,tx_pagelist_images,
+        --linebreak--,tx_pagelist_shortcut,
     ';
 }
 
