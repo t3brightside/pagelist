@@ -89,4 +89,6 @@
     - [TASK] Add 'strong' to title wrapping options
     - [FEATURE] Add default title wrap constant
     - [TASK] TCA code clean up
-
+* 3.8.0
+    - [FEATURE] Add 'shortcut to' option to page types
+    - [UPDATE] Database update needed

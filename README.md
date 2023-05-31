@@ -18,6 +18,7 @@ Page lists from selected page records or subpages.
 - Exclude pages from lists
 - Category and author filtering
 - Set start from, limit and sort options
+- Shortcut new page types to documents, other pages or external urls
 - Pagination with [paginatedprocessors](https://github.com/t3brightside/paginatedprocessors)
 - Connection to [personnel](https://github.com/t3brightside/personnel) for authors and contact persons
 - Base templates and CSS for cards and lists
