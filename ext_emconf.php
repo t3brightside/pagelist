@@ -2,9 +2,9 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Pagelist',
-    'description' => 'Create news, events, products and vacancies or just page lists.',
+    'description' => 'Page based news, events, products and vacancies or just page lists.',
     'category' => 'fe',
-    'version' => '3.8.0',
+    'version' => '3.8.1',
     'state' => 'stable',
     'clearCacheOnLoad' => true,
     'author' => 'Tanel Põld',

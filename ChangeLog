@@ -92,3 +92,5 @@
 * 3.8.0
     - [FEATURE] Add 'shortcut to' option to page types
     - [UPDATE] Database update needed
+* 3.8.1
+    - [TASK] add orderBy = sorting for sys_category
