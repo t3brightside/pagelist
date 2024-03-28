@@ -78,13 +78,13 @@ tt_content.pagelist_sub {
       10.wrap = AND tx_pagelist_notinlist = '0' AND sys_language_uid='###language###' AND doktype NOT IN ({$pagelist.disablePageTypes})
       20.wrap = AND tablenames='pages' AND fieldname='categories'
       20.wrap.if.isTrue.field = selected_categories
-      30.wrap = AND (tx_personnel_authors LIKE '%,###authors###' OR tx_personnel_authors LIKE '###authors###,%' OR tx_personnel_authors='###authors###')
+      30.field = tx_pagelist_authors
+      30.wrap = AND tx_personnel_authors IN(|)
       30.wrap.if.isTrue.field = tx_pagelist_authors
       40.wrap = AND l18n_cfg != '1' AND l18n_cfg != '3'
       40.wrap.if.isFalse.data = sitelanguage:languageId
     }
     markers {
-      authors.data = field:tx_pagelist_authors
       language.data = sitelanguage:languageId
     }
     orderBy.field = tx_pagelist_orderby
