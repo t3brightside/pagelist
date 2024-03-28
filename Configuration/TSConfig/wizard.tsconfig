@@ -1,0 +1,17 @@
+mod.wizards.newContentElement.wizardItems.common {
+  elements {
+    pagelist_sub {
+      iconIdentifier = mimetypes-x-content-pagelist
+      title = Pagelist: subpages
+      description = Shows subpages of selected pages.
+      tt_content_defValues.CType = pagelist_sub
+    }
+    pagelist_selected {
+      iconIdentifier = mimetypes-x-content-pagelist
+      title = Pagelist: selected
+      description = Shows selected pages.
+      tt_content_defValues.CType = pagelist_selected
+    }
+  }
+  show := addToList(pagelist_sub,pagelist_selected)
+}

@@ -8,11 +8,11 @@ defined('TYPO3') || die('Access denied.');
 
 (function () {
     $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-    // Only include page.tsconfig if TYPO3 version is below 12 so that it is not imported twice.
-    if ($versionInformation->getMajorVersion() < 12) {
-    ExtensionManagementUtility::addPageTSConfig('
-        @import "EXT:pagelist/Configuration/page.tsconfig"
-    ');
+    // Only include wizard.tsconfig if TYPO3 version is below 13
+    if ($versionInformation->getMajorVersion() < 13) {
+        TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
+            @import "EXT:pagelist/Configuration/TSConfig/wizard.tsconfig"
+        ');
     }
 
     $iconRegistry = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
