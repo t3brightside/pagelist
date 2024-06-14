@@ -75,8 +75,8 @@ tt_content.pagelist_sub {
     join.wrap = sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(|)
     join.if.isTrue.field = selected_categories
     where.stdWrap.orderedStdWrap {
-      10.wrap = AND tx_pagelist_notinlist = '0' AND sys_language_uid='###language###' AND doktype NOT IN ({$pagelist.disablePageTypes})
-      20.wrap = AND tablenames='pages' AND fieldname='categories'
+      10.wrap = AND tx_pagelist_notinlist = '0' AND sys_language_uid='###language###' AND doktype NOT IN ({$pagelist.disablePageTypes}) AND tablenames='pages'
+      20.wrap = AND fieldname='categories'
       20.wrap.if.isTrue.field = selected_categories
       30.field = tx_pagelist_authors
       30.wrap = AND tx_personnel_authors IN(|)
