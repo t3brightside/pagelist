@@ -1,6 +1,6 @@
 {
 	"name": "t3brightside/pagelist",
-	"description": "TYPO3 CMS extension to create news, events, vacancies and products or just page lists.",
+	"description": "TYPO3 CMS extension to create news, events, vacancies and products or just page lists. Demo: microtemplate.t3brightside.com",
 	"type": "typo3-cms-extension",
 	"keywords": ["TYPO3", "extension", "teaser", "pageteaser", "news", "events", "vacancies", "products"],
 	"license": "GPL-2.0-or-later",

@@ -91,6 +91,17 @@
     - [TASK] TCA code clean up
 * 3.8.0
     - [FEATURE] Add 'shortcut to' option to page types
-    - [UPDATE] Database update needed
+    - [!UPDATE!] Database update needed
 * 3.8.1
     - [TASK] add orderBy = sorting for sys_category
+* 4.0.0
+    - [!UPDATE!] Database update needed
+    - [TASK] improve styles
+    - [TASK] clarify constant comments
+    - [FEATURE] improved BE previews
+    - [FEATURE] remove dummy image
+    - [FEATURE] add crop ratio for images
+    - [FEATURE] add sorting by event time
+    - [FEATURE] inline content editing for pages
+    - [TASK] category and author filtering improvement (works a bit iffy still)
+    - [TASK] add v13 compatibility and drop v11

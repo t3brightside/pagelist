@@ -2,7 +2,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Pagelist',
-    'description' => 'Page based news, events, products and vacancies or just page lists.',
+    'description' => 'Page based news, events, products and vacancies or just page lists. Demo: microtemplate.t3brightside.com',
     'category' => 'fe',
     'version' => '4.0.0',
     'state' => 'stable',
