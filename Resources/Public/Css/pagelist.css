@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+.pagelist figure {
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
 .pagelist img.image,
 .pagelist .img-dummy {
     width: 100%;
@@ -45,8 +53,9 @@
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
     grid-gap: 3rem;
 }
-.pagelist .card {
-}
+
+.pagelist .card {}
+
 .pagelist .card .title {
     padding: 0.2em 0;
     margin: 0;
