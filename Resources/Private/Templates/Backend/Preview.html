@@ -24,6 +24,12 @@
                 <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_datetime ASC'">
                     date (past → now)
                 </f:if>
+                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_eventstart ASC'">
+                    event start (now → future)
+                </f:if>
+                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_eventstart DESC'">
+                    event start (future → now)
+                </f:if>
                 <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'lastUpdated DESC'">
                     last updated (now → past)
                 </f:if>
@@ -44,7 +50,7 @@
     <f:if condition="{pagelistitem.tx_pagelist_template}"><li>Layout: {pagelistitem.tx_pagelist_template}</li></f:if>
     <f:if condition="{pagelistitem.tx_pagelist_titlewrap}"><li>Title wrap: {pagelistitem.tx_pagelist_titlewrap}</li></f:if>
     <f:if condition="!{pagelistitem.tx_pagelist_disableimages}"><f:then><li>Images: enabled</li></f:then><f:else><li>Images: disabled</li></f:else></f:if>
-    <f:if condition="!{pagelistitem.tx_pagelist_disableimages}"><li>Image crop ratio: {pagelistitem.tx_pagelist_cropratio}</li></f:if>
+    <f:if condition="!{pagelistitem.tx_pagelist_disableimages} && {pagelistitem.tx_pagelist_cropratio}"><li>Image crop ratio: {pagelistitem.tx_pagelist_cropratio}</li></f:if>
     <f:if condition="!{pagelistitem.tx_pagelist_disableabstract}"><li>Introduction: enabled</li></f:if>
     <f:if condition="{pagelistitem.tx_paginatedprocessors_paginationenabled}"><li>Pagination: enabled</li></f:if>
 </ul>
