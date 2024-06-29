@@ -3,6 +3,7 @@ CREATE TABLE tt_content (
 	tx_pagelist_template varchar(25),
 	tx_pagelist_orderby tinytext,
 	tx_pagelist_disableimages int(1) DEFAULT '0' NOT NULL,
+	tx_pagelist_cropratio varchar(25),
 	tx_pagelist_disableabstract int(1) DEFAULT '0' NOT NULL,
 	tx_pagelist_startfrom varchar(6),
 	tx_pagelist_limit varchar(6),
@@ -22,4 +23,5 @@ CREATE TABLE pages (
 	tx_pagelist_productprice varchar(255),
 	tx_pagelist_notinlist int(1) DEFAULT '0' NOT NULL,
 	tx_pagelist_shortcut varchar(255),
+	tx_pagelist_content int unsigned DEFAULT 0 NOT NULL,
 );

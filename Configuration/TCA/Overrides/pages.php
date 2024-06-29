@@ -18,32 +18,127 @@ $pagelistVacancy = 139;
 $tempColumns = array(
     'tx_pagelist_images' => [
         'exclude' => 1,
-        'label' => 'Images',
-        'config' => ExtensionManagementUtility::getFileFieldTCAConfig(
-            'tx_pagelist_images',
-            [
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
-                'overrideChildTca' => [
-                    'types' => [
-                        '0' => [
-                            'showitem' => '
-                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                --palette--;;filePalette
-                            '
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                            'showitem' => '
-                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                --palette--;;filePalette
-                            '
+        'label' => 'Image',
+        'config' => [
+            'type' => 'file',
+            'maxitems' => 100,
+            'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
+            'appearance' => [
+                'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
+            ],
+            'overrideChildTca' => [
+                'columns' => [
+                    'crop' => [
+                        'config' => [
+                            'cropVariants' => [
+                                'default' => [
+                                    'title' => 'LLL:EXT:core/Resources/Private/Language/locallang_wizards.xlf:imwizard.crop_variant.default',
+                                    'allowedAspectRatios' => [
+
+                                        'NaN' => [
+                                            'title' => 'LLL:EXT:core/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',
+                                            'value' => 0.0
+                                        ],
+                                    ],
+                                    'selectedRatio' => 'NaN',
+                                    'cropArea' => [
+                                        'x' => 0.0,
+                                        'y' => 0.0,
+                                        'width' => 1.0,
+                                        'height' => 1.0,
+                                    ],
+                                ],
+                                'tv' => [
+                                    'title' => 'TV (4:3)',
+                                    'selectedRatio' => '4:3',
+                                    'allowedAspectRatios' => [
+                                        '4:3' => [
+                                            'title' => 'TV',
+                                            'value' => 4 / 3,
+                                        ],
+                                    ],
+                                ],
+                                'widescreen' => [
+                                    'title' => 'Widescreen (16:9)',
+                                    'selectedRatio' => '16:9',
+                                    'allowedAspectRatios' => [
+                                        '16:9' => [
+                                            'title' => 'Widescreen',
+                                            'value' => 16 / 9,
+                                        ],
+                                    ],
+                                ],
+                                'anamorphic' => [
+                                    'title' => 'Anamorphic (2.39:1)',
+                                    'selectedRatio' => '2.39:1',
+                                    'allowedAspectRatios' => [
+                                        '2.39:1' => [
+                                            'title' => 'Anamorphic',
+                                            'value' => 2.39 / 1,
+                                        ],
+                                    ],
+                                ],
+                                'square' => [
+                                    'title' => 'Square (1:1)',
+                                    'selectedRatio' => '1:1',
+                                    'allowedAspectRatios' => [
+                                        '1:1' => [
+                                            'title' => 'Square',
+                                            'value' => 1 / 1,
+                                        ],
+                                    ],
+                                ],
+                                'portrait' => [
+                                    'title' => 'Portrait (3:4)',
+                                    'selectedRatio' => '3:4',
+                                    'allowedAspectRatios' => [
+                                        '3:4' => [
+                                            'title' => 'Portrait (three-four)',
+                                            'value' => 3 / 4,
+                                        ],
+                                    ],
+                                ],
+                                'tower' => [
+                                    'title' => 'Tower (9:16)',
+                                    'selectedRatio' => '9:16',
+                                    'allowedAspectRatios' => [
+                                        '9:16' => [
+                                            'title' => 'Tower',
+                                            'value' => 9 / 16,
+                                        ],
+                                    ],
+                                ],
+                                'skyscraper' => [
+                                    'title' => 'Skyscraper (1:2.39)',
+                                    'selectedRatio' => '1:2.39',
+                                    'allowedAspectRatios' => [
+                                        '1:2.39' => [
+                                            'title' => 'Skyscraper',
+                                            'value' => 1 / 2.39,
+                                        ],
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                 ],
+                'types' => [
+                    '0' => [
+                        'showitem' => '
+                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                        --palette--;;filePalette'
+                    ],
+                    \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                        'showitem' => '
+                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                        --palette--;;filePalette'
+                    ],
+                ],
             ],
-            $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-        ),
+        ],
     ],
     'tx_pagelist_eventlocation' => [
         'exclude' => 1,
@@ -194,7 +289,8 @@ if ($pagelistConiguration['pagelistEnableVacancies']) {
         [
             'Vacancy',
             $pagelistVacancy,
-            'apps-pagetree-vacancy'
+            'apps-pagetree-vacancy',
+            'group' => 'default',
         ],
         '1',
         'after'
@@ -208,7 +304,8 @@ if ($pagelistConiguration['pagelistEnableProducts']) {
         [
             'Product',
             $pagelistProduct,
-            'apps-pagetree-product'
+            'apps-pagetree-product',
+            'group' => 'default',
         ],
         '1',
         'after'
@@ -222,7 +319,8 @@ if ($pagelistConiguration['pagelistEnableEvents']) {
         [
         'Event',
         $pagelistEvent,
-        'apps-pagetree-event'
+        'apps-pagetree-event',
+        'group' => 'default',
     ],
         '1',
         'after'
@@ -235,7 +333,8 @@ if ($pagelistConiguration['pagelistEnableArticles']) {
         [
         'Article',
         $pagelistArticle,
-        'apps-pagetree-article'
+        'apps-pagetree-article',
+        'group' => 'default',
     ],
         '1',
         'after'
@@ -490,3 +589,44 @@ if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration[
 }
 
 $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = 'tx_pagelist_images,';
+
+if ($pagelistConiguration['pagelistEnableInlineContentEditing']) {
+    // Add a new tab to the pages TCA for managing tt_content elements
+    $GLOBALS['TCA']['pages']['types']['136']['showitem'] .= ',--div--;Content, tx_pagelist_content';
+    $GLOBALS['TCA']['pages']['types']['137']['showitem'] .= ',--div--;Content, tx_pagelist_content';
+    $GLOBALS['TCA']['pages']['types']['138']['showitem'] .= ',--div--;Content, tx_pagelist_content';
+    $GLOBALS['TCA']['pages']['types']['139']['showitem'] .= ',--div--;Content, tx_pagelist_content';
+
+    // Add configuration to display tt_content elements inline
+    $GLOBALS['TCA']['pages']['columns']['tx_pagelist_content'] = [
+        'label' => 'Content',
+        'config' => [
+            'type' => 'inline',
+            'foreign_table' => 'tt_content',
+            'foreign_field' => 'pid',
+            'appearance' => [
+                'useSortable' => true,
+                'collapseAll' => true,
+                'levelLinksPosition' => 'bottom',
+                'showSynchronizationLink' => true,
+                'showPossibleLocalizationRecords' => true,
+                'showAllLocalizationLink' => true,
+                'enabledControls' => [
+                    'info' => true,
+                    'new' => true,
+                    'dragdrop' => true,
+                    'sort' => false,
+                    'hide' => true,
+                    'delete' => true,
+                    'localize' => true,
+                ],
+            ],
+        ],
+    ];
+}
+
+ExtensionManagementUtility::registerPageTSConfigFile(
+    'pagelist',
+    'Configuration/TSConfig/limit_to_pagelist_types.tsconfig',
+    'Pagelist - Allow only Pagelist page types'
+);

@@ -16,3 +16,5 @@ pagelistEnableProductPersonnel = 0
 pagelistEnableVacancyPersonnel = 0
 # cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Pagination
 pagelistEnablePagination = 1
+# cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable inline content editing in page properties
+pagelistEnableInlineContentEditing = 1
