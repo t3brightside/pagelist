@@ -1,18 +1,18 @@
 <div class="card{f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
     <f:format.html parseFuncTSPath="lib.parseFunc">
         <a href="{f:if(condition: '{page.data.tx_pagelist_shortcut}', then: '{page.data.tx_pagelist_shortcut}', else: 't3://page?uid={page.data.uid}')}" title="{page.data.title}">
-            <f:if condition="{data.tx_pagelist_disableimages} == 0">
+            <f:if condition="!{data.tx_pagelist_disableimages} && {page.listimages.0}">
                 <figure>
-                    <f:if condition="{page.listimages.0}">
-                        <f:then>
-                            <f:image image="{page.listimages.0}" class="image" treatIdAsReference="1" loading="{f:if(condition: '!{data.tx_imagelazyload}', then: 'lazy')}" width="{settings.cardImageWidth}c" height="{settings.cardImageHeight}c" fileExtension="{settings.forceImageFileFormat}"
-                                alt="{f:if(condition:'{page.listimages.0.alternative}', then:'{page.listimages.0.alternative}', else:'{page.data.title}')}"
-                                additionalAttributes="{srcset: '{f:uri.image(image:\'{page.listimages.0}\', width:\'{cardImageWidth_x2}.c\', height:\'{cardImageHeight_x2}.c\', fileExtension:\'{settings.forceImageFileFormat}\')} 2x'}" />
-                        </f:then>
-                        <f:else>
-                            <f:image class="img-dummy" src="EXT:pagelist/Resources/Public/Images/clear.png" loading="{f:if(condition: '!{data.tx_imagelazyload}', then: 'lazy')}" width="{settings.cardImageWidth}" height="{settings.cardImageHeight}" alt="{page.data.title}" />
-                        </f:else>
-                    </f:if>
+                    <f:image
+                        image="{page.listimages.0}"
+                        class="image"
+                        treatIdAsReference="1"
+                        loading="{f:if(condition: '!{data.tx_imagelazyload}', then: 'lazy')}"
+                        width="{settings.cardImageWidth}"
+                        cropVariant="{data.tx_pagelist_cropratio}"
+                        fileExtension="{settings.forceImageFileFormat}"
+                        alt="{f:if(condition:'{page.listimages.0.alternative}', then:'{page.listimages.0.alternative}', else:'{page.data.title}')}"
+                        additionalAttributes="{srcset: '{f:uri.image(image:\'{page.listimages.0}\', width:\'{cardImageWidth_x2}\', cropVariant:\'{data.tx_pagelist_cropratio}\', fileExtension:\'{settings.forceImageFileFormat}\')} 2x'}" />
                 </figure>
             </f:if>
             <div class="text">
@@ -30,7 +30,7 @@
                 </f:if>
                 <f:if condition="{page.data.doktype} == 137">
                     <p class="info">
-                        <f:if condition="{page.data.tx_pagelist_datetime}"><span class="date"><f:format.date format="j. M Y">{page.data.tx_pagelist_eventstart}</f:format.date></span></f:if>
+                        <f:if condition="{page.data.tx_pagelist_eventstart}"><span class="date"><f:format.date format="j. M Y">{page.data.tx_pagelist_eventstart}</f:format.date><f:if condition="{page.data.tx_pagelist_starttime}"> / <f:format.date format="H:i">{page.data.tx_pagelist_eventstart}</f:format.date></f:if></span></f:if>
                         <f:if condition="{page.data.tx_pagelist_eventlocation}">☉ {page.data.tx_pagelist_eventlocation}</f:if>
                     </p>
                 </f:if>
