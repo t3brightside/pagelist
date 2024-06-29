@@ -81,11 +81,13 @@ tt_content.pagelist_sub {
       30.field = tx_pagelist_authors
       30.wrap = AND tx_personnel_authors IN(|)
       30.wrap.if.isTrue.field = tx_pagelist_authors
+      35.wrap = AND ((tx_pagelist_eventstart > ###NOW### OR tx_pagelist_eventstart = 'NULL') OR (tx_pagelist_eventfinish > ###NOW### OR tx_pagelist_eventstart = 'NULL'))
       40.wrap = AND l18n_cfg != '1' AND l18n_cfg != '3'
       40.wrap.if.isFalse.data = sitelanguage:languageId
     }
     markers {
       language.data = sitelanguage:languageId
+      NOW.data = date:U
     }
     orderBy.field = tx_pagelist_orderby
     as = pagelist
