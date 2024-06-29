@@ -7,6 +7,7 @@ use Brightside\Pagelist\Preview\PagelistPreviewRenderer;
 defined('TYPO3') || die('Access denied.');
 
 // Content type icons
+
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_sub'] = 'mimetypes-x-content-pagelist';
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_selected'] = 'mimetypes-x-content-pagelist';
 
@@ -21,9 +22,11 @@ ExtensionManagementUtility::addTcaSelectItem(
     "tt_content",
     "CType",
     [
-        "Pagelist: subpages",
-        "pagelist_sub",
-        "mimetypes-x-content-pagelist"
+        'label' => 'Pagelist: subpages',
+        'value' => 'pagelist_sub',
+        'icon' => 'mimetypes-x-content-pagelist',
+        'group' => 'default',
+        'description' => 'Shows subpages list of selected pages.',
     ],
     'textmedia',
     'after'
@@ -33,9 +36,11 @@ ExtensionManagementUtility::addTcaSelectItem(
     "tt_content",
     "CType",
     [
-        "Pagelist: selected",
-        "pagelist_selected",
-        "mimetypes-x-content-pagelist"
+        'label' => 'Pagelist: selected',
+        'value' => 'pagelist_selected',
+        'icon' => 'mimetypes-x-content-pagelist',
+        'group' => 'default',
+        'description' => 'Shows list of selected pages.',
     ],
     'pagelist_sub',
     'after'
@@ -50,16 +55,16 @@ $tempColumns = array(
             'renderType' => 'selectSingle',
             'default' => '0',
             'items' => [
-                ['1', '0'],
-                ['2', '1'],
-                ['3', '2'],
-                ['4', '3'],
-                ['5', '4'],
-                ['6', '5'],
-                ['7', '6'],
-                ['8', '7'],
-                ['9', '8'],
-                ['10', '9'],
+                ['0', '0'],
+                ['1', '1'],
+                ['2', '2'],
+                ['3', '3'],
+                ['4', '4'],
+                ['5', '5'],
+                ['6', '6'],
+                ['7', '7'],
+                ['8', '8'],
+                ['9', '9'],
                 ['All sub levels', '999'],
             ],
             'behaviour' => [
@@ -69,7 +74,7 @@ $tempColumns = array(
     ],
     'tx_pagelist_template' => [
         'exclude' => 1,
-        'label'   => 'Template',
+        'label'   => 'Layout',
         'config'  => [
             'type'     => 'select',
             'renderType' => 'selectSingle',
@@ -82,7 +87,7 @@ $tempColumns = array(
     ],
     'tx_pagelist_orderby' => [
         'exclude' => 1,
-        'label'   => 'Sort by',
+        'label'   => 'Order by',
         'config'  => [
             'type'     => 'select',
             'renderType' => 'selectSingle',
@@ -91,6 +96,8 @@ $tempColumns = array(
                 ['Page tree (default)', 'pages.sorting'],
                 ['Date (now → past)', 'tx_pagelist_datetime DESC'],
                 ['Date (past → now)', 'tx_pagelist_datetime ASC'],
+                ['Event start (now → future)', 'tx_pagelist_eventstart ASC'],
+                ['Event start (future → now)', 'tx_pagelist_eventstart DESC'],
                 ['Last updated (now → past)', 'lastUpdated DESC'],
                 ['Last updated (past → now)', 'lastUpdated ASC'],
                 ['Page title (a → z)', 'title ASC'],
@@ -103,7 +110,7 @@ $tempColumns = array(
     ],
     'tx_pagelist_startfrom' => [
         'exclude' => 1,
-        'label' => 'Start from Page',
+        'label' => 'Start from page',
         'config' => [
             'type' => 'input',
             'eval' => 'num',
@@ -115,7 +122,7 @@ $tempColumns = array(
     ],
     'tx_pagelist_limit' => [
         'exclude' => 1,
-        'label' => 'Pages Shown',
+        'label' => 'Limit showing to',
         'config' => [
             'type' => 'input',
             'eval' => 'num',
@@ -142,6 +149,16 @@ $tempColumns = array(
                 'allowLanguageSynchronization' => true,
             ],
         ]
+    ],
+    'tx_pagelist_cropratio' => [
+        'exclude' => 1,
+        'label'   => 'Image Crop',
+        'config'  => [
+            'type'     => 'select',
+            'renderType' => 'selectSingle',
+            'default' => '0',
+            'items'    => array(), /* items set in page TsConfig */
+        ],
     ],
     'tx_pagelist_disableabstract' => [
         'exclude' => 1,
@@ -180,7 +197,7 @@ $tempColumns = array(
 ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
 
 // Author field if Personell is installed
-if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
+if(ExtensionManagementUtility::isLoaded('personnel')){
     $tempColumnsAuthors = array(
         'tx_pagelist_authors' => [
             'exclude' => 1,
@@ -190,7 +207,7 @@ if(TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('personnel')){
                 'renderType' => 'selectMultipleSideBySide',
                 'foreign_table' => 'tx_personnel_domain_model_person',
                 'foreign_table_where' => 'AND tx_personnel_domain_model_person.sys_language_uid IN (-1,0)',
-                'maxitems' => '1',
+            //    'maxitems' => '1',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -277,18 +294,20 @@ $GLOBALS['TCA']['tt_content']['palettes']['pagelist_layout']['showitem'] = '
     tx_pagelist_template,
     tx_pagelist_titlewrap,
     tx_pagelist_disableimages,
+    tx_pagelist_cropratio,--linebreak--,
     tx_imagelazyload,
     tx_pagelist_disableabstract,
 ';
 
 $GLOBALS['TCA']['tt_content']['palettes']['pagelist_filtering']['showitem'] = '
-    selected_categories;by Category,
-    tx_pagelist_authors;by Author,
+    selected_categories;by Category (ANY),
+    tx_pagelist_authors;AND by Author (ANY),
 ';
 
 $GLOBALS['TCA']['tt_content']['palettes']['pagelist_selected_layout']['showitem'] = '
     tx_pagelist_template,
     tx_pagelist_titlewrap,
+    tx_pagelist_cropratio,
     tx_pagelist_disableimages,
     tx_imagelazyload,
     tx_pagelist_disableabstract,
