@@ -10,6 +10,8 @@ defined('TYPO3') || die('Access denied.');
 
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_sub'] = 'mimetypes-x-content-pagelist';
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_selected'] = 'mimetypes-x-content-pagelist';
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_articles_sub'] = 'mimetypes-x-content-pagelist';
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_events_sub'] = 'mimetypes-x-content-pagelist';
 
 // Get extension configuration
 $extensionConfiguration = GeneralUtility::makeInstance(
@@ -36,11 +38,39 @@ ExtensionManagementUtility::addTcaSelectItem(
     "tt_content",
     "CType",
     [
-        'label' => 'Pagelist: selected',
+        'label' => 'Pagelist: selected pages',
         'value' => 'pagelist_selected',
         'icon' => 'mimetypes-x-content-pagelist',
         'group' => 'default',
         'description' => 'Shows list of selected pages.',
+    ],
+    'pagelist_sub',
+    'after'
+);
+
+ExtensionManagementUtility::addTcaSelectItem(
+    "tt_content",
+    "CType",
+    [
+        'label' => 'Pagelist: articles of subpages',
+        'value' => 'pagelist_articles_sub',
+        'icon' => 'mimetypes-x-content-pagelist',
+        'group' => 'default',
+        'description' => 'Show news article subpages from selected pages.',
+    ],
+    'pagelist_sub',
+    'after'
+);
+
+ExtensionManagementUtility::addTcaSelectItem(
+    "tt_content",
+    "CType",
+    [
+        'label' => 'Pagelist: events of subpages',
+        'value' => 'pagelist_events_sub',
+        'icon' => 'mimetypes-x-content-pagelist',
+        'group' => 'default',
+        'description' => 'Shows event subpages of selected pages.',
     ],
     'pagelist_sub',
     'after'
@@ -93,16 +123,17 @@ $tempColumns = array(
             'renderType' => 'selectSingle',
             'default' => 'pages.sorting',
             'items' => [
-                ['Page tree (default)', 'pages.sorting'],
+                ['Page tree', 'pages.sorting'],
                 ['Date (now → past)', 'tx_pagelist_datetime DESC'],
                 ['Date (past → now)', 'tx_pagelist_datetime ASC'],
-                ['Event start (now → future)', 'tx_pagelist_eventstart ASC'],
-                ['Event start (future → now)', 'tx_pagelist_eventstart DESC'],
                 ['Last updated (now → past)', 'lastUpdated DESC'],
                 ['Last updated (past → now)', 'lastUpdated ASC'],
+                ['Event start (now → future)', 'tx_pagelist_eventstart ASC'],
+                ['Event start (future → now)', 'tx_pagelist_eventstart DESC'],
                 ['Page title (a → z)', 'title ASC'],
                 ['Page title (z → a)', 'title DESC'],
             ],
+            'default' => 'pages.sorting',
             'behaviour' => [
                 'allowLanguageSynchronization' => true,
             ],
@@ -218,7 +249,6 @@ if(ExtensionManagementUtility::isLoaded('personnel')){
 }
 
 // Define content type for Pagelist: subpages
-$GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['previewRenderer'] = PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['showitem'] = '
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
         --palette--;;general,
@@ -250,7 +280,6 @@ if ($extensionConfiguration['pagelistEnablePagination']) {
 }
 
 // Define content type for Pagelist: selected
-$GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['previewRenderer'] = PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem'] = '
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
         --palette--;;general,
@@ -277,6 +306,87 @@ if ($extensionConfiguration['pagelistEnablePagination']) {
         ';pagelist_selected_layout,
         --palette--;Pagination;paginatedprocessors,',
         $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['showitem']
+    );
+}
+
+// Define content type for Pagelist: subpages
+$GLOBALS['TCA']['tt_content']['types']['pagelist_articles_sub'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,
+            --palette--;;headers,
+            --palette--;Pages;pagelist_sub_data,
+            --palette--;Layout;pagelist_layout,
+            --palette--;Filter;pagelist_filtering,
+        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+            --palette--;;language,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,
+            --palette--;;access,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+            categories,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+            rowDescription,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
+    ',
+    'columnsOverrides' => [
+        'tx_pagelist_orderby' => [
+            'config'  => [
+                'default' => 'tx_pagelist_datetime DESC',
+            ],
+        ],
+    ],
+];
+
+if ($extensionConfiguration['pagelistEnablePagination']) {
+    $GLOBALS['TCA']['tt_content']['types']['pagelist_articles_sub']['showitem'] = str_replace(
+        ';pagelist_filtering,',
+        ';pagelist_filtering,
+        --palette--;Pagination;paginatedprocessors,',
+        $GLOBALS['TCA']['tt_content']['types']['pagelist_articles_sub']['showitem']
+    );
+}
+
+$GLOBALS['TCA']['tt_content']['types']['pagelist_events_sub'] = [
+    'showitem' => '
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+            --palette--;;general,
+            --palette--;;headers,
+            --palette--;Pages;pagelist_sub_data,
+            --palette--;Layout;pagelist_layout,
+            --palette--;Filter;pagelist_filtering,
+        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+            --palette--;;frames,
+            --palette--;;appearanceLinks,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+            --palette--;;language,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            --palette--;;hidden,
+            --palette--;;access,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+            categories,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+            rowDescription,
+        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
+    ',
+    'columnsOverrides' => [
+        'tx_pagelist_orderby' => [
+            'config'  => [
+                'default' => 'tx_pagelist_eventstart ASC',
+            ],
+        ],
+    ],
+];
+
+if ($extensionConfiguration['pagelistEnablePagination']) {
+    $GLOBALS['TCA']['tt_content']['types']['pagelist_events_sub']['showitem'] = str_replace(
+        ';pagelist_filtering,',
+        ';pagelist_filtering,
+        --palette--;Pagination;paginatedprocessors,',
+        $GLOBALS['TCA']['tt_content']['types']['pagelist_events_sub']['showitem']
     );
 }
 
@@ -312,3 +422,9 @@ $GLOBALS['TCA']['tt_content']['palettes']['pagelist_selected_layout']['showitem'
     tx_imagelazyload,
     tx_pagelist_disableabstract,
 ';
+
+// Set custom BE preview renderer
+$GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['previewRenderer'] = PagelistPreviewRenderer::class;
+$GLOBALS['TCA']['tt_content']['types']['pagelist_articles_sub']['previewRenderer'] = PagelistPreviewRenderer::class;
+$GLOBALS['TCA']['tt_content']['types']['pagelist_events_sub']['previewRenderer'] = PagelistPreviewRenderer::class;
+$GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['previewRenderer'] = PagelistPreviewRenderer::class;

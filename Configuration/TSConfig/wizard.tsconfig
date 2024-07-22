@@ -6,10 +6,22 @@ mod.wizards.newContentElement.wizardItems.common {
       description = Shows subpages of selected pages.
       tt_content_defValues.CType = pagelist_sub
     }
+    pagelist_articles_sub {
+      iconIdentifier = mimetypes-x-content-pagelist
+      title = Pagelist: articles of subpages
+      description = Show news article subpages from selected pages.
+      tt_content_defValues.CType = pagelist_articles_sub
+    }
+    pagelist_events_sub {
+      iconIdentifier = mimetypes-x-content-pagelist
+      title = Pagelist: events of subpages
+      description = Show event subpages from selected pages.
+      tt_content_defValues.CType = pagelist_events_sub
+    }
     pagelist_selected {
       iconIdentifier = mimetypes-x-content-pagelist
       title = Pagelist: selected
-      description = Shows selected pages.
+      description = Show selected pages.
       tt_content_defValues.CType = pagelist_selected
     }
   }

@@ -46,3 +46,8 @@ TCEFORM.tt_content.tx_pagelist_cropratio.addItems {
   skyscraper = Skyscraper (1:2.39)
   none = None
 }
+TCEFORM.tt_content.tx_pagelist_orderby.types.pagelist_articles_sub.removeItems = tx_pagelist_eventstart ASC, tx_pagelist_eventstart DESC
+TCEFORM.tt_content.tx_pagelist_orderby.types.pagelist_sub.removeItems = tx_pagelist_eventstart ASC, tx_pagelist_eventstart DESC
+TCAdefaults.tt_content.tx_pagelist_orderby.types.pagelist_sub = pages.sorting
+TCAdefaults.tt_content.tx_pagelist_orderby.types.pagelist_articles_sub = tx_pagelist_datetime DESC
+TCAdefaults.tt_content.tx_pagelist_orderby.types.pagelist_events_sub = tx_pagelist_eventstart ASC

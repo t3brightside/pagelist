@@ -19,12 +19,10 @@ namespace Brightside\Pagelist\Preview;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\MathUtility;
 
 class PagelistPreviewRenderer extends StandardContentPreviewRenderer
 {
@@ -63,7 +61,7 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer
         }
 
         // Show filtering selections
-        if ($CType == 'pagelist_sub') {
+        if ($CType == 'pagelist_sub' || $CType ==  'pagelist_articles_sub' || $CType == 'pagelist_events_sub') {
 
             // Get selected catefories
             if ($selectedCategories) {

@@ -1,56 +1,53 @@
 <html xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers" data-namespace-typo3-fluid="true">
-
-
-<ul style="margin: 0; margin-top: 0.5em; padding: 0.2em 1.4em;">
-
-
-    <f:if condition="{pageTitles}">
-        <li>
-            <f:if condition="{pagelistitem.CType} == 'pagelist_selected'">Show these pages:</f:if><f:if condition="{pagelistitem.CType} == 'pagelist_sub'">Show subpages of:</f:if> <b><f:for each="{pageTitles}" as="title" iteration="iterator">{title}{f:if(condition: iterator.isLast, then: '', else: ', ')}</f:for></b>
-        </li>
-    </f:if>
-    <f:if condition="{pagelistitem.CType} == 'pagelist_sub'">
-        <f:if condition="{pagelistitem.tx_pagelist_recursive}"><li>Recursive level: {pagelistitem.tx_pagelist_recursive}</li></f:if>
-        <f:if condition="{catTitles}"><li>Category filter (ANY): <f:for each="{catTitles}" as="category" iteration="iterator">{category.title}{f:if(condition: iterator.isLast, then: '', else: ', ')}</f:for></li></f:if>
-        <f:if condition="{authors}"><li><f:if condition="{catTitles} && {authors}">AND </f:if>Authors filter (ANY): <f:for each="{authors}" as="author" iteration="iterator">{author.firstname} {author.lastname}{f:if(condition: iterator.isLast, then: '', else: ', ')}</f:for></li></f:if>
-        <f:if condition="{pagelistitem.tx_pagelist_orderby}">
-            <li>Order by:
-                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'pages.sorting'">
-                    page tree
-                </f:if>
-                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_datetime DESC'">
-                    date (now → past)
-                </f:if>
-                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_datetime ASC'">
-                    date (past → now)
-                </f:if>
-                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_eventstart ASC'">
-                    event start (now → future)
-                </f:if>
-                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_eventstart DESC'">
-                    event start (future → now)
-                </f:if>
-                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'lastUpdated DESC'">
-                    last updated (now → past)
-                </f:if>
-                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'lastUpdated ASC'">
-                    last updated (past → now)
-                </f:if>
-                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'title ASC'">
-                    page title (a → z)
-                </f:if>
-                <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'title DESC'">
-                    page title (z → a)
-                </f:if>
+    <ul style="margin: 0; margin-top: 0.5em; padding: 0.2em 1.4em;">
+        <f:if condition="{pageTitles}">
+            <li>
+                <f:if condition="{pagelistitem.CType} == 'pagelist_selected'">Show these pages:</f:if><f:if condition="{pagelistitem.CType} == 'pagelist_sub' || {pagelistitem.CType} == 'pagelist_articles_sub' || {pagelistitem.CType} == 'pagelist_events_sub'">Show subpages of:</f:if> <b><f:for each="{pageTitles}" as="title" iteration="iterator">{title}{f:if(condition: iterator.isLast, then: '', else: ', ')}</f:for></b>
             </li>
         </f:if>
-        <f:if condition="{pagelistitem.tx_pagelist_startfrom}"><li>Start from page: {pagelistitem.tx_pagelist_startfrom}</li></f:if>
-        <f:if condition="{pagelistitem.tx_pagelist_limit}"><li>Limit showing to: {pagelistitem.tx_pagelist_limit}</li></f:if>
-    </f:if>
-    <f:if condition="{pagelistitem.tx_pagelist_template}"><li>Layout: {pagelistitem.tx_pagelist_template}</li></f:if>
-    <f:if condition="{pagelistitem.tx_pagelist_titlewrap}"><li>Title wrap: {pagelistitem.tx_pagelist_titlewrap}</li></f:if>
-    <f:if condition="!{pagelistitem.tx_pagelist_disableimages}"><f:then><li>Images: enabled</li></f:then><f:else><li>Images: disabled</li></f:else></f:if>
-    <f:if condition="!{pagelistitem.tx_pagelist_disableimages} && {pagelistitem.tx_pagelist_cropratio}"><li>Image crop ratio: {pagelistitem.tx_pagelist_cropratio}</li></f:if>
-    <f:if condition="!{pagelistitem.tx_pagelist_disableabstract}"><li>Introduction: enabled</li></f:if>
-    <f:if condition="{pagelistitem.tx_paginatedprocessors_paginationenabled}"><li>Pagination: enabled</li></f:if>
-</ul>
+        <f:if condition="{pagelistitem.CType} == 'pagelist_sub' || {pagelistitem.CType} == 'pagelist_articles_sub' || {pagelistitem.CType} == 'pagelist_events_sub'">
+            <f:if condition="{pagelistitem.tx_pagelist_recursive}"><li>Recursive level: {pagelistitem.tx_pagelist_recursive}</li></f:if>
+            <f:if condition="{catTitles}"><li>Category filter (ANY): <f:for each="{catTitles}" as="category" iteration="iterator">{category.title}{f:if(condition: iterator.isLast, then: '', else: ', ')}</f:for></li></f:if>
+            <f:if condition="{authors}"><li><f:if condition="{catTitles} && {authors}">AND </f:if>Authors filter (ANY): <f:for each="{authors}" as="author" iteration="iterator">{author.firstname} {author.lastname}{f:if(condition: iterator.isLast, then: '', else: ', ')}</f:for></li></f:if>
+            <f:if condition="{pagelistitem.tx_pagelist_orderby}">
+                <li>Order by:
+                    <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'pages.sorting'">
+                        page tree
+                    </f:if>
+                    <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_datetime DESC'">
+                        date (now → past)
+                    </f:if>
+                    <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_datetime ASC'">
+                        date (past → now)
+                    </f:if>
+                    <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_eventstart ASC'">
+                        event start (now → future)
+                    </f:if>
+                    <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'tx_pagelist_eventstart DESC'">
+                        event start (future → now)
+                    </f:if>
+                    <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'lastUpdated DESC'">
+                        last updated (now → past)
+                    </f:if>
+                    <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'lastUpdated ASC'">
+                        last updated (past → now)
+                    </f:if>
+                    <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'title ASC'">
+                        page title (a → z)
+                    </f:if>
+                    <f:if condition="{pagelistitem.tx_pagelist_orderby} == 'title DESC'">
+                        page title (z → a)
+                    </f:if>
+                </li>
+            </f:if>
+            <f:if condition="{pagelistitem.tx_pagelist_startfrom}"><li>Start from page: {pagelistitem.tx_pagelist_startfrom}</li></f:if>
+            <f:if condition="{pagelistitem.tx_pagelist_limit}"><li>Limit showing to: {pagelistitem.tx_pagelist_limit}</li></f:if>
+        </f:if>
+        <f:if condition="{pagelistitem.tx_pagelist_template}"><li>Layout: {pagelistitem.tx_pagelist_template}</li></f:if>
+        <f:if condition="{pagelistitem.tx_pagelist_titlewrap}"><li>Title wrap: {pagelistitem.tx_pagelist_titlewrap}</li></f:if>
+        <f:if condition="!{pagelistitem.tx_pagelist_disableimages}"><f:then><li>Images: enabled</li></f:then><f:else><li>Images: disabled</li></f:else></f:if>
+        <f:if condition="!{pagelistitem.tx_pagelist_disableimages} && {pagelistitem.tx_pagelist_cropratio}"><li>Image crop ratio: {pagelistitem.tx_pagelist_cropratio}</li></f:if>
+        <f:if condition="!{pagelistitem.tx_pagelist_disableabstract}"><li>Introduction: enabled</li></f:if>
+        <f:if condition="{pagelistitem.tx_paginatedprocessors_paginationenabled}"><li>Pagination: enabled</li></f:if>
+    </ul>
+</html>
