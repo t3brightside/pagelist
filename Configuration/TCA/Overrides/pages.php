@@ -395,35 +395,18 @@ $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
         '',
         $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
     );
-$GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
-    'personnelcontact,',
-    ',',
-    $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
-);
 
-if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration['pagelistEnableArticlePersonnel']) {
-    $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
-        title,
-        --linebreak--,subtitle,
-        --linebreak--,slug,
-        --linebreak--,tx_pagelist_datetime,lastUpdated,
-        --linebreak--,abstract,
-        --linebreak--,tx_personnel_authors,
-        --linebreak--,tx_pagelist_images,
-        --linebreak--,tx_pagelist_shortcut,
-    ';
-} else {
-    $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
-        title,
-        --linebreak--,subtitle,
-        --linebreak--,slug,
-        --linebreak--,tx_pagelist_datetime,lastUpdated,
-        --linebreak--,abstract,
-        --linebreak--,author,author_email,
-        --linebreak--,tx_pagelist_images,
-        --linebreak--,tx_pagelist_shortcut,
-    ';
-}
+
+$GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
+    title,
+    --linebreak--,subtitle,
+    --linebreak--,slug,
+    --linebreak--,tx_pagelist_datetime,lastUpdated,
+    --linebreak--,abstract,
+    --linebreak--,tx_pagelist_images,
+    --linebreak--,tx_pagelist_shortcut,
+';
+
 $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
 $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
     ';title,',
@@ -445,34 +428,17 @@ $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
     '',
     $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
 );
-$GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
-    'personnelcontact,',
-    ',',
-    $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
-);
 
-if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration['pagelistEnableProductPersonnel']) {
-    $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
-        title,
-        --linebreak--,subtitle,
-        --linebreak--,slug,
-        --linebreak--,abstract,
-        --linebreak--,tx_pagelist_productprice,
-        --linebreak--,tx_personnel_authors,
-        --linebreak--,tx_pagelist_images,
-        --linebreak--,tx_pagelist_datetime,lastUpdated,
-    ';
-} else {
-    $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
-        title,
-        --linebreak--,subtitle,
-        --linebreak--,slug,
-        --linebreak--,abstract,
-        --linebreak--,tx_pagelist_productprice,
-        --linebreak--,tx_pagelist_images,
-        --linebreak--,tx_pagelist_datetime,lastUpdated,author,author_email,
-    ';
-}
+$GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
+    title,
+    --linebreak--,subtitle,
+    --linebreak--,slug,
+    --linebreak--,abstract,
+    --linebreak--,tx_pagelist_productprice,
+    --linebreak--,tx_pagelist_images,
+    --linebreak--,tx_pagelist_datetime,lastUpdated,author,author_email,
+';
+
 
 // Event page type
 $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
@@ -496,41 +462,20 @@ $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
     '',
     $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
 );
-$GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
-    'personnelcontact,',
-    ',',
-    $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
-);
+$GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
+    title,
+    --linebreak--,subtitle,
+    --linebreak--,slug,
+    --linebreak--,tx_pagelist_datetime,lastUpdated,
+    --linebreak--,tx_pagelist_eventstart,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,
+    --linebreak--,tx_pagelist_eventlocation,
+    --linebreak--,tx_pagelist_eventlocationlink,
+    --linebreak--,abstract,
+    --linebreak--,author,author_email,
+    --linebreak--,tx_pagelist_images,
+    --linebreak--,tx_pagelist_shortcut,
+';
 
-if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration['pagelistEnableEventPersonnel']) {
-    $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
-        title,
-        --linebreak--,subtitle,
-        --linebreak--,slug,
-        --linebreak--,tx_pagelist_datetime,lastUpdated,
-        --linebreak--,tx_pagelist_eventstart,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,
-        --linebreak--,tx_pagelist_eventlocation,
-        --linebreak--,tx_pagelist_eventlocationlink,
-        --linebreak--,abstract,
-        --linebreak--,tx_personnel_authors,
-        --linebreak--,tx_pagelist_images,
-        --linebreak--,tx_pagelist_shortcut,
-    ';
-} else {
-    $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
-        title,
-        --linebreak--,subtitle,
-        --linebreak--,slug,
-        --linebreak--,tx_pagelist_datetime,lastUpdated,
-        --linebreak--,tx_pagelist_eventstart,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,
-        --linebreak--,tx_pagelist_eventlocation,
-        --linebreak--,tx_pagelist_eventlocationlink,
-        --linebreak--,abstract,
-        --linebreak--,author,author_email,
-        --linebreak--,tx_pagelist_images,
-        --linebreak--,tx_pagelist_shortcut,
-    ';
-}
 
 $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = 'tx_pagelist_images,';
 
@@ -556,37 +501,18 @@ $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = str_replace(
     '',
     $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem']
 );
-$GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = str_replace(
-    'personnelcontact,',
-    ',',
-    $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem']
-);
+$GLOBALS['TCA']['pages']['palettes']['pagelistvacancygeneral']['showitem'] = '
+    title,
+    --linebreak--,subtitle,
+    --linebreak--,slug,
+    --linebreak--,tx_pagelist_datetime,lastUpdated,
+    --linebreak--,tx_pagelist_eventfinish,tx_pagelist_eventstart,
+    --linebreak--,abstract,
+    --linebreak--,author,author_email,
+    --linebreak--,tx_pagelist_images,
+    --linebreak--,tx_pagelist_shortcut,
+';
 
-if (ExtensionManagementUtility::isLoaded('personnel') and $pagelistConiguration['pagelistEnableVacancyPersonnel']) {
-    $GLOBALS['TCA']['pages']['palettes']['pagelistvacancygeneral']['showitem'] = '
-        title,
-        --linebreak--,subtitle,
-        --linebreak--,slug,
-        --linebreak--,tx_pagelist_datetime,lastUpdated,
-        --linebreak--,tx_pagelist_eventfinish,tx_pagelist_eventstart,
-        --linebreak--,abstract,
-        --linebreak--,tx_personnel_authors,
-        --linebreak--,tx_pagelist_images,
-        --linebreak--,tx_pagelist_shortcut,
-    ';
-} else {
-    $GLOBALS['TCA']['pages']['palettes']['pagelistvacancygeneral']['showitem'] = '
-        title,
-        --linebreak--,subtitle,
-        --linebreak--,slug,
-        --linebreak--,tx_pagelist_datetime,lastUpdated,
-        --linebreak--,tx_pagelist_eventfinish,tx_pagelist_eventstart,
-        --linebreak--,abstract,
-        --linebreak--,author,author_email,
-        --linebreak--,tx_pagelist_images,
-        --linebreak--,tx_pagelist_shortcut,
-    ';
-}
 
 $GLOBALS['TCA']['pages']['palettes']['pagelistimages']['showitem'] = 'tx_pagelist_images,';
 
