@@ -144,8 +144,9 @@ $tempColumns = array(
         'exclude' => 1,
         'label' => 'Location',
         'config' => [
-            'type' => 'input',
-            'size' => '200',
+            'type' => 'text',
+            'size' => '12',
+            'rows' => '3',
             'eval' => 'text,trim',
             'behaviour' => [
                 'allowLanguageSynchronization' => true,
@@ -436,7 +437,7 @@ $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
     --linebreak--,abstract,
     --linebreak--,tx_pagelist_productprice,
     --linebreak--,tx_pagelist_images,
-    --linebreak--,tx_pagelist_datetime,lastUpdated,author,author_email,
+    --linebreak--,tx_pagelist_datetime,lastUpdated,
 ';
 
 
@@ -468,10 +469,8 @@ $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
     --linebreak--,slug,
     --linebreak--,tx_pagelist_datetime,lastUpdated,
     --linebreak--,tx_pagelist_eventstart,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,
-    --linebreak--,tx_pagelist_eventlocation,
-    --linebreak--,tx_pagelist_eventlocationlink,
+    --linebreak--,tx_pagelist_eventlocation,tx_pagelist_eventlocationlink,
     --linebreak--,abstract,
-    --linebreak--,author,author_email,
     --linebreak--,tx_pagelist_images,
     --linebreak--,tx_pagelist_shortcut,
 ';
@@ -508,7 +507,6 @@ $GLOBALS['TCA']['pages']['palettes']['pagelistvacancygeneral']['showitem'] = '
     --linebreak--,tx_pagelist_datetime,lastUpdated,
     --linebreak--,tx_pagelist_eventfinish,tx_pagelist_eventstart,
     --linebreak--,abstract,
-    --linebreak--,author,author_email,
     --linebreak--,tx_pagelist_images,
     --linebreak--,tx_pagelist_shortcut,
 ';
