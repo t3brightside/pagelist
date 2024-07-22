@@ -25,5 +25,5 @@ mod.wizards.newContentElement.wizardItems.common {
       tt_content_defValues.CType = pagelist_selected
     }
   }
-  show := addToList(pagelist_sub,pagelist_selected)
+  show := addToList(pagelist_sub,pagelist_articles_sub,pagelist_events_sub,pagelist_selected)
 }
