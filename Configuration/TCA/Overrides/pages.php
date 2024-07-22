@@ -140,6 +140,31 @@ $tempColumns = array(
             ],
         ],
     ],
+    'tx_pagelist_eventtickets' => [
+        'exclude' => 1,
+        'label' => 'Tickets info',
+        'config' => [
+            'type' => 'text',
+            'size' => '12',
+            'rows' => '3',
+            'eval' => 'text,trim',
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
+        ]
+    ],
+    'tx_pagelist_eventticketslink' => [
+        'exclude' => 1,
+        'label' => 'Tickets link',
+        'config' => [
+            'type' => 'input',
+            'eval' => 'trim',
+            'renderType' => 'inputLink',
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
+        ]
+    ],
     'tx_pagelist_eventlocation' => [
         'exclude' => 1,
         'label' => 'Location',
@@ -469,6 +494,7 @@ $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
     --linebreak--,slug,
     --linebreak--,tx_pagelist_datetime,lastUpdated,
     --linebreak--,tx_pagelist_eventstart,tx_pagelist_starttime,tx_pagelist_eventfinish,tx_pagelist_endtime,
+    --linebreak--,tx_pagelist_eventtickets,tx_pagelist_eventticketslink,
     --linebreak--,tx_pagelist_eventlocation,tx_pagelist_eventlocationlink,
     --linebreak--,abstract,
     --linebreak--,tx_pagelist_images,
