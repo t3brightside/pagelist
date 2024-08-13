@@ -105,3 +105,14 @@
     - [FEATURE] inline content editing for pages
     - [TASK] category and author filtering improvement (works a bit iffy still)
     - [TASK] add v13 compatibility and drop v11
+* 4.1.0
+    - [!UPDATE!] Database update needed
+    - [!BREAKING!] Personnel records are coneccted bidirectionaly now, need to update page records accordingly
+    - [!BREAKING!] Narrowed down category selection, may need to update TypoScript constants
+    - [TASK] change default category pid to 'root'
+    - [TASK] narrow down category selection for performance
+    - [FEATURE] add ticketing info field to event pages
+    - [TASK] change location field from input to text
+    - [TASK] add dedicated content elements to wizard for v12
+    - [FEATURE] Improved filtering with updated bidirectional ext:personnel persons
+    - [FEATURE] Dedicated content types for Article and Events lists

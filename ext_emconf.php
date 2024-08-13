@@ -4,7 +4,7 @@ $EM_CONF[$_EXTKEY] = [
     'title' => 'Pagelist',
     'description' => 'Page based news, events, products and vacancies or just page lists. Demo: microtemplate.t3brightside.com',
     'category' => 'fe',
-    'version' => '4.0.0',
+    'version' => '4.1.0',
     'state' => 'stable',
     'clearCacheOnLoad' => true,
     'author' => 'Tanel Põld',
@@ -22,6 +22,7 @@ $EM_CONF[$_EXTKEY] = [
         ],
     'suggests' => [
             'personnel' => '',
+            'addresses' => '',
         ],
     ],
     'autoload' => [

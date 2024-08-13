@@ -21,6 +21,8 @@
 	},
 	"suggest": {
 		"t3brightside/personnel": "Contact lists with vCard support, and author records for Pagelist",
+		"t3brightside/addresses": "Address lists to connect as locations to pages",
+
 		"t3brightside/imagelazyload": "Add an option to disable laziload"
 	},
 	"autoload": {
