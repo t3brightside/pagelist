@@ -27,7 +27,7 @@
 	pagelist.defaultTitleWrap = h3
 # cat=Page List/pagelist; type=sting; label= Force image file format (make sure it's enabled in [GFX][imagefile_ext])
   pagelist.forceImageFileFormat =
-# cat=Page List/pagelist; type=int; label= Cetegory folder/page ID
-  pagelist.catFolder = 0
+# cat=Page List/pagelist; type=string; label= Cetegory folder/page ID
+  pagelist.catFolder = root
 # cat=Page List/pagelist; type=boolean; label= Cetegory selection recursive level
   pagelist.catFolderRecursive = 0
