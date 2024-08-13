@@ -99,8 +99,8 @@ tt_content.pagelist_sub {
       80 {
         table = sys_category
         selectFields = sys_category.*
-        pidInList = root,-1
-        recursive = 99
+        pidInList = {$pagelist.catFolder}
+        recursive = {$pagelist.catFolderRecursive}
         join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
         where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
         orderBy = sorting
@@ -209,8 +209,8 @@ tt_content.pagelist_selected {
         80 {
             table = sys_category
             selectFields = sys_category.*
-            pidInList.data = leveluid:0,-1
-            recursive = 99
+            pidInList = {$pagelist.catFolder}
+            recursive = {$pagelist.catFolderRecursive}
             join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
             where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
             orderBy = sorting
