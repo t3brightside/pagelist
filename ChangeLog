@@ -116,5 +116,7 @@
     - [TASK] add dedicated content elements to wizard for v12
     - [FEATURE] Improved filtering with updated bidirectional ext:personnel persons
     - [FEATURE] Dedicated content types for Article and Events lists
-* 4.0.1
+* 4.1.1
     - [BUGFIX] remove debug from cat filtering
+* 4.1.2
+    - [TASK] limit inline editing to certain colPos only
