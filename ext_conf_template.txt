@@ -18,3 +18,5 @@ pagelistEnableVacancyPersonnel = 0
 pagelistEnablePagination = 1
 # cat=basic/enable; type=options[Disabled=0,Enabled=1]; label=Enable inline content editing in page properties
 pagelistEnableInlineContentEditing = 1
+# cat=basic/enable; type=int; label=Colum id inline editing is allowed to (for now just one allowed)
+pagelistInlineColPos = 0

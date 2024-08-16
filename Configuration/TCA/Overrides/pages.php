@@ -546,6 +546,7 @@ if ($pagelistConiguration['pagelistEnableInlineContentEditing']) {
     $GLOBALS['TCA']['pages']['types']['137']['showitem'] .= ',--div--;Content, tx_pagelist_content';
     $GLOBALS['TCA']['pages']['types']['138']['showitem'] .= ',--div--;Content, tx_pagelist_content';
     $GLOBALS['TCA']['pages']['types']['139']['showitem'] .= ',--div--;Content, tx_pagelist_content';
+    $allowedColPos = !empty($pagelistConiguration['pagelistInlineColPos']) ? $pagelistConiguration['pagelistInlineColPos'] : "0";
 
     // Add configuration to display tt_content elements inline
     $GLOBALS['TCA']['pages']['columns']['tx_pagelist_content'] = [
@@ -554,6 +555,9 @@ if ($pagelistConiguration['pagelistEnableInlineContentEditing']) {
             'type' => 'inline',
             'foreign_table' => 'tt_content',
             'foreign_field' => 'pid',
+            'foreign_match_fields' => [
+                'colPos' => $allowedColPos,
+            ],
             'appearance' => [
                 'useSortable' => true,
                 'collapseAll' => true,
