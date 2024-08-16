@@ -31,7 +31,6 @@ class PaginatedPagelistDatabaseQueryProcessor extends DatabaseQueryProcessor
         // Handle categories filtering
         $selectedCategories = $cObj->data['selected_categories'] ?? [];
         if (!empty($selectedCategories)) {
-            debug($selectedCategories);
             $joinClauses[] = 'sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(' . $selectedCategories . ') AND sys_category_record_mm.tablenames=\'pages\' AND sys_category_record_mm.fieldname=\'categories\'';
         }
 
