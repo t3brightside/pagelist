@@ -1,11 +1,11 @@
-<div class="card{f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
+<div class="{f:if(condition: '{data.tx_pagelist_disableimages} == 1', then: ' noimage')}{f:if(condition: '{data.tx_pagelist_disableabstract} == 1', then: ' nointroduction')}">
     <f:format.html parseFuncTSPath="lib.parseFunc">
-        <a href="{f:if(condition: '{page.data.tx_pagelist_shortcut}', then: '{page.data.tx_pagelist_shortcut}', else: 't3://page?uid={page.data.uid}')}" title="{page.data.title}">
+        <a class="pagelist-card" href="{f:if(condition: '{page.data.tx_pagelist_shortcut}', then: '{page.data.tx_pagelist_shortcut}', else: 't3://page?uid={page.data.uid}')}" title="{page.data.title}">
             <f:if condition="!{data.tx_pagelist_disableimages} && {page.listimages.0}">
                 <figure>
                     <f:image
                         image="{page.listimages.0}"
-                        class="image"
+                        class="pagelist-card-image"
                         treatIdAsReference="1"
                         loading="{f:if(condition: '!{data.tx_imagelazyload}', then: 'lazy')}"
                         width="{settings.cardImageWidth}"
@@ -15,28 +15,35 @@
                         additionalAttributes="{srcset: '{f:uri.image(image:\'{page.listimages.0}\', width:\'{cardImageWidth_x2}\', cropVariant:\'{data.tx_pagelist_cropratio}\', fileExtension:\'{settings.forceImageFileFormat}\')} 2x'}" />
                 </figure>
             </f:if>
-            <div class="text">
-                <{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')} class="title">{page.data.title}</{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')}>
+            <div class="pagelist-card-text">
+                <{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')} class="pagelist-card-title">{page.data.title}</{f:if(condition: '{data.tx_pagelist_titlewrap}', then: '{data.tx_pagelist_titlewrap}', else: '{settings.defaultTitleWrap}')}>
                 <f:if condition="{page.data.doktype} == 136">
-                    <p class="info">
-                        <f:if condition="{page.data.tx_pagelist_datetime}"><span class="date"><f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date></span></f:if>
+                    <span class="pagelist-card-info">
+                        <f:if condition="{page.data.tx_pagelist_datetime}"><span class="pagelist-card-info-date"><f:format.date format="j. M Y">{page.data.tx_pagelist_datetime}</f:format.date></span></f:if>
                         <f:if condition="{page.authors} && {page.data.tx_pagelist_datetime}">&nbsp;–&nbsp;</f:if>
                         <f:if condition="{page.data.author}">{page.data.author}</f:if>
                         <f:for each="{page.authors}" as="author" iteration="iterator">
                             <f:render partial="AuthorPersonnel" arguments="{_all}" />
                         </f:for>
                         <f:if condition="{page.data.tx_pagelist_eventlocation}">☉ {page.data.tx_pagelist_eventlocation}</f:if>
-                    </p>
+                    </span>
                 </f:if>
                 <f:if condition="{page.data.doktype} == 137">
-                    <p class="info">
-                        <f:if condition="{page.data.tx_pagelist_eventstart}"><span class="date"><f:format.date format="j. M Y">{page.data.tx_pagelist_eventstart}</f:format.date><f:if condition="{page.data.tx_pagelist_starttime}"> / <f:format.date format="H:i">{page.data.tx_pagelist_eventstart}</f:format.date></f:if></span></f:if>
+                    <span class="pagelist-card-info">
+                        <f:if condition="{page.data.tx_pagelist_eventstart}"><span class="pagelist-card-date"><f:format.date format="j. M Y">{page.data.tx_pagelist_eventstart}</f:format.date><f:if condition="{page.data.tx_pagelist_starttime}"> / <f:format.date format="H:i">{page.data.tx_pagelist_eventstart}</f:format.date></f:if></span></f:if>
                         <f:if condition="{page.data.tx_pagelist_eventlocation}">☉ {page.data.tx_pagelist_eventlocation}</f:if>
-                    </p>
+                    </span>
+                </f:if>
+                <f:if condition="{page.categories}">
+                    <span class="pagelist-card-categories">
+                        <f:for each="{page.categories}" as="category" iteration="i">
+                            {category.data.title}<f:if condition="!{i.isLast}">, </f:if>
+                        </f:for>
+                    </span>
                 </f:if>
                 <f:if condition="{data.tx_pagelist_disableabstract} == 0">
                     <f:if condition="{page.data.abstract}">
-                        <p class="abstract">{page.data.abstract}</p>
+                        <p class="pagelist-card-abstract">{page.data.abstract}</p>
                     </f:if>
                 </f:if>
             </div>
