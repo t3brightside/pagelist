@@ -3,25 +3,25 @@ mod.wizards.newContentElement.wizardItems.common {
     pagelist_sub {
       iconIdentifier = mimetypes-x-content-pagelist
       title = Pagelist: subpages
-      description = Shows subpages of selected pages.
+      description = Shows subpages of selected pages
       tt_content_defValues.CType = pagelist_sub
     }
     pagelist_articles_sub {
       iconIdentifier = mimetypes-x-content-pagelist
       title = Pagelist: articles of subpages
-      description = Show news article subpages from selected pages.
+      description = Show news article subpages from selected pages
       tt_content_defValues.CType = pagelist_articles_sub
     }
     pagelist_events_sub {
       iconIdentifier = mimetypes-x-content-pagelist
       title = Pagelist: events of subpages
-      description = Show event subpages from selected pages.
+      description = Show event subpages from selected pages
       tt_content_defValues.CType = pagelist_events_sub
     }
     pagelist_selected {
       iconIdentifier = mimetypes-x-content-pagelist
       title = Pagelist: selected
-      description = Show selected pages.
+      description = Show selected pages
       tt_content_defValues.CType = pagelist_selected
     }
     pagelist_filter {
@@ -29,6 +29,7 @@ mod.wizards.newContentElement.wizardItems.common {
       title = Pagelist: filter
       description = Filter for selected pagelist element
       tt_content_defValues.CType = pagelist_filter
+    }
   }
   show := addToList(pagelist_sub,pagelist_articles_sub,pagelist_events_sub,pagelist_selected,pagelist_filter)
 }
