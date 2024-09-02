@@ -12,6 +12,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_sub'] = 'mim
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_selected'] = 'mimetypes-x-content-pagelist';
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_articles_sub'] = 'mimetypes-x-content-pagelist';
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_events_sub'] = 'mimetypes-x-content-pagelist';
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['pagelist_filter'] = 'mimetypes-x-content-pagelist';
 
 // Get extension configuration
 $extensionConfiguration = GeneralUtility::makeInstance(
@@ -73,6 +74,19 @@ ExtensionManagementUtility::addTcaSelectItem(
         'description' => 'Shows event subpages of selected pages.',
     ],
     'pagelist_sub',
+    'after'
+);
+ExtensionManagementUtility::addTcaSelectItem(
+    "tt_content",
+    "CType",
+    [
+        'label' => 'Pagelist: filter',
+        'value' => 'pagelist_filter',
+        'icon' => 'mimetypes-x-content-pagelist',
+        'group' => 'default',
+        'description' => 'Filter for selected content element',
+    ],
+    'pagelist_filter',
     'after'
 );
 
@@ -220,6 +234,20 @@ $tempColumns = array(
             'behaviour' => [
                 'allowLanguageSynchronization' => true,
             ],
+        ],
+    ],
+    'tx_pagelist_filtertarget'  => [
+        'exclude' => 1,
+        'label'   => 'Filter target',
+        'config' => [
+            'type' => 'group',
+            'internal_type' => 'db',
+            'allowed' => 'tt_content',
+            'default' => 0,
+            'size' => 1,
+            'autoSizeMax' => 1,
+            'maxitems' => 1,
+            'multiple' => 0,
         ],
     ],
 );
@@ -423,8 +451,28 @@ $GLOBALS['TCA']['tt_content']['palettes']['pagelist_selected_layout']['showitem'
     tx_pagelist_disableabstract,
 ';
 
+$GLOBALS['TCA']['tt_content']['types']['pagelist_filter']['showitem'] = '
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+        --palette--;;general,
+        --palette--;;headers,
+        --palette--;Pages,tx_pagelist_filtertarget,selected_categories,
+    --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+        --palette--;;frames,
+        --palette--;;appearanceLinks,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+        --palette--;;language,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+        --palette--;;hidden,
+        --palette--;;access,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+        categories,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+        rowDescription,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
+';
 // Set custom BE preview renderer
 $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['previewRenderer'] = PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_articles_sub']['previewRenderer'] = PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_events_sub']['previewRenderer'] = PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['previewRenderer'] = PagelistPreviewRenderer::class;
+// $GLOBALS['TCA']['tt_content']['types']['pagelist_filter']['previewRenderer'] = FilterPreviewRenderer::class;

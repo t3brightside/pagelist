@@ -10,7 +10,7 @@
 		<f:variable name="listImageHeight_x2">{settings.listImageHeight * 2}</f:variable>
 		<f:if condition="{pagelist}">
 			<f:if condition="{data.tx_pagelist_template} == cards">
-				<div class="pagelist cards template-{data.tx_pagelist_template} {f:if(condition: '{pagination.numberOfPages} > 1', then: 'has-pagination')}">
+				<div class="pagelist-cards template-{data.tx_pagelist_template} {f:if(condition: '{pagination.numberOfPages} > 1', then: 'has-pagination')}">
 					<f:for each="{pagelist}" as="page" iteration="iterator">
 						<f:render partial="Card" arguments="{_all}" />
 					</f:for>

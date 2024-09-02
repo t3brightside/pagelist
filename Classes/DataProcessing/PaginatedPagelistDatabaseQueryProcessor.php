@@ -28,10 +28,54 @@ class PaginatedPagelistDatabaseQueryProcessor extends DatabaseQueryProcessor
 
         $joinClauses = [];
 
-        // Handle categories filtering
-        $selectedCategories = $cObj->data['selected_categories'] ?? [];
+        // Categories filtering
+        $targetContentElementUid = $cObj->getRequest()->getQueryParams()['pagelistTarget'] ?? '';
+        $currentContentElementUid = $cObj->data['uid'] ?? 0;
+
+        // Get the category parameter as a comma-separated string
+        $feSelectedCategories = $cObj->getRequest()->getQueryParams()['pagelistCat'] ?? '';
+
+        // Split the string into an array of category IDs
+        $feSelectedCategoriesArray = array_filter(explode(',', $feSelectedCategories), 'ctype_digit');
+
+        // Determine the condition to apply: 'AND' or 'OR'
+        $catCondition = strtoupper($cObj->getRequest()->getQueryParams()['catCondition'] ?? 'OR'); // Default to OR
+
+        // Retrieve the categories from the backend content element configuration
+        $selectedCategories = $cObj->data['selected_categories'] ?? '';
+
+        if ($targetContentElementUid == $currentContentElementUid) {
+            if (!empty($selectedCategories) && !empty($feSelectedCategoriesArray)) {
+                $selectedCategoriesArray = explode(',', $selectedCategories);
+
+                if ($catCondition === 'OR') {
+                    // For OR condition, intersect backend and frontend categories
+                    $matchingCategoriesArray = array_intersect($selectedCategoriesArray, $feSelectedCategoriesArray);
+                } else {
+                    // For AND condition, merge backend and frontend categories
+                    $matchingCategoriesArray = array_unique(array_merge($selectedCategoriesArray, $feSelectedCategoriesArray));
+                }
+
+                $selectedCategories = implode(',', $matchingCategoriesArray);
+            } elseif (empty($selectedCategories) && !empty($feSelectedCategoriesArray)) {
+                // If no backend categories, use the frontend selected categories
+                $selectedCategories = implode(',', $feSelectedCategoriesArray);
+            }
+        }
+
         if (!empty($selectedCategories)) {
-            $joinClauses[] = 'sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(' . $selectedCategories . ') AND sys_category_record_mm.tablenames=\'pages\' AND sys_category_record_mm.fieldname=\'categories\'';
+            // Handle the SQL query differently based on AND/OR condition
+            if ($catCondition === 'AND') {
+                foreach ($feSelectedCategoriesArray as $categoryId) {
+                    $joinClauses[] = 'sys_category_record_mm AS cat_' . $categoryId . ' ON uid = cat_' . $categoryId . '.uid_foreign AND cat_' . $categoryId . '.uid_local = ' . $categoryId . ' AND cat_' . $categoryId . '.tablenames=\'pages\' AND cat_' . $categoryId . '.fieldname=\'categories\'';
+                }
+            } else {
+                // OR condition can be handled by a simple IN clause
+                $joinClauses[] = 'sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(' . $selectedCategories . ') AND sys_category_record_mm.tablenames=\'pages\' AND sys_category_record_mm.fieldname=\'categories\'';
+            }
+        } elseif (!empty($feSelectedCategoriesArray)) {
+            // If no valid categories, make sure the query returns no results
+            $joinClauses[] = 'sys_category_record_mm ON uid = sys_category_record_mm.uid_foreign AND sys_category_record_mm.uid_local IN(0) AND sys_category_record_mm.tablenames=\'pages\' AND sys_category_record_mm.fieldname=\'categories\'';
         }
 
         // Handle Personnel filtering
@@ -63,6 +107,7 @@ class PaginatedPagelistDatabaseQueryProcessor extends DatabaseQueryProcessor
                 $processorConfiguration['as']
             );
         }
+
         return $processedData;
     }
 }

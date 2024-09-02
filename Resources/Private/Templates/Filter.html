@@ -1,0 +1,61 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:ea="http://typo3.org/ns/Brightside/Embedassets/ViewHelpers" data-namespace-typo3-fluid="true">
+	<f:layout name="Default" />
+	<f:section name="Main">
+        <ul class="pagelist-cat-filter">
+            <f:for each="{categories}" as="category">
+                <li class="pagelist-cat-filter-item{f:if(condition: '{activeCat} == {category.data.uid}', then: ' act', else: '')}">
+                    <f:link.page pageUid="{data.pid}" additionalParams="{pagelistTarget: data.tx_pagelist_filtertarget,pagelistCat: category.data.uid}">
+                        {category.data.title}
+                    </f:link.page>
+                </li>
+            </f:for>
+        </ul>
+<f:comment>
+        <form action="{f:uri.page(pageUid: data.pid, additionalParams: {pagelistTarget: data.tx_pagelist_filtertarget})}" method="get">
+            <f:debug>{categories}</f:debug>
+
+            <f:for each="{categories}" as="category">
+                <f:debug>{category}</f:debug>
+
+                <div class="pagelist-cat-filter-item">
+                    <label>
+                        <input type="checkbox" name="pagelistCat" value="{category.data.uid}" class="pagelist-category">
+                        {category.data.title}
+                    </label>
+                </div>
+
+            </f:for>
+            <div class="pagelist-cat-condition">
+                <label>
+                    <input type="radio" name="catCondition" value="AND" checked> AND
+                </label>
+                <label>
+                    <input type="radio" name="catCondition" value="OR"> OR
+                </label>
+            </div>
+            <input type="hidden" name="pagelistTarget" value="{data.tx_pagelist_filtertarget}">
+            <button type="submit">Filter</button>
+        </form>
+
+        <script>
+            document.querySelector('form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const selectedCategories = [];
+                document.querySelectorAll('.pagelist-category:checked').forEach((checkbox) => {
+                    selectedCategories.push(checkbox.value);
+                });
+
+                const categoryString = selectedCategories.join(',');
+                const action = event.target.action;
+
+                // Retrieve the selected AND/OR condition
+                const catCondition = document.querySelector('input[name="catCondition"]:checked').value;
+
+                // Append the categoryString and condition to the URL and submit the form
+                window.location.href = action + '&pagelistCat=' + categoryString + '&catCondition=' + catCondition;
+            });
+        </script>
+</f:comment>
+    </f:section>
+</html>

@@ -24,6 +24,11 @@ mod.wizards.newContentElement.wizardItems.common {
       description = Show selected pages.
       tt_content_defValues.CType = pagelist_selected
     }
+    pagelist_filter {
+      iconIdentifier = mimetypes-x-content-pagelist
+      title = Pagelist: filter
+      description = Filter for selected pagelist element
+      tt_content_defValues.CType = pagelist_filter
   }
-  show := addToList(pagelist_sub,pagelist_articles_sub,pagelist_events_sub,pagelist_selected)
+  show := addToList(pagelist_sub,pagelist_articles_sub,pagelist_events_sub,pagelist_selected,pagelist_filter)
 }

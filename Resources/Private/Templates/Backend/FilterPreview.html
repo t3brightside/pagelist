@@ -1,0 +1,11 @@
+<html xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers" data-namespace-typo3-fluid="true">
+    <ul style="margin: 0; margin-top: 0.5em; padding: 0.2em 1.4em;">
+    <li>
+            Target: <f:if condition="{targets}"><f:for each="{targets}" as="target" iteration="iterator">{target.header}</f:for></f:if>
+        </li>
+        <f:if condition="{catTitles}">
+            <li>Allowed categories: <f:for each="{catTitles}" as="category" iteration="iterator">{category.title}{f:if(condition: iterator.isLast, then: '', else: ', ')}</f:for></li>
+        </f:if>
+
+    </ul>
+</html>

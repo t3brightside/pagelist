@@ -221,3 +221,25 @@ tt_content.pagelist_selected {
     }
   }
 }
+
+tt_content.pagelist_filter < tt_content.defaultpagelist
+tt_content.pagelist_filter {
+  templateName = Filter
+  variables {
+     # Assign the pagelistCat parameter to a Fluid variable
+    activeCat = TEXT
+    activeCat.value.data = GP:pagelistCat
+  }
+  dataProcessing {
+    10.if.isTrue.field = selected_categories
+    10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+    10 {
+      table = sys_category
+      selectFields = *
+      pidInList = 0
+      uidInList.field = selected_categories
+      orderBy = sorting
+      as = categories
+    }
+  }
+}

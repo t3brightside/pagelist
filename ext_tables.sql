@@ -9,6 +9,7 @@ CREATE TABLE tt_content (
 	tx_pagelist_limit varchar(6),
 	tx_pagelist_recursive int(1) DEFAULT '0' NOT NULL,
 	tx_pagelist_titlewrap varchar(12),
+	tx_pagelist_filtertarget int(1) DEFAULT '0' NOT NULL,
 );
 
 CREATE TABLE pages (
