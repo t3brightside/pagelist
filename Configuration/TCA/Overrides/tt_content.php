@@ -207,7 +207,7 @@ $tempColumns = array(
     ],
     'tx_pagelist_disableabstract' => [
         'exclude' => 1,
-        'label' => 'Introduction',
+        'label' => 'Abstract',
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
