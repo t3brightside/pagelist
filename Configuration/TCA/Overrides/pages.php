@@ -2,6 +2,8 @@
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Resource\FileType;
+use TYPO3\CMS\Core\Resource\File;
 
 defined('TYPO3') || die('Access denied.');
 
@@ -14,6 +16,12 @@ $pagelistArticle = 136;
 $pagelistEvent = 137;
 $pagelistProduct = 138;
 $pagelistVacancy = 139;
+
+if (class_exists(FileType::class)) {
+    $imageFileType = FileType::IMAGE->value;
+} else {
+    $imageFileType = File::FILETYPE_IMAGE;
+}
 
 $tempColumns = array(
     'tx_pagelist_images' => [
@@ -131,7 +139,7 @@ $tempColumns = array(
                         --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                         --palette--;;filePalette'
                     ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                    $imageFileType => [
                         'showitem' => '
                         --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                         --palette--;;filePalette'
