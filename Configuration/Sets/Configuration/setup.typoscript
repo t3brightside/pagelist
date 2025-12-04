@@ -1,0 +1,245 @@
+["{$pagelist.cssForceTs}" == "1"]
+  page.includeCSS.pagelist = {$pagelist.cssFile}
+[END]
+
+tt_content.defaultpagelist =< lib.contentElement
+tt_content.defaultpagelist.templateRootPaths.10 = EXT:pagelist/Resources/Private/Templates/
+tt_content.defaultpagelist.templateRootPaths.20 = {$pagelist.templateRootPaths}
+tt_content.defaultpagelist.partialRootPaths.10 = EXT:pagelist/Resources/Private/Partials/
+tt_content.defaultpagelist.partialRootPaths.20 = {$pagelist.partialRootPaths}
+tt_content.defaultpagelist {
+  settings {
+    cssFile = {$pagelist.cssFile}
+    cssPriority = {$pagelist.cssPriority}
+    cssForceTs = {$pagelist.cssForceTs}
+    cardImageWidth = {$pagelist.cardImageWidth}
+    cardImageHeight = {$pagelist.cardImageHeight}
+    listImageWidth = {$pagelist.listImageWidth}
+    listImageHeight = {$pagelist.listImageHeight}
+    defaultTitleWrap = {$pagelist.defaultTitleWrap}
+    forceImageFileFormat = {$pagelist.forceImageFileFormat}
+  }
+  stdWrap {
+    editIcons = tt_content: header [header_layout], pages
+    editIcons.iconTitle.data = LLL:EXT:fluid_styled_content/Resources/Private/Language/FrontendEditing.xlf:editIcon.menu
+  }
+}
+
+# check if personnel extension is loaded and adds authors
+["{$pagelist.personnelIsLoaded}" == "1"]
+  tt_content.defaultpagelist.dataProcessing.10.dataProcessing {
+      30 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+      30 {
+        if.isTrue.field = tx_personnel
+        table = tx_personnel_domain_model_person
+        pidInList = 1
+        recursive = 99
+        join.field = uid
+        join.wrap = tx_personnel_mm ON uid = tx_personnel_mm.uid_local AND tx_personnel_mm.uid_foreign = '|' AND tx_personnel_mm.tablenames='pages' AND tx_personnel_mm.fieldname='tx_personnel'
+        as = authors
+        dataProcessing {
+          10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+          10 {
+              references {
+                table = tx_personnel_domain_model_person
+                fieldName = images
+              }
+              as = authorimages
+          }
+        }
+      }
+  }
+[END]
+
+# For 'strict' and 'free' language modes
+tt_content.pagelist_sub < tt_content.defaultpagelist
+tt_content.pagelist_sub {
+  templateName = Pagelist
+  dataProcessing.10 = Brightside\Pagelist\DataProcessing\PaginatedPagelistDatabaseQueryProcessor
+  dataProcessing.10 {
+    pagination {
+      isActive.field = tx_paginatedprocessors_paginationenabled
+      uniqueId.field = uid
+      uniqueId.override.field = tx_paginatedprocessors_urlsegment
+      itemsPerPage = 10
+      itemsPerPage.override.field = tx_paginatedprocessors_itemsperpage
+      pageLinksShown = 5
+      pageLinksShown.override.field = tx_paginatedprocessors_pagelinksshown
+      anchorActive.field = tx_paginatedprocessors_anchor
+      anchorId.field = uid
+      anchorId.override.field = tx_paginatedprocessors_anchorid
+    }
+    table = pages
+    selectFields = pages.*
+    pidInList.field = pages
+    max.field = tx_pagelist_limit
+    begin.field = tx_pagelist_startfrom
+    languageField = 0
+    groupBy = uid
+    recursive.field = tx_pagelist_recursive
+    where.stdWrap.orderedStdWrap {
+      10.wrap = AND l18n_cfg != '1' AND l18n_cfg != '3'
+      10.wrap.if.isFalse.data = sitelanguage:languageId
+      20.wrap = AND tx_pagelist_notinlist = '0' AND sys_language_uid='###language###' AND doktype NOT IN ({$pagelist.disablePageTypes})
+    }
+    markers.language.data = sitelanguage:languageId
+    orderBy.field = tx_pagelist_orderby
+    as = pagelist
+    dataProcessing {
+      10.if.isTrue.field = media
+      10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+      10.references.fieldName = media
+      10.as = media
+      20.if.isTrue.field = tx_pagelist_images
+      20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+      20.references.fieldName = tx_pagelist_images
+      20.as = listimages
+      80.if.isTrue.field = categories
+      80 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+      80 {
+        table = sys_category
+        selectFields = sys_category.*
+        pidInList = {$pagelist.catFolder}
+        recursive = {$pagelist.catFolderRecursive}
+        join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
+        where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
+        orderBy = sorting
+        markers.pageuid.field = uid
+        as = categories
+      }
+    }
+  }
+}
+
+
+# Dedicated content element for articles
+tt_content.pagelist_articles_sub < tt_content.pagelist_sub
+tt_content.pagelist_articles_sub {
+  dataProcessing.10 {
+    where.stdWrap.orderedStdWrap {
+      30.wrap = AND doktype='136'
+    }
+  }
+}
+
+# Dedicated content element for events
+tt_content.pagelist_events_sub < tt_content.pagelist_sub
+tt_content.pagelist_events_sub {
+  dataProcessing.10 {
+    where.stdWrap.orderedStdWrap {
+      30.wrap = AND doktype='137' AND ((tx_pagelist_eventstart > ###NOW### OR tx_pagelist_eventstart = 'NULL') OR (tx_pagelist_eventfinish > ###NOW### OR tx_pagelist_eventstart = 'NULL'))
+    }
+    markers.NOW.data = date:U
+  }
+}
+
+# Partial support for 'fallback' mode, works with
+# [FE][hidePagesIfNotTranslatedByDefault] = true
+# "Hide page if no translation for current language exists" if set manually
+[siteLanguage("fallbackType") == "fallback"]
+  tt_content.pagelist_sub {
+    dataProcessing.10 {
+      languageField = sys_language_uid
+      where.stdWrap.orderedStdWrap {
+        10.wrap = AND tx_pagelist_notinlist = '0'
+        50.wrap = AND l18n_cfg != '2' AND l18n_cfg != '3'
+        50.wrap.if.isTrue.data = sitelanguage:languageId
+      }
+    }
+  }
+  tt_content.pagelist_articles_sub {
+    dataProcessing.10 {
+      languageField = sys_language_uid
+      where.stdWrap.orderedStdWrap {
+        10.wrap = AND tx_pagelist_notinlist = '0'
+        50.wrap = AND l18n_cfg != '2' AND l18n_cfg != '3'
+        50.wrap.if.isTrue.data = sitelanguage:languageId
+      }
+    }
+  }
+  tt_content.pagelist_events_sub {
+    dataProcessing.10 {
+      languageField = sys_language_uid
+      where.stdWrap.orderedStdWrap {
+        10.wrap = AND tx_pagelist_notinlist = '0'
+        50.wrap = AND l18n_cfg != '2' AND l18n_cfg != '3'
+        50.wrap.if.isTrue.data = sitelanguage:languageId
+      }
+    }
+  }
+[global]
+
+# Selected pages only
+tt_content.pagelist_selected < tt_content.defaultpagelist
+tt_content.pagelist_selected {
+  templateName = Pagelist
+  dataProcessing {
+    10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedMenuProcessor
+    10 {
+      pagination {
+        isActive.field = tx_paginatedprocessors_paginationenabled
+        uniqueId.field = uid
+        uniqueId.override.field = tx_paginatedprocessors_urlsegment
+        itemsPerPage = 10
+        itemsPerPage.override.field = tx_paginatedprocessors_itemsperpage
+        pageLinksShown = 5
+        pageLinksShown.override.field = tx_paginatedprocessors_pagelinksshown
+        anchorActive.field = tx_paginatedprocessors_anchor
+        anchorId.field = uid
+        anchorId.override.field = tx_paginatedprocessors_anchorid
+      }
+      special = list
+      special.value.field = pages
+      # alternativeSortingField.field = tx_pagelist_orderby
+      # maxItems.field = tx_pagelist_limit
+      # begin.field = tx_pagelist_startfrom
+      includeNotInMenu = 1
+      as = pagelist
+      dataProcessing {
+        10.if.isTrue.field = media
+        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        10.references.fieldName = media
+        10.as = media
+        20.if.isTrue.field = tx_pagelist_images
+        20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        20.references.fieldName = tx_pagelist_images
+        20.as = listimages
+        80.if.isTrue.field = categories
+        80 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+        80 {
+            table = sys_category
+            selectFields = sys_category.*
+            pidInList = {$pagelist.catFolder}
+            recursive = {$pagelist.catFolderRecursive}
+            join = sys_category_record_mm ON (sys_category_record_mm.uid_local=sys_category.uid)
+            where = sys_category_record_mm.tablenames='pages' AND sys_category_record_mm.uid_foreign = ###pageuid###
+            orderBy = sorting
+            markers.pageuid.field = uid
+            as = categories
+        }
+      }
+    }
+  }
+}
+
+tt_content.pagelist_filter < tt_content.defaultpagelist
+tt_content.pagelist_filter {
+  templateName = Filter
+  variables {
+     # Assign the pagelistCat parameter to a Fluid variable
+    activeCat = TEXT
+    activeCat.value.data = GP:pagelistCat
+  }
+  dataProcessing {
+    10.if.isTrue.field = selected_categories
+    10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+    10 {
+      table = sys_category
+      selectFields = *
+      pidInList = 0
+      uidInList.field = selected_categories
+      orderBy = sorting
+      as = categories
+    }
+  }
+}

@@ -1,0 +1,4 @@
+name: 't3brightside/pagelist'
+label: 'Pagelist'
+dependencies:
+    - typo3/fluid-styled-content

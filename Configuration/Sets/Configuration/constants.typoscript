@@ -1,0 +1,33 @@
+# customsubcategory=pagelist=Page List
+# cat=Page List/pagelist; type=string; label= Templates root paht
+	pagelist.templateRootPaths = EXT:pagelist/Resources/Private/Templates/
+# cat=Page List/pagelist; type=string; label= Partials root paht
+	pagelist.partialRootPaths = EXT:pagelist/Resources/Private/Partials/
+  # cat=Page List/pagelist; type=string; label= Css file
+	pagelist.cssFile = EXT:pagelist/Resources/Public/Css/pagelist.css
+# cat=Page List/pagelist; type=boolean; label= Css priority, 0 means CSS is put in page footer
+  pagelist.cssPriority = 1
+# cat=Page List/pagelist; type=boolean; label= Load CSS with TypoScript
+  pagelist.cssForceTs = 0
+# cat=Page List/pagelist; type=string; label= Pagination items per page
+	pagelist.paginationItems = 8
+# cat=Page List/pagelist; type=string; label= Pagination links
+	pagelist.paginationLinks = 10
+# cat=Page List/pagelist; type=string; label= Card image width (px)
+	pagelist.cardImageWidth = 360
+# cat=Page List/pagelist; type=string; label= Card image height (px) - not in use in default templates
+	pagelist.cardImageHeight = 260
+# cat=Page List/pagelist; type=string; label= List image width (px) - not in use in default templates
+	pagelist.listImageWidth = 280
+# cat=Page List/pagelist; type=string; label= List image height (px) - not in use in default templates
+	pagelist.listImageHeight = 200
+# cat=Page List/pagelist; type=string; label= Disable these doctypes showing up in list
+	pagelist.disablePageTypes = 254,255,199
+# cat=Page List/pagelist; type=string; label= Default title wrap
+	pagelist.defaultTitleWrap = h3
+# cat=Page List/pagelist; type=sting; label= Force image file format (make sure it's enabled in [GFX][imagefile_ext])
+  pagelist.forceImageFileFormat =
+# cat=Page List/pagelist; type=string; label= Cetegory folder/page ID
+  pagelist.catFolder = root
+# cat=Page List/pagelist; type=boolean; label= Cetegory selection recursive level
+  pagelist.catFolderRecursive = 0
