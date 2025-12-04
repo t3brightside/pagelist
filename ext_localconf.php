@@ -15,13 +15,7 @@ defined('TYPO3') || die('Access denied.');
         ');
     }
 
-    $iconRegistry = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-    $iconRegistry->registerIcon(
-        'mimetypes-x-content-pagelist',
-        \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        ['source' => 'EXT:pagelist/Resources/Public/Icons/mimetypes-x-content-pagelist.svg']
-    );
-
+    
     if (ExtensionManagementUtility::isLoaded('personnel')) {
         ExtensionManagementUtility::addTypoScriptConstants('
             pagelist.personnelIsLoaded = 1
