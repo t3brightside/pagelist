@@ -120,3 +120,12 @@
     - [BUGFIX] remove debug from cat filtering
 * 4.1.2
     - [TASK] limit inline editing to certain colPos only
+* 5.0.0
+    - [TASK] upgrade to v14 compatibility
+    - [TASK] add sets configuration
+    - [TASK] rename Introduction to Abstract
+    - [TASK] modernise icon definitions
+    - [TASK] add page types to user TsConfig
+    - [TASK] rework BE preview
+    - [TASK] improve BE preview for FE filter
+    - [TASK] improve Personnel filter and field labels
