@@ -41,8 +41,6 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
     // Preview Rendering Methods
     // ------------------------------
     
-  
-
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
         $record = $item->getRecord();
@@ -87,60 +85,76 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
             return $this->linkEditContent($content, $item->getRecord());
         };
 
+        // --- FILTER CONDITIONS ---
+        
         if ($pageTitles) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Pages:</strong><span>' . implode(', ', $pageTitles) . '</span>';
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Pages:</strong><span>' . implode(', ', $pageTitles) . '</span>';
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
+
+        // 1. Categories filter (ANY)
         if ($categories) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Categories filter:</strong>' . implode(', ', array_column($categories, 'title'));
+            $categoryTitles = implode(', ', array_column($categories, 'title'));
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Category filter (ANY):</strong>' . $categoryTitles;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
+
+        // 2. Authors filter (ANY) - conditionally prepend "AND" if categories are also set
         if ($authors) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Authors filter:</strong>' . implode(', ', array_column($authors, 'name'));
+            $authorNames = implode(', ', array_column($authors, 'firstname', 'lastname'));
+            // Replicates Fluid logic: <f:if condition="{catTitles} && {authors}">AND </f:if>
+            $prefix = !empty($categories) ? 'AND ' : '';
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">' . $prefix . 'Authors filter (ANY):</strong>' . $authorNames;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
         
+        // --- CORE FIELD CONDITIONS ---
+
         if($tx_pagelist_recursive) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Recursive level:</strong>' . $tx_pagelist_recursive;
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Recursive level:</strong>' . $tx_pagelist_recursive;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
+
+        // 3. Order by: Use new helper for human-readable label
         if($tx_pagelist_orderby) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Order by:</strong>' . $tx_pagelist_orderby;
+            $orderByLabel = $this->getOrderByLabel($tx_pagelist_orderby);
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Order by:</strong>' . $orderByLabel;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
+
         if($tx_pagelist_startfrom) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Start from page:</strong>' . $tx_pagelist_startfrom;
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Start from page:</strong>' . $tx_pagelist_startfrom;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
         if($tx_pagelist_limit) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Limit to pages:</strong>' . $tx_pagelist_limit;
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Limit to pages:</strong>' . $tx_pagelist_limit;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
         if($tx_pagelist_template) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Template:</strong>' . $tx_pagelist_template;
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Template:</strong>' . $tx_pagelist_template;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
         if($tx_pagelist_disableimages) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Images:</strong>disabled';
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Images:</strong>disabled';
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         } else if ($tx_pagelist_disableimages === '0' || $tx_pagelist_disableimages === 0) { // Check for explicit '0' or 0
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Images:</strong>enabled';
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Images:</strong>enabled';
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
         if($tx_pagelist_disableabstract) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Abstract:</strong>disabled';
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Abstract:</strong>disabled';
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         } else if ($tx_pagelist_disableabstract === '0' || $tx_pagelist_disableabstract === 0) { // Check for explicit '0' or 0
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Abstract:</strong>enabled';
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Abstract:</strong>enabled';
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
         
         if($tx_pagelist_titlewrap) {
-            $lineContent = '<strong style="display: inline-block; min-width: 135px;">Title wrap:</strong>' . $tx_pagelist_titlewrap;
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Title wrap:</strong>' . $tx_pagelist_titlewrap;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
         
-        // Pagination block - This is a multi-part line, so it's handled slightly differently
+        // Pagination block
         if($tx_paginatedprocessors_paginationenabled) {
             // Build the content of the whole pagination summary line
             $paginationContent = '<strong>Pagination:</strong> active';
@@ -177,13 +191,32 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
     // Helper methods
     // ------------------------------
 
+    /**
+     * Maps the tx_pagelist_orderby value to a human-readable label,
+     * replicating the logic from the Fluid template.
+     */
+    private function getOrderByLabel(string $orderByValue): string
+    {
+        return match ($orderByValue) {
+            'pages.sorting' => 'page tree',
+            'tx_pagelist_datetime DESC' => 'date (now → past)',
+            'tx_pagelist_datetime ASC' => 'date (past → now)',
+            'tx_pagelist_eventstart ASC' => 'event start (now → future)',
+            'tx_pagelist_eventstart DESC' => 'event start (future → now)',
+            'lastUpdated DESC' => 'last updated (now → past)',
+            'lastUpdated ASC' => 'last updated (past → now)',
+            'title ASC' => 'page title (a → z)',
+            'title DESC' => 'page title (z → a)',
+            default => $orderByValue, // Fallback to the raw value if not found
+        };
+    }
+    
     private function getPageTitles(mixed $pages): array
     {
         // $pages is a string (v12) or LazyRecordCollection (v14)
         $pageIds = $this->extractUids($pages); 
         if (empty($pageIds)) return [];
 
-        // ... (rest of the method unchanged)
         $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
         $titles = [];
         foreach ($pageIds as $uid) {
@@ -198,7 +231,6 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
     private function getCategories(mixed $categories): array
     {
         $categoryIds = $this->extractUids($categories);
-        // ... (rest of the method unchanged)
         if (empty($categoryIds)) return [];
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -215,14 +247,13 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
     private function getAuthors(mixed $authors): array
     {
         $authorIds = $this->extractUids($authors);
-        // ... (rest of the method unchanged)
         if (empty($authorIds)) return [];
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_personnel_domain_model_person');
 
         return $queryBuilder
-            ->select('uid', 'name')
+            ->select('uid', 'firstname', 'lastname')
             ->from('tx_personnel_domain_model_person')
             ->where($queryBuilder->expr()->in('uid', $authorIds))
             ->executeQuery()
