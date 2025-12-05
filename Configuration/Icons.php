@@ -9,19 +9,19 @@ return [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:pagelist/Resources/Public/Icons/mimetypes-x-content-pagelist.svg',
     ],
-    'pagelist-page-article' => [
+    'mimetypes-x-page-article' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:pagelist/Resources/Public/Icons/ico_article.svg',
     ],
-    'pagelist-page-event' => [
+    'mimetypes-x-page-event' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:pagelist/Resources/Public/Icons/ico_event.svg',
     ],
-    'pagelist-page-product' => [
+    'mimetypes-x-page-product' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:pagelist/Resources/Public/Icons/ico_product.svg',
     ],
-    'pagelist-page-vacancy' => [
+    'mimetypes-x-page-vacancy' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:pagelist/Resources/Public/Icons/ico_vacancy.svg',
     ],

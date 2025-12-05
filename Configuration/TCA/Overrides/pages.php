@@ -323,7 +323,7 @@ if ($pagelistConiguration['pagelistEnableVacancies']) {
         [
             'Vacancy',
             $pagelistVacancy,
-            'apps-pagetree-vacancy',
+            'mimetypes-x-page-vacancy',
             'group' => 'default',
         ],
         '1',
@@ -338,7 +338,7 @@ if ($pagelistConiguration['pagelistEnableProducts']) {
         [
             'Product',
             $pagelistProduct,
-            'apps-pagetree-product',
+            'mimetypes-x-page-product',
             'group' => 'default',
         ],
         '1',
@@ -353,7 +353,7 @@ if ($pagelistConiguration['pagelistEnableEvents']) {
         [
         'Event',
         $pagelistEvent,
-        'apps-pagetree-event',
+        'mimetypes-x-page-event',
         'group' => 'default',
     ],
         '1',
@@ -367,7 +367,7 @@ if ($pagelistConiguration['pagelistEnableArticles']) {
         [
         'Article',
         $pagelistArticle,
-        'apps-pagetree-article',
+        'mimetypes-x-page-article',
         'group' => 'default',
     ],
         '1',
@@ -380,10 +380,10 @@ if ($pagelistConiguration['pagelistEnableArticles']) {
     [
         'ctrl' => [
             'typeicon_classes' => [
-                $pagelistArticle => 'apps-pagetree-article',
-                $pagelistEvent => 'apps-pagetree-event',
-                $pagelistProduct => 'apps-pagetree-product',
-                $pagelistVacancy => 'apps-pagetree-vacancy',
+                $pagelistArticle => 'mimetypes-x-page-article',
+                $pagelistEvent => 'mimetypes-x-page-event',
+                $pagelistProduct => 'mimetypes-x-page-product',
+                $pagelistVacancy => 'mimetypes-x-page-vacancy',
             ],
         ],
     ]
