@@ -140,6 +140,9 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
         } else if ($tx_pagelist_disableimages === '0' || $tx_pagelist_disableimages === 0) { // Check for explicit '0' or 0
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Images:</strong>enabled';
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
+            $line2Content = '<strong style="display: inline-block; min-width: 200px;">Images crop:</strong>' . $tx_pagelist_cropratio;
+            $output .= '<div>' . $wrapLineInLink($line2Content) . '</div>';
+
         }
         if($tx_pagelist_disableabstract) {
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Abstract:</strong>disabled';
