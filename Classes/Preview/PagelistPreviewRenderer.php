@@ -79,7 +79,7 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
         $categories = $this->getCategories($selectedCategories);
         $authors = $this->getAuthors($authorUids);
         
-        $output = '<div class="pagelist-preview" style="margin-top: 1rem;">';
+        $output = '<div class="element-preview-content">';
         
         // Helper function to wrap the entire line's content in the link
         $wrapLineInLink = function (string $content) use ($item): string {
