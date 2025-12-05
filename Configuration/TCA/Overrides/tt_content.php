@@ -3,6 +3,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use Brightside\Pagelist\Preview\PagelistPreviewRenderer;
+use Brightside\Pagelist\Preview\FilterPreviewRenderer;
 
 defined('TYPO3') || die('Access denied.');
 
@@ -475,4 +476,4 @@ $GLOBALS['TCA']['tt_content']['types']['pagelist_sub']['previewRenderer'] = Page
 $GLOBALS['TCA']['tt_content']['types']['pagelist_articles_sub']['previewRenderer'] = PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_events_sub']['previewRenderer'] = PagelistPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types']['pagelist_selected']['previewRenderer'] = PagelistPreviewRenderer::class;
-// $GLOBALS['TCA']['tt_content']['types']['pagelist_filter']['previewRenderer'] = FilterPreviewRenderer::class;
+$GLOBALS['TCA']['tt_content']['types']['pagelist_filter']['previewRenderer'] = FilterPreviewRenderer::class;
