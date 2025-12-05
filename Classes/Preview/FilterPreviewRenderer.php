@@ -37,19 +37,14 @@ class FilterPreviewRenderer extends StandardContentPreviewRenderer implements Pr
         return $default;
     }
 
-    // ------------------------------
-    // Preview Rendering Method
-    // ------------------------------
-
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
         $record = $item->getRecord();
 
-        // Use the new helper function consistently across all fields
+        // Use the helper function consistently across all fields
         $getValue = fn(string $field) => $this->getRecordValueSafely($record, $field, '');
 
         // Safely retrieve relation fields, defaulting to null/empty array if missing
-        // NOTE: The original example only showed selected_categories and tx_pagelist_authors
         $targets = $this->getRecordValueSafely($record, 'tx_pagelist_filtertarget');
         $selectedCategories = $this->getRecordValueSafely($record, 'selected_categories');
         $authorUids = $this->getRecordValueSafely($record, 'tx_pagelist_authors', []);
@@ -66,23 +61,21 @@ class FilterPreviewRenderer extends StandardContentPreviewRenderer implements Pr
             return $this->linkEditContent($content, $record);
         };
 
-        // --- FILTER CONDITIONS ---
-
-        // 1. Filter Targets (Replicates the logic from your original query)
+        // 1. Filter Targets
         if ($targetRecords) {
             $targetTitles = implode(', ', array_column($targetRecords, 'header'));
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Filter target:</strong><span>' . $targetTitles . '</span>';
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
 
-        // 2. Categories filter (ANY)
+        // 2. Categories
         if ($categories) {
             $categoryTitles = implode(', ', array_column($categories, 'title'));
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Listed categories:</strong>' . $categoryTitles;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
 
-        // 3. Authors filter (ANY)
+        // 3. Authors (not implemented yet)
         if ($authors) {
             $authorNames = implode(', ', array_column($authors, 'firstname', 'lastname'));
             // Replicates Fluid logic: <f:if condition="{categories} && {authors}">AND </f:if>
@@ -97,7 +90,7 @@ class FilterPreviewRenderer extends StandardContentPreviewRenderer implements Pr
     }
 
     // ------------------------------
-    // Helper methods (Copied from PagelistPreviewRenderer)
+    // Helper methods
     // ------------------------------
 
     private function getTargetRecords(mixed $targets): array
