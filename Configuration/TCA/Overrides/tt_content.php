@@ -261,7 +261,7 @@ if(ExtensionManagementUtility::isLoaded('personnel')){
     $tempColumnsAuthors = array(
         'tx_pagelist_authors' => [
             'exclude' => 1,
-            'label' => 'Author',
+            'label' => 'Person',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',
@@ -440,7 +440,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['pagelist_layout']['showitem'] = '
 
 $GLOBALS['TCA']['tt_content']['palettes']['pagelist_filtering']['showitem'] = '
     selected_categories;by Category (ANY),
-    tx_pagelist_authors;AND by Author (ANY),
+    tx_pagelist_authors;AND by Person (ANY),
 ';
 
 $GLOBALS['TCA']['tt_content']['palettes']['pagelist_selected_layout']['showitem'] = '

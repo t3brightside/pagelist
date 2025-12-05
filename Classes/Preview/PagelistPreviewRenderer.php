@@ -95,7 +95,7 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
         // 1. Categories filter (ANY)
         if ($categories) {
             $categoryTitles = implode(', ', array_column($categories, 'title'));
-            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Category filter (ANY):</strong>' . $categoryTitles;
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Filter by category (ANY):</strong>' . $categoryTitles;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
 
@@ -104,7 +104,7 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
             $authorNames = implode(', ', array_column($authors, 'firstname', 'lastname'));
             // Replicates Fluid logic: <f:if condition="{catTitles} && {authors}">AND </f:if>
             $prefix = !empty($categories) ? 'AND ' : '';
-            $lineContent = '<strong style="display: inline-block; min-width: 200px;">' . $prefix . 'Authors filter (ANY):</strong>' . $authorNames;
+            $lineContent = '<strong style="display: inline-block; min-width: 200px;">' . $prefix . 'Filter by person (ANY):</strong>' . $authorNames;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
         
