@@ -145,3 +145,6 @@
         M - Configuration/page.tsconfig
     af82ad1 [BUGFIX] pagelist_filter wizardItem definition
         M - Configuration/page.tsconfig
+5.1.1
+    b2cea6f [BUGFIX] register data processors
+        M - Configuration/Services.yaml
