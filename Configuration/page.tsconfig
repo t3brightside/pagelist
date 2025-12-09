@@ -51,3 +51,41 @@ TCEFORM.tt_content.tx_pagelist_orderby.types.pagelist_sub.removeItems = tx_pagel
 TCAdefaults.tt_content.tx_pagelist_orderby.types.pagelist_sub = pages.sorting
 TCAdefaults.tt_content.tx_pagelist_orderby.types.pagelist_articles_sub = tx_pagelist_datetime DESC
 TCAdefaults.tt_content.tx_pagelist_orderby.types.pagelist_events_sub = tx_pagelist_eventstart ASC
+
+
+# For TYPO3 v12
+mod.wizards.newContentElement.wizardItems.common {
+  elements {
+    pagelist_sub {
+      iconIdentifier = mimetypes-x-content-pagelist
+      title = Pagelist: subpages
+      description = Shows subpages of selected pages.
+      tt_content_defValues.CType = pagelist_sub
+    }
+    pagelist_articles_sub {
+      iconIdentifier = mimetypes-x-content-pagelist
+      title = Pagelist: articles of subpages
+      description = Show news article subpages from selected pages.
+      tt_content_defValues.CType = pagelist_articles_sub
+    }
+    pagelist_events_sub {
+      iconIdentifier = mimetypes-x-content-pagelist
+      title = Pagelist: events of subpages
+      description = Show event subpages from selected pages.
+      tt_content_defValues.CType = pagelist_events_sub
+    }
+    pagelist_selected {
+      iconIdentifier = mimetypes-x-content-pagelist
+      title = Pagelist: selected
+      description = Show selected pages.
+      tt_content_defValues.CType = pagelist_selected
+    }
+	pagelist_selected {
+      iconIdentifier = mimetypes-x-content-pagelist
+      title = Pagelist: filter
+      description = Filter pages of pointed pagelist element.
+      tt_content_defValues.CType = pagelist_filter
+    }
+  }
+  show := addToList(pagelist_sub,pagelist_articles_sub,pagelist_events_sub,pagelist_selected,pagelist_filter)
+}
