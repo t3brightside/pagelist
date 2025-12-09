@@ -3,3 +3,8 @@ services:
     autowire: true
     autoconfigure: true
     public: false
+  
+  Brightside\Pagelist\DataProcessing\PaginatedPagelistDatabaseQueryProcessor:
+    public: true
+  Brightside\Pagelist\DataProcessing\SelectedPagesDatabaseQueryProcessor:
+    public: true
