@@ -129,3 +129,19 @@
     - [TASK] rework BE preview
     - [TASK] improve BE preview for FE filter
     - [TASK] improve Personnel filter and field labels
+5.1.0
+    [TASK] remove deprecations and clean up
+        D - Configuration/TSConfig/wizard.tsconfig
+        M - ext_localconf.php
+        D - ext_tables.php
+    8209f08 [TASK] make BE preview fields respect TSConfig and user rights
+        M - Classes/Preview/PagelistPreviewRenderer.php
+    bf4f65e [BUGFIX] add SelectedPagesDatabaseQueryProcessor #24
+        A - Classes/DataProcessing/SelectedPagesDatabaseQueryProcessor.php
+        M - Configuration/Services.yaml
+        M - Configuration/Sets/Configuration/setup.typoscript
+        M - Configuration/TypoScript/setup.typoscript
+    6d2abe3 [BUGFIX] bring back wizards.newContentElement for v12
+        M - Configuration/page.tsconfig
+    af82ad1 [BUGFIX] pagelist_filter wizardItem definition
+        M - Configuration/page.tsconfig
