@@ -10,20 +10,17 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Collection\LazyRecordCollection;
-// The RecordInterface is what v14 returns, useful for type hinting/checking
 use TYPO3\CMS\Core\Domain\RecordInterface; 
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
+use TYPO3\CMS\Backend\Utility\BackendUtility; // Import for BackendUtility::getPagesTSconfig
 
 class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements PreviewRendererInterface
 {
+    private const TT_CONTENT_TABLE = 'tt_content'; // Added constant for TCA checks
+
     /**
      * Safely retrieves a field value from the record, supporting both array (v12) 
      * and RecordInterface (v14+) access.
-     *
-     * @param array|RecordInterface $record The content record data
-     * @param string $field The field name to retrieve
-     * @param mixed $default The default value if the field is not present
-     * @return mixed
      */
     private function getRecordValueSafely(array|RecordInterface $record, string $field, mixed $default = null): mixed
     {
@@ -37,6 +34,67 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
         return $default;
     }
 
+    /**
+     * Checks if a field is available for editing based on permissions AND TSconfig overrides (User/Page).
+     */
+    private function isFieldAvailableForRecord(array|RecordInterface $record, string $fieldName): bool
+    {
+        // 1. Check if the field exists in tt_content columns array (TCA structure check)
+        if (!isset($GLOBALS['TCA'][self::TT_CONTENT_TABLE]['columns'][$fieldName])) {
+            return false;
+        }
+        
+        // 2. Permission Check (non_exclude_fields)
+        if (!isset($GLOBALS['BE_USER']) || !$GLOBALS['BE_USER']->check('non_exclude_fields', self::TT_CONTENT_TABLE . ':' . $fieldName)) {
+            return false;
+        }
+
+        // --- 3. TSconfig Removal/Disabled Check (User + Page) ---
+        
+        $pid = $this->getRecordValueSafely($record, 'pid', 0);
+        $CType = $this->getRecordValueSafely($record, 'CType', '');
+
+        // Fetch both configurations (using documented API)
+        $userTsConfig = $GLOBALS['BE_USER']->getTSConfig();
+        $pageTsConfig = $pid > 0 ? BackendUtility::getPagesTSconfig((int)$pid) : [];
+        
+        // Define all places where the field config might live:
+        $tsConfigPaths = [
+            // [Table/Field config array, CType specific config array]
+            [
+                $userTsConfig['TCEFORM.'][self::TT_CONTENT_TABLE . '.'][$fieldName . '.'] ?? [],
+                $userTsConfig['TCEFORM.'][self::TT_CONTENT_TABLE . '.'][$fieldName . '.']['types.'][$CType . '.'] ?? [],
+            ],
+            [
+                $pageTsConfig['TCEFORM.'][self::TT_CONTENT_TABLE . '.'][$fieldName . '.'] ?? [],
+                $pageTsConfig['TCEFORM.'][self::TT_CONTENT_TABLE . '.'][$fieldName . '.']['types.'][$CType . '.'] ?? [],
+            ],
+        ];
+
+        foreach ($tsConfigPaths as [$globalConfig, $typeConfig]) {
+            // Check 3a: Global Field Rule (TCEFORM.tt_content.field.disabled = 1)
+            $isDisabledGlobal = (bool)($globalConfig['disabled'] ?? false);
+            if ($isDisabledGlobal) {
+                return false;
+            }
+
+            // Check 3b: Conditional Type Rule (TCEFORM.tt_content.field.types.CType.disabled = 1)
+            $isDisabledType = (bool)($typeConfig['disabled'] ?? false);
+            if ($isDisabledType) {
+                return false;
+            }
+
+            // Check 3c: Explicit Removal (TCEFORM.field.removeItems = fieldname)
+            $removeItems = $globalConfig['removeItems'] ?? '';
+            if (GeneralUtility::inList($removeItems, $fieldName)) {
+                return false;
+            }
+        }
+        
+        // If all checks pass, the field is available for viewing/editing.
+        return true;
+    }
+
     // ------------------------------
     // Preview Rendering Methods
     // ------------------------------
@@ -47,6 +105,8 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
         
         // Use the new helper function consistently across all fields
         $getValue = fn(string $field) => $this->getRecordValueSafely($record, $field, '');
+        // Helper function to check field availability
+        $isFieldAvailable = fn(string $field) => $this->isFieldAvailableForRecord($record, $field);
 
         // 📝 Safely retrieve all fields
         $tx_pagelist_recursive = $getValue('tx_pagelist_recursive');
@@ -77,6 +137,8 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
         $categories = $this->getCategories($selectedCategories);
         $authors = $this->getAuthors($authorUids);
         
+        // --- HTML Output Generation ---
+
         $output = '<div class="element-preview-content">';
         
         // Helper function to wrap the entire line's content in the link
@@ -84,105 +146,111 @@ class PagelistPreviewRenderer extends StandardContentPreviewRenderer implements 
             // Note: $item->getRecord() is passed here, which is either an array (v12) or object (v14)
             return $this->linkEditContent($content, $item->getRecord());
         };
-
-        // --- FILTER CONDITIONS ---
         
-        if ($pageTitles) {
+        if ($isFieldAvailable('pages') && $pageTitles) {
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Pages:</strong><span>' . implode(', ', $pageTitles) . '</span>';
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
 
-        // 1. Categories filter (ANY)
-        if ($categories) {
+        if ($isFieldAvailable('selected_categories') && $categories) {
             $categoryTitles = implode(', ', array_column($categories, 'title'));
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Filter by category (ANY):</strong>' . $categoryTitles;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
 
-        // 2. Authors filter (ANY) - conditionally prepend "AND" if categories are also set
-        if ($authors) {
+        if ($isFieldAvailable($authorFieldName) && $authors) {
             $authorNames = implode(', ', array_column($authors, 'firstname', 'lastname'));
             // Replicates Fluid logic: <f:if condition="{catTitles} && {authors}">AND </f:if>
             $prefix = !empty($categories) ? 'AND ' : '';
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">' . $prefix . 'Filter by person (ANY):</strong>' . $authorNames;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
-        
-        // --- CORE FIELD CONDITIONS ---
-
-        if($tx_pagelist_recursive) {
+                
+        if($isFieldAvailable('tx_pagelist_recursive') && $tx_pagelist_recursive) {
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Recursive level:</strong>' . $tx_pagelist_recursive;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
 
-        // 3. Order by: Use new helper for human-readable label
-        if($tx_pagelist_orderby) {
+        if($isFieldAvailable('tx_pagelist_orderby') && $tx_pagelist_orderby) {
             $orderByLabel = $this->getOrderByLabel($tx_pagelist_orderby);
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Order by:</strong>' . $orderByLabel;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
-
-        if($tx_pagelist_startfrom) {
+        
+        if($isFieldAvailable('tx_pagelist_startfrom') && $tx_pagelist_startfrom) {
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Start from page:</strong>' . $tx_pagelist_startfrom;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
-        if($tx_pagelist_limit) {
+
+        if($isFieldAvailable('tx_pagelist_limit') && $tx_pagelist_limit) {
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Limit to pages:</strong>' . $tx_pagelist_limit;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
-        if($tx_pagelist_template) {
+
+        if($isFieldAvailable('tx_pagelist_template') && $tx_pagelist_template) {
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Template:</strong>' . $tx_pagelist_template;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
-        if($tx_pagelist_disableimages) {
-            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Images:</strong>disabled';
-            $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
-        } else if ($tx_pagelist_disableimages === '0' || $tx_pagelist_disableimages === 0) { // Check for explicit '0' or 0
-            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Images:</strong>enabled';
-            $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
-            $line2Content = '<strong style="display: inline-block; min-width: 200px;">Images crop:</strong>' . $tx_pagelist_cropratio;
-            $output .= '<div>' . $wrapLineInLink($line2Content) . '</div>';
+        
+        if($isFieldAvailable('tx_pagelist_disableimages')) {
+            if($tx_pagelist_disableimages) {
+                $lineContent = '<strong style="display: inline-block; min-width: 200px;">Images:</strong>disabled';
+                $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
+            } else { 
+                $lineContent = '<strong style="display: inline-block; min-width: 200px;">Images:</strong>enabled';
+                $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
+                
+                if ($isFieldAvailable('tx_pagelist_cropratio') && $tx_pagelist_cropratio) {
+                    $line2Content = '<strong style="display: inline-block; min-width: 200px;">Images crop:</strong>' . $tx_pagelist_cropratio;
+                    $output .= '<div>' . $wrapLineInLink($line2Content) . '</div>';
+                }
 
-        }
-        if($tx_pagelist_disableabstract) {
-            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Abstract:</strong>disabled';
-            $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
-        } else if ($tx_pagelist_disableabstract === '0' || $tx_pagelist_disableabstract === 0) { // Check for explicit '0' or 0
-            $lineContent = '<strong style="display: inline-block; min-width: 200px;">Abstract:</strong>enabled';
-            $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
+            }
         }
         
-        if($tx_pagelist_titlewrap) {
+        if($isFieldAvailable('tx_pagelist_disableabstract')) {
+            if($tx_pagelist_disableabstract) {
+                $lineContent = '<strong style="display: inline-block; min-width: 200px;">Abstract:</strong>disabled';
+                $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
+            } else { 
+                $lineContent = '<strong style="display: inline-block; min-width: 200px;">Abstract:</strong>enabled';
+                $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
+            }
+        }
+        
+        if($isFieldAvailable('tx_pagelist_titlewrap') && $tx_pagelist_titlewrap) {
             $lineContent = '<strong style="display: inline-block; min-width: 200px;">Title wrap:</strong>' . $tx_pagelist_titlewrap;
             $output .= '<div>' . $wrapLineInLink($lineContent) . '</div>';
         }
         
         // Pagination block
-        if($tx_paginatedprocessors_paginationenabled) {
-            // Build the content of the whole pagination summary line
-            $paginationContent = '<strong>Pagination:</strong> active';
+        $isPaginationConfigAvailable = $isFieldAvailable('tx_paginatedprocessors_paginationenabled');
 
-            if($tx_paginatedprocessors_itemsperpage) {
+        if($tx_paginatedprocessors_paginationenabled && $isPaginationConfigAvailable) {
+            // Build the content of the whole pagination summary line
+            $paginationContent = '<br /><strong>Pagination:</strong> active';
+
+            if($isFieldAvailable('tx_paginatedprocessors_itemsperpage') && $tx_paginatedprocessors_itemsperpage) {
                 $paginationContent .= ' •&nbsp;items per page: ' . $tx_paginatedprocessors_itemsperpage;
             }
-            if($tx_paginatedprocessors_pagelinksshown) {
+
+            if($isFieldAvailable('tx_paginatedprocessors_pagelinksshown') && $tx_paginatedprocessors_pagelinksshown) {
                 $paginationContent .= ' •&nbsp;page links shown: ' . $tx_paginatedprocessors_pagelinksshown;
             }
             
-            // Check for the value of anchorid being set to something > 0
-            if($tx_paginatedprocessors_anchorid > '0') { 
+            if($isFieldAvailable('tx_paginatedprocessors_anchorid') && $tx_paginatedprocessors_anchorid > '0') { 
                 $paginationContent .= ' •&nbsp;focus on page change: ' . $tx_paginatedprocessors_anchorid;
             } else {
-                if($tx_paginatedprocessors_anchor) {
+                if($isFieldAvailable('tx_paginatedprocessors_anchor') && $tx_paginatedprocessors_anchor) {
                     $paginationContent .= ' •&nbsp;focus self on page change';
                 }
             }
-            if($tx_paginatedprocessors_urlsegment) {
+
+            if($isFieldAvailable('tx_paginatedprocessors_urlsegment') && $tx_paginatedprocessors_urlsegment) {
                 $paginationContent .= ' •&nbsp;anchor: ' . $tx_paginatedprocessors_urlsegment;
             }
             
-            // Wrap the whole line's content in the link
-            $output .= '<br /><div>' . $wrapLineInLink($paginationContent) . '</div>';
+            $output .= '<div>' . $wrapLineInLink($paginationContent) . '</div>';
         }
         
         $output .= '</div>';
