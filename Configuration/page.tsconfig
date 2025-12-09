@@ -80,7 +80,7 @@ mod.wizards.newContentElement.wizardItems.common {
       description = Show selected pages.
       tt_content_defValues.CType = pagelist_selected
     }
-	pagelist_selected {
+	pagelist_filter {
       iconIdentifier = mimetypes-x-content-pagelist
       title = Pagelist: filter
       description = Filter pages of pointed pagelist element.
