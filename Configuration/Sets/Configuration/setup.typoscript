@@ -174,7 +174,7 @@ tt_content.pagelist_selected < tt_content.defaultpagelist
 tt_content.pagelist_selected {
   templateName = Pagelist
   dataProcessing {
-    10 = Brightside\Paginatedprocessors\DataProcessing\PaginatedMenuProcessor
+    10 = Brightside\Pagelist\DataProcessing\SelectedPagesDatabaseQueryProcessor
     10 {
       pagination {
         isActive.field = tx_paginatedprocessors_paginationenabled
@@ -188,12 +188,10 @@ tt_content.pagelist_selected {
         anchorId.field = uid
         anchorId.override.field = tx_paginatedprocessors_anchorid
       }
-      special = list
-      special.value.field = pages
-      # alternativeSortingField.field = tx_pagelist_orderby
-      # maxItems.field = tx_pagelist_limit
-      # begin.field = tx_pagelist_startfrom
-      includeNotInMenu = 1
+      if.isTrue.field = pages
+      table = pages
+      pidInList = 0
+      uidInList.field = pages
       as = pagelist
       dataProcessing {
         10.if.isTrue.field = media
