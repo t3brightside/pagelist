@@ -2,10 +2,12 @@
 namespace Brightside\Pagelist\DataProcessing;
 
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Brightside\Paginatedprocessors\Processing\DataToPaginatedData;
 
-class PaginatedPagelistDatabaseQueryProcessor extends DatabaseQueryProcessor
+class PaginatedPagelistDatabaseQueryProcessor implements DataProcessorInterface
 {
     /**
      * Fetch records from the database with additional filters and pagination.
@@ -89,8 +91,20 @@ class PaginatedPagelistDatabaseQueryProcessor extends DatabaseQueryProcessor
             $processorConfiguration['join'] = implode(' JOIN ', $joinClauses);
         }
 
-        // Call parent process method
-        $processedData = parent::process($cObj, $contentObjectConfiguration, $processorConfiguration, $processedData);
+        // --- THE MAGIC HAPPENS HERE ---
+        
+        // Instantiate the core DatabaseQueryProcessor manually
+        $databaseProcessor = GeneralUtility::makeInstance(DatabaseQueryProcessor::class);
+
+        // Call the core process method instead of parent::process
+        $processedData = $databaseProcessor->process(
+            $cObj, 
+            $contentObjectConfiguration, 
+            $processorConfiguration, 
+            $processedData
+        );
+
+        // ------------------------------
 
         // Apply pagination
         $paginationSettings = $processorConfiguration['pagination.'] ?? [];
