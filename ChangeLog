@@ -148,3 +148,7 @@
 5.1.1
     b2cea6f [BUGFIX] register data processors
         M - Configuration/Services.yaml
+5.2.0
+    9f8b8fe [BUGFIX] improve ProcessorInterface implementation
+        M - Classes/DataProcessing/PaginatedPagelistDatabaseQueryProcessor.php
+        M – Classes/DataProcessing/SelectedPagesDatabaseQueryProcessor.php

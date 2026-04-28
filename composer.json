@@ -11,8 +11,8 @@
 		"homepage": "https://t3brightside.com"
 	}],
 	"require": {
-		"typo3/cms-core": "^12.4 || ^13.0 || ^14.0",
-	    "typo3/cms-fluid-styled-content": "^12.4 || ^13.0 || ^14.0",
+		"typo3/cms-core": "^12.4 || ^13.0 || ^14.3",
+	    "typo3/cms-fluid-styled-content": "^12.4 || ^13.0 || ^14.3",
 		"t3brightside/paginatedprocessors": "^1.7",
 		"t3brightside/embedassets": "^1.4"
 	},
