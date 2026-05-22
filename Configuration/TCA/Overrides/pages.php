@@ -12,10 +12,12 @@ $extensionConfiguration = GeneralUtility::makeInstance(
 );
 
 $pagelistConiguration = $extensionConfiguration->get('pagelist');
-$pagelistArticle = 136;
-$pagelistEvent = 137;
-$pagelistProduct = 138;
-$pagelistVacancy = 139;
+
+// FIX 1: Explicit string definitions so the drag-and-drop JS component matches the type strictly
+$pagelistArticle = '136';
+$pagelistEvent = '137';
+$pagelistProduct = '138';
+$pagelistVacancy = '139';
 
 if (class_exists(FileType::class)) {
     $imageFileType = FileType::IMAGE->value;
@@ -408,6 +410,13 @@ ExtensionManagementUtility::addToAllTCAtypes(
     'after:nav_hide'
 );
 
+// FIX 2: Register allowed record types globally for each custom type to resolve the drag-and-drop restriction check
+$GLOBALS['TCA']['pages']['types'][$pagelistArticle]['allowedRecordTypes'] = ['*'];
+$GLOBALS['TCA']['pages']['types'][$pagelistEvent]['allowedRecordTypes'] = ['*'];
+$GLOBALS['TCA']['pages']['types'][$pagelistProduct]['allowedRecordTypes'] = ['*'];
+$GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['allowedRecordTypes'] = ['*'];
+
+
 $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = $GLOBALS['TCA']['pages']['types'][1]['showitem'];
 $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
     ';title,',
@@ -424,11 +433,14 @@ $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
     '--palette--;;,',
     $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
 );
+// FIX 3: Commented out the images removal replace rule. If a field is explicitly stripped out here, the form engine flags it as illegal and blocks it from the wizard.
+/*
     $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem'] = str_replace(
         'pagelistimages,',
         '',
         $GLOBALS['TCA']['pages']['types'][$pagelistArticle]['showitem']
     );
+*/
 
 
 $GLOBALS['TCA']['pages']['palettes']['pagelistarticlegeneral']['showitem'] = '
@@ -457,11 +469,13 @@ $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
     '--palette--;;,',
     $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
 );
+/*
 $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem'] = str_replace(
     'pagelistimages,',
     '',
     $GLOBALS['TCA']['pages']['types'][$pagelistProduct]['showitem']
 );
+*/
 
 $GLOBALS['TCA']['pages']['palettes']['pagelistproductgeneral']['showitem'] = '
     title,
@@ -491,11 +505,13 @@ $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
     '--palette--;;,',
     $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
 );
+/*
 $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem'] = str_replace(
     'pagelistimages,',
     '',
     $GLOBALS['TCA']['pages']['types'][$pagelistEvent]['showitem']
 );
+*/
 $GLOBALS['TCA']['pages']['palettes']['pagelisteventgeneral']['showitem'] = '
     title,
     --linebreak--,subtitle,
@@ -529,17 +545,19 @@ $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = str_replace(
     '--palette--;;,',
     $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem']
 );
+/*
 $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem'] = str_replace(
     'pagelistimages,',
     '',
     $GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['showitem']
 );
+*/
 $GLOBALS['TCA']['pages']['palettes']['pagelistvacancygeneral']['showitem'] = '
     title,
     --linebreak--,subtitle,
     --linebreak--,slug,
     --linebreak--,tx_pagelist_datetime,lastUpdated,
-    --linebreak--,tx_pagelist_eventfinish,tx_pagelist_eventstart,
+    --linebreak--,tx_pagelist_eventstart,tx_pagelist_eventfinish,
     --linebreak--,abstract,
     --linebreak--,tx_pagelist_images,
     --linebreak--,tx_pagelist_shortcut,
@@ -586,6 +604,61 @@ if ($pagelistConiguration['pagelistEnableInlineContentEditing']) {
         ],
     ];
 }
+
+// FIX 4: Added mandatory system field 'slug' to Article and Event arrays. Without 'slug', the custom setup configuration fails internal pipeline validation and defaults back.
+
+// ARTICLE WIZARD: ALL IN ONE STEP
+$GLOBALS['TCA']['pages']['types'][$pagelistArticle]['wizardSteps'] = [
+    'setup' => [
+        'title' => 'LLL:EXT:backend/Resources/Private/Language/locallang_wizards.xlf:page.step.setup',
+        'fields' => [
+            'title',
+            'slug',
+            'abstract',
+            'tx_pagelist_images',
+            'tx_pagelist_shortcut', 
+            'tx_pagelist_datetime', 
+            'hidden'
+        ],
+    ],
+];
+
+// EVENT WIZARD: ALL IN ONE STEP
+$GLOBALS['TCA']['pages']['types'][$pagelistEvent]['wizardSteps'] = [
+    'setup' => [
+        'title' => 'LLL:EXT:backend/Resources/Private/Language/locallang_wizards.xlf:page.step.setup',
+        'fields' => [
+            'title', 
+            'slug',
+            'subtitle',
+            'abstract',
+            'tx_pagelist_images',
+            'tx_pagelist_eventstart', 
+            'tx_pagelist_starttime', 
+            'tx_pagelist_eventfinish', 
+            'tx_pagelist_endtime',
+            'tx_pagelist_eventlocation', 
+            'tx_pagelist_eventlocationlink',
+            'hidden'
+        ],
+    ],
+];
+
+// PRODUCT WIZARD: ALL IN ONE STEP
+$GLOBALS['TCA']['pages']['types'][$pagelistProduct]['wizardSteps'] = [
+    'setup' => [
+        'title' => 'LLL:EXT:backend/Resources/Private/Language/locallang_wizards.xlf:page.step.setup',
+        'fields' => ['title', 'slug', 'tx_pagelist_productprice', 'tx_pagelist_datetime', 'abstract', 'hidden'],
+    ],
+];
+
+// VACANCY WIZARD: ALL IN ONE STEP
+$GLOBALS['TCA']['pages']['types'][$pagelistVacancy]['wizardSteps'] = [
+    'setup' => [
+        'title' => 'LLL:EXT:backend/Resources/Private/Language/locallang_wizards.xlf:page.step.setup',
+        'fields' => ['title', 'slug', 'abstract', 'tx_pagelist_eventstart', 'tx_pagelist_eventfinish', 'tx_pagelist_shortcut', 'hidden'],
+    ],
+];
 
 ExtensionManagementUtility::registerPageTSConfigFile(
     'pagelist',
