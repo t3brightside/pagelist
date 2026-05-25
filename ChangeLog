@@ -152,3 +152,9 @@
     9f8b8fe [BUGFIX] improve ProcessorInterface implementation
         M - Classes/DataProcessing/PaginatedPagelistDatabaseQueryProcessor.php
         M – Classes/DataProcessing/SelectedPagesDatabaseQueryProcessor.php
+5.2.1
+    64b784c [TASK] drop v12 compatibility
+        M - composer.json
+        M - ext_emconf.php
+    693f23a [TASK] add page creation wizard steps for page types
+        M - Configuration/TCA/Overrides/pages.php
