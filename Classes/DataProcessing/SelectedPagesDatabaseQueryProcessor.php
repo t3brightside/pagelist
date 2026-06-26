@@ -14,7 +14,7 @@ class SelectedPagesDatabaseQueryProcessor implements DataProcessorInterface
     // 2. Add a private property to hold the ContentDataProcessor
     private ContentDataProcessor $contentDataProcessor;
 
-    public function __construct(ContentDataProcessor $contentDataProcessor = null)
+    public function __construct(?ContentDataProcessor $contentDataProcessor = null)
     {
         // 3. Store the injected (or manually instantiated) processor in our local property.
         // No need to call parent::__construct() anymore!
